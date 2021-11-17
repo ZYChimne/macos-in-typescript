@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# macOS in TypeScript
+
+This is my Capstone Project for Wuhan University.  
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
