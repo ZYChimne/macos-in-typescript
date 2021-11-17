@@ -15,7 +15,10 @@ const mountainWallpapers = {
   dark: "mountains/dark.jpg",
   four: "mountains/four.jpg",
   six: "mountains/six.jpg",
-  fifteen: "mountains/fifteen.jpg"
+  fifteen: "mountains/fifteen.jpg",
+  seventeen: "mountains/seventeen.jpg",
+  eighteen: "mountains/eighteen.jpg",
+  nineteen: "mountains/nineteen.jpg"
 };
 export const wallpaperReducer = (
   state: WallpaperState,

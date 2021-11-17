@@ -1,0 +1,19 @@
+.header{
+    width: 100vw;
+    height: 24px;
+    position: absolute;
+    display: flex;
+    background-color: rgba($color: #EEEEEE, $alpha: 0.75);
+    // backdrop-filter: blur(1.5px);
+    top: 0;
+    z-index: 1;
+    align-items: center;
+}
+.headerItem{
+    font-size: 0.81rem;
+    margin: 0px 12px;
+}
+.date{
+    left:6px;
+    font-size: 0.96rem;
+}
