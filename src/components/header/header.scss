@@ -1,19 +1,72 @@
-.header{
-    width: 100vw;
-    height: 24px;
-    position: absolute;
-    display: flex;
-    background-color: rgba($color: #EEEEEE, $alpha: 0.75);
-    // backdrop-filter: blur(1.5px);
-    top: 0;
-    z-index: 1;
-    align-items: center;
+$header-height: 24px;
+$default-padding-regular: 0 12px;
+$default-padding-small: 0 6px;
+$active-background-color: rgba(
+  $color: #666666,
+  $alpha: 0.25,
+);
+$default-header-font-size: 0.81rem;
+$default-header-border-radius: 1.5px;
+%item-shared {
+  height: 100%;
+  border-radius: $default-header-border-radius;
+  &:active {
+    background-color: $active-background-color;
+  }
 }
-.headerItem{
-    font-size: 0.81rem;
-    margin: 0px 12px;
+.header {
+  width: 100vw;
+  height: $header-height;
+  position: absolute;
+  background-color: rgba($color: #eeeeee, $alpha: 0.75);
+  // backdrop-filter: blur(1.5px);
+  top: 0;
+  z-index: 10;
+  caret-color: transparent;
+  cursor: default;
 }
-.date{
-    left:6px;
-    font-size: 0.96rem;
+.header-left {
+  position: absolute;
+  height: 100%;
+  left: 6px;
+  display: flex;
+  align-items: center;
+}
+.header-right {
+  position: absolute;
+  height: 100%;
+  right: 6px;
+  display: flex;
+  align-items: center;
+}
+.headericon {
+  @extend %item-shared;
+  display: flex;
+  align-items: center;
+  padding: $default-padding-small;
+}
+.headericonapple {
+  @extend %item-shared;
+  display: flex;
+  align-items: center;
+  padding: $default-padding-regular;
+}
+.headericonapple-content {
+  height: 75%;
+}
+.headericon-content {
+  height: 60%;
+}
+.headerItem {
+  @extend %item-shared;
+  font-size: $default-header-font-size;
+  text-align: center;
+  line-height: $header-height;
+  padding: $default-padding-regular;
+}
+.date {
+  @extend %item-shared;
+  line-height: $header-height;
+  font-size: $default-header-font-size;
+  padding: $default-padding-regular $default-padding-small;
 }

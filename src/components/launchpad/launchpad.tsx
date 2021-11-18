@@ -1,2 +1,2 @@
-import React from "react"
-import "./launchpad.scss"
+import React from 'react';
+import './launchpad.scss';
