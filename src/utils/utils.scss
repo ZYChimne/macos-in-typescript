@@ -1,0 +1,39 @@
+.switch-label {
+  height: 24px;
+  width: 48px;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+}
+.switch-input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+.switch-core {
+  position: absolute;
+  height: 24px;
+  width: 48px;
+  display: flex;
+  background-color: rgba($color: #666666, $alpha: 0.25);
+  border-radius: 30px;
+  transition: 0.5s;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 15px;
+    background-color: white;
+    transition: 0.5s;
+  }
+  .switch-input:checked + & {
+    background-color: rgba($color: #aaaaff, $alpha: 1);
+  }
+  .switch-input:checked + &:after {
+    left: calc(100% - 3px);
+    transform: translateX(-100%);
+  }
+}

@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
-import { Header } from './components/header/header';
+import { Header, WiFiPanel,BatteryPanel, InputPanel } from './components/header/header';
+import { initialHeaderState } from './components/header/headerType';
 import { Wallpaper } from './components/wallpaper/wallpaper';
 function App() {
   return (
     <div className="App">
       <Wallpaper />
-      <Header/>
+      <Header state='Finder'/>
+      <WiFiPanel />
+      <BatteryPanel />
+      <InputPanel state='Pinyin'/>
     </div>
   );
 }

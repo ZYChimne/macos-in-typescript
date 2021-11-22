@@ -1,12 +1,18 @@
 $header-height: 24px;
 $default-padding-regular: 0 12px;
 $default-padding-small: 0 6px;
+$default-header-background-color: rgba(
+  $color: #eeeeee,
+  $alpha: 0.75,
+);
 $active-background-color: rgba(
   $color: #666666,
   $alpha: 0.25,
 );
 $default-header-font-size: 0.81rem;
 $default-header-border-radius: 1.5px;
+$default-border-radius-regular: 6px;
+$default-backdrop-filter-blur: 1.5px;
 %item-shared {
   height: 100%;
   border-radius: $default-header-border-radius;
@@ -18,22 +24,22 @@ $default-header-border-radius: 1.5px;
   width: 100vw;
   height: $header-height;
   position: absolute;
-  background-color: rgba($color: #eeeeee, $alpha: 0.75);
+  background-color: $default-header-background-color;
   // backdrop-filter: blur(1.5px);
   top: 0;
   z-index: 10;
   caret-color: transparent;
   cursor: default;
+  display: flex;
+  justify-content: space-between;
 }
 .header-left {
-  position: absolute;
   height: 100%;
   left: 6px;
   display: flex;
   align-items: center;
 }
 .header-right {
-  position: absolute;
   height: 100%;
   right: 6px;
   display: flex;
@@ -69,4 +75,145 @@ $default-header-border-radius: 1.5px;
   line-height: $header-height;
   font-size: $default-header-font-size;
   padding: $default-padding-regular $default-padding-small;
+}
+%panel-shared{
+  top: $header-height + 6px;
+  width: 282px;
+  position: absolute;
+  backdrop-filter: blur($default-backdrop-filter-blur);
+  background-color: $default-header-background-color;
+  border-radius: $default-border-radius-regular;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  caret-color: transparent;
+  cursor: default;
+}
+.WiFi-Panel {
+  display: none;
+  @extend %panel-shared;
+  right: 228px;
+}
+%panel-line-shared{
+  display: flex;
+  flex-direction: row;
+  border-radius: $default-header-border-radius;
+}
+%panel-line-begin-shared{
+  margin-top: 6px;
+  padding: 6px 18px 6px 18px;
+}
+%panel-line-end-shared{
+  padding: 6px 18px 6px 18px;
+  margin-bottom: 6px;
+}
+.WiFi-line1 {
+  @extend %panel-line-shared ;
+  @extend %panel-line-begin-shared;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.panel-title {
+  font-size: $default-header-font-size;
+  font-weight: bold;
+  left: 0;
+}
+.WiFi-switch {
+  right: 0;
+}
+.seperator {
+  margin: 0 auto;
+  background-color: $active-background-color;
+  width: 90%;
+  height: 1px;
+}
+.WiFi-line2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 18px 6px 18px;
+}
+.panel-subtitle{
+  color: rgba($color: #666666, $alpha: 1);
+  font-size:0.72rem;
+  font-weight: bold;
+  left: 0;
+}
+.WiFi-line3{
+  @extend %panel-line-shared;
+  @extend %panel-line-end-shared;
+  justify-content: space-between;
+  border-radius: 3px;
+  &:hover{
+    background-color: rgba(
+      $color: #666666,
+      $alpha: 0.25,
+    );
+  }
+}
+.WiFi-line3-left{
+  @extend %panel-line-shared;
+  align-items: center;
+  left:0px;
+}
+.WiFi-line3-right{
+  @extend %panel-line-shared;
+  right: 0px;
+}
+.WiFi-icon{
+  height: 50%;
+  padding: 6px;
+}
+.WiFi-name{
+  font-size: 0.81rem;
+  padding: 6px;
+}
+.Battery-Panel{
+  display: none;
+  @extend %panel-shared;
+  right: 6px;
+}
+.battery-line1{
+  @extend %panel-line-shared;
+  @extend %panel-line-begin-shared;
+  align-items: center;
+  justify-content: space-between;
+}
+.battery-text{
+  font-size: 0.72rem;
+  color: rgba(#666666, 1);
+}
+.battery-line2{
+  @extend %panel-line-end-shared;
+}
+%input-hover-shared{
+  filter: invert(1);
+  background-color: rgba($color: #666600, $alpha: 1.0);
+}
+.Input-Panel{
+  @extend %panel-shared;
+  right: 288px;
+}
+.input-line{
+  @extend %panel-line-shared;
+  @extend %panel-line-begin-shared;
+  align-items: center;
+  &:hover{
+    @extend %input-hover-shared;
+  }
+}
+.input-checked{
+  height: 12px;
+  width: 12px;
+  display: flex;
+  align-items: center;
+  padding: $default-padding-small;
+}
+.input-icon{
+  height: 75%;
+}
+.input-text{
+  font-size: $default-header-font-size;
 }
