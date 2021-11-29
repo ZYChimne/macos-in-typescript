@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faWifi,
@@ -13,10 +13,9 @@ import {
 import { faApple } from '@fortawesome/free-brands-svg-icons';
 import './header.scss';
 import { Switch } from '../../utils/utlils';
-import { headerReducer, languageReducer} from './headerReducer';
-import { HeaderItems, HeaderState, initialHeaderState, InputPanelLineProps, LanguageAction, LanguageState } from './headerType';
-export const Header = (props: HeaderState) => {
-  const [state, dispatch] = useReducer(headerReducer, {state: props.state});
+import { HeaderItems, HeaderProps, InputLanguages, InputPanelLineProps, PanelProps} from './typings';
+export const Header = (props: HeaderProps) => {
+  // const [state, dispatch] = useReducer(headerReducer, {state: props.state});
   return (
     <div className='header'>
       <div className='header-left'>
@@ -39,16 +38,25 @@ export const Header = (props: HeaderState) => {
         <div className='headericon'>
           <FontAwesomeIcon className='headericon-content' icon={faMoon} />
         </div>
-        <div className='headericon'>
+        <div
+          className='headericon'
+          onClick={() => props.headerPanelDispatcher({ type: 'ShowInput' })}
+        >
           <FontAwesomeIcon className='headericon-content' icon={faLanguage} />
         </div>
-        <div className='headericon'>
+        <div
+          className='headericon'
+          onClick={() => props.headerPanelDispatcher({ type: 'ShowBattery' })}
+        >
           <FontAwesomeIcon
             className='headericon-content'
             icon={faBatteryFull}
           />
         </div>
-        <div className='headericon'>
+        <div
+          className='headericon'
+          onClick={() => props.headerPanelDispatcher({ type: 'ShowWifi' })}
+        >
           <FontAwesomeIcon className='headericon-content' icon={faWifi} />
         </div>
         <div className='headericon'>
@@ -77,9 +85,9 @@ export const Header = (props: HeaderState) => {
   );
 };
 
-export const WiFiPanel = () => {
+export const WiFiPanel = (prop:PanelProps) => {
   return (
-    <div className='WiFi-Panel'>
+    <div className='WiFi-Panel' data-show={prop.show}>
       <div className='WiFi-line1'>
         <div className='panel-title'>Wi-Fi</div>
         <div className='WiFi-switch'>
@@ -103,9 +111,9 @@ export const WiFiPanel = () => {
   );
 };
 
-export const BatteryPanel = () => {
+export const BatteryPanel = (prop:PanelProps) => {
   return (
-    <div className='Battery-Panel'>
+    <div className='Battery-Panel' data-show={prop.show}>
       <div className='battery-line1'>
         <div className='panel-title'>Battery</div>
         <div className='battery-text'>100%</div>
@@ -117,45 +125,31 @@ export const BatteryPanel = () => {
   );
 };
 const InputPanelLine = (props: InputPanelLineProps) => {
-  const [state, dispatch] = useReducer(languageReducer, {state: props.state});
   const inputCheck = (
     <div className='input-checked'>
       <FontAwesomeIcon className='input-icon' icon={faCheck} />
     </div>
   );
   const inputNotCheck = <div className='input-checked'></div>;
-  return (<div className='input-line' onClick={()=>dispatch({type: props.state as 'Pinyin'|'English'})}>{props.checked ? inputCheck : inputNotCheck}<div className='input-text'>{props.text}</div></div>)
+  return (<div className='input-line' onClick={()=>props.dispatch(props.state)}>{props.checked ? inputCheck : inputNotCheck}<div className='input-text'>{InputLanguages[props.state]}</div></div>)
 }
-export const InputPanel = (props: LanguageState) => {
-  switch (props.state) {
-    case 'English':
-      return (
-        <div className='Input-Panel'>
-          <InputPanelLine checked={true} text='English' state='English' />
-          <InputPanelLine checked={false} text='Pinyin - Simplified' state='Pinyin' />
-        </div>
-      );
-    case 'Pinyin':
-      return (
-        <div className='Input-Panel'>
+export const InputPanel = (prop:PanelProps) => {
+  const [state, dispatch] = useState('Pinyin');
+  const languageKeys = Object.keys(InputLanguages);
+  return (
+    <div className='Input-Panel' data-show={prop.show}>
+      <InputPanelLine checked={true} dispatch={dispatch} state={state} />
+      {languageKeys.map((key, index) => {
+        return key === state ? null : (
           <InputPanelLine
-            checked={true}
-            text='Pinyin - Simplified'
-            state='Pinyin'
+            checked={false}
+            dispatch={dispatch}
+            state={key}
+            key={index}
           />
-          <InputPanelLine checked={false} text='English' state='English' />
-        </div>
-      );
-    default:
-      return (
-        <div className='Input-Panel'>
-          <InputPanelLine
-            checked={true}
-            text='Pinyin - Simplified'
-            state='Pinyin'
-          />
-          <InputPanelLine checked={false} text='English' state='English' />
-        </div>
-      );
-  }
-};
+        );
+      })}
+    </div>
+  );
+  
+}

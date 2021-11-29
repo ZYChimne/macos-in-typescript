@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
 import './wallpaper.scss';
-interface WallpaperState {
+type WallpaperState = {
   src: string;
 }
-interface WallpaperAction {
+type WallpaperAction = {
   type: 'light' | 'dark';
 }
 const defaultWallpapers = {

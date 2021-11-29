@@ -10,12 +10,14 @@ $active-background-color: rgba(
   $alpha: 0.25,
 );
 $default-header-font-size: 0.81rem;
-$default-header-border-radius: 1.5px;
+$default-header-border-radius-small: 1.5px;
+$default-header-border-radius-regular: 6px;
+$default-header-border-radius-large: 12px;
 $default-border-radius-regular: 6px;
 $default-backdrop-filter-blur: 1.5px;
 %item-shared {
   height: 100%;
-  border-radius: $default-header-border-radius;
+  border-radius: $default-header-border-radius-small;
   &:active {
     background-color: $active-background-color;
   }
@@ -35,13 +37,13 @@ $default-backdrop-filter-blur: 1.5px;
 }
 .header-left {
   height: 100%;
-  left: 6px;
+  margin-left: 6px;
   display: flex;
   align-items: center;
 }
 .header-right {
   height: 100%;
-  right: 6px;
+  margin-right: 6px;
   display: flex;
   align-items: center;
 }
@@ -80,36 +82,37 @@ $default-backdrop-filter-blur: 1.5px;
   top: $header-height + 6px;
   width: 282px;
   position: absolute;
+  padding: 6px 0;
   backdrop-filter: blur($default-backdrop-filter-blur);
   background-color: $default-header-background-color;
-  border-radius: $default-border-radius-regular;
+  border-radius: $default-header-border-radius-large;
   z-index: 10;
   display: flex;
   flex-direction: column;
   caret-color: transparent;
   cursor: default;
+  &[data-show=true]{
+    visibility: visible;
+    animation: fadeIn 0.25s;
+  }
+  &[data-show=false]{
+    visibility: hidden;
+    animation: fadeOut 0.25s;
+  }
 }
 .WiFi-Panel {
-  display: none;
   @extend %panel-shared;
   right: 228px;
 }
 %panel-line-shared{
   display: flex;
   flex-direction: row;
-  border-radius: $default-header-border-radius;
-}
-%panel-line-begin-shared{
-  margin-top: 6px;
-  padding: 6px 18px 6px 18px;
-}
-%panel-line-end-shared{
-  padding: 6px 18px 6px 18px;
-  margin-bottom: 6px;
+  border-radius: $default-header-border-radius-regular;
+  padding: 6px;
+  margin: 0 6px;
 }
 .WiFi-line1 {
-  @extend %panel-line-shared ;
-  @extend %panel-line-begin-shared;
+  @extend %panel-line-shared;
   justify-content: space-between;
   align-items: center;
   
@@ -129,11 +132,11 @@ $default-backdrop-filter-blur: 1.5px;
   height: 1px;
 }
 .WiFi-line2{
+  @extend %panel-line-shared;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 18px 6px 18px;
 }
 .panel-subtitle{
   color: rgba($color: #666666, $alpha: 1);
@@ -143,7 +146,6 @@ $default-backdrop-filter-blur: 1.5px;
 }
 .WiFi-line3{
   @extend %panel-line-shared;
-  @extend %panel-line-end-shared;
   justify-content: space-between;
   border-radius: 3px;
   &:hover{
@@ -154,30 +156,29 @@ $default-backdrop-filter-blur: 1.5px;
   }
 }
 .WiFi-line3-left{
-  @extend %panel-line-shared;
+  display: flex;
   align-items: center;
   left:0px;
 }
 .WiFi-line3-right{
-  @extend %panel-line-shared;
+  display: flex;
+  align-items: center;
   right: 0px;
 }
 .WiFi-icon{
   height: 50%;
-  padding: 6px;
+  padding: 3px;
 }
 .WiFi-name{
   font-size: 0.81rem;
-  padding: 6px;
+  padding: 3px;
 }
 .Battery-Panel{
-  display: none;
   @extend %panel-shared;
   right: 6px;
 }
 .battery-line1{
   @extend %panel-line-shared;
-  @extend %panel-line-begin-shared;
   align-items: center;
   justify-content: space-between;
 }
@@ -186,7 +187,7 @@ $default-backdrop-filter-blur: 1.5px;
   color: rgba(#666666, 1);
 }
 .battery-line2{
-  @extend %panel-line-end-shared;
+  @extend %panel-line-shared;
 }
 %input-hover-shared{
   filter: invert(1);
@@ -198,7 +199,6 @@ $default-backdrop-filter-blur: 1.5px;
 }
 .input-line{
   @extend %panel-line-shared;
-  @extend %panel-line-begin-shared;
   align-items: center;
   &:hover{
     @extend %input-hover-shared;
@@ -216,4 +216,13 @@ $default-backdrop-filter-blur: 1.5px;
 }
 .input-text{
   font-size: $default-header-font-size;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@keyframes fadeOut {
+  0% {opacity:1;}
+  100% {opacity:0;}
 }
