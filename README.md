@@ -1,6 +1,14 @@
 # macOS in TypeScript
 
-This is my Capstone Project for Wuhan University.  
+This is my Capstone Graduate Project for Wuhan University.  
+
+## Features
+* Built components from sratch
+* State management with React.js only
+* CSS and Canvas Animations
+* Typescript Best Practice
+* Lighthouse score > 90
+* Integrate Electron for desktop applcation (Coming)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
