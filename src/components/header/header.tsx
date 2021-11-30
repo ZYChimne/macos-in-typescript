@@ -151,5 +151,9 @@ export const InputPanel = (prop:PanelProps) => {
       })}
     </div>
   );
-  
 }
+// export const FocusPanel = (prop: PanelProps)=>{
+//   return (<div className='Focus-Panel' data-show={prop.show}>
+
+//   </div>)
+// }
