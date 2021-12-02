@@ -37,7 +37,7 @@ export const Menubar = (props: MenubarProps) => {
           onClick={() => props.menubarPanelDispatcher({ type: 'ShowApple' })}
         >
           <FontAwesomeIcon
-            className='menubariconapple-content'
+            className='menubaricon-content'
             icon={faApple}
           />
         </div>
@@ -138,27 +138,29 @@ export const Menubar = (props: MenubarProps) => {
 export const WiFiPanel = (prop: PanelProps) => {
   return (
     <div className='WiFi-Panel' data-show={prop.show}>
-      <div className='WiFi-line1'>
+      <div className='panel-line-between'>
         <div className='panel-title'>Wi-Fi</div>
         <div className='panel-switch'>
-          <Switch id='WiFi-Panel-Switch'/>
+          <Switch id='WiFi-Panel-Switch' />
         </div>
       </div>
       <div className='separator' />
-      <div className='WiFi-line2'>
+      <div className='panel-line-normal'>
         <div className='panel-subtitle'>Preferred Network</div>
       </div>
-      <div className='WiFi-line3'>
-        <div className='WiFi-line3-left'>
-          <FontAwesomeIcon className='panel-icon' icon={faWifi} />
+      <div className='panel-line-between-hover'>
+        <div className='panel-left'>
+          <div className='panel-icon-box' data-on={true}>
+            <FontAwesomeIcon className='panel-icon' icon={faWifi} />
+          </div>
           <div className='panel-text'>Wi-Fi-5G</div>
         </div>
-        <div className='WiFi-line3-right'>
-          <FontAwesomeIcon className='panel-icon' icon={faLock} />
+        <div className='panel-right'>
+          <FontAwesomeIcon className='panel-icon-small' icon={faLock} />
         </div>
       </div>
       <div className='separator' />
-      <div className='WiFi-line4'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Network Preferences...</div>
       </div>
     </div>
@@ -168,12 +170,12 @@ export const WiFiPanel = (prop: PanelProps) => {
 export const BatteryPanel = (prop: PanelProps) => {
   return (
     <div className='Battery-Panel' data-show={prop.show}>
-      <div className='battery-line1'>
+      <div className='panel-line-between'>
         <div className='panel-title'>Battery</div>
-        <div className='battery-text'>100%</div>
+        <div className='panel-subtitle'>100%</div>
       </div>
-      <div className='battery-line2'>
-        <div className='battery-text'>Power Source: Battery</div>
+      <div className='panel-line-normal'>
+        <div className='panel-subtitle'>Power Source: Battery</div>
       </div>
     </div>
   );
@@ -181,14 +183,14 @@ export const BatteryPanel = (prop: PanelProps) => {
 const InputPanelLine = (props: InputPanelLineProps) => {
   const inputCheck = (
     <div className='input-checked'>
-      <FontAwesomeIcon className='input-icon' icon={faCheck} />
+      <FontAwesomeIcon className='panel-icon-small' icon={faCheck} />
     </div>
   );
   const inputNotCheck = <div className='input-checked'></div>;
   return (
     <div className='input-line' onClick={() => props.dispatch(props.state)}>
       {props.checked ? inputCheck : inputNotCheck}
-      <div className='input-text'>{InputLanguages[props.state]}</div>
+      <div className='panel-text'>{InputLanguages[props.state]}</div>
     </div>
   );
 };
@@ -219,15 +221,17 @@ export const FocusPanel = (prop: PanelProps) => {
         <div className='panel-subtitle'>On</div>
       </div>
       <div className='separator' />
-      <div className='focus-line2'>
-        <FontAwesomeIcon className='panel-icon' icon={faMoon} />
+      <div className='panel-line-normal-hover'>
+        <div className='panel-icon-box'>
+          <FontAwesomeIcon className='panel-icon' icon={faMoon} />
+        </div>
         <div className='panel-text'>Do Not Disturb</div>
       </div>
-      <div className='focus-line3'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Until This Evening</div>
       </div>
       <div className='separator' />
-      <div className='focus-line4'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Focus Preferences...</div>
       </div>
     </div>
@@ -236,22 +240,22 @@ export const FocusPanel = (prop: PanelProps) => {
 export const BluetoothPanel = (prop: PanelProps) => {
   return (
     <div className='Bluetooth-Panel' data-show={prop.show}>
-      <div className='bluetooth-line1'>
+      <div className='panel-line-between'>
         <div className='panel-title'>Bluetooth</div>
         <div className='panel-switch'>
-          <Switch id='Bluetooth-Panel-Switch'/>
+          <Switch id='Bluetooth-Panel-Switch' />
         </div>
       </div>
       <div className='separator' />
-      <div className='bluetooth-line2'>
+      <div className='panel-line-normal'>
         <div className='panel-subtitle'>Devices</div>
       </div>
-      <div className='bluetooth-line3'>
+      <div className='panel-line-normal-hover'>
         <FontAwesomeIcon className='panel-icon' icon={faHeadphonesAlt} />
         <div className='panel-text'>WH-1000XM2</div>
       </div>
       <div className='separator' />
-      <div className='bluetooth-line4'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Bluetooth Preferences...</div>
       </div>
     </div>
@@ -268,7 +272,7 @@ export const ControlPanel = (prop: PanelProps) => {
               <FontAwesomeIcon className='panel-icon-big' icon={faWifi} />
             </div>
             <div className='control-line1-text-block'>
-              <div className='control-line1-block-title'>Wi-Fi</div>
+              <div className='control-title'>Wi-Fi</div>
               <div className='control-subtitle'>Wi-Fi-5G</div>
             </div>
           </div>
@@ -289,7 +293,7 @@ export const ControlPanel = (prop: PanelProps) => {
               />
             </div>
             <div className='control-line1-text-block'>
-              <div className='control--title'>AirDrop</div>
+              <div className='control-title'>AirDrop</div>
               <div className='control-subtitle'>Everyone</div>
             </div>
           </div>
@@ -304,13 +308,13 @@ export const ControlPanel = (prop: PanelProps) => {
             </div>
           </div>
           <div className='control-line1-right-line2'>
-            <div className='control-display'>
-              <FontAwesomeIcon className='panel-icon-big' icon={faLightbulb} />
-              <div className='panel-text'>Dark Mode</div>
+            <div className='control-block-small'>
+              <FontAwesomeIcon className='panel-icon' icon={faLightbulb} />
+              <div className='control-title'>Dark Mode</div>
             </div>
-            <div className='control-screen'>
-              <FontAwesomeIcon className='panel-icon-big' icon={faTv} />
-              <div className='panel-text'>Screen Monitoring</div>
+            <div className='control-block-small'>
+              <FontAwesomeIcon className='panel-icon' icon={faTv} />
+              <div className='control-title'>Screen Monitoring</div>
             </div>
           </div>
         </div>
@@ -322,6 +326,7 @@ export const ControlPanel = (prop: PanelProps) => {
               className='control-album-image'
               src='/assets/icons/ui/profile.png'
               loading='lazy'
+              alt=''
             />
           </div>
           <div className='control-music-info'>
@@ -332,9 +337,9 @@ export const ControlPanel = (prop: PanelProps) => {
           </div>
         </div>
         <div className='control-line2-right'>
-          <FontAwesomeIcon className='panel-icon-big' icon={faPlay} />
+          <FontAwesomeIcon className='panel-icon' icon={faPlay} />
           <FontAwesomeIcon
-            className='panel-icon-big'
+            className='panel-icon'
             icon={faForward}
             onClick={() => {
               setMusic((music + 1) % MusicList.length);
@@ -348,42 +353,42 @@ export const ControlPanel = (prop: PanelProps) => {
 export const ApplePanel = (prop: PanelProps) => {
   return (
     <div className='Apple-Panel' data-show={prop.show}>
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>About This Mac</div>
       </div>
       <div className='separator' />
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>System Preferences...</div>
       </div>
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Location</div>
       </div>
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>App Store</div>
       </div>
       <div className='separator' />
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Recent Items</div>
       </div>
       <div className='separator' />
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Force Quit...</div>
       </div>
       <div className='separator' />
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Sleep</div>
       </div>
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Restart...</div>
       </div>
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Shut Down...</div>
       </div>
       <div className='separator' />
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Lock Screen</div>
       </div>
-      <div className='apple-panel-line'>
+      <div className='panel-line-normal-hover'>
         <div className='panel-text'>Log Out ZYChimne</div>
       </div>
     </div>

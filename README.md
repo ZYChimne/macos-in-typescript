@@ -12,6 +12,7 @@ This application is developed in Chrome and some features require Chrome to work
 * Integrate Electron for desktop applcation (Coming)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[macOS color reference](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/).
 
 ## Available Scripts
 

@@ -1,3 +1,4 @@
+@use './colors.scss';
 .switch-label {
   height: 24px;
   width: 48px;
@@ -15,7 +16,7 @@
   height: 24px;
   width: 48px;
   display: flex;
-  background-color: rgba($color: #666666, $alpha: 0.25);
+  background-color: rgba(grey, 0.25);
   border-radius: 30px;
   // transition: 0.5s;
   &:after {
@@ -30,7 +31,7 @@
     // transition: 0.5s;
   }
   .switch-input:checked + & {
-    background-color: rgba($color: #aaaaff, $alpha: 1);
+    background-color: rgba(colors.$BLUE-LIGHT, 1);
   }
   .switch-input:checked + &:after {
     left: calc(100% - 3px);
