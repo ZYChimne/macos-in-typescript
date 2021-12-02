@@ -1,6 +1,7 @@
 # macOS in TypeScript
 
 This is my Capstone Graduate Project for Wuhan University.  
+This application is developed in Chrome and some features require Chrome to work correctly.
 
 ## Features
 * Built components from sratch

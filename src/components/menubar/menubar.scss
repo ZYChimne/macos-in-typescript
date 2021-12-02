@@ -1,0 +1,398 @@
+$menubar-height: 24px;
+$default-padding-regular: 0 12px;
+$default-padding-small: 0 6px;
+$default-menubar-background-color: rgba(
+  $color: #eeeeee,
+  $alpha: 0.75,
+);
+$active-background-color: rgba(
+  $color: #666666,
+  $alpha: 0.25,
+);
+$default-menubar-font-size: 0.81rem;
+$default-menubar-border-radius-small: 1.5px;
+$default-menubar-border-radius-regular: 6px;
+$default-menubar-border-radius-large: 12px;
+$default-border-radius-regular: 6px;
+$default-backdrop-filter-blur: 1.5px;
+%item-shared {
+  height: 100%;
+  border-radius: $default-menubar-border-radius-small;
+  &:active {
+    background-color: $active-background-color;
+  }
+}
+.menubar {
+  width: 100vw;
+  height: $menubar-height;
+  position: absolute;
+  background-color: $default-menubar-background-color;
+  // backdrop-filter: blur(1.5px);
+  top: 0;
+  z-index: 10;
+  caret-color: transparent;
+  cursor: default;
+  display: flex;
+  justify-content: space-between;
+}
+.menubar-left {
+  height: 100%;
+  margin-left: 6px;
+  display: flex;
+  align-items: center;
+}
+.menubar-right {
+  height: 100%;
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+}
+.menubaricon {
+  @extend %item-shared;
+  display: flex;
+  align-items: center;
+  padding: $default-padding-small;
+}
+.menubariconapple {
+  @extend %item-shared;
+  display: flex;
+  align-items: center;
+  padding: $default-padding-regular;
+}
+.menubariconapple-content {
+  height: 75%;
+}
+.menubaricon-content {
+  height: 60%;
+}
+.menubarItem {
+  @extend %item-shared;
+  font-size: $default-menubar-font-size;
+  text-align: center;
+  line-height: $menubar-height;
+  padding: $default-padding-regular;
+}
+.date {
+  @extend %item-shared;
+  line-height: $menubar-height;
+  font-size: $default-menubar-font-size;
+  padding: $default-padding-regular $default-padding-small;
+}
+
+%panel-shared{
+  top: $menubar-height + 6px;
+  width: 282px;
+  position: absolute;
+  padding: 6px 0;
+  backdrop-filter: blur($default-backdrop-filter-blur);
+  background-color: $default-menubar-background-color;
+  border-radius: $default-menubar-border-radius-large;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  caret-color: transparent;
+  cursor: default;
+  &[data-show=true]{
+    visibility: visible;
+    animation: fadeIn 0.25s;
+  }
+  &[data-show=false]{
+    visibility: hidden;
+    animation: fadeOut 0.25s;
+  }
+}
+
+.WiFi-Panel {
+  @extend %panel-shared;
+  right: 228px;
+}
+%panel-line-shared{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: $default-menubar-border-radius-regular;
+  padding: 3px 6px;
+  margin: 0 6px;
+}
+.WiFi-line1 {
+  @extend %panel-line-shared;
+  justify-content: space-between;
+}
+.panel-title {
+  font-size: $default-menubar-font-size;
+  font-weight: bold;
+  left: 0;
+}
+.panel-switch {
+  right: 0;
+}
+.separator {
+  margin: 3px auto;
+  background-color: $active-background-color;
+  width: 90%;
+  height: 1px;
+}
+.WiFi-line2{
+  @extend %panel-line-shared;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.panel-subtitle{
+  color: rgba($color: #666666, $alpha: 1);
+  font-size:0.72rem;
+  font-weight: bold;
+  left: 0;
+}
+.WiFi-line3{
+  @extend %panel-line-shared;
+  justify-content: space-between;
+  border-radius: 3px;
+  &:hover{
+    background-color: $active-background-color;
+  }
+}
+.WiFi-line3-left{
+  display: flex;
+  align-items: center;
+  left:0px;
+}
+.WiFi-line3-right{
+  display: flex;
+  align-items: center;
+  right: 0px;
+}
+.WiFi-line4{
+  @extend %panel-line-shared;
+  &:hover{
+    background-color: $active-background-color;
+  }
+}
+.panel-icon{
+  height: 12px;
+  padding: 3px;
+}
+.panel-text{
+  font-size: 0.81rem;
+  padding: 3px;
+}
+
+.Battery-Panel{
+  @extend %panel-shared;
+  right: 6px;
+}
+.battery-line1{
+  @extend %panel-line-shared;
+  justify-content: space-between;
+}
+.battery-text{
+  font-size: 0.72rem;
+  color: rgba(#666666, 1);
+}
+.battery-line2{
+  @extend %panel-line-shared;
+}
+
+%input-hover-shared{
+  filter: invert(1);
+  background-color: rgba($color: #666600, $alpha: 1.0);
+}
+.Input-Panel{
+  @extend %panel-shared;
+  right: 288px;
+}
+.input-line{
+  @extend %panel-line-shared;
+  &:hover{
+    @extend %input-hover-shared;
+  }
+}
+.input-checked{
+  height: 12px;
+  width: 12px;
+  display: flex;
+  align-items: center;
+  padding: $default-padding-small;
+}
+.input-icon{
+  height: 75%;
+}
+.input-text{
+  font-size: $default-menubar-font-size;
+}
+
+.Focus-Panel{
+  @extend %panel-shared;
+  right:300px;
+}
+.focus-line1{
+  align-items: center;
+  border-radius: $default-menubar-border-radius-regular;
+  padding: 6px;
+  margin: 0 6px;
+  flex-direction: column;
+}
+.focus-line2{
+  @extend %panel-line-shared;
+  &:hover{
+    background-color: $active-background-color;
+  }
+}
+.focus-line3{
+  @extend %panel-line-shared;
+  &:hover{
+    background-color: $active-background-color;
+  }
+}
+.focus-line4{
+  @extend %panel-line-shared;
+  &:hover{
+    background-color: $active-background-color;
+  }
+}
+
+.Bluetooth-Panel{
+  @extend %panel-shared;
+  right: 6px;
+}
+.bluetooth-line1{
+  @extend %panel-line-shared;
+  justify-content: space-between;
+}
+.bluetooth-line2{
+  @extend %panel-line-shared;
+}
+.bluetooth-line3{
+  @extend %panel-line-shared;
+  &:hover{
+    background-color: $active-background-color;
+  }
+}
+.bluetooth-line4{
+  @extend %panel-line-shared;
+  &:hover{
+    background-color: $active-background-color;
+  }
+}
+
+.Control-Panel{
+  top: $menubar-height + 6px;
+  width: 300px;
+  position: absolute;
+  padding: 6px 0;
+  backdrop-filter: blur($default-backdrop-filter-blur);
+  background-color: $default-menubar-background-color;
+  border-radius: 12px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  caret-color: transparent;
+  cursor: default;
+  right:6px;
+  &[data-show=true]{
+    visibility: visible;
+    animation: fadeIn 0.25s;
+  }
+  &[data-show=false]{
+    visibility: hidden;
+    animation: fadeOut 0.25s;
+  }
+}
+.control-line1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.control-line1-left{
+  width: 47%;
+  margin-left: 6px;
+  background-color: rgba(
+      $color: #eeeeee,
+      $alpha: 0.75,
+    );
+  border-radius: 6px;
+}
+.control-line1-right{
+  width: 47%;
+  margin-right: 6px;
+  background-color: rgba(
+      $color: #eeeeee,
+      $alpha: 0.75,
+    );
+  border-radius: 6px;
+}
+.control-line1-left-block{
+  display: flex;
+  flex-direction: row;
+  margin: 6px;
+}
+.panel-icon-box{
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+.panel-icon-big{
+  font-size: 1rem;
+}
+.control-slider{
+  width: 100%;
+}
+.control-line1-text-block{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3px;
+}
+.control-line1-block-title{
+  font-size: 0.81rem;
+  padding: 0 3px;
+}
+.control-line1-block-subtitle{
+  font-size: 0.54rem;
+  font-weight: bold;
+  padding: 0 3px;
+}
+
+.Apple-Panel{
+  top: $menubar-height + 6px;
+  width: 240px;
+  position: absolute;
+  padding: 6px 0;
+  backdrop-filter: blur($default-backdrop-filter-blur);
+  background-color: $default-menubar-background-color;
+  border-radius: $default-menubar-border-radius-large;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  caret-color: transparent;
+  cursor: default;
+  &[data-show=true]{
+    visibility: visible;
+    animation: fadeIn 0.25s;
+  }
+  &[data-show=false]{
+    visibility: hidden;
+    animation: fadeOut 0.25s;
+  }
+  left: 6px;
+}
+.apple-panel-line{
+  @extend %panel-line-shared;
+  &:hover{
+    background-color: $active-background-color;
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@keyframes fadeOut {
+  0% {opacity:1;}
+  100% {opacity:0;}
+}

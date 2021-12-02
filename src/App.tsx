@@ -1,10 +1,10 @@
 import React, { useReducer } from 'react';
 import './App.css';
-import { Header, WiFiPanel,BatteryPanel, InputPanel } from './components/header/header';
-import { HeaderPanelStates, HeaderPanelAction } from './components/header/typings';
+import { Menubar, WiFiPanel,BatteryPanel, InputPanel, BluetoothPanel, FocusPanel, ApplePanel, ControlPanel } from './components/menubar/menubar';
+import { MenubarPanelStates, MenubarPanelAction } from './components/menubar/typings';
 import { Wallpaper } from './components/wallpaper/wallpaper';
 
-export const headerPanelReducer = (states: HeaderPanelStates, action: HeaderPanelAction): HeaderPanelStates => {
+export const menubarPanelReducer = (states: MenubarPanelStates, action: MenubarPanelAction): MenubarPanelStates => {
   switch (action.type) {
     case 'Hide':
       return {
@@ -12,6 +12,13 @@ export const headerPanelReducer = (states: HeaderPanelStates, action: HeaderPane
         showWifi: false,
         showInput: false,
         showBattery: false,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: false,
+        showControl: false,
+        showSiri: false,
+        showSearch: false,
+        showNotification: false,
       };
     case 'ShowWifi':
       return {
@@ -19,6 +26,13 @@ export const headerPanelReducer = (states: HeaderPanelStates, action: HeaderPane
         showWifi: !states.showWifi,
         showInput: false,
         showBattery: false,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: false,
+        showControl: false,
+        showSiri: false,
+        showSearch: false,
+        showNotification: false,
       };
     case 'ShowBattery':
       return {
@@ -26,6 +40,13 @@ export const headerPanelReducer = (states: HeaderPanelStates, action: HeaderPane
         showWifi: false,
         showInput: false,
         showBattery: !states.showBattery,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: false,
+        showControl: false,
+        showSiri: false,
+        showSearch: false,
+        showNotification: false,
       };
     case 'ShowInput':
       return {
@@ -33,6 +54,109 @@ export const headerPanelReducer = (states: HeaderPanelStates, action: HeaderPane
         showWifi: false,
         showInput: !states.showInput,
         showBattery: false,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: false,
+        showControl: false,
+        showSiri: false,
+        showSearch: false,
+        showNotification: false,
+      };
+    case 'ShowBluetooth':
+      return {
+        ...states,
+        showWifi: false,
+        showInput: false,
+        showBattery: false,
+        showBluetooth: !states.showBluetooth,
+        showFocus: false,
+        showApple: false,
+        showControl: false,
+        showSiri: false,
+        showSearch: false,
+        showNotification: false,
+      };
+    case 'ShowFocus':
+      return {
+        ...states,
+        showWifi: false,
+        showInput: false,
+        showBattery: false,
+        showBluetooth: false,
+        showFocus: !states.showFocus,
+        showApple: false,
+        showControl: false,
+        showSiri: false,
+        showSearch: false,
+        showNotification: false,
+      };
+    case 'ShowApple':
+      return {
+        ...states,
+        showWifi: false,
+        showInput: false,
+        showBattery: false,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: !states.showApple,
+        showControl: false,
+        showSiri: false,
+        showSearch: false,
+      };
+    case 'ShowControl':
+      return {
+        ...states,
+        showWifi: false,
+        showInput: false,
+        showBattery: false,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: false,
+        showControl: !states.showSiri,
+        showSiri: false,
+        showSearch: false,
+      };
+    case 'ShowSiri':
+      return {
+        ...states,
+        showWifi: false,
+        showInput: false,
+        showBattery: false,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: false,
+        showControl: false,
+        showSiri: !states.showSiri,
+        showSearch: false,
+        showNotification: false,
+      };
+    case 'ShowSearch':
+      return {
+        ...states,
+        showWifi: false,
+        showInput: false,
+        showBattery: false,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: false,
+        showControl: false,
+        showSiri: false,
+        showSearch: !states.showSearch,
+        showNotification: false,
+      };
+    case 'ShowNotification':
+      return {
+        ...states,
+        showWifi: false,
+        showInput: false,
+        showBattery: false,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: false,
+        showControl: false,
+        showSiri: false,
+        showSearch: false,
+        showNotification: !states.showNotification,
       };
     default:
       return {
@@ -40,18 +164,43 @@ export const headerPanelReducer = (states: HeaderPanelStates, action: HeaderPane
         showWifi: false,
         showInput: false,
         showBattery: false,
+        showBluetooth: false,
+        showFocus: false,
+        showApple: false,
+        showControl: false,
+        showSiri: false,
+        showSearch: false,
+        showNotification: false,
       };
   }
 }
 function App() {
-  const [headerPanelState, headerPanelDispatcher]=useReducer(headerPanelReducer, {showWifi:false, showBattery:false, showInput:false})
+  const [menubarPanelState, menubarPanelDispatcher] = useReducer(
+    menubarPanelReducer,
+    {
+      showWifi: false,
+      showInput: false,
+      showBattery: false,
+      showBluetooth: false,
+      showFocus: false,
+      showApple: false,
+      showControl: false,
+      showSiri: false,
+      showSearch: false,
+      showNotification:false,
+    }
+  );
   return (
-    <div className='App' >
+    <div className='App'>
       <Wallpaper />
-      <Header state='Finder' headerPanelDispatcher={headerPanelDispatcher}/>
-      <WiFiPanel show={headerPanelState.showWifi} />
-      <BatteryPanel show={headerPanelState.showBattery} />
-      <InputPanel show={headerPanelState.showInput} />
+      <Menubar state='Finder' menubarPanelDispatcher={menubarPanelDispatcher} />
+      <WiFiPanel show={menubarPanelState.showWifi} />
+      <InputPanel show={menubarPanelState.showInput} />
+      <BatteryPanel show={menubarPanelState.showBattery} />
+      <BluetoothPanel show={menubarPanelState.showBluetooth} />
+      <FocusPanel show={menubarPanelState.showFocus} />
+      <ApplePanel show={menubarPanelState.showApple} />
+      <ControlPanel show={menubarPanelState.showControl}/>
     </div>
   );
 }
