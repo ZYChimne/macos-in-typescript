@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import './App.css';
 import { Menubar, WiFiPanel,BatteryPanel, InputPanel, BluetoothPanel, FocusPanel, ApplePanel, ControlPanel } from './components/menubar/menubar';
-import { MenubarPanelStates, MenubarPanelAction } from './components/menubar/typings';
+import { MenubarPanelStates, MenubarPanelAction } from './components/menubar/menubar.d';
 import { Wallpaper } from './components/wallpaper/wallpaper';
 
 export const menubarPanelReducer = (states: MenubarPanelStates, action: MenubarPanelAction): MenubarPanelStates => {
@@ -112,7 +112,7 @@ export const menubarPanelReducer = (states: MenubarPanelStates, action: MenubarP
         showBluetooth: false,
         showFocus: false,
         showApple: false,
-        showControl: !states.showSiri,
+        showControl: !states.showControl,
         showSiri: false,
         showSearch: false,
       };

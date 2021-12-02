@@ -1,5 +1,5 @@
 import React from 'react';
-import { SwitchProps } from './typings'
+import { SwitchProps } from './utils.d'
 import './utils.scss'
 
 export const Switch = (props: SwitchProps) => {

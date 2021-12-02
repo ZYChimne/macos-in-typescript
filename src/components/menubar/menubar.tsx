@@ -14,6 +14,8 @@ import {
   faPlay,
   faForward,
   faBroadcastTower,
+  faLightbulb,
+  faTv,
 } from '@fortawesome/free-solid-svg-icons';
 import { faApple, faBluetoothB } from '@fortawesome/free-brands-svg-icons';
 import './menubar.scss';
@@ -24,7 +26,8 @@ import {
   InputLanguages,
   InputPanelLineProps,
   PanelProps,
-} from './typings';
+  MusicList,
+} from './menubar.d';
 export const Menubar = (props: MenubarProps) => {
   return (
     <div className='menubar'>
@@ -255,32 +258,27 @@ export const BluetoothPanel = (prop: PanelProps) => {
   );
 };
 export const ControlPanel = (prop: PanelProps) => {
+  const [music, setMusic] = useState(0)
   return (
     <div className='Control-Panel' data-show={prop.show}>
       <div className='control-line1'>
         <div className='control-line1-left'>
           <div className='control-line1-left-block'>
             <div className='panel-icon-box'>
-              <FontAwesomeIcon
-                className='panel-icon-big'
-                icon={faWifi}
-              />
+              <FontAwesomeIcon className='panel-icon-big' icon={faWifi} />
             </div>
             <div className='control-line1-text-block'>
               <div className='control-line1-block-title'>Wi-Fi</div>
-              <div className='control-line1-block-subtitle'>Wi-Fi-5G</div>
+              <div className='control-subtitle'>Wi-Fi-5G</div>
             </div>
           </div>
           <div className='control-line1-left-block'>
             <div className='panel-icon-box'>
-              <FontAwesomeIcon
-                className='panel-icon-big'
-                icon={faBluetoothB}
-              />
+              <FontAwesomeIcon className='panel-icon-big' icon={faBluetoothB} />
             </div>
             <div className='control-line1-text-block'>
-              <div className='control-line1-block-title'>Bluetooth</div>
-              <div className='control-line1-block-subtitle'>On</div>
+              <div className='control-title'>Bluetooth</div>
+              <div className='control-subtitle'>On</div>
             </div>
           </div>
           <div className='control-line1-left-block'>
@@ -291,29 +289,58 @@ export const ControlPanel = (prop: PanelProps) => {
               />
             </div>
             <div className='control-line1-text-block'>
-              <div className='control-line1-block-title'>AirDrop</div>
-              <div className='control-line1-block-subtitle'>Everyone</div>
+              <div className='control--title'>AirDrop</div>
+              <div className='control-subtitle'>Everyone</div>
             </div>
           </div>
         </div>
-        <div className='control-line1-right'></div>
+        <div className='control-line1-right'>
+          <div className='control-line1-right-line1'>
+            <div className='control-focus'>
+              <div className='panel-icon-box'>
+                <FontAwesomeIcon className='panel-icon-big' icon={faMoon} />
+              </div>
+              <div className='panel-text'>Focus</div>
+            </div>
+          </div>
+          <div className='control-line1-right-line2'>
+            <div className='control-display'>
+              <FontAwesomeIcon className='panel-icon-big' icon={faLightbulb} />
+              <div className='panel-text'>Dark Mode</div>
+            </div>
+            <div className='control-screen'>
+              <FontAwesomeIcon className='panel-icon-big' icon={faTv} />
+              <div className='panel-text'>Screen Monitoring</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div className='control-line2'>
-        <div className='control-text'>Display</div>
-        <input className='control-slider' type='range' />
-      </div>
-      <div className='control-line3'>
-        <div className='control-text'>Sound</div>
-        <input className='control-slider' type='range' />
-      </div>
-      <div className='control-line4'>
-        <div className='control-album'></div>
-        <div className='control-music-info'>
-          <div className='control-music-title'>Roling in the Deep</div>
-          <div className='control-music-singer'>Adele - 21</div>
+        <div className='control-line2-left'>
+          <div className='control-album'>
+            <img
+              className='control-album-image'
+              src='/assets/icons/ui/profile.png'
+              loading='lazy'
+            />
+          </div>
+          <div className='control-music-info'>
+            <div className='control-title'>{MusicList[music].title}</div>
+            <div className='control-subtitle'>
+              {MusicList[music].singer} - {MusicList[music].album}
+            </div>
+          </div>
         </div>
-        <FontAwesomeIcon className='control-icon' icon={faPlay} />
-        <FontAwesomeIcon className='control-icon' icon={faForward} />
+        <div className='control-line2-right'>
+          <FontAwesomeIcon className='panel-icon-big' icon={faPlay} />
+          <FontAwesomeIcon
+            className='panel-icon-big'
+            icon={faForward}
+            onClick={() => {
+              setMusic((music + 1) % MusicList.length);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

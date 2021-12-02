@@ -35,3 +35,15 @@ export const MenubarItems: { [key: string]: string[] } = {
   Finder: ['Finder', 'File', 'Edit', 'View', 'Go', 'Window', 'Help'],
   Map: ['Finder', 'File', 'Edit', 'View', 'Go', 'Window', 'Help'],
 };
+export const MusicList: { title: string; singer: string; album: string }[] = [
+  { title: 'Roling in the Deep', singer: 'Adele', album: '21' },
+  { title: 'Scientist', singer: 'OneRepublic', album: '21' },
+  { title: 'Roling', singer: 'Adele', album: '21' },
+  { title: 'Roling Deep', singer: 'Adele', album: '21' },
+  { title: 'the Deep', singer: 'Adele', album: '21' },
+  { title: 'Back to December', singer: 'Adele', album: '21' },
+  { title: 'Roling in', singer: 'Adele', album: '21' },
+  { title: 'the Deep Hole', singer: 'Adele', album: '21' },
+  { title: 'Deep', singer: 'Adele', album: '21' },
+  { title: 'in', singer: 'Adele', album: '21' },
+];

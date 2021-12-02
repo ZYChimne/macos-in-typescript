@@ -88,16 +88,15 @@ $default-backdrop-filter-blur: 1.5px;
   background-color: $default-menubar-background-color;
   border-radius: $default-menubar-border-radius-large;
   z-index: 10;
-  display: flex;
   flex-direction: column;
   caret-color: transparent;
   cursor: default;
   &[data-show=true]{
-    visibility: visible;
+    display: flex;
     animation: fadeIn 0.25s;
   }
   &[data-show=false]{
-    visibility: hidden;
+    display: none;
     animation: fadeOut 0.25s;
   }
 }
@@ -284,24 +283,37 @@ $default-backdrop-filter-blur: 1.5px;
   background-color: $default-menubar-background-color;
   border-radius: 12px;
   z-index: 10;
-  display: flex;
   flex-direction: column;
   caret-color: transparent;
   cursor: default;
   right:6px;
   &[data-show=true]{
-    visibility: visible;
+    display: flex;
     animation: fadeIn 0.25s;
   }
   &[data-show=false]{
-    visibility: hidden;
+    display: none;
     animation: fadeOut 0.25s;
   }
 }
 .control-line1{
+  height: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.control-line2{
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(
+      $color: #eeeeee,
+      $alpha: 0.75,
+    );
+  border-radius: 6px;
+  align-items: center;
+  margin: 6px;
 }
 .control-line1-left{
   width: 47%;
@@ -311,15 +323,16 @@ $default-backdrop-filter-blur: 1.5px;
       $alpha: 0.75,
     );
   border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .control-line1-right{
   width: 47%;
   margin-right: 6px;
-  background-color: rgba(
-      $color: #eeeeee,
-      $alpha: 0.75,
-    );
-  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .control-line1-left-block{
   display: flex;
@@ -347,14 +360,97 @@ $default-backdrop-filter-blur: 1.5px;
   justify-content: space-between;
   padding: 3px;
 }
-.control-line1-block-title{
+.control-title{
   font-size: 0.81rem;
   padding: 0 3px;
 }
-.control-line1-block-subtitle{
+.control-subtitle{
   font-size: 0.54rem;
   font-weight: bold;
   padding: 0 3px;
+}
+.control-line1-right-line1{
+  width: 100%;
+  height: 50%;
+  background-color: rgba(
+      $color: #eeeeee,
+      $alpha: 0.75,
+    );
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.control-focus{
+  display: flex;
+  align-items: center;
+}
+.control-line1-right-line2{
+  width: 100%;
+  height: 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.control-display{
+  height: 100%;
+  width: 48%;
+  background-color: rgba(
+      $color: #eeeeee,
+      $alpha: 0.75,
+    );
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.control-screen{
+  height: 100%;
+  width: 48%;
+  background-color: rgba(
+      $color: #eeeeee,
+      $alpha: 0.75,
+    );
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.control-album-image{
+  height: 54px;
+  width: 54px;
+  border-radius: 6px;
+  background-position: center;
+  background-size: contain;
+  resize: both;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.control-line2-left{
+  width: 72%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 6px;
+}
+.control-line2-right{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 15%;
+  justify-content: space-between;
+  margin-right: 12px;
+}
+.control-music-info{
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
 }
 
 .Apple-Panel{
