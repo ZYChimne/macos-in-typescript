@@ -16,7 +16,7 @@ $default-zindex:10;
 %item-shared {
   height: 100%;
   border-radius: $default-menubar-border-radius-small;
-  &:active {
+  &[data-active=true] {
     background-color: $active-background-color;
   }
 }
@@ -223,6 +223,12 @@ $default-zindex:10;
   margin: 0 6px;
   flex-direction: column;
 }
+.focus-checked{
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .Bluetooth-Panel{
   @extend %panel-shared;
@@ -241,6 +247,7 @@ $default-zindex:10;
   flex-direction: column;
   caret-color: transparent;
   cursor: default;
+  justify-content: space-between;
   right:6px;
   &[data-show=true]{
     display: flex;

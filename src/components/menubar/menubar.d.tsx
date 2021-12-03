@@ -2,9 +2,42 @@ import React from 'react';
 export type MenubarProps = {
   state: string;
   menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
+  menubarState: MenubarPanelStates;
 };
 export type PanelProps = {
   show: boolean;
+  state: boolean;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
+};
+export type SimplePanelProps = {
+  show: boolean;
+};
+export type FocusState = {
+  state: boolean;
+  hourChecked: boolean;
+  eveningChecked: boolean;
+  eventChecked: boolean;
+};
+export type FocusAction =
+  | 'ChangeFocus'
+  | 'HourChecked'
+  | 'EveningChecked'
+  | 'EventChecked';
+export type FocusPanelProps = {
+  show: boolean;
+  state: FocusState;
+  dispatch: React.Dispatch<FocusAction>;
+};
+export type ControlPanelProps = {
+  show: boolean;
+  wifiState: boolean;
+  setWifi: React.Dispatch<React.SetStateAction<boolean>>;
+  darkState: boolean;
+  setDark: React.Dispatch<React.SetStateAction<boolean>>;
+  bluetoothState: boolean;
+  setBluetooth: React.Dispatch<React.SetStateAction<boolean>>;
+  focusState: FocusState;
+  setFoucs: React.Dispatch<FocusAction>;
 };
 export type InputPanelLineProps = {
   state: string;
@@ -23,9 +56,18 @@ export type MenubarPanelStates = {
   showSearch: boolean;
   showNotification: boolean;
 };
-export type MenubarPanelAction = {
-  type: 'Hide' | 'ShowWifi' | 'ShowBattery' | 'ShowInput' | 'ShowFocus' | 'ShowBluetooth' | 'ShowControl' | 'ShowSiri' | 'ShowApple' | 'ShowSearch' | 'ShowNotification';
-};
+export type MenubarPanelAction =
+  | 'Hide'
+  | 'ShowWifi'
+  | 'ShowBattery'
+  | 'ShowInput'
+  | 'ShowFocus'
+  | 'ShowBluetooth'
+  | 'ShowControl'
+  | 'ShowSiri'
+  | 'ShowApple'
+  | 'ShowSearch'
+  | 'ShowNotification';
 export const InputLanguages: { [key: string]: string } = {
   Pinyin: 'Pinyin - Simplified',
   English: 'English',

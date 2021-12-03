@@ -1,179 +1,19 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import './App.css';
-import { Menubar, WiFiPanel,BatteryPanel, InputPanel, BluetoothPanel, FocusPanel, ApplePanel, ControlPanel } from './components/menubar/menubar';
-import { MenubarPanelStates, MenubarPanelAction } from './components/menubar/menubar.d';
+import {
+  Menubar,
+  WiFiPanel,
+  BatteryPanel,
+  InputPanel,
+  BluetoothPanel,
+  FocusPanel,
+  ApplePanel,
+  ControlPanel,
+} from './components/menubar/menubar';
+import { focusReducer, menubarPanelReducer } from './components/menubar/menubar.r';
 import { Wallpaper } from './components/wallpaper/wallpaper';
 
-export const menubarPanelReducer = (states: MenubarPanelStates, action: MenubarPanelAction): MenubarPanelStates => {
-  switch (action.type) {
-    case 'Hide':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: false,
-        showControl: false,
-        showSiri: false,
-        showSearch: false,
-        showNotification: false,
-      };
-    case 'ShowWifi':
-      return {
-        ...states,
-        showWifi: !states.showWifi,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: false,
-        showControl: false,
-        showSiri: false,
-        showSearch: false,
-        showNotification: false,
-      };
-    case 'ShowBattery':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: !states.showBattery,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: false,
-        showControl: false,
-        showSiri: false,
-        showSearch: false,
-        showNotification: false,
-      };
-    case 'ShowInput':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: !states.showInput,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: false,
-        showControl: false,
-        showSiri: false,
-        showSearch: false,
-        showNotification: false,
-      };
-    case 'ShowBluetooth':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: !states.showBluetooth,
-        showFocus: false,
-        showApple: false,
-        showControl: false,
-        showSiri: false,
-        showSearch: false,
-        showNotification: false,
-      };
-    case 'ShowFocus':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: !states.showFocus,
-        showApple: false,
-        showControl: false,
-        showSiri: false,
-        showSearch: false,
-        showNotification: false,
-      };
-    case 'ShowApple':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: !states.showApple,
-        showControl: false,
-        showSiri: false,
-        showSearch: false,
-      };
-    case 'ShowControl':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: false,
-        showControl: !states.showControl,
-        showSiri: false,
-        showSearch: false,
-      };
-    case 'ShowSiri':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: false,
-        showControl: false,
-        showSiri: !states.showSiri,
-        showSearch: false,
-        showNotification: false,
-      };
-    case 'ShowSearch':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: false,
-        showControl: false,
-        showSiri: false,
-        showSearch: !states.showSearch,
-        showNotification: false,
-      };
-    case 'ShowNotification':
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: false,
-        showControl: false,
-        showSiri: false,
-        showSearch: false,
-        showNotification: !states.showNotification,
-      };
-    default:
-      return {
-        ...states,
-        showWifi: false,
-        showInput: false,
-        showBattery: false,
-        showBluetooth: false,
-        showFocus: false,
-        showApple: false,
-        showControl: false,
-        showSiri: false,
-        showSearch: false,
-        showNotification: false,
-      };
-  }
-}
+
 function App() {
   const [menubarPanelState, menubarPanelDispatcher] = useReducer(
     menubarPanelReducer,
@@ -187,20 +27,50 @@ function App() {
       showControl: false,
       showSiri: false,
       showSearch: false,
-      showNotification:false,
+      showNotification: false,
     }
   );
+  const [wifiState, setWifi] = useState(true);
+  const [bluetoothState, setBluetooth] = useState(true);
+  const [focusState, setFocus] = useReducer(focusReducer, { state: true, hourChecked: false, eveningChecked: false, eventChecked: false });
+  const [darkState, setDark] = useState(false);
   return (
     <div className='App'>
       <Wallpaper />
-      <Menubar state='Finder' menubarPanelDispatcher={menubarPanelDispatcher} />
-      <WiFiPanel show={menubarPanelState.showWifi} />
+      <Menubar
+        state='Finder'
+        menubarPanelDispatcher={menubarPanelDispatcher}
+        menubarState={menubarPanelState}
+      />
+      <WiFiPanel
+        show={menubarPanelState.showWifi}
+        state={wifiState}
+        setState={setWifi}
+      />
       <InputPanel show={menubarPanelState.showInput} />
       <BatteryPanel show={menubarPanelState.showBattery} />
-      <BluetoothPanel show={menubarPanelState.showBluetooth} />
-      <FocusPanel show={menubarPanelState.showFocus} />
+      <BluetoothPanel
+        show={menubarPanelState.showBluetooth}
+        state={bluetoothState}
+        setState={setBluetooth}
+      />
+      <FocusPanel
+        show={menubarPanelState.showFocus}
+        state={focusState}
+        dispatch={setFocus}
+      />
       <ApplePanel show={menubarPanelState.showApple} />
-      <ControlPanel show={menubarPanelState.showControl}/>
+      <ControlPanel
+        show={menubarPanelState.showControl}
+        wifiState={wifiState}
+        setWifi={setWifi}
+        bluetoothState={bluetoothState}
+        setBluetooth={setBluetooth}
+        focusState={focusState}
+        setFoucs={setFocus}
+        darkState={darkState}
+        setDark={setDark}
+      />
     </div>
   );
 }

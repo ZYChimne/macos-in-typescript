@@ -27,19 +27,21 @@ import {
   InputPanelLineProps,
   PanelProps,
   MusicList,
+  SimplePanelProps,
+  ControlPanelProps,
+  FocusPanelProps,
 } from './menubar.d';
+import { isPropertySignature } from 'typescript';
 export const Menubar = (props: MenubarProps) => {
   return (
     <div className='menubar'>
       <div className='menubar-left'>
         <div
           className='menubariconapple'
-          onClick={() => props.menubarPanelDispatcher({ type: 'ShowApple' })}
+          data-active={props.menubarState.showApple}
+          onClick={() => props.menubarPanelDispatcher('ShowApple')}
         >
-          <FontAwesomeIcon
-            className='menubaricon-content'
-            icon={faApple}
-          />
+          <FontAwesomeIcon className='menubaricon-content' icon={faApple} />
         </div>
         {MenubarItems[props.state].map((item, i) => {
           return i === 0 ? (
@@ -56,19 +58,22 @@ export const Menubar = (props: MenubarProps) => {
       <div className='menubar-right'>
         <div
           className='menubaricon'
-          onClick={() => props.menubarPanelDispatcher({ type: 'ShowFocus' })}
+          data-active={props.menubarState.showFocus}
+          onClick={() => props.menubarPanelDispatcher('ShowFocus')}
         >
           <FontAwesomeIcon className='menubaricon-content' icon={faMoon} />
         </div>
         <div
           className='menubaricon'
-          onClick={() => props.menubarPanelDispatcher({ type: 'ShowInput' })}
+          data-active={props.menubarState.showInput}
+          onClick={() => props.menubarPanelDispatcher('ShowInput')}
         >
           <FontAwesomeIcon className='menubaricon-content' icon={faLanguage} />
         </div>
         <div
           className='menubaricon'
-          onClick={() => props.menubarPanelDispatcher({ type: 'ShowBattery' })}
+          data-active={props.menubarState.showBattery}
+          onClick={() => props.menubarPanelDispatcher('ShowBattery')}
         >
           <FontAwesomeIcon
             className='menubaricon-content'
@@ -77,14 +82,16 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className='menubaricon'
-          onClick={() => props.menubarPanelDispatcher({ type: 'ShowWifi' })}
+          data-active={props.menubarState.showWifi}
+          onClick={() => props.menubarPanelDispatcher('ShowWifi')}
         >
           <FontAwesomeIcon className='menubaricon-content' icon={faWifi} />
         </div>
         <div
           className='menubaricon'
+          data-active={props.menubarState.showBluetooth}
           onClick={() =>
-            props.menubarPanelDispatcher({ type: 'ShowBluetooth' })
+            props.menubarPanelDispatcher('ShowBluetooth')
           }
         >
           <FontAwesomeIcon
@@ -94,19 +101,22 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className='menubaricon'
-          onClick={() => props.menubarPanelDispatcher({ type: 'ShowSearch' })}
+          data-active={props.menubarState.showSearch}
+          onClick={() => props.menubarPanelDispatcher('ShowSearch')}
         >
           <FontAwesomeIcon className='menubaricon-content' icon={faSearch} />
         </div>
         <div
           className='menubaricon'
-          onClick={() => props.menubarPanelDispatcher({ type: 'ShowControl' })}
+          data-active={props.menubarState.showControl}
+          onClick={() => props.menubarPanelDispatcher('ShowControl')}
         >
           <FontAwesomeIcon className='menubaricon-content' icon={faSlidersH} />
         </div>
         <div
           className='menubaricon'
-          onClick={() => props.menubarPanelDispatcher({ type: 'ShowSiri' })}
+          data-active={props.menubarState.showSiri}
+          onClick={() => props.menubarPanelDispatcher('ShowSiri')}
         >
           <FontAwesomeIcon
             className='menubaricon-content'
@@ -115,8 +125,9 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className='date'
+          data-active={props.menubarState.showNotification}
           onClick={() =>
-            props.menubarPanelDispatcher({ type: 'ShowNotification' })
+            props.menubarPanelDispatcher('ShowNotification')
           }
         >
           {new Date().toLocaleDateString('zh-CN', {
@@ -135,31 +146,39 @@ export const Menubar = (props: MenubarProps) => {
   );
 };
 
-export const WiFiPanel = (prop: PanelProps) => {
+export const WiFiPanel = (props: PanelProps) => {
   return (
-    <div className='WiFi-Panel' data-show={prop.show}>
+    <div className='WiFi-Panel' data-show={props.show}>
       <div className='panel-line-between'>
         <div className='panel-title'>Wi-Fi</div>
         <div className='panel-switch'>
-          <Switch id='WiFi-Panel-Switch' />
+          <Switch
+            id='WiFi-Panel-Switch'
+            state={props.state}
+            onClick={props.setState}
+          />
         </div>
       </div>
       <div className='separator' />
-      <div className='panel-line-normal'>
-        <div className='panel-subtitle'>Preferred Network</div>
-      </div>
-      <div className='panel-line-between-hover'>
-        <div className='panel-left'>
-          <div className='panel-icon-box' data-on={true}>
-            <FontAwesomeIcon className='panel-icon' icon={faWifi} />
+      {props.state ? (
+        <>
+          <div className='panel-line-normal'>
+            <div className='panel-subtitle'>Preferred Network</div>
           </div>
-          <div className='panel-text'>Wi-Fi-5G</div>
-        </div>
-        <div className='panel-right'>
-          <FontAwesomeIcon className='panel-icon-small' icon={faLock} />
-        </div>
-      </div>
-      <div className='separator' />
+          <div className='panel-line-between-hover'>
+            <div className='panel-left'>
+              <div className='panel-icon-box' data-on={props.state}>
+                <FontAwesomeIcon className='panel-icon' icon={faWifi} />
+              </div>
+              <div className='panel-text'>Wi-Fi-5G</div>
+            </div>
+            <div className='panel-right'>
+              <FontAwesomeIcon className='panel-icon-small' icon={faLock} />
+            </div>
+          </div>
+          <div className='separator' />
+        </>
+      ) : null}
       <div className='panel-line-normal-hover'>
         <div className='panel-text'>Network Preferences...</div>
       </div>
@@ -167,7 +186,7 @@ export const WiFiPanel = (prop: PanelProps) => {
   );
 };
 
-export const BatteryPanel = (prop: PanelProps) => {
+export const BatteryPanel = (prop: SimplePanelProps) => {
   return (
     <div className='Battery-Panel' data-show={prop.show}>
       <div className='panel-line-between'>
@@ -180,23 +199,24 @@ export const BatteryPanel = (prop: PanelProps) => {
     </div>
   );
 };
-const InputPanelLine = (props: InputPanelLineProps) => {
-  const inputCheck = (
-    <div className='input-checked'>
-      <FontAwesomeIcon className='panel-icon-small' icon={faCheck} />
-    </div>
-  );
-  const inputNotCheck = <div className='input-checked'></div>;
-  return (
-    <div className='input-line' onClick={() => props.dispatch(props.state)}>
-      {props.checked ? inputCheck : inputNotCheck}
-      <div className='panel-text'>{InputLanguages[props.state]}</div>
-    </div>
-  );
-};
-export const InputPanel = (prop: PanelProps) => {
+
+export const InputPanel = (prop: SimplePanelProps) => {
   const [state, dispatch] = useState('Pinyin');
   const languageKeys = Object.keys(InputLanguages);
+  const InputPanelLine = (props: InputPanelLineProps) => {
+    const inputCheck = (
+      <div className='input-checked'>
+        <FontAwesomeIcon className='panel-icon-small' icon={faCheck} />
+      </div>
+    );
+    const inputNotCheck = <div className='input-checked'></div>;
+    return (
+      <div className='input-line' onClick={() => props.dispatch(props.state)}>
+        {props.checked ? inputCheck : inputNotCheck}
+        <div className='panel-text'>{InputLanguages[props.state]}</div>
+      </div>
+    );
+  };
   return (
     <div className='Input-Panel' data-show={prop.show}>
       <InputPanelLine checked={true} dispatch={dispatch} state={state} />
@@ -213,22 +233,58 @@ export const InputPanel = (prop: PanelProps) => {
     </div>
   );
 };
-export const FocusPanel = (prop: PanelProps) => {
+
+export const FocusPanel = (props: FocusPanelProps) => {
   return (
-    <div className='Focus-Panel' data-show={prop.show}>
+    <div className='Focus-Panel' data-show={props.show}>
       <div className='focus-line1'>
         <div className='panel-title'>Focus</div>
-        <div className='panel-subtitle'>On</div>
+        {props.state.state ? <div className='panel-subtitle'>On</div> : null}
       </div>
       <div className='separator' />
-      <div className='panel-line-normal-hover'>
-        <div className='panel-icon-box'>
+      <div
+        className='panel-line-normal-hover'
+        onClick={() => {
+          props.dispatch('ChangeFocus');
+        }}
+      >
+        <div className='panel-icon-box' data-on={props.state.state}>
           <FontAwesomeIcon className='panel-icon' icon={faMoon} />
         </div>
         <div className='panel-text'>Do Not Disturb</div>
       </div>
-      <div className='panel-line-normal-hover'>
-        <div className='panel-text'>Until This Evening</div>
+      <div
+        className='panel-line-normal-hover'
+        onClick={() => props.dispatch('HourChecked')}
+      >
+        <div className='focus-checked'>
+          {props.state.hourChecked ? (
+            <FontAwesomeIcon className='panel-icon-small' icon={faCheck} />
+          ) : null}
+        </div>
+        <div className='panel-text'>For 1 hour</div>
+      </div>
+      <div
+        className='panel-line-normal-hover'
+        onClick={() => props.dispatch('EveningChecked')}
+      >
+        <div className='focus-checked'>
+          {props.state.eveningChecked ? (
+            <FontAwesomeIcon className='panel-icon-small' icon={faCheck} />
+          ) : null}
+        </div>
+        <div className='panel-text'>Until this evening</div>
+      </div>
+      <div
+        className='panel-line-normal-hover'
+        onClick={() => props.dispatch('EventChecked')}
+      >
+        <div className='focus-checked'>
+          {props.state.eventChecked ? (
+            <FontAwesomeIcon className='panel-icon-small' icon={faCheck} />
+          ) : null}
+        </div>
+        <div className='panel-text'>Until the end of this event</div>
       </div>
       <div className='separator' />
       <div className='panel-line-normal-hover'>
@@ -243,7 +299,11 @@ export const BluetoothPanel = (prop: PanelProps) => {
       <div className='panel-line-between'>
         <div className='panel-title'>Bluetooth</div>
         <div className='panel-switch'>
-          <Switch id='Bluetooth-Panel-Switch' />
+          <Switch
+            id='Bluetooth-Panel-Switch'
+            state={prop.state}
+            onClick={prop.setState}
+          />
         </div>
       </div>
       <div className='separator' />
@@ -261,8 +321,8 @@ export const BluetoothPanel = (prop: PanelProps) => {
     </div>
   );
 };
-export const ControlPanel = (prop: PanelProps) => {
-  const [music, setMusic] = useState(0)
+export const ControlPanel = (prop: ControlPanelProps) => {
+  const [music, setMusic] = useState(0);
   return (
     <div className='Control-Panel' data-show={prop.show}>
       <div className='control-line1'>
@@ -350,7 +410,7 @@ export const ControlPanel = (prop: PanelProps) => {
     </div>
   );
 };
-export const ApplePanel = (prop: PanelProps) => {
+export const ApplePanel = (prop: SimplePanelProps) => {
   return (
     <div className='Apple-Panel' data-show={prop.show}>
       <div className='panel-line-normal-hover'>
