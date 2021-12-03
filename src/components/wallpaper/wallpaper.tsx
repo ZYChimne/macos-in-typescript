@@ -37,9 +37,15 @@ const initialState: WallpaperState = {
 export const Wallpaper = () => {
   const [wallpaper, setWallpaper] = useReducer(wallpaperReducer, initialState);
   return (
-    <div
+    // <div
+    //   className='wallpaper'
+    //   style={{ backgroundImage: `url(/assets/wallpapers/${wallpaper.src})` }}
+    // />
+    <img
       className='wallpaper'
-      style={{ backgroundImage: `url(/assets/wallpapers/${wallpaper.src})` }}
+      src='/assets/wallpapers/default/light.jpg'
+      loading='lazy'
+      alt=''
     />
   );
 };
