@@ -130,13 +130,13 @@ export const Menubar = (props: MenubarProps) => {
             props.menubarPanelDispatcher('ShowNotification')
           }
         >
-          {new Date().toLocaleDateString('zh-CN', {
+          {new Date().toLocaleDateString('en-CN', {
             weekday: 'short',
             month: 'short',
             day: 'numeric',
           })}
           &nbsp;&nbsp;
-          {new Date().toLocaleTimeString('zh-CN', {
+          {new Date().toLocaleTimeString('en-CN', {
             hour: '2-digit',
             minute: '2-digit',
           })}
@@ -235,11 +235,36 @@ export const InputPanel = (prop: SimplePanelProps) => {
 };
 
 export const FocusPanel = (props: FocusPanelProps) => {
+  let OnText: string;
+  switch (props.state.type) {
+    case 'None':
+      OnText = 'On';
+      break;
+    case 'Evening':
+      OnText = 'On Until 7:00 PM';
+      break;
+    case 'Hour':
+      let date = new Date();
+      date.setHours(date.getHours() + 1);
+      OnText =
+        'On Until ' +
+        date.toLocaleTimeString('en-CN', {
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+      break;
+    case 'Event':
+      OnText = 'On Until 3:00 PM'
+      break;
+    default:
+      OnText = 'On';
+      break;
+  }
   return (
     <div className='Focus-Panel' data-show={props.show}>
       <div className='focus-line1'>
         <div className='panel-title'>Focus</div>
-        {props.state.state ? <div className='panel-subtitle'>On</div> : null}
+        {props.state.state ? <div className='panel-subtitle'>{OnText}</div> : null}
       </div>
       <div className='separator' />
       <div
@@ -258,7 +283,7 @@ export const FocusPanel = (props: FocusPanelProps) => {
         onClick={() => props.dispatch('HourChecked')}
       >
         <div className='focus-checked'>
-          {props.state.hourChecked ? (
+          {props.state.type==='Hour' ? (
             <FontAwesomeIcon className='panel-icon-small' icon={faCheck} />
           ) : null}
         </div>
@@ -269,7 +294,7 @@ export const FocusPanel = (props: FocusPanelProps) => {
         onClick={() => props.dispatch('EveningChecked')}
       >
         <div className='focus-checked'>
-          {props.state.eveningChecked ? (
+          {props.state.type==='Evening' ? (
             <FontAwesomeIcon className='panel-icon-small' icon={faCheck} />
           ) : null}
         </div>
@@ -280,7 +305,7 @@ export const FocusPanel = (props: FocusPanelProps) => {
         onClick={() => props.dispatch('EventChecked')}
       >
         <div className='focus-checked'>
-          {props.state.eventChecked ? (
+          {props.state.type==='Event' ? (
             <FontAwesomeIcon className='panel-icon-small' icon={faCheck} />
           ) : null}
         </div>
@@ -321,14 +346,15 @@ export const BluetoothPanel = (prop: PanelProps) => {
     </div>
   );
 };
-export const ControlPanel = (prop: ControlPanelProps) => {
+export const ControlPanel = (props: ControlPanelProps) => {
   const [music, setMusic] = useState(0);
+  const [airdrop, setAirDrop] = useState(false);
   return (
-    <div className='Control-Panel' data-show={prop.show}>
+    <div className='Control-Panel' data-show={props.show}>
       <div className='control-line1'>
         <div className='control-line1-left'>
           <div className='control-line1-left-block'>
-            <div className='panel-icon-box'>
+            <div className='panel-icon-box' data-on={props.wifiState} onClick={()=>props.setWifi(!props.wifiState)}>
               <FontAwesomeIcon className='panel-icon-big' icon={faWifi} />
             </div>
             <div className='control-line1-text-block'>
@@ -337,7 +363,7 @@ export const ControlPanel = (prop: ControlPanelProps) => {
             </div>
           </div>
           <div className='control-line1-left-block'>
-            <div className='panel-icon-box'>
+            <div className='panel-icon-box' data-on={props.bluetoothState} onClick={()=>props.setBluetooth(!props.bluetoothState)}>
               <FontAwesomeIcon className='panel-icon-big' icon={faBluetoothB} />
             </div>
             <div className='control-line1-text-block'>
@@ -346,7 +372,7 @@ export const ControlPanel = (prop: ControlPanelProps) => {
             </div>
           </div>
           <div className='control-line1-left-block'>
-            <div className='panel-icon-box'>
+            <div className='panel-icon-box' data-on={airdrop&&props.bluetoothState} onClick={()=>setAirDrop(props.bluetoothState?!airdrop:false)}>
               <FontAwesomeIcon
                 className='panel-icon-big'
                 icon={faBroadcastTower}
@@ -361,7 +387,7 @@ export const ControlPanel = (prop: ControlPanelProps) => {
         <div className='control-line1-right'>
           <div className='control-line1-right-line1'>
             <div className='control-focus'>
-              <div className='panel-icon-box'>
+              <div className='panel-icon-box' data-on={props.focusState.state} onClick={()=>props.setFoucs('ChangeFocus')}>
                 <FontAwesomeIcon className='panel-icon-big' icon={faMoon} />
               </div>
               <div className='panel-text'>Focus</div>

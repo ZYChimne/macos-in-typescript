@@ -187,41 +187,31 @@ export const focusReducer = (
       return {
         ...focusState,
         state: !focusState.state,
-        hourChecked: false,
-        eveningChecked: false,
-        eventChecked: false,
+        type: 'None',
       };
     case 'HourChecked':
       return {
         ...focusState,
         state: true,
-        hourChecked: !focusState.hourChecked,
-        eveningChecked: false,
-        eventChecked: false,
+        type: 'Hour',
       };
     case 'EveningChecked':
       return {
         ...focusState,
         state: true,
-        hourChecked: false,
-        eveningChecked: !focusState.eveningChecked,
-        eventChecked: false,
+        type: 'Evening',
       };
     case 'EventChecked':
       return {
         ...focusState,
-        state:true,
-        hourChecked: false,
-        eveningChecked: false,
-        eventChecked: !focusState.eventChecked,
+        state: true,
+        type: 'Event',
       };
     default:
       return {
         ...focusState,
         state: false,
-        hourChecked: false,
-        eveningChecked: false,
-        eventChecked: false,
+        type: 'None',
       };
   }
 };

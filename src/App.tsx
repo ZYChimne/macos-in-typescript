@@ -32,7 +32,7 @@ function App() {
   );
   const [wifiState, setWifi] = useState(true);
   const [bluetoothState, setBluetooth] = useState(true);
-  const [focusState, setFocus] = useReducer(focusReducer, { state: true, hourChecked: false, eveningChecked: false, eventChecked: false });
+  const [focusState, setFocus] = useReducer(focusReducer, { state: true, type:'None' });
   const [darkState, setDark] = useState(false);
   return (
     <div className='App'>

@@ -14,9 +14,7 @@ export type SimplePanelProps = {
 };
 export type FocusState = {
   state: boolean;
-  hourChecked: boolean;
-  eveningChecked: boolean;
-  eventChecked: boolean;
+  type: 'Hour' | 'Evening' | 'Event' | 'None';
 };
 export type FocusAction =
   | 'ChangeFocus'
