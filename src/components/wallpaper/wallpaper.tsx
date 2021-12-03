@@ -7,18 +7,8 @@ type WallpaperAction = {
   type: 'light' | 'dark';
 }
 const defaultWallpapers = {
-  light: 'default/light.jpg',
-  dark: 'default/dark.jpg',
-};
-const mountainWallpapers = {
-  light: 'mountains/light.jpg',
-  dark: 'mountains/dark.jpg',
-  four: 'mountains/four.jpg',
-  six: 'mountains/six.jpg',
-  fifteen: 'mountains/fifteen.jpg',
-  seventeen: 'mountains/seventeen.jpg',
-  eighteen: 'mountains/eighteen.jpg',
-  nineteen: 'mountains/nineteen.jpg',
+  light: 'default/light.webp',
+  dark: 'default/dark.webp',
 };
 export const wallpaperReducer = (
   state: WallpaperState,
