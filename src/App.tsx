@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import './App.css';
+import { Dock } from './components/dock/dock';
 import {
   Menubar,
   WiFiPanel,
@@ -71,6 +72,7 @@ function App() {
         darkState={darkState}
         setDark={setDark}
       />
+      <Dock/>
     </div>
   );
 }
