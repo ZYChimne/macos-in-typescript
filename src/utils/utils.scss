@@ -39,18 +39,75 @@
   }
 }
 
-.icon{
+.icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3px;
-  margin: 3px;
+  &[data-type='Dock'] {
+    padding: 3px;
+    margin: 3px;
+  }
+  &[data-type='Launchpad'] {
+    width: 204px;
+    margin: 6px 3px;
+  }
 }
-.icon-img{
-  width: 60px;
-  height: 60px;
-  border-radius: 6px;
+.icon-img {
+  &[data-type='Dock'] {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+  }
+  &[data-type='Launchpad'] {
+    width: 132px;
+    height: 132px;
+    border-radius: 6px;
+  }
 }
-.icon-text{
+.icon-text {
   font-size: 0.81rem;
+}
+
+%tooltip-shared {
+  display: none;
+  position: absolute;
+  bottom: 72px;
+  left: 50%;
+}
+%tooltip-hover-shared {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+[data-tooltip] {
+  position: relative;
+  &::before {
+    @extend %tooltip-shared;
+    margin-bottom: 6px;
+    margin-left: -60px;
+    padding: 6px 0;
+    width: 120px;
+    border-radius: 6px;
+    background: rgba(white, 0.75);
+    content: attr(data-tooltip);
+    font-size: 0.72rem;
+  }
+  &::after {
+    @extend %tooltip-shared;
+    margin-left: -6px;
+    width: 0;
+    border-top: 6px solid rgba(white, 0.75);
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: '';
+  }
+  &:hover {
+    &::before {
+      @extend %tooltip-hover-shared;
+    }
+    &::after {
+      @extend %tooltip-hover-shared;
+    }
+  }
 }

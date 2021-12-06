@@ -6,9 +6,10 @@ export type SwitchProps = {
 };
 export type IconProps = {
   value: string;
-  type: 'Dock'|'Desktop'|'Launchpad';
+    type: 'Dock' | 'Desktop' | 'Launchpad';
+    dispatch: React.Dispatch<AppLoads>;
 };
-export type PopoverProps = {
-  text: string;
-};
-export type AppLoads = 'None';
+export type AppState={
+    showLaunchpad: boolean;
+}
+export type AppLoads = 'None'|'Launchpad';

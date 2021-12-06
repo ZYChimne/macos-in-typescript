@@ -3,6 +3,10 @@
 This is my Capstone Graduate Project for Wuhan University.  
 This application is developed in Chrome and some features require Chrome to work correctly.
 
+## Warnings
+
+* Change event callbacks [React Events](https://reactjs.org/docs/handling-events.html).
+
 ## Features
 * Built components from sratch
 * State management with React.js only

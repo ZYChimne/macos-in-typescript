@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react';
 import './App.css';
 import { Dock } from './components/dock/dock';
+import { Launchpad } from './components/launchpad/launchpad';
 import {
   Menubar,
   WiFiPanel,
@@ -13,6 +14,7 @@ import {
 } from './components/menubar/menubar';
 import { focusReducer, menubarPanelReducer } from './components/menubar/menubar.r';
 import { Wallpaper } from './components/wallpaper/wallpaper';
+import { appReducer } from './utils/utlils';
 
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
       showNotification: false,
     }
   );
+  const [appState, appStateDispatcher] = useReducer(appReducer, { showLaunchpad: false });
   const [wifiState, setWifi] = useState(true);
   const [bluetoothState, setBluetooth] = useState(true);
   const [focusState, setFocus] = useReducer(focusReducer, { state: true, type:'None' });
@@ -72,7 +75,8 @@ function App() {
         darkState={darkState}
         setDark={setDark}
       />
-      <Dock/>
+      <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher}/>
+      <Dock setApp={appStateDispatcher}/>
     </div>
   );
 }
