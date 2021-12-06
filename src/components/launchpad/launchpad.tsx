@@ -6,7 +6,7 @@ import './launchpad.scss';
 export const Launchpad = (props:LaunchpadProps) => {
     return (<div className='launchpad' data-show={props.show}>
         <div className='searchbar-container'>
-            <input className='searchbar' type='search' placeholder='Search'/>
+            <input className='searchbar' type='text' placeholder='Search'/>
         </div>
         <div className='icon-container'>
             {
