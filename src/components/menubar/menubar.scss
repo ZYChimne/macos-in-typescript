@@ -295,6 +295,7 @@ $default-zindex:10;
   display: flex;
   flex-direction: row;
   margin: 6px;
+  align-items: center;
 }
 .control-line1-text-block{
   display: flex;
@@ -307,7 +308,7 @@ $default-zindex:10;
   padding: 0 3px;
 }
 .control-subtitle{
-  font-size: 0.54rem;
+  font-size: 0.48rem;
   font-weight: bold;
   padding: 0 3px;
 }
