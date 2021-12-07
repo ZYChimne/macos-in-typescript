@@ -54,7 +54,8 @@ export const Icon = (props: IconProps) => {
               src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
                     alt=''
                     onClick={()=>props.dispatch(AppList[props.value].load)}
-              data-type={props.type}
+                    data-type={props.type}
+                    loading='lazy'
             />
             <div className='icon-text'>{AppList[props.value].name}</div>
           </div>
