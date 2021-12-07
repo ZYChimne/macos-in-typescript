@@ -8,6 +8,11 @@ export type ContainerState = {
     start: number;
     end: number;
 }
+export type IconPageContainerProps = {
+  start: number;
+  index: number;
+  setApp: React.Dispatch<AppLoads>;
+};
 export type IconLineContainerProps = {
     start: number;
     setApp: React.Dispatch<AppLoads>;

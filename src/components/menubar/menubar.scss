@@ -87,11 +87,11 @@ $default-zindex:10;
   cursor: default;
   &[data-show=true]{
     display: flex;
-    animation: fadeIn 0.25s;
+    animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
   &[data-show=false]{
     display: none;
-    animation: fadeOut 0.25s;
+    animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 }
 
@@ -251,11 +251,11 @@ $default-zindex:10;
   right:6px;
   &[data-show=true]{
     display: flex;
-    animation: fadeIn 0.25s;
+    animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
   &[data-show=false]{
     display: none;
-    animation: fadeOut 0.25s;
+    animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 }
 .control-line1{
@@ -308,7 +308,7 @@ $default-zindex:10;
   padding: 0 3px;
 }
 .control-subtitle{
-  font-size: 0.48rem;
+  font-size: 0.54rem;
   font-weight: bold;
   padding: 0 3px;
 }
@@ -387,11 +387,11 @@ $default-zindex:10;
   cursor: default;
   &[data-show=true]{
     display: flex;
-    animation: fadeIn 0.25s;
+    animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
   &[data-show=false]{
     display: none;
-    animation: fadeOut 0.25s;
+    animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
   left: 6px;
 }

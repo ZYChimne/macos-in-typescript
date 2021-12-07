@@ -5,19 +5,33 @@ import {
   ContainerAction,
   ContainerState,
   IconLineContainerProps,
+  IconPageContainerProps,
   LaunchpadApps,
   LaunchpadProps,
 } from './launchpad.d';
 import './launchpad.scss';
 export const Launchpad = (props: LaunchpadProps) => {
   let length = LaunchpadApps.length;
-  const [start, setStart] = useState(0);
+  const [page, setPage] = useState(0);
   const switchIconContainer = (event: React.WheelEvent) => {
-    if (event.deltaY < 0 && start > 0) {
-      setStart(start - 35);
-    } else if (event.deltaY > 0 && start + 35 < length) {
-      setStart(start + 35);
+    if (event.deltaY < 0 && page > 0) {
+      setPage(page - 1);
+    } else if (event.deltaY > 0 && page < 1) {
+      setPage(page + 1);
     }
+  };
+  const IconPageContainer = (props: IconPageContainerProps) => {
+    return (
+      <div className='icon-page-container' data-index={props.index}>
+        <div className='icon-container'>
+          <IconLineContainer start={props.start} setApp={props.setApp} />
+          <IconLineContainer start={props.start + 7} setApp={props.setApp} />
+          <IconLineContainer start={props.start + 14} setApp={props.setApp} />
+          <IconLineContainer start={props.start + 21} setApp={props.setApp} />
+          <IconLineContainer start={props.start + 28} setApp={props.setApp} />
+        </div>
+      </div>
+    );
   };
   const IconLineContainer = (props: IconLineContainerProps) => {
     return (
@@ -44,12 +58,13 @@ export const Launchpad = (props: LaunchpadProps) => {
       <div className='searchbar-container'>
         <input className='searchbar' type='text' placeholder='Search' />
       </div>
-      <div className='icon-container'>
-        <IconLineContainer start={start} setApp={props.setApp} />
-        <IconLineContainer start={start + 7} setApp={props.setApp} />
-        <IconLineContainer start={start + 14} setApp={props.setApp} />
-        <IconLineContainer start={start + 21} setApp={props.setApp} />
-        <IconLineContainer start={start + 28} setApp={props.setApp} />
+      <div className='icon-container-track' data-page={page}>
+        <IconPageContainer setApp={props.setApp} index={0} start={0} />
+        <IconPageContainer setApp={props.setApp} index={1} start={35} />
+      </div>
+      <div className='dot-container'>
+        <div className='dot' data-active={page === 0 ? true : false} />
+        <div className='dot' data-active={page === 1 ? true : false} />
       </div>
     </div>
   );
