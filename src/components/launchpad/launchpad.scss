@@ -30,10 +30,16 @@
 }
 .icon-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width:84vw;
+    height: 75vh;
+}
+.icon-line-container{
+    height: 20%;
+    width: 100%;
     align-items: center;
-    flex-wrap: wrap;
-    width:1470px;
+    display: flex;
+    flex-direction: row;
 }
 
 @keyframes fadeIn {

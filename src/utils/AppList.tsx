@@ -39,7 +39,7 @@ export const AppList: {
   preview: { name: 'Preview', ctx: 'preview', load: 'None' },
   reminders: { name: 'Reminders', ctx: 'reminders', load: 'None' },
   safari: { name: 'Sarafi', ctx: 'safari', load: 'None' },
-  screenshot: { name: 'Screenshot', ctx: 'safari', load: 'None' },
+  screenshot: { name: 'Screenshot', ctx: 'screenshot', load: 'None' },
   siri: { name: 'Siri', ctx: 'siri', load: 'None' },
   stickies: { name: 'Stickies', ctx: 'stickies', load: 'None' },
   store: { name: 'App Store', ctx: 'store', load: 'None' },

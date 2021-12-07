@@ -4,6 +4,15 @@ export type LaunchpadProps={
     show: boolean;
     setApp: React.Dispatch<AppLoads>;
 }
+export type ContainerState = {
+    start: number;
+    end: number;
+}
+export type IconLineContainerProps = {
+    start: number;
+    setApp: React.Dispatch<AppLoads>;
+}
+export type ContainerAction= 'Left'|"Right"
 export const LaunchpadApps: string[] = [
   'books',
   'booth',
