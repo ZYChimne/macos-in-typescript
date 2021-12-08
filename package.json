@@ -30,6 +30,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

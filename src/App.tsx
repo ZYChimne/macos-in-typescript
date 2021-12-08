@@ -1,7 +1,8 @@
-import React, { useReducer, useState } from 'react';
-import './App.css';
-import { Dock } from './components/dock/dock';
-import { Launchpad } from './components/launchpad/launchpad';
+import React, { useReducer, useState } from 'react'
+import './App.css'
+import { Siri } from './components/app/siri/siri'
+import { Dock } from './components/dock/dock'
+import { Launchpad } from './components/launchpad/launchpad'
 import {
   Menubar,
   WiFiPanel,
@@ -11,11 +12,13 @@ import {
   FocusPanel,
   ApplePanel,
   ControlPanel,
-} from './components/menubar/menubar';
-import { focusReducer, menubarPanelReducer } from './components/menubar/menubar.r';
-import { Wallpaper } from './components/wallpaper/wallpaper';
-import { appReducer } from './utils/utlils';
-
+} from './components/menubar/menubar'
+import {
+  focusReducer,
+  menubarPanelReducer,
+} from './components/menubar/menubar.r'
+import { Wallpaper } from './components/wallpaper/wallpaper'
+import { appReducer } from './utils/utlils'
 
 function App() {
   const [menubarPanelState, menubarPanelDispatcher] = useReducer(
@@ -32,17 +35,22 @@ function App() {
       showSearch: false,
       showNotification: false,
     }
-  );
-  const [appState, appStateDispatcher] = useReducer(appReducer, { showLaunchpad: false });
-  const [wifiState, setWifi] = useState(true);
-  const [bluetoothState, setBluetooth] = useState(true);
-  const [focusState, setFocus] = useReducer(focusReducer, { state: true, type:'None' });
-  const [darkState, setDark] = useState(false);
+  )
+  const [appState, appStateDispatcher] = useReducer(appReducer, {
+    showLaunchpad: false,
+  })
+  const [wifiState, setWifi] = useState(true)
+  const [bluetoothState, setBluetooth] = useState(true)
+  const [focusState, setFocus] = useReducer(focusReducer, {
+    state: true,
+    type: 'None',
+  })
+  const [darkState, setDark] = useState(false)
   return (
-    <div className='App'>
+    <div className="App">
       <Wallpaper />
       <Menubar
-        state='Finder'
+        state="Finder"
         menubarPanelDispatcher={menubarPanelDispatcher}
         menubarState={menubarPanelState}
       />
@@ -75,10 +83,11 @@ function App() {
         darkState={darkState}
         setDark={setDark}
       />
-      <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher}/>
-      <Dock setApp={appStateDispatcher}/>
+      <Siri show={menubarPanelState.showSiri} />
+      <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher} />
+      <Dock setApp={appStateDispatcher} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

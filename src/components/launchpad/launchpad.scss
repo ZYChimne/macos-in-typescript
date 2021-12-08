@@ -28,6 +28,10 @@
 }
 .searchbar {
   text-align: center;
+  background: rgba(white, 0.75);
+  border-color: rgba(white, 0.75);
+  border-radius: 6px;
+  border-style: hidden;
 }
 .icon-container-track {
   width: 300vw;
@@ -61,24 +65,24 @@
   display: flex;
   flex-direction: row;
 }
-.dot-container{
-    display: flex;
-    align-items: center;
-    height: 6vh;
-    justify-content: center;
+.dot-container {
+  display: flex;
+  align-items: center;
+  height: 6vh;
+  justify-content: center;
 }
-.dot{
-    height: 9px;
-    width: 9px;
-    border-radius: 50%;
-    margin: 0 6px;
-    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-    &[data-active=true]{
-        background:rgba(white, 0.75);
-    }
-    &[data-active=false]{
-        background:rgba(grey, 0.5);
-    }
+.dot {
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
+  margin: 0 6px;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  &[data-active='true'] {
+    background: rgba(white, 0.75);
+  }
+  &[data-active='false'] {
+    background: rgba(grey, 0.5);
+  }
 }
 
 @keyframes fadeIn {

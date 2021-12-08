@@ -48,7 +48,7 @@
     margin: 3px;
   }
   &[data-type='Launchpad'] {
-    width:12vw;
+    width: 12vw;
     height: 15vh;
   }
 }
@@ -85,13 +85,13 @@
   &::before {
     @extend %tooltip-shared;
     margin-bottom: 6px;
-    margin-left: -60px;
-    padding: 6px 0;
-    width: 120px;
+    padding: 6px;
     border-radius: 6px;
     background: rgba(white, 0.75);
     content: attr(data-tooltip);
     font-size: 0.72rem;
+    transform: translateX(-50%);
+    white-space: nowrap;
   }
   &::after {
     @extend %tooltip-shared;

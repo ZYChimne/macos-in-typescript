@@ -1,7 +1,7 @@
-import { AppLoads } from './utils.d';
+import { AppLoads } from './utils.d'
 
 export const AppList: {
-  [key: string]: { name: string; ctx: string; load: AppLoads };
+  [key: string]: { name: string; ctx: string; load: AppLoads }
 } = {
   books: { name: 'Books', ctx: 'books', load: 'None' },
   booth: { name: 'Photo Booth', ctx: 'booth', load: 'None' },
@@ -34,8 +34,16 @@ export const AppList: {
   pages: { name: 'Pages', ctx: 'pages', load: 'None' },
   photos: { name: 'Photos', ctx: 'photos', load: 'None' },
   podcasts: { name: 'Podcasts', ctx: 'podcasts', load: 'None' },
-  powerpoint: { name: 'Microsoft PowerPoint', ctx: 'powerpoint', load: 'None' },
-  preferences: { name: 'System Preferences', ctx: 'preferences', load: 'None' },
+  powerpoint: {
+    name: 'Microsoft PowerPoint',
+    ctx: 'powerpoint',
+    load: 'None',
+  },
+  preferences: {
+    name: 'System Preferences',
+    ctx: 'preferences',
+    load: 'None',
+  },
   preview: { name: 'Preview', ctx: 'preview', load: 'None' },
   reminders: { name: 'Reminders', ctx: 'reminders', load: 'None' },
   safari: { name: 'Sarafi', ctx: 'safari', load: 'None' },
@@ -51,4 +59,4 @@ export const AppList: {
   wechat: { name: 'WeChat', ctx: 'wechat', load: 'None' },
   word: { name: 'Microsoft Word', ctx: 'word', load: 'None' },
   xcode: { name: 'Xcode', ctx: 'xcode', load: 'None' },
-};
+}

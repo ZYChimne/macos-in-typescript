@@ -10,13 +10,13 @@ $default-menubar-border-radius-regular: 6px;
 $default-menubar-border-radius-large: 12px;
 $default-border-radius-regular: 6px;
 $default-backdrop-filter-blur: 6px;
-$control-block-background-color:rgba(white, 0.75);
+$control-block-background-color: rgba(white, 0.75);
 $control-box-shadow: 0 0 1px 1px rgba(grey, 0.1);
-$default-zindex:10;
+$default-zindex: 10;
 %item-shared {
   height: 100%;
   border-radius: $default-menubar-border-radius-small;
-  &[data-active=true] {
+  &[data-active='true'] {
     background-color: $active-background-color;
   }
 }
@@ -73,7 +73,7 @@ $default-zindex:10;
   padding: $default-padding-regular $default-padding-small;
 }
 
-%panel-shared{
+%panel-shared {
   top: $menubar-height + 6px;
   width: 282px;
   position: absolute;
@@ -85,11 +85,11 @@ $default-zindex:10;
   flex-direction: column;
   caret-color: transparent;
   cursor: default;
-  &[data-show=true]{
+  &[data-show='true'] {
     display: flex;
     animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
-  &[data-show=false]{
+  &[data-show='false'] {
     display: none;
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
@@ -99,7 +99,7 @@ $default-zindex:10;
   @extend %panel-shared;
   right: 228px;
 }
-%panel-line-shared{
+%panel-line-shared {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -121,43 +121,43 @@ $default-zindex:10;
   width: 90%;
   height: 1px;
 }
-.panel-line-normal{
+.panel-line-normal {
   @extend %panel-line-shared;
 }
-.panel-line-normal-hover{
+.panel-line-normal-hover {
   @extend %panel-line-shared;
-  &:hover{
+  &:hover {
     background-color: $active-background-color;
   }
 }
-.panel-line-between{
+.panel-line-between {
   @extend %panel-line-shared;
   justify-content: space-between;
 }
-.panel-line-between-hover{
+.panel-line-between-hover {
   @extend %panel-line-shared;
   justify-content: space-between;
-  &:hover{
+  &:hover {
     background-color: $active-background-color;
   }
 }
-.panel-subtitle{
+.panel-subtitle {
   color: rgba(grey, 1);
-  font-size:0.72rem;
+  font-size: 0.72rem;
   font-weight: bold;
   left: 0;
 }
-.panel-left{
+.panel-left {
   display: flex;
   align-items: center;
-  left:0px;
+  left: 0px;
 }
-.panel-right{
+.panel-right {
   display: flex;
   align-items: center;
   right: 0px;
 }
-.panel-icon-box{
+.panel-icon-box {
   border-radius: 50%;
   height: 30px;
   width: 30px;
@@ -165,46 +165,46 @@ $default-zindex:10;
   align-items: center;
   justify-content: center;
   background-color: white;
-  &[data-on=true]{
+  &[data-on='true'] {
     color: white;
     background-color: rgba(colors.$BLUE-LIGHT, 1);
   }
-  &[data-on=false]{
+  &[data-on='false'] {
     background-color: rgba(grey, 0.25);
   }
 }
-.panel-icon{
+.panel-icon {
   font-size: 0.81rem;
 }
-.panel-icon-small{
+.panel-icon-small {
   font-size: 0.72rem;
 }
-.panel-text{
+.panel-text {
   font-size: 0.81rem;
   margin-left: 3px;
-  padding:3px;
+  padding: 3px;
 }
 
-.Battery-Panel{
+.Battery-Panel {
   @extend %panel-shared;
   right: 6px;
 }
 
-%input-hover-shared{
+%input-hover-shared {
   color: white;
   background-color: rgba(colors.$BLUE-LIGHT, 1);
 }
-.Input-Panel{
+.Input-Panel {
   @extend %panel-shared;
   right: 288px;
 }
-.input-line{
+.input-line {
   @extend %panel-line-shared;
-  &:hover{
+  &:hover {
     @extend %input-hover-shared;
   }
 }
-.input-checked{
+.input-checked {
   height: 12px;
   width: 12px;
   display: flex;
@@ -212,30 +212,30 @@ $default-zindex:10;
   padding: $default-padding-small;
 }
 
-.Focus-Panel{
+.Focus-Panel {
   @extend %panel-shared;
-  right:300px;
+  right: 300px;
 }
-.focus-line1{
+.focus-line1 {
   align-items: center;
   border-radius: $default-menubar-border-radius-regular;
   padding: 6px;
   margin: 0 6px;
   flex-direction: column;
 }
-.focus-checked{
+.focus-checked {
   width: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.Bluetooth-Panel{
+.Bluetooth-Panel {
   @extend %panel-shared;
   right: 6px;
 }
 
-.Control-Panel{
+.Control-Panel {
   top: $menubar-height + 6px;
   width: 300px;
   position: absolute;
@@ -248,23 +248,23 @@ $default-zindex:10;
   caret-color: transparent;
   cursor: default;
   justify-content: space-between;
-  right:6px;
-  &[data-show=true]{
+  right: 6px;
+  &[data-show='true'] {
     display: flex;
     animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
-  &[data-show=false]{
+  &[data-show='false'] {
     display: none;
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 }
-.control-line1{
+.control-line1 {
   height: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.control-line2{
+.control-line2 {
   height: 60px;
   display: flex;
   flex-direction: row;
@@ -274,7 +274,7 @@ $default-zindex:10;
   align-items: center;
   margin: 6px;
 }
-.control-line1-left{
+.control-line1-left {
   width: 47%;
   margin-left: 6px;
   background-color: $control-block-background-color;
@@ -284,35 +284,35 @@ $default-zindex:10;
   justify-content: center;
   box-shadow: $control-box-shadow;
 }
-.control-line1-right{
+.control-line1-right {
   width: 47%;
   margin-right: 6px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.control-line1-left-block{
+.control-line1-left-block {
   display: flex;
   flex-direction: row;
   margin: 6px;
   align-items: center;
 }
-.control-line1-text-block{
+.control-line1-text-block {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 3px;
 }
-.control-title{
+.control-title {
   font-size: 0.81rem;
   padding: 0 3px;
 }
-.control-subtitle{
+.control-subtitle {
   font-size: 0.54rem;
   font-weight: bold;
   padding: 0 3px;
 }
-.control-line1-right-line1{
+.control-line1-right-line1 {
   width: 100%;
   height: 50%;
   background-color: $control-block-background-color;
@@ -323,11 +323,11 @@ $default-zindex:10;
   align-items: center;
   justify-content: center;
 }
-.control-focus{
+.control-focus {
   display: flex;
   align-items: center;
 }
-.control-line1-right-line2{
+.control-line1-right-line2 {
   width: 100%;
   height: 48%;
   display: flex;
@@ -335,7 +335,7 @@ $default-zindex:10;
   align-items: center;
   justify-content: space-between;
 }
-.control-block-small{
+.control-block-small {
   height: 100%;
   width: 48%;
   background-color: $control-block-background-color;
@@ -347,19 +347,19 @@ $default-zindex:10;
   justify-content: center;
   text-align: center;
 }
-.control-album-image{
+.control-album-image {
   height: 54px;
   width: 54px;
   border-radius: 6px;
 }
-.control-line2-left{
+.control-line2-left {
   width: 72%;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-left: 6px;
 }
-.control-line2-right{
+.control-line2-right {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -367,13 +367,13 @@ $default-zindex:10;
   justify-content: space-between;
   margin-right: 12px;
 }
-.control-music-info{
+.control-music-info {
   display: flex;
   flex-direction: column;
   margin-left: 12px;
 }
 
-.Apple-Panel{
+.Apple-Panel {
   top: $menubar-height + 6px;
   width: 240px;
   position: absolute;
@@ -385,29 +385,36 @@ $default-zindex:10;
   flex-direction: column;
   caret-color: transparent;
   cursor: default;
-  &[data-show=true]{
+  &[data-show='true'] {
     display: flex;
     animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
-  &[data-show=false]{
+  &[data-show='false'] {
     display: none;
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
   left: 6px;
 }
-.apple-panel-line{
+.apple-panel-line {
   @extend %panel-line-shared;
-  &:hover{
+  &:hover {
     background-color: $active-background-color;
   }
 }
 
-
 @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @keyframes fadeOut {
-  0% {opacity:1;}
-  100% {opacity:0;}
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

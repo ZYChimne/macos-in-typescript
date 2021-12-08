@@ -1,23 +1,18 @@
-import React from 'react';
-import { AppLoads, AppState } from '../../utils/utils.d';
-export type LaunchpadProps={
-    show: boolean;
-    setApp: React.Dispatch<AppLoads>;
-}
-export type ContainerState = {
-    start: number;
-    end: number;
+import React from 'react'
+import { AppLoads } from '../../utils/utils.d'
+export type LaunchpadProps = {
+  show: boolean
+  setApp: React.Dispatch<AppLoads>
 }
 export type IconPageContainerProps = {
-  start: number;
-  index: number;
-  setApp: React.Dispatch<AppLoads>;
-};
-export type IconLineContainerProps = {
-    start: number;
-    setApp: React.Dispatch<AppLoads>;
+  start: number
+  index: number
+  setApp: React.Dispatch<AppLoads>
 }
-export type ContainerAction= 'Left'|"Right"
+export type IconLineContainerProps = {
+  start: number
+  setApp: React.Dispatch<AppLoads>
+}
 export const LaunchpadApps: string[] = [
   'books',
   'booth',
@@ -66,4 +61,4 @@ export const LaunchpadApps: string[] = [
   'wechat',
   'word',
   'xcode',
-];
+]
