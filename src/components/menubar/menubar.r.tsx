@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import {
   MenubarPanelStates,
   MenubarPanelAction,
   FocusAction,
   FocusState,
-} from './menubar.d'
+} from './menubar.d';
 export const menubarPanelReducer = (
   states: MenubarPanelStates,
   action: MenubarPanelAction
@@ -23,7 +23,7 @@ export const menubarPanelReducer = (
         showSiri: false,
         showSearch: false,
         showNotification: false,
-      }
+      };
     case 'ShowWifi':
       return {
         ...states,
@@ -37,7 +37,7 @@ export const menubarPanelReducer = (
         showSiri: false,
         showSearch: false,
         showNotification: false,
-      }
+      };
     case 'ShowBattery':
       return {
         ...states,
@@ -51,7 +51,7 @@ export const menubarPanelReducer = (
         showSiri: false,
         showSearch: false,
         showNotification: false,
-      }
+      };
     case 'ShowInput':
       return {
         ...states,
@@ -65,7 +65,7 @@ export const menubarPanelReducer = (
         showSiri: false,
         showSearch: false,
         showNotification: false,
-      }
+      };
     case 'ShowBluetooth':
       return {
         ...states,
@@ -79,7 +79,7 @@ export const menubarPanelReducer = (
         showSiri: false,
         showSearch: false,
         showNotification: false,
-      }
+      };
     case 'ShowFocus':
       return {
         ...states,
@@ -93,7 +93,7 @@ export const menubarPanelReducer = (
         showSiri: false,
         showSearch: false,
         showNotification: false,
-      }
+      };
     case 'ShowApple':
       return {
         ...states,
@@ -106,7 +106,7 @@ export const menubarPanelReducer = (
         showControl: false,
         showSiri: false,
         showSearch: false,
-      }
+      };
     case 'ShowControl':
       return {
         ...states,
@@ -119,7 +119,7 @@ export const menubarPanelReducer = (
         showControl: !states.showControl,
         showSiri: false,
         showSearch: false,
-      }
+      };
     case 'ShowSiri':
       return {
         ...states,
@@ -133,7 +133,7 @@ export const menubarPanelReducer = (
         showSiri: !states.showSiri,
         showSearch: false,
         showNotification: false,
-      }
+      };
     case 'ShowSearch':
       return {
         ...states,
@@ -147,7 +147,7 @@ export const menubarPanelReducer = (
         showSiri: false,
         showSearch: !states.showSearch,
         showNotification: false,
-      }
+      };
     case 'ShowNotification':
       return {
         ...states,
@@ -161,7 +161,7 @@ export const menubarPanelReducer = (
         showSiri: false,
         showSearch: false,
         showNotification: !states.showNotification,
-      }
+      };
     default:
       return {
         ...states,
@@ -175,9 +175,9 @@ export const menubarPanelReducer = (
         showSiri: false,
         showSearch: false,
         showNotification: false,
-      }
+      };
   }
-}
+};
 export const focusReducer = (
   focusState: FocusState,
   focusAction: FocusAction
@@ -188,30 +188,30 @@ export const focusReducer = (
         ...focusState,
         state: !focusState.state,
         type: 'None',
-      }
+      };
     case 'HourChecked':
       return {
         ...focusState,
         state: true,
         type: 'Hour',
-      }
+      };
     case 'EveningChecked':
       return {
         ...focusState,
         state: true,
         type: 'Evening',
-      }
+      };
     case 'EventChecked':
       return {
         ...focusState,
         state: true,
         type: 'Event',
-      }
+      };
     default:
       return {
         ...focusState,
         state: false,
         type: 'None',
-      }
+      };
   }
-}
+};

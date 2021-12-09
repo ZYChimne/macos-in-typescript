@@ -1,7 +1,7 @@
-import { AppLoads } from './utils.d'
+import { AppLoads } from './utils.d';
 
 export const AppList: {
-  [key: string]: { name: string; ctx: string; load: AppLoads }
+  [key: string]: { name: string; ctx: string; load: AppLoads };
 } = {
   books: { name: 'Books', ctx: 'books', load: 'None' },
   booth: { name: 'Photo Booth', ctx: 'booth', load: 'None' },
@@ -48,7 +48,7 @@ export const AppList: {
   reminders: { name: 'Reminders', ctx: 'reminders', load: 'None' },
   safari: { name: 'Sarafi', ctx: 'safari', load: 'None' },
   screenshot: { name: 'Screenshot', ctx: 'screenshot', load: 'None' },
-  siri: { name: 'Siri', ctx: 'siri', load: 'None' },
+  siri: { name: 'Siri', ctx: 'siri', load: 'Siri' },
   stickies: { name: 'Stickies', ctx: 'stickies', load: 'None' },
   store: { name: 'App Store', ctx: 'store', load: 'None' },
   swift: { name: 'Swift Playground', ctx: 'swift', load: 'None' },
@@ -59,4 +59,4 @@ export const AppList: {
   wechat: { name: 'WeChat', ctx: 'wechat', load: 'None' },
   word: { name: 'Microsoft Word', ctx: 'word', load: 'None' },
   xcode: { name: 'Xcode', ctx: 'xcode', load: 'None' },
-}
+};

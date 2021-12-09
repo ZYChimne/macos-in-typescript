@@ -1,21 +1,21 @@
-import React, { useReducer, useState } from 'react'
-import { Icon } from '../../utils/utlils'
+import React, { useReducer, useState } from 'react';
+import { Icon } from '../../utils/utlils';
 import {
   IconLineContainerProps,
   IconPageContainerProps,
   LaunchpadApps,
   LaunchpadProps,
-} from './launchpad.d'
-import './launchpad.scss'
+} from './launchpad.d';
+import './launchpad.scss';
 export const Launchpad = (props: LaunchpadProps) => {
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(0);
   const switchIconContainer = (event: React.WheelEvent) => {
     if (event.deltaY < 0 && page > 0) {
-      setPage(page - 1)
+      setPage(page - 1);
     } else if (event.deltaY > 0 && page < 1) {
-      setPage(page + 1)
+      setPage(page + 1);
     }
-  }
+  };
   const IconPageContainer = (props: IconPageContainerProps) => {
     return (
       <div className="icon-page-container" data-index={props.index}>
@@ -27,8 +27,8 @@ export const Launchpad = (props: LaunchpadProps) => {
           <IconLineContainer start={props.start + 28} setApp={props.setApp} />
         </div>
       </div>
-    )
-  }
+    );
+  };
   const IconLineContainer = (props: IconLineContainerProps) => {
     return (
       <div className="icon-line-container">
@@ -40,11 +40,11 @@ export const Launchpad = (props: LaunchpadProps) => {
               key={i}
               dispatch={props.setApp}
             />
-          )
+          );
         })}
       </div>
-    )
-  }
+    );
+  };
   return (
     <div
       className="launchpad"
@@ -63,5 +63,5 @@ export const Launchpad = (props: LaunchpadProps) => {
         <div className="dot" data-active={page === 1 ? true : false} />
       </div>
     </div>
-  )
-}
+  );
+};

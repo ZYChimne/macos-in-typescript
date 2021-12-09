@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faWifi,
   faSearch,
@@ -16,10 +16,10 @@ import {
   faBroadcastTower,
   faLightbulb,
   faTv,
-} from '@fortawesome/free-solid-svg-icons'
-import { faApple, faBluetoothB } from '@fortawesome/free-brands-svg-icons'
-import './menubar.scss'
-import { Switch } from '../../utils/utlils'
+} from '@fortawesome/free-solid-svg-icons';
+import { faApple, faBluetoothB } from '@fortawesome/free-brands-svg-icons';
+import './menubar.scss';
+import { Switch } from '../../utils/utlils';
 import {
   MenubarItems,
   MenubarProps,
@@ -31,20 +31,20 @@ import {
   ControlPanelProps,
   FocusPanelProps,
   MenubarPanelAction,
-} from './menubar.d'
+} from './menubar.d';
 export const Menubar = (props: MenubarProps) => {
   const handleItemClicked = (
     event: React.MouseEvent,
     type: MenubarPanelAction
   ) => {
-    event.stopPropagation()
-    props.menubarPanelDispatcher(type)
-  }
+    event.stopPropagation();
+    props.menubarPanelDispatcher(type);
+  };
   return (
     <div
       className="menubar"
       onClick={() => {
-        props.menubarPanelDispatcher('Hide')
+        props.menubarPanelDispatcher('Hide');
       }}
     >
       <div className="menubar-left">
@@ -64,7 +64,7 @@ export const Menubar = (props: MenubarProps) => {
             <div className="menubarItem" key={i}>
               {item}
             </div>
-          )
+          );
         })}
       </div>
       <div className="menubar-right">
@@ -151,8 +151,8 @@ export const Menubar = (props: MenubarProps) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const WiFiPanel = (props: PanelProps) => {
   return (
@@ -191,8 +191,8 @@ export const WiFiPanel = (props: PanelProps) => {
         <div className="panel-text">Network Preferences...</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const BatteryPanel = (prop: SimplePanelProps) => {
   return (
@@ -205,26 +205,26 @@ export const BatteryPanel = (prop: SimplePanelProps) => {
         <div className="panel-subtitle">Power Source: Battery</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const InputPanel = (prop: SimplePanelProps) => {
-  const [state, dispatch] = useState('Pinyin')
-  const languageKeys = Object.keys(InputLanguages)
+  const [state, dispatch] = useState('Pinyin');
+  const languageKeys = Object.keys(InputLanguages);
   const InputPanelLine = (props: InputPanelLineProps) => {
     const inputCheck = (
       <div className="input-checked">
         <FontAwesomeIcon className="panel-icon-small" icon={faCheck} />
       </div>
-    )
-    const inputNotCheck = <div className="input-checked"></div>
+    );
+    const inputNotCheck = <div className="input-checked"></div>;
     return (
       <div className="input-line" onClick={() => props.dispatch(props.state)}>
         {props.checked ? inputCheck : inputNotCheck}
         <div className="panel-text">{InputLanguages[props.state]}</div>
       </div>
-    )
-  }
+    );
+  };
   return (
     <div className="Input-Panel" data-show={prop.show}>
       <InputPanelLine checked={true} dispatch={dispatch} state={state} />
@@ -236,37 +236,37 @@ export const InputPanel = (prop: SimplePanelProps) => {
             state={key}
             key={index}
           />
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
 export const FocusPanel = (props: FocusPanelProps) => {
-  let OnText: string
+  let OnText: string;
   switch (props.state.type) {
     case 'None':
-      OnText = 'On'
-      break
+      OnText = 'On';
+      break;
     case 'Evening':
-      OnText = 'On Until 7:00 PM'
-      break
+      OnText = 'On Until 7:00 PM';
+      break;
     case 'Hour':
-      let date = new Date()
-      date.setHours(date.getHours() + 1)
+      let date = new Date();
+      date.setHours(date.getHours() + 1);
       OnText =
         'On Until ' +
         date.toLocaleTimeString('en-CN', {
           hour: '2-digit',
           minute: '2-digit',
-        })
-      break
+        });
+      break;
     case 'Event':
-      OnText = 'On Until 3:00 PM'
-      break
+      OnText = 'On Until 3:00 PM';
+      break;
     default:
-      OnText = 'On'
-      break
+      OnText = 'On';
+      break;
   }
   return (
     <div className="Focus-Panel" data-show={props.show}>
@@ -280,7 +280,7 @@ export const FocusPanel = (props: FocusPanelProps) => {
       <div
         className="panel-line-normal-hover"
         onClick={() => {
-          props.dispatch('ChangeFocus')
+          props.dispatch('ChangeFocus');
         }}
       >
         <div className="panel-icon-box" data-on={props.state.state}>
@@ -326,8 +326,8 @@ export const FocusPanel = (props: FocusPanelProps) => {
         <div className="panel-text">Focus Preferences...</div>
       </div>
     </div>
-  )
-}
+  );
+};
 export const BluetoothPanel = (prop: PanelProps) => {
   return (
     <div className="Bluetooth-Panel" data-show={prop.show}>
@@ -354,11 +354,11 @@ export const BluetoothPanel = (prop: PanelProps) => {
         <div className="panel-text">Bluetooth Preferences...</div>
       </div>
     </div>
-  )
-}
+  );
+};
 export const ControlPanel = (props: ControlPanelProps) => {
-  const [music, setMusic] = useState(0)
-  const [airdrop, setAirDrop] = useState(false)
+  const [music, setMusic] = useState(0);
+  const [airdrop, setAirDrop] = useState(false);
   return (
     <div className="Control-Panel" data-show={props.show}>
       <div className="control-line1">
@@ -456,14 +456,14 @@ export const ControlPanel = (props: ControlPanelProps) => {
             className="panel-icon"
             icon={faForward}
             onClick={() => {
-              setMusic((music + 1) % MusicList.length)
+              setMusic((music + 1) % MusicList.length);
             }}
           />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 export const ApplePanel = (prop: SimplePanelProps) => {
   return (
     <div className="Apple-Panel" data-show={prop.show}>
@@ -506,5 +506,5 @@ export const ApplePanel = (prop: SimplePanelProps) => {
         <div className="panel-text">Log Out ZYChimne</div>
       </div>
     </div>
-  )
-}
+  );
+};

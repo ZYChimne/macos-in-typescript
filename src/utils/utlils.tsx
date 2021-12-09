@@ -1,7 +1,7 @@
-import React from 'react'
-import { AppList } from './AppList'
-import { AppLoads, AppState, IconProps, SwitchProps } from './utils.d'
-import './utils.scss'
+import React from 'react';
+import { AppList } from './AppList';
+import { AppLoads, AppState, IconProps, SwitchProps } from './utils.d';
+import './utils.scss';
 
 export const Switch = (props: SwitchProps) => {
   return (
@@ -15,11 +15,11 @@ export const Switch = (props: SwitchProps) => {
       />
       <label className="switch-core" htmlFor={props.id} />
     </div>
-  )
-}
+  );
+};
 
 export const Icon = (props: IconProps) => {
-  if (!(props.value in AppList)) console.log(props.value)
+  if (!(props.value in AppList)) console.log(props.value);
   switch (props.type) {
     case 'Dock':
       return (
@@ -36,7 +36,7 @@ export const Icon = (props: IconProps) => {
             onClick={() => props.dispatch(AppList[props.value].load)}
           />
         </div>
-      )
+      );
     case 'Desktop':
       return (
         <div className="icon" data-type={props.type}>
@@ -48,7 +48,7 @@ export const Icon = (props: IconProps) => {
             onClick={() => props.dispatch(AppList[props.value].load)}
           />
         </div>
-      )
+      );
     case 'Launchpad':
       return (
         <div className="icon" data-type={props.type}>
@@ -62,19 +62,19 @@ export const Icon = (props: IconProps) => {
           />
           <div className="icon-text">{AppList[props.value].name}</div>
         </div>
-      )
+      );
     default:
-      return null
+      return null;
   }
-}
+};
 
 export const appReducer = (state: AppState, type: AppLoads): AppState => {
   switch (type) {
     case 'None':
-      return { ...state, showLaunchpad: false }
+      return { ...state, showLaunchpad: false };
     case 'Launchpad':
-      return { ...state, showLaunchpad: !state.showLaunchpad }
+      return { ...state, showLaunchpad: !state.showLaunchpad };
     default:
-      return { ...state }
+      return { ...state };
   }
-}
+};
