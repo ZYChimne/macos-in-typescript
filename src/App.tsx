@@ -40,7 +40,7 @@ function App() {
   const [appState, appStateDispatcher] = useReducer(appReducer, {
     showLaunchpad: false,
     showSiri: false,
-    showPreferences:false,
+    showPreferences: false,
   });
   const [wifiState, setWifi] = useState(true);
   const [bluetoothState, setBluetooth] = useState(true);
@@ -91,7 +91,7 @@ function App() {
       <Siri show={appState.showSiri} />
       <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher} />
       <Dock setApp={appStateDispatcher} />
-      <Preferences show={appState.showPreferences}/>
+      <Preferences show={appState.showPreferences} />
     </div>
   );
 }

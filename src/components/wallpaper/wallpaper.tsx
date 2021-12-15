@@ -23,8 +23,8 @@ export const wallpaperReducer = (
 };
 export const Wallpaper = () => {
   const [wallpaper, setWallpaper] = useReducer(wallpaperReducer, {
-  src: defaultWallpapers.light,
-});
+    src: defaultWallpapers.light,
+  });
   return (
     <div
       className="wallpaper"

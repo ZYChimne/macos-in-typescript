@@ -1,4 +1,9 @@
-import { faMinus, faTimes, faEquals, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMinus,
+  faTimes,
+  faEquals,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { AppList } from './AppList';
@@ -84,7 +89,7 @@ export const AppBarButton = () => {
       </div>
     </div>
   );
-}
+};
 
 export const appReducer = (state: AppState, type: AppLoads): AppState => {
   switch (type) {
@@ -94,7 +99,7 @@ export const appReducer = (state: AppState, type: AppLoads): AppState => {
       return { ...state, showLaunchpad: !state.showLaunchpad };
     case 'Siri':
       return { ...state, showSiri: !state.showSiri };
-    case "Preferences":
+    case 'Preferences':
       return { ...state, showPreferences: !state.showPreferences };
   }
 };

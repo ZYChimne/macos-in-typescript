@@ -126,7 +126,10 @@ export const Menubar = (props: MenubarProps) => {
         <div
           className="menubaricon"
           data-active={props.appState.showSiri}
-          onClick={(event) => { event.stopPropagation(); props.appStateDispatcher('Siri')}}
+          onClick={(event) => {
+            event.stopPropagation();
+            props.appStateDispatcher('Siri');
+          }}
         >
           <FontAwesomeIcon
             className="menubaricon-content"

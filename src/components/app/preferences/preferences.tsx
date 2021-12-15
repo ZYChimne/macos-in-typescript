@@ -74,7 +74,10 @@ const PreferenceContent = (props: PreferencesContentProps) => {
             </div>
             <div className="overview-right">
               <div className="overview-right-line1">
-                <div className='overview-right-line-container'><div className="overview-title">macOS</div><div className="overview-subtitle">Big Sur</div></div>
+                <div className="overview-right-line-container">
+                  <div className="overview-title">macOS</div>
+                  <div className="overview-subtitle">Big Sur</div>
+                </div>
                 <div className="overview-right-line-value">Version 11.0</div>
               </div>
               <div className="overview-right-line2">

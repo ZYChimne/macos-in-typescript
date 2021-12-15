@@ -111,11 +111,11 @@
     }
   }
 }
-.AppBar-Button-Container{
+.AppBar-Button-Container {
   display: flex;
   flex-direction: row;
 }
-%appbar-btn-shared{
+%appbar-btn-shared {
   color: black;
   border-radius: 50%;
   height: 15px;
@@ -125,18 +125,18 @@
   align-items: center;
   margin: 6px;
 }
-.close-btn{
+.close-btn {
   @extend %appbar-btn-shared;
   background: rgba(colors.$RED-LIGHT, 1);
 }
-.min-btn{
+.min-btn {
   @extend %appbar-btn-shared;
   background: rgba(colors.$YELLOW-LIGHT, 1);
 }
-.max-btn{
+.max-btn {
   @extend %appbar-btn-shared;
   background: rgba(colors.$GREEN-LIGHT, 1);
 }
-.appbar-btn{
+.appbar-btn {
   font-size: 0.54rem;
 }
