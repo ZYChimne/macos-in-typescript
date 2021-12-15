@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import './App.css';
+import { Preferences } from './components/app/preferences/preferences';
 import { Siri } from './components/app/siri/siri';
 import { Dock } from './components/dock/dock';
 import { Launchpad } from './components/launchpad/launchpad';
@@ -38,6 +39,8 @@ function App() {
   );
   const [appState, appStateDispatcher] = useReducer(appReducer, {
     showLaunchpad: false,
+    showSiri: false,
+    showPreferences:false,
   });
   const [wifiState, setWifi] = useState(true);
   const [bluetoothState, setBluetooth] = useState(true);
@@ -53,6 +56,8 @@ function App() {
         state="Finder"
         menubarPanelDispatcher={menubarPanelDispatcher}
         menubarState={menubarPanelState}
+        appState={appState}
+        appStateDispatcher={appStateDispatcher}
       />
       <WiFiPanel
         show={menubarPanelState.showWifi}
@@ -83,9 +88,10 @@ function App() {
         darkState={darkState}
         setDark={setDark}
       />
-      <Siri show={menubarPanelState.showSiri} />
+      <Siri show={appState.showSiri} />
       <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher} />
       <Dock setApp={appStateDispatcher} />
+      <Preferences show={appState.showPreferences}/>
     </div>
   );
 }

@@ -125,8 +125,8 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className="menubaricon"
-          data-active={props.menubarState.showSiri}
-          onClick={(event) => handleItemClicked(event, 'ShowSiri')}
+          data-active={props.appState.showSiri}
+          onClick={(event) => { event.stopPropagation(); props.appStateDispatcher('Siri')}}
         >
           <FontAwesomeIcon
             className="menubaricon-content"

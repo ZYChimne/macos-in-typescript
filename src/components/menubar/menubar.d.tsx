@@ -1,8 +1,11 @@
 import React from 'react';
+import { AppLoads, AppState } from '../../utils/utils.d';
 export type MenubarProps = {
   state: string;
   menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
   menubarState: MenubarPanelStates;
+  appStateDispatcher: React.Dispatch<AppLoads>;
+  appState: AppState;
 };
 export type PanelProps = {
   show: boolean;

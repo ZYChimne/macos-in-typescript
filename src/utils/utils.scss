@@ -111,3 +111,32 @@
     }
   }
 }
+.AppBar-Button-Container{
+  display: flex;
+  flex-direction: row;
+}
+%appbar-btn-shared{
+  color: black;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 6px;
+}
+.close-btn{
+  @extend %appbar-btn-shared;
+  background: rgba(colors.$RED-LIGHT, 1);
+}
+.min-btn{
+  @extend %appbar-btn-shared;
+  background: rgba(colors.$YELLOW-LIGHT, 1);
+}
+.max-btn{
+  @extend %appbar-btn-shared;
+  background: rgba(colors.$GREEN-LIGHT, 1);
+}
+.appbar-btn{
+  font-size: 0.54rem;
+}

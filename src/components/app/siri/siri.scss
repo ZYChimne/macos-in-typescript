@@ -8,6 +8,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 12px;
+  z-index: 30;
   &[data-show='true'] {
     display: flex;
     animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);

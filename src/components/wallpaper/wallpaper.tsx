@@ -21,11 +21,10 @@ export const wallpaperReducer = (
       return { ...state, src: defaultWallpapers.dark };
   }
 };
-const initialState: WallpaperState = {
-  src: defaultWallpapers.light,
-};
 export const Wallpaper = () => {
-  const [wallpaper, setWallpaper] = useReducer(wallpaperReducer, initialState);
+  const [wallpaper, setWallpaper] = useReducer(wallpaperReducer, {
+  src: defaultWallpapers.light,
+});
   return (
     <div
       className="wallpaper"

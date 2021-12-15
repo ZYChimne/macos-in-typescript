@@ -42,7 +42,7 @@ export const AppList: {
   preferences: {
     name: 'System Preferences',
     ctx: 'preferences',
-    load: 'None',
+    load: 'Preferences',
   },
   preview: { name: 'Preview', ctx: 'preview', load: 'None' },
   reminders: { name: 'Reminders', ctx: 'reminders', load: 'None' },

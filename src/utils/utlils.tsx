@@ -1,3 +1,5 @@
+import { faMinus, faTimes, faEquals, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { AppList } from './AppList';
 import { AppLoads, AppState, IconProps, SwitchProps } from './utils.d';
@@ -68,13 +70,31 @@ export const Icon = (props: IconProps) => {
   }
 };
 
+export const AppBarButton = () => {
+  return (
+    <div className="AppBar-Button-Container">
+      <div className="close-btn">
+        <FontAwesomeIcon className="appbar-btn" icon={faTimes} />
+      </div>
+      <div className="min-btn">
+        <FontAwesomeIcon className="appbar-btn" icon={faMinus} />
+      </div>
+      <div className="max-btn">
+        <FontAwesomeIcon className="appbar-btn" icon={faPlus} />
+      </div>
+    </div>
+  );
+}
+
 export const appReducer = (state: AppState, type: AppLoads): AppState => {
   switch (type) {
     case 'None':
       return { ...state, showLaunchpad: false };
     case 'Launchpad':
       return { ...state, showLaunchpad: !state.showLaunchpad };
-    default:
-      return { ...state };
+    case 'Siri':
+      return { ...state, showSiri: !state.showSiri };
+    case "Preferences":
+      return { ...state, showPreferences: !state.showPreferences };
   }
 };

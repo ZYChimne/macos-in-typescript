@@ -11,5 +11,7 @@ export type IconProps = {
 };
 export type AppState = {
   showLaunchpad: boolean;
+  showSiri: boolean;
+  showPreferences: boolean;
 };
-export type AppLoads = 'None' | 'Launchpad' | 'Siri';
+export type AppLoads = 'None' | 'Launchpad' | 'Siri' | 'Preferences';
