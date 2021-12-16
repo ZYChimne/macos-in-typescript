@@ -122,6 +122,27 @@
 .overview-right-line2 {
   height: 60%;
 }
+.Displays-container {
+  @extend %content-container-shared;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.displays-img {
+  font-size: 8rem;
+  padding: 12px;
+  margin: 12px;
+}
+.displays-title {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 3px;
+}
+.displays-subtitle {
+  font-size: 0.81rem;
+  padding: 3px;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;

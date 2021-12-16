@@ -1,3 +1,5 @@
+import { faTv } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
 import {
@@ -58,61 +60,72 @@ export const Preferences = (props: PreferencesProps) => {
     </div>
   );
 };
+const Overview = () => {
+  return (
+    <div className="overview-container">
+      <div className="overview-content">
+        <div className="overview-left">
+          <img
+            className="overview-img"
+            src="/assets/icons/macos.png"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+        <div className="overview-right">
+          <div className="overview-right-line1">
+            <div className="overview-right-line-container">
+              <div className="overview-title">macOS</div>
+              <div className="overview-subtitle">Big Sur</div>
+            </div>
+            <div className="overview-right-line-value">Version 11.0</div>
+          </div>
+          <div className="overview-right-line2">
+            <div className="overview-right-line-container">
+              <div className="overview-right-line-name">
+                MacBook Pro (16-inch, 2021)
+              </div>
+            </div>
+            <div className="overview-right-line-container">
+              <div className="overview-right-line-name">Processor</div>
+              <div className="overview-right-line-value">Apple M1 MAX</div>
+            </div>
+            <div className="overview-right-line-container">
+              <div className="overview-right-line-name">Memory</div>
+              <div className="overview-right-line-value">64 GB DDR5</div>
+            </div>
+            <div className="overview-right-line-container">
+              <div className="overview-right-line-name">Graphics</div>
+              <div className="overview-right-line-value">Apple M1 MAX</div>
+            </div>
+            <div className="overview-right-line-container">
+              <div className="overview-right-line-name">Serial Number</div>
+              <div className="overview-right-line-value">20001006</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="overview-footer">
+        ™ and © 1983-2021 Apple Inc. All rights reserved. License and Warranty
+      </div>
+    </div>
+  );
+};
+const Displays = () => {
+  return (
+    <div className="Displays-container">
+      <FontAwesomeIcon className="displays-img" icon={faTv} />
+      <div className="displays-title">Built-in Renita Display</div>
+      <div className="displays-subtitle">16 inch (3072 * 1920)</div>
+    </div>
+  );
+};
 const PreferenceContent = (props: PreferencesContentProps) => {
   switch (props.contentType) {
     case 'Overview':
-      return (
-        <div className="overview-container">
-          <div className="overview-content">
-            <div className="overview-left">
-              <img
-                className="overview-img"
-                src="/assets/icons/macos.png"
-                alt=""
-                loading="lazy"
-              />
-            </div>
-            <div className="overview-right">
-              <div className="overview-right-line1">
-                <div className="overview-right-line-container">
-                  <div className="overview-title">macOS</div>
-                  <div className="overview-subtitle">Big Sur</div>
-                </div>
-                <div className="overview-right-line-value">Version 11.0</div>
-              </div>
-              <div className="overview-right-line2">
-                <div className="overview-right-line-container">
-                  <div className="overview-right-line-name">
-                    MacBook Pro (16-inch, 2021)
-                  </div>
-                </div>
-                <div className="overview-right-line-container">
-                  <div className="overview-right-line-name">Processor</div>
-                  <div className="overview-right-line-value">Apple M1 MAX</div>
-                </div>
-                <div className="overview-right-line-container">
-                  <div className="overview-right-line-name">Memory</div>
-                  <div className="overview-right-line-value">64 GB DDR5</div>
-                </div>
-                <div className="overview-right-line-container">
-                  <div className="overview-right-line-name">Graphics</div>
-                  <div className="overview-right-line-value">Apple M1 MAX</div>
-                </div>
-                <div className="overview-right-line-container">
-                  <div className="overview-right-line-name">Serial Number</div>
-                  <div className="overview-right-line-value">20001006</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="overview-footer">
-            ™ and © 1983-2021 Apple Inc. All rights reserved. License and
-            Warranty
-          </div>
-        </div>
-      );
+      return <Overview />;
     case 'Displays':
-      return null;
+      return <Displays />;
     case 'Storage':
       return null;
     case 'Support':
