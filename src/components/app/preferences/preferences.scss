@@ -143,19 +143,19 @@
   font-size: 0.81rem;
   padding: 3px;
 }
-.Storage-container{
+.Storage-container {
   @extend %content-container-shared;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.storage-constraint{
+.storage-constraint {
   width: 100%;
   height: 60%;
   display: flex;
   flex-direction: row;
 }
-.storage-left{
+.storage-left {
   height: 100%;
   width: 20%;
   display: flex;
@@ -163,27 +163,27 @@
   align-items: center;
   justify-content: center;
 }
-.storage-img{
+.storage-img {
   font-size: 4rem;
   padding: 6px;
 }
-.storage-text{
+.storage-text {
   font-size: 0.81rem;
   padding: 3px;
 }
-.storage-right{
+.storage-right {
   height: 100%;
   width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.storage-title{
+.storage-title {
   font-size: 1rem;
   font-weight: bold;
   padding: 3px;
 }
-.storage-status-bar{
+.storage-status-bar {
   height: 24px;
   width: 80%;
   border-radius: 6px;
@@ -193,17 +193,17 @@
   overflow: hidden;
   margin: 3px;
 }
-.storage-status-item{
+.storage-status-item {
   height: 100%;
 }
-.About-container{
+.About-container {
   @extend %content-container-shared;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-.about-content{
+.about-content {
   width: 80%;
   height: 80%;
   font-size: 0.81rem;
