@@ -143,6 +143,76 @@
   font-size: 0.81rem;
   padding: 3px;
 }
+.Storage-container{
+  @extend %content-container-shared;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.storage-constraint{
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+}
+.storage-left{
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.storage-img{
+  font-size: 4rem;
+  padding: 6px;
+}
+.storage-text{
+  font-size: 0.81rem;
+  padding: 3px;
+}
+.storage-right{
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.storage-title{
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 3px;
+}
+.storage-status-bar{
+  height: 24px;
+  width: 80%;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  margin: 3px;
+}
+.storage-status-item{
+  height: 100%;
+}
+.About-container{
+  @extend %content-container-shared;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.about-content{
+  width: 80%;
+  height: 80%;
+  font-size: 0.81rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px;
+  line-height: 1.44em;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;

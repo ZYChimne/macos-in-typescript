@@ -1,8 +1,9 @@
-import { faTv } from '@fortawesome/free-solid-svg-icons';
+import { faGlassWhiskey, faTv } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
 import {
+  AboutContent,
   PreferencesContentProps,
   PreferencesContentType,
   PreferencesProps,
@@ -49,10 +50,10 @@ export const Preferences = (props: PreferencesProps) => {
           </div>
           <div
             className="appbar-container-btn"
-            data-active={contentType === 'Resources'}
-            onClick={() => setContentType('Resources')}
+            data-active={contentType === 'About'}
+            onClick={() => setContentType('About')}
           >
-            Resources
+            About
           </div>
         </div>
       </div>
@@ -120,6 +121,52 @@ const Displays = () => {
     </div>
   );
 };
+const About = () => {
+  return (
+    <div className="About-container">
+      <div className="about-content">{AboutContent}</div>
+    </div>
+  );
+};
+const StorageStatusBar = (props: any) => {
+  return (
+    <div className="storage-status-bar">
+      <div
+        className="storage-status-item"
+        style={{ width: `20%`, background: `red` }}
+      />
+      <div className="storage-status-item" />
+      <div className="storage-status-item" />
+      <div className="storage-status-item" />
+      <div className="storage-status-item" />
+      <div className="storage-status-item" />
+      <div className="storage-status-item" />
+      <div className="storage-status-item" />
+      <div
+        className="storage-status-item"
+        style={{ width: `80%`, background: `white` }}
+      />
+    </div>
+  );
+};
+const Storage = () => {
+  return (
+    <div className="Storage-container">
+      <div className="storage-constraint">
+        <div className="storage-left">
+          <FontAwesomeIcon className="storage-img" icon={faGlassWhiskey} />
+          <div className="storage-text">16 TB</div>
+          <div className="storage-text">Flash Storage</div>
+        </div>
+        <div className="storage-right">
+          <div className="storage-title">Macintosh HD</div>
+          <div className="storage-text">8 TB available out of 16 TB</div>
+          <StorageStatusBar />
+        </div>
+      </div>
+    </div>
+  );
+};
 const PreferenceContent = (props: PreferencesContentProps) => {
   switch (props.contentType) {
     case 'Overview':
@@ -127,10 +174,10 @@ const PreferenceContent = (props: PreferencesContentProps) => {
     case 'Displays':
       return <Displays />;
     case 'Storage':
-      return null;
+      return <Storage />;
     case 'Support':
       return null;
-    case 'Resources':
-      return null;
+    case 'About':
+      return <About />;
   }
 };
