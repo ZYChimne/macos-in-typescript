@@ -1,9 +1,9 @@
 # macOS in TypeScript
 
-This is my Capstone Graduate Project for Wuhan University.  
+This is my Graduate Capstone Project for Wuhan University.  
 This application is developed in Chrome and some features require Chrome to work correctly.
 
-## Warnings
+## Performance Improvements
 
 * Change event callbacks [React Events](https://reactjs.org/docs/handling-events.html).
 
@@ -15,7 +15,7 @@ This application is developed in Chrome and some features require Chrome to work
 * Lighthouse score > 90
 * Integrate Electron for desktop applcation (Coming)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 [macOS color reference](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/).
 
 ## Available Scripts
