@@ -18,7 +18,7 @@
   display: flex;
   background-color: rgba(grey, 0.25);
   border-radius: 30px;
-  // transition: 0.5s;
+  transition: 0.5s;
   &:after {
     content: '';
     position: absolute;
@@ -28,7 +28,7 @@
     height: 18px;
     border-radius: 15px;
     background-color: white;
-    // transition: 0.5s;
+    transition: 0.5s;
   }
   .switch-input:checked + & {
     background-color: rgba(colors.$BLUE-LIGHT, 1);
