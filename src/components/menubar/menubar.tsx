@@ -349,7 +349,9 @@ export const BluetoothPanel = (prop: PanelProps) => {
         <div className="panel-subtitle">Devices</div>
       </div>
       <div className="panel-line-normal-hover">
-        <FontAwesomeIcon className="panel-icon" icon={faHeadphonesAlt} />
+        <div className="panel-icon-box" data-on={prop.state}>
+          <FontAwesomeIcon className="panel-icon" icon={faHeadphonesAlt} />
+        </div>
         <div className="panel-text">WH-1000XM2</div>
       </div>
       <div className="separator" />
