@@ -14,4 +14,7 @@ export type AppState = {
   showSiri: boolean;
   showPreferences: boolean;
 };
+export type AppBarBtnProps = {
+  setClose: () => void;
+};
 export type AppLoads = 'None' | 'Launchpad' | 'Siri' | 'Preferences';

@@ -472,42 +472,42 @@ export const ControlPanel = (props: ControlPanelProps) => {
 export const ApplePanel = (prop: SimplePanelProps) => {
   return (
     <div className="Apple-Panel" data-show={prop.show}>
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">About This Mac</div>
       </div>
       <div className="separator" />
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">System Preferences...</div>
       </div>
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">Location</div>
       </div>
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">App Store</div>
       </div>
       <div className="separator" />
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">Recent Items</div>
       </div>
       <div className="separator" />
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">Force Quit...</div>
       </div>
       <div className="separator" />
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">Sleep</div>
       </div>
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">Restart...</div>
       </div>
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">Shut Down...</div>
       </div>
       <div className="separator" />
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">Lock Screen</div>
       </div>
-      <div className="panel-line-normal-hover">
+      <div className="panel-line-apple-hover">
         <div className="panel-text">Log Out ZYChimne</div>
       </div>
     </div>

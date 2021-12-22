@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { AppList } from './AppList';
-import { AppLoads, AppState, IconProps, SwitchProps } from './utils.d';
+import { AppBarBtnProps, AppLoads, AppState, IconProps, SwitchProps } from './utils.d';
 import './utils.scss';
 
 export const Switch = (props: SwitchProps) => {
@@ -75,10 +75,10 @@ export const Icon = (props: IconProps) => {
   }
 };
 
-export const AppBarButton = () => {
+export const AppBarButton = (props: AppBarBtnProps) => {
   return (
     <div className="AppBar-Button-Container">
-      <div className="close-btn">
+      <div className="close-btn" onClick={props.setClose}>
         <FontAwesomeIcon className="appbar-btn" icon={faTimes} />
       </div>
       <div className="min-btn">

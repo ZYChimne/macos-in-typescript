@@ -91,7 +91,7 @@ function App() {
       <Siri show={appState.showSiri} />
       <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher} />
       <Dock setApp={appStateDispatcher} />
-      <Preferences show={appState.showPreferences} />
+      <Preferences show={appState.showPreferences} setApp={appStateDispatcher}/>
     </div>
   );
 }

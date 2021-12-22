@@ -1,3 +1,4 @@
+import { faApple } from '@fortawesome/free-brands-svg-icons';
 import { faGlassWhiskey, faTv } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
@@ -7,17 +8,19 @@ import {
   PreferencesContentProps,
   PreferencesContentType,
   PreferencesProps,
+  SupportImportant,
+  SupportText,
 } from './preferences.d';
 import './preferences.scss';
 
 export const Preferences = (props: PreferencesProps) => {
   const [contentType, setContentType] =
-    useState<PreferencesContentType>('Overview');
+  useState<PreferencesContentType>('Overview');
   return (
     <div className="Preferences" data-show={props.show}>
       <div className="appbar-container">
         <div className="appbar-container-left">
-          <AppBarButton />
+          <AppBarButton setClose={()=>props.setApp('Preferences')}/>
         </div>
         <div className="appbar-container-center">
           <div
@@ -121,30 +124,45 @@ const Displays = () => {
     </div>
   );
 };
-const About = () => {
-  return (
-    <div className="About-container">
-      <div className="about-content">{AboutContent}</div>
-    </div>
-  );
-};
 const StorageStatusBar = (props: any) => {
   return (
     <div className="storage-status-bar">
       <div
         className="storage-status-item"
-        style={{ width: `20%`, background: `red` }}
-      />
-      <div className="storage-status-item" />
-      <div className="storage-status-item" />
-      <div className="storage-status-item" />
-      <div className="storage-status-item" />
-      <div className="storage-status-item" />
-      <div className="storage-status-item" />
-      <div className="storage-status-item" />
+        style={{ width: `20%`, background: `rgb(235, 69, 90)` }}
+      >
+      Apps</div>
       <div
         className="storage-status-item"
-        style={{ width: `80%`, background: `white` }}
+        style={{ width: `10%`, background: `rgb(99, 201, 86)` }}
+      />
+      <div
+        className="storage-status-item"
+        style={{ width: `5%`, background: `rgb(234, 60, 247)` }}
+      />
+      <div
+        className="storage-status-item"
+        style={{ width: `5%`, background: `rgb(154, 84, 185)` }}
+      />
+      <div
+        className="storage-status-item"
+        style={{ width: `5%`, background: `rgb(121, 121, 121)` }}
+      />
+      <div
+        className="storage-status-item"
+        style={{ width: `5%`, background: `rgb(157, 133, 99)` }}
+      />
+      <div
+        className="storage-status-item"
+        style={{ width: `10%`, background: `rgb(192, 192, 192)` }}
+      />
+      <div
+        className="storage-status-item"
+        style={{ width: `20%`, background: `rgb(146, 146, 146)` }}
+      />
+      <div
+        className="storage-status-item"
+        style={{ width: `20%`, background: `white` }}
       />
     </div>
   );
@@ -160,10 +178,38 @@ const Storage = () => {
         </div>
         <div className="storage-right">
           <div className="storage-title">Macintosh HD</div>
-          <div className="storage-text">8 TB available out of 16 TB</div>
+          <div className="storage-text">12.8 TB available out of 16 TB</div>
           <StorageStatusBar />
         </div>
       </div>
+    </div>
+  );
+};
+const Support = () => {
+  return (
+    <div className="Support-container">
+      <div className="support-left">
+        <div className="support-img-box">
+          <FontAwesomeIcon className="support-img" icon={faApple} />
+        </div>
+        <div className="support-title">Limited Warranty</div>
+        <div className="support-subtitle">Expires Dec 30, 2030</div>
+      </div>
+      <div className="support-right">
+        <div className="support-right-line1">
+          <div className="support-text">{SupportText}</div>
+        </div>
+        <div className="support-right-line2">
+          <div className="support-text">{SupportImportant}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+const About = () => {
+  return (
+    <div className="About-container">
+      <div className="about-content">{AboutContent}</div>
     </div>
   );
 };
@@ -176,7 +222,7 @@ const PreferenceContent = (props: PreferencesContentProps) => {
     case 'Storage':
       return <Storage />;
     case 'Support':
-      return null;
+      return <Support/>
     case 'About':
       return <About />;
   }

@@ -2,29 +2,29 @@
 $menubar-height: 24px;
 $default-padding-regular: 0 12px;
 $default-padding-small: 0 6px;
-$default-menubar-background-color: rgba(white, 0.75);
-$active-background-color: rgba(grey, 0.25);
+$default-menubar-background: rgba(white, 0.75);
+$active-background: rgba(grey, 0.25);
 $default-menubar-font-size: 0.81rem;
 $default-menubar-border-radius-small: 1.5px;
 $default-menubar-border-radius-regular: 6px;
 $default-menubar-border-radius-large: 12px;
 $default-border-radius-regular: 6px;
 $default-backdrop-filter-blur: 6px;
-$control-block-background-color: rgba(white, 0.75);
+$control-block-background: rgba(white, 0.75);
 $control-box-shadow: 0 0 1px 1px rgba(grey, 0.1);
 $default-zindex: 10;
 %item-shared {
   height: 100%;
   border-radius: $default-menubar-border-radius-small;
   &[data-active='true'] {
-    background-color: $active-background-color;
+    background: $active-background;
   }
 }
 .menubar {
   width: 100vw;
   height: $menubar-height;
   position: absolute;
-  background-color: $default-menubar-background-color;
+  background: $default-menubar-background;
   top: 0;
   z-index: $default-zindex;
   caret-color: transparent;
@@ -57,7 +57,7 @@ $default-zindex: 10;
   padding: $default-padding-regular;
 }
 .menubaricon-content {
-  font-size: 0.81rem;
+  font-size: 0.9rem;
 }
 .menubarItem {
   @extend %item-shared;
@@ -79,7 +79,7 @@ $default-zindex: 10;
   position: absolute;
   padding: 6px 0;
   backdrop-filter: blur($default-backdrop-filter-blur);
-  background-color: $default-menubar-background-color;
+  background: $default-menubar-background;
   border-radius: $default-menubar-border-radius-large;
   z-index: $default-zindex;
   flex-direction: column;
@@ -117,7 +117,7 @@ $default-zindex: 10;
 }
 .separator {
   margin: 3px auto;
-  background-color: $active-background-color;
+  background: $active-background;
   width: 90%;
   height: 1px;
 }
@@ -127,7 +127,14 @@ $default-zindex: 10;
 .panel-line-normal-hover {
   @extend %panel-line-shared;
   &:hover {
-    background-color: $active-background-color;
+    background: $active-background;
+  }
+}
+.panel-line-apple-hover {
+  @extend %panel-line-shared;
+  &:hover {
+    background: rgba(colors.$BLUE-LIGHT, 1);
+    color: white;
   }
 }
 .panel-line-between {
@@ -138,7 +145,7 @@ $default-zindex: 10;
   @extend %panel-line-shared;
   justify-content: space-between;
   &:hover {
-    background-color: $active-background-color;
+    background: $active-background;
   }
 }
 .panel-subtitle {
@@ -164,13 +171,13 @@ $default-zindex: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background: white;
   &[data-on='true'] {
     color: white;
-    background-color: rgba(colors.$BLUE-LIGHT, 1);
+    background: rgba(colors.$BLUE-LIGHT, 1);
   }
   &[data-on='false'] {
-    background-color: rgba(grey, 0.25);
+    background: rgba(grey, 0.25);
   }
 }
 .panel-icon {
@@ -192,7 +199,7 @@ $default-zindex: 10;
 
 %input-hover-shared {
   color: white;
-  background-color: rgba(colors.$BLUE-LIGHT, 1);
+  background: rgba(colors.$BLUE-LIGHT, 1);
 }
 .Input-Panel {
   @extend %panel-shared;
@@ -241,7 +248,7 @@ $default-zindex: 10;
   position: absolute;
   padding: 6px 0;
   backdrop-filter: blur($default-backdrop-filter-blur);
-  background-color: $default-menubar-background-color;
+  background: $default-menubar-background;
   border-radius: 12px;
   z-index: $default-zindex;
   flex-direction: column;
@@ -269,7 +276,7 @@ $default-zindex: 10;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: $control-block-background-color;
+  background: $control-block-background;
   border-radius: 6px;
   align-items: center;
   margin: 6px;
@@ -277,7 +284,7 @@ $default-zindex: 10;
 .control-line1-left {
   width: 47%;
   margin-left: 6px;
-  background-color: $control-block-background-color;
+  background: $control-block-background;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -315,7 +322,7 @@ $default-zindex: 10;
 .control-line1-right-line1 {
   width: 100%;
   height: 50%;
-  background-color: $control-block-background-color;
+  background: $control-block-background;
   box-shadow: $control-box-shadow;
   border-radius: 6px;
   display: flex;
@@ -338,7 +345,7 @@ $default-zindex: 10;
 .control-block-small {
   height: 100%;
   width: 48%;
-  background-color: $control-block-background-color;
+  background: $control-block-background;
   box-shadow: $control-box-shadow;
   border-radius: 6px;
   display: flex;
@@ -379,7 +386,7 @@ $default-zindex: 10;
   position: absolute;
   padding: 6px 0;
   backdrop-filter: blur($default-backdrop-filter-blur);
-  background-color: $default-menubar-background-color;
+  background: $default-menubar-background;
   border-radius: $default-menubar-border-radius-large;
   z-index: $default-zindex;
   flex-direction: column;
@@ -398,7 +405,7 @@ $default-zindex: 10;
 .apple-panel-line {
   @extend %panel-line-shared;
   &:hover {
-    background-color: $active-background-color;
+    background: $active-background;
   }
 }
 
