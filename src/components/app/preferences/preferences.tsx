@@ -15,12 +15,12 @@ import './preferences.scss';
 
 export const Preferences = (props: PreferencesProps) => {
   const [contentType, setContentType] =
-  useState<PreferencesContentType>('Overview');
+    useState<PreferencesContentType>('Overview');
   return (
     <div className="Preferences" data-show={props.show}>
       <div className="appbar-container">
         <div className="appbar-container-left">
-          <AppBarButton setClose={()=>props.setApp('Preferences')}/>
+          <AppBarButton setClose={() => props.setApp('Preferences')} />
         </div>
         <div className="appbar-container-center">
           <div
@@ -131,7 +131,8 @@ const StorageStatusBar = (props: any) => {
         className="storage-status-item"
         style={{ width: `20%`, background: `rgb(235, 69, 90)` }}
       >
-      Apps</div>
+        Apps
+      </div>
       <div
         className="storage-status-item"
         style={{ width: `10%`, background: `rgb(99, 201, 86)` }}
@@ -205,7 +206,7 @@ const Support = () => {
       </div>
     </div>
   );
-}
+};
 const About = () => {
   return (
     <div className="About-container">
@@ -222,7 +223,7 @@ const PreferenceContent = (props: PreferencesContentProps) => {
     case 'Storage':
       return <Storage />;
     case 'Support':
-      return <Support/>
+      return <Support />;
     case 'About':
       return <About />;
   }

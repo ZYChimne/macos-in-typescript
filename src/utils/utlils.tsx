@@ -7,7 +7,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { AppList } from './AppList';
-import { AppBarBtnProps, AppLoads, AppState, IconProps, SwitchProps } from './utils.d';
+import {
+  AppBarBtnProps,
+  AppLoads,
+  AppState,
+  IconProps,
+  SwitchProps,
+} from './utils.d';
 import './utils.scss';
 
 export const Switch = (props: SwitchProps) => {
