@@ -32,13 +32,13 @@ $default-zindex: 10;
   display: flex;
   justify-content: space-between;
 }
-.menubar-left {
+.menubarLeft {
   height: 100%;
   margin-left: 6px;
   display: flex;
   align-items: center;
 }
-.menubar-right {
+.menubarRight {
   height: 100%;
   margin-right: 6px;
   display: flex;
@@ -56,7 +56,7 @@ $default-zindex: 10;
   align-items: center;
   padding: $default-padding-regular;
 }
-.menubaricon-content {
+.menubariconContent {
   font-size: 0.9rem;
 }
 .menubarItem {
@@ -95,7 +95,7 @@ $default-zindex: 10;
   }
 }
 
-.WiFi-Panel {
+.wifiPanel {
   @extend %panel-shared;
   right: 228px;
 }
@@ -107,12 +107,12 @@ $default-zindex: 10;
   padding: 3px 6px;
   margin: 0 6px;
 }
-.panel-title {
+.panelTitle {
   font-size: $default-menubar-font-size;
   font-weight: bold;
   left: 0;
 }
-.panel-switch {
+.panelSwitch {
   right: 0;
 }
 .separator {
@@ -121,50 +121,50 @@ $default-zindex: 10;
   width: 90%;
   height: 1px;
 }
-.panel-line-normal {
+.panelLineNormal {
   @extend %panel-line-shared;
 }
-.panel-line-normal-hover {
+.panelLineNormalHover {
   @extend %panel-line-shared;
   &:hover {
     background: $active-background;
   }
 }
-.panel-line-apple-hover {
+.panelLineAppleHover {
   @extend %panel-line-shared;
   &:hover {
     background: rgba(colors.$BLUE-LIGHT, 1);
     color: white;
   }
 }
-.panel-line-between {
+.panelLineBetween {
   @extend %panel-line-shared;
   justify-content: space-between;
 }
-.panel-line-between-hover {
+.panelLineBetweenHover {
   @extend %panel-line-shared;
   justify-content: space-between;
   &:hover {
     background: $active-background;
   }
 }
-.panel-subtitle {
+.panelSubtitle {
   color: rgba(grey, 1);
   font-size: 0.72rem;
   font-weight: bold;
   left: 0;
 }
-.panel-left {
+.panelLeft {
   display: flex;
   align-items: center;
   left: 0px;
 }
-.panel-right {
+.panelRight {
   display: flex;
   align-items: center;
   right: 0px;
 }
-.panel-icon-box {
+.panelIconBox {
   border-radius: 50%;
   height: 30px;
   width: 30px;
@@ -180,19 +180,19 @@ $default-zindex: 10;
     background: rgba(grey, 0.25);
   }
 }
-.panel-icon {
+.panelIcon {
   font-size: 0.81rem;
 }
-.panel-icon-small {
+.panelIconSmall {
   font-size: 0.72rem;
 }
-.panel-text {
+.panelText {
   font-size: 0.81rem;
   margin-left: 3px;
   padding: 3px;
 }
 
-.Battery-Panel {
+.batteryPanel {
   @extend %panel-shared;
   right: 6px;
 }
@@ -201,17 +201,17 @@ $default-zindex: 10;
   color: white;
   background: rgba(colors.$BLUE-LIGHT, 1);
 }
-.Input-Panel {
+.inputPanel {
   @extend %panel-shared;
   right: 288px;
 }
-.input-line {
+.inputLine {
   @extend %panel-line-shared;
   &:hover {
     @extend %input-hover-shared;
   }
 }
-.input-checked {
+.inputChecked {
   height: 12px;
   width: 12px;
   display: flex;
@@ -219,30 +219,30 @@ $default-zindex: 10;
   padding: $default-padding-small;
 }
 
-.Focus-Panel {
+.focusPanel {
   @extend %panel-shared;
   right: 300px;
 }
-.focus-line1 {
+.focusLine1 {
   align-items: center;
   border-radius: $default-menubar-border-radius-regular;
   padding: 6px;
   margin: 0 6px;
   flex-direction: column;
 }
-.focus-checked {
+.focusChecked {
   width: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.Bluetooth-Panel {
+.bluetoothPanel {
   @extend %panel-shared;
   right: 6px;
 }
 
-.Control-Panel {
+.controlPanel {
   top: $menubar-height + 6px;
   width: 300px;
   position: absolute;
@@ -265,13 +265,13 @@ $default-zindex: 10;
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 }
-.control-line1 {
+.controlLine1 {
   height: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.control-line2 {
+.controlLine2 {
   height: 60px;
   display: flex;
   flex-direction: row;
@@ -281,7 +281,7 @@ $default-zindex: 10;
   align-items: center;
   margin: 6px;
 }
-.control-line1-left {
+.controlLine1Left {
   width: 47%;
   margin-left: 6px;
   background: $control-block-background;
@@ -291,35 +291,35 @@ $default-zindex: 10;
   justify-content: center;
   box-shadow: $control-box-shadow;
 }
-.control-line1-right {
+.controlLine1Right {
   width: 47%;
   margin-right: 6px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.control-line1-left-block {
+.controlLine1LeftBlock {
   display: flex;
   flex-direction: row;
   margin: 6px;
   align-items: center;
 }
-.control-line1-text-block {
+.controlLine1TextBlock {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 3px;
 }
-.control-title {
+.controlTitle {
   font-size: 0.81rem;
   padding: 0 3px;
 }
-.control-subtitle {
+.controlSubtitle {
   font-size: 0.54rem;
   font-weight: bold;
   padding: 0 3px;
 }
-.control-line1-right-line1 {
+.controlLine1RightLine1 {
   width: 100%;
   height: 50%;
   background: $control-block-background;
@@ -330,11 +330,11 @@ $default-zindex: 10;
   align-items: center;
   justify-content: center;
 }
-.control-focus {
+.controlFocus {
   display: flex;
   align-items: center;
 }
-.control-line1-right-line2 {
+.controlLine1RightLine2 {
   width: 100%;
   height: 48%;
   display: flex;
@@ -342,7 +342,7 @@ $default-zindex: 10;
   align-items: center;
   justify-content: space-between;
 }
-.control-block-small {
+.controlBlockSmall {
   height: 100%;
   width: 48%;
   background: $control-block-background;
@@ -354,19 +354,19 @@ $default-zindex: 10;
   justify-content: center;
   text-align: center;
 }
-.control-album-image {
+.controlAlbumImage {
   height: 54px;
   width: 54px;
   border-radius: 6px;
 }
-.control-line2-left {
+.controlLine2Left {
   width: 72%;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-left: 6px;
 }
-.control-line2-right {
+.controlLine2Right {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -374,13 +374,13 @@ $default-zindex: 10;
   justify-content: space-between;
   margin-right: 12px;
 }
-.control-music-info {
+.controlMusicInfo {
   display: flex;
   flex-direction: column;
   margin-left: 12px;
 }
 
-.Apple-Panel {
+.applePanel {
   top: $menubar-height + 6px;
   width: 240px;
   position: absolute;
@@ -402,7 +402,7 @@ $default-zindex: 10;
   }
   left: 6px;
 }
-.apple-panel-line {
+.applePanelLine {
   @extend %panel-line-shared;
   &:hover {
     background: $active-background;

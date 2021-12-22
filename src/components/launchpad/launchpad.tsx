@@ -6,7 +6,7 @@ import {
   LaunchpadApps,
   LaunchpadProps,
 } from './launchpad.d';
-import './launchpad.scss';
+import styles from './launchpad.module.scss';
 export const Launchpad = (props: LaunchpadProps) => {
   const [page, setPage] = useState(0);
   const switchIconContainer = (event: React.WheelEvent) => {
@@ -18,8 +18,8 @@ export const Launchpad = (props: LaunchpadProps) => {
   };
   const IconPageContainer = (props: IconPageContainerProps) => {
     return (
-      <div className="icon-page-container" data-index={props.index}>
-        <div className="icon-container">
+      <div className={styles.iconPageContainer} data-index={props.index}>
+        <div className={styles.iconContainer}>
           <IconLineContainer start={props.start} setApp={props.setApp} />
           <IconLineContainer start={props.start + 7} setApp={props.setApp} />
           <IconLineContainer start={props.start + 14} setApp={props.setApp} />
@@ -31,7 +31,7 @@ export const Launchpad = (props: LaunchpadProps) => {
   };
   const IconLineContainer = (props: IconLineContainerProps) => {
     return (
-      <div className="icon-line-container">
+      <div className={styles.iconLineContainer}>
         {LaunchpadApps.slice(props.start, props.start + 7).map((item, i) => {
           return (
             <Icon
@@ -47,20 +47,20 @@ export const Launchpad = (props: LaunchpadProps) => {
   };
   return (
     <div
-      className="launchpad"
+      className={styles.launchpad}
       data-show={props.show}
       onWheel={(event) => switchIconContainer(event)}
     >
-      <div className="searchbar-container">
-        <input className="searchbar" type="text" placeholder="Search" />
+      <div className={styles.searchbarContainer}>
+        <input className={styles.searchbar} type="text" placeholder="Search" />
       </div>
-      <div className="icon-container-track" data-page={page}>
+      <div className={styles.iconContainerTrack} data-page={page}>
         <IconPageContainer setApp={props.setApp} index={0} start={0} />
         <IconPageContainer setApp={props.setApp} index={1} start={35} />
       </div>
-      <div className="dot-container">
-        <div className="dot" data-active={page === 0 ? true : false} />
-        <div className="dot" data-active={page === 1 ? true : false} />
+      <div className={styles.dotContainer}>
+        <div className={styles.dot} data-active={page === 0 ? true : false} />
+        <div className={styles.dot} data-active={page === 1 ? true : false} />
       </div>
     </div>
   );

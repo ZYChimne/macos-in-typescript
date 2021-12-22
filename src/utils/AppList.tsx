@@ -22,7 +22,7 @@ export const AppList: {
   keynote: { name: 'Keynote', ctx: 'keynote', load: 'None' },
   launchpad: { name: 'Launchpad', ctx: 'launchpad', load: 'Launchpad' },
   logic: { name: 'Logic Pro', ctx: 'logic', load: 'None' },
-  mail: { name: 'Mail', ctx: 'mail', load: 'None' },
+  mail: { name: 'Mail', ctx: 'mail', load: 'Mail' },
   maps: { name: 'Maps', ctx: 'maps', load: 'None' },
   monitor: { name: 'Monitor', ctx: 'monitor', load: 'None' },
   music: { name: 'Music', ctx: 'music', load: 'None' },

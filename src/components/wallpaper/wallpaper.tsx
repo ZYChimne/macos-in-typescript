@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import './wallpaper.scss';
+import styles from './wallpaper.module.scss';
 type WallpaperState = {
   src: string;
 };
@@ -27,7 +27,7 @@ export const Wallpaper = () => {
   });
   return (
     <div
-      className="wallpaper"
+      className={styles.wallpaper}
       style={{
         backgroundImage: `url(/assets/wallpapers/${wallpaper.src})`,
       }}

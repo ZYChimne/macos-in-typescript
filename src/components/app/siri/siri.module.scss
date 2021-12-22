@@ -1,4 +1,4 @@
-.Siri {
+.siri {
   position: absolute;
   top: 30px;
   right: 6px;
@@ -18,7 +18,7 @@
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 }
-.siri-text {
+.siriText {
   display: flex;
   flex-direction: row;
   align-items: flex-end;

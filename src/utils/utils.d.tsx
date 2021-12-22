@@ -13,8 +13,9 @@ export type AppState = {
   showLaunchpad: boolean;
   showSiri: boolean;
   showPreferences: boolean;
+  showMail: boolean;
 };
 export type AppBarBtnProps = {
   setClose: () => void;
 };
-export type AppLoads = 'None' | 'Launchpad' | 'Siri' | 'Preferences';
+export type AppLoads = 'None' | 'Launchpad' | 'Siri' | 'Preferences' | 'Mail';

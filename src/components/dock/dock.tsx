@@ -1,10 +1,10 @@
 import React from 'react';
 import { Icon } from '../../utils/utlils';
 import { DockApps, DockProps } from './dock.d';
-import './dock.scss';
+import styles from './dock.module.scss';
 export const Dock = (props: DockProps) => {
   return (
-    <div className="dock">
+    <div className={styles.dock}>
       <Icon type="Dock" value="finder" dispatch={props.setApp} />
       <Icon type="Dock" value="launchpad" dispatch={props.setApp} />
       {DockApps.map((item, i) => {

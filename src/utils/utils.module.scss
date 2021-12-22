@@ -6,12 +6,12 @@
   display: flex;
   flex-direction: row;
 }
-.switch-input {
+.switchInput {
   width: 0;
   height: 0;
   visibility: hidden;
 }
-.switch-core {
+.switchCore {
   position: absolute;
   height: 24px;
   width: 48px;
@@ -30,10 +30,10 @@
     background-color: white;
     transition: 0.5s;
   }
-  .switch-input:checked + & {
+  .switchInput:checked + & {
     background-color: rgba(colors.$BLUE-LIGHT, 1);
   }
-  .switch-input:checked + &:after {
+  .switchInput:checked + &:after {
     left: calc(100% - 3px);
     transform: translateX(-100%);
   }
@@ -52,7 +52,7 @@
     height: 15vh;
   }
 }
-.icon-img {
+.iconImg {
   &[data-type='Dock'] {
     width: 60px;
     height: 60px;
@@ -64,7 +64,7 @@
     border-radius: 6px;
   }
 }
-.icon-text {
+.iconText {
   font-size: 0.81rem;
 }
 
@@ -111,7 +111,7 @@
     }
   }
 }
-.AppBar-Button-Container {
+.appBarButtonContainer {
   display: flex;
   flex-direction: row;
 }
@@ -125,18 +125,18 @@
   align-items: center;
   margin: 6px;
 }
-.close-btn {
+.closeBtn {
   @extend %appbar-btn-shared;
   background: rgba(colors.$RED-LIGHT, 1);
 }
-.min-btn {
+.minBtn {
   @extend %appbar-btn-shared;
   background: rgba(colors.$YELLOW-LIGHT, 1);
 }
-.max-btn {
+.maxBtn {
   @extend %appbar-btn-shared;
   background: rgba(colors.$GREEN-LIGHT, 1);
 }
-.appbar-btn {
+.appbarBtn {
   font-size: 0.54rem;
 }

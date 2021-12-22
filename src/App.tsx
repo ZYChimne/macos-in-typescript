@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import './App.css';
+import { Mail } from './components/app/mail/mail';
 import { Preferences } from './components/app/preferences/preferences';
 import { Siri } from './components/app/siri/siri';
 import { Dock } from './components/dock/dock';
@@ -41,6 +42,7 @@ function App() {
     showLaunchpad: false,
     showSiri: false,
     showPreferences: false,
+    showMail: false,
   });
   const [wifiState, setWifi] = useState(true);
   const [bluetoothState, setBluetooth] = useState(true);
@@ -95,6 +97,7 @@ function App() {
         show={appState.showPreferences}
         setApp={appStateDispatcher}
       />
+      <Mail show={appState.showMail} setApp={appStateDispatcher} />
     </div>
   );
 }

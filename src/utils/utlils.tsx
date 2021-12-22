@@ -1,9 +1,4 @@
-import {
-  faMinus,
-  faTimes,
-  faEquals,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { AppList } from './AppList';
@@ -14,19 +9,19 @@ import {
   IconProps,
   SwitchProps,
 } from './utils.d';
-import './utils.scss';
+import styles from './utils.module.scss';
 
 export const Switch = (props: SwitchProps) => {
   return (
-    <div className="switch">
+    <div className={styles.switch}>
       <input
-        className="switch-input"
+        className={styles.switchInput}
         type="checkbox"
         id={props.id}
         checked={props.state}
         onChange={() => props.onClick(!props.state)}
       />
-      <label className="switch-core" htmlFor={props.id} />
+      <label className={styles.switchCore} htmlFor={props.id} />
     </div>
   );
 };
@@ -37,12 +32,12 @@ export const Icon = (props: IconProps) => {
     case 'Dock':
       return (
         <div
-          className="icon"
+          className={styles.icon}
           data-tooltip={AppList[props.value].name}
           data-type={props.type}
         >
           <img
-            className="icon-img"
+            className={styles.iconImg}
             src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
             alt=""
             data-type={props.type}
@@ -52,9 +47,9 @@ export const Icon = (props: IconProps) => {
       );
     case 'Desktop':
       return (
-        <div className="icon" data-type={props.type}>
+        <div className={styles.icon} data-type={props.type}>
           <img
-            className="icon-img"
+            className={styles.iconImg}
             src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
             alt=""
             data-type={props.type}
@@ -64,16 +59,16 @@ export const Icon = (props: IconProps) => {
       );
     case 'Launchpad':
       return (
-        <div className="icon" data-type={props.type}>
+        <div className={styles.icon} data-type={props.type}>
           <img
-            className="icon-img"
+            className={styles.iconImg}
             src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
             alt=""
             onClick={() => props.dispatch(AppList[props.value].load)}
             data-type={props.type}
             loading="lazy"
           />
-          <div className="icon-text">{AppList[props.value].name}</div>
+          <div className={styles.iconText}>{AppList[props.value].name}</div>
         </div>
       );
     default:
@@ -83,15 +78,15 @@ export const Icon = (props: IconProps) => {
 
 export const AppBarButton = (props: AppBarBtnProps) => {
   return (
-    <div className="AppBar-Button-Container">
-      <div className="close-btn" onClick={props.setClose}>
-        <FontAwesomeIcon className="appbar-btn" icon={faTimes} />
+    <div className={styles.appBarButtonContainer}>
+      <div className={styles.closeBtn} onClick={props.setClose}>
+        <FontAwesomeIcon className={styles.appbarBtn} icon={faTimes} />
       </div>
-      <div className="min-btn">
-        <FontAwesomeIcon className="appbar-btn" icon={faMinus} />
+      <div className={styles.minBtn}>
+        <FontAwesomeIcon className={styles.appbarBtn} icon={faMinus} />
       </div>
-      <div className="max-btn">
-        <FontAwesomeIcon className="appbar-btn" icon={faPlus} />
+      <div className={styles.maxBtn}>
+        <FontAwesomeIcon className={styles.appbarBtn} icon={faPlus} />
       </div>
     </div>
   );
@@ -107,5 +102,7 @@ export const appReducer = (state: AppState, type: AppLoads): AppState => {
       return { ...state, showSiri: !state.showSiri };
     case 'Preferences':
       return { ...state, showPreferences: !state.showPreferences };
+    case 'Mail':
+      return { ...state, showMail: !state.showMail };
   }
 };
