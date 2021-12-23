@@ -3,4 +3,5 @@
   height: 100vh;
   caret-color: transparent;
   cursor: default;
+  overflow: hidden;
 }

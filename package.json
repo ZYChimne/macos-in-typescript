@@ -17,6 +17,7 @@
     "@types/react-dom": "^17.0.11",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
+    "react-bmapgl": "^0.1.28",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "sass": "^1.43.4",
@@ -53,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/bmapgl": "^0.0.5"
   }
 }

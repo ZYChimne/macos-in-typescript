@@ -104,5 +104,7 @@ export const appReducer = (state: AppState, type: AppLoads): AppState => {
       return { ...state, showPreferences: !state.showPreferences };
     case 'Mail':
       return { ...state, showMail: !state.showMail };
+    case 'Maps':
+      return { ...state, showMaps: !state.showMaps };
   }
 };

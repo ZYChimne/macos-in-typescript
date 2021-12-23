@@ -2,15 +2,15 @@
 $menubar-height: 24px;
 $default-padding-regular: 0 12px;
 $default-padding-small: 0 6px;
-$default-menubar-background: rgba(white, 0.75);
-$active-background: rgba(grey, 0.25);
+$default-menubar-background: rgba(240, 240, 240, 0.9);
+$active-background: rgba(181, 187, 200, 0.9);
 $default-menubar-font-size: 0.81rem;
 $default-menubar-border-radius-small: 1.5px;
 $default-menubar-border-radius-regular: 6px;
 $default-menubar-border-radius-large: 12px;
 $default-border-radius-regular: 6px;
 $default-backdrop-filter-blur: 6px;
-$control-block-background: rgba(white, 0.75);
+$control-block-background: rgba(233, 234, 234, 0.9);
 $control-box-shadow: 0 0 1px 1px rgba(grey, 0.1);
 $default-zindex: 10;
 %item-shared {
@@ -58,6 +58,7 @@ $default-zindex: 10;
 }
 .menubariconContent {
   font-size: 0.9rem;
+  color: rgba(30, 31, 30, 1);
 }
 .menubarItem {
   @extend %item-shared;
@@ -79,7 +80,7 @@ $default-zindex: 10;
   position: absolute;
   padding: 6px 0;
   backdrop-filter: blur($default-backdrop-filter-blur);
-  background: $default-menubar-background;
+  background: rgba(238, 239, 239, 0.9);
   border-radius: $default-menubar-border-radius-large;
   z-index: $default-zindex;
   flex-direction: column;
@@ -97,7 +98,7 @@ $default-zindex: 10;
 
 .wifiPanel {
   @extend %panel-shared;
-  right: 228px;
+  right: 12px;
 }
 %panel-line-shared {
   display: flex;
@@ -172,19 +173,32 @@ $default-zindex: 10;
   align-items: center;
   justify-content: center;
   background: white;
+  transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   &[data-on='true'] {
     color: white;
     background: rgba(colors.$BLUE-LIGHT, 1);
   }
   &[data-on='false'] {
-    background: rgba(grey, 0.25);
+    background: rgba(187, 190, 201, 0.9);
   }
 }
 .panelIcon {
   font-size: 0.81rem;
+  &[data-on='true'] {
+    color: white;
+  }
+  &[data-on='false'] {
+    color: rgba(66, 69, 76, 1);
+  }
 }
 .panelIconSmall {
   font-size: 0.72rem;
+  &[data-on='true'] {
+    color: white;
+  }
+  &[data-on='false'] {
+    color: rgba(66, 69, 76, 1);
+  }
 }
 .panelText {
   font-size: 0.81rem;
@@ -194,7 +208,7 @@ $default-zindex: 10;
 
 .batteryPanel {
   @extend %panel-shared;
-  right: 6px;
+  right: 42px;
 }
 
 %input-hover-shared {
@@ -203,7 +217,7 @@ $default-zindex: 10;
 }
 .inputPanel {
   @extend %panel-shared;
-  right: 288px;
+  right: 72px;
 }
 .inputLine {
   @extend %panel-line-shared;
@@ -221,7 +235,7 @@ $default-zindex: 10;
 
 .focusPanel {
   @extend %panel-shared;
-  right: 300px;
+  right: 96px;
 }
 .focusLine1 {
   align-items: center;
@@ -245,10 +259,10 @@ $default-zindex: 10;
 .controlPanel {
   top: $menubar-height + 6px;
   width: 300px;
+  height: 240px;
   position: absolute;
-  padding: 6px 0;
   backdrop-filter: blur($default-backdrop-filter-blur);
-  background: $default-menubar-background;
+  background: rgba(233, 234, 234, 0.6);
   border-radius: 12px;
   z-index: $default-zindex;
   flex-direction: column;
@@ -266,24 +280,22 @@ $default-zindex: 10;
   }
 }
 .controlLine1 {
-  height: 150px;
+  margin-top: 12px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .controlLine2 {
-  height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background: $control-block-background;
   border-radius: 6px;
   align-items: center;
-  margin: 6px;
+  margin: 0 6px 12px 6px;
 }
 .controlLine1Left {
-  width: 47%;
-  margin-left: 6px;
+  width: 46%;
   background: $control-block-background;
   border-radius: 6px;
   display: flex;
@@ -292,8 +304,7 @@ $default-zindex: 10;
   box-shadow: $control-box-shadow;
 }
 .controlLine1Right {
-  width: 47%;
-  margin-right: 6px;
+  width: 46%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -316,12 +327,12 @@ $default-zindex: 10;
 }
 .controlSubtitle {
   font-size: 0.54rem;
-  font-weight: bold;
+  color: rgba(66, 69, 76, 1);
   padding: 0 3px;
 }
 .controlLine1RightLine1 {
   width: 100%;
-  height: 50%;
+  height: 48%;
   background: $control-block-background;
   box-shadow: $control-box-shadow;
   border-radius: 6px;
@@ -355,16 +366,17 @@ $default-zindex: 10;
   text-align: center;
 }
 .controlAlbumImage {
+  padding: 6px;
   height: 54px;
   width: 54px;
-  border-radius: 6px;
+  border-radius: 12px;
 }
 .controlLine2Left {
   width: 72%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 6px;
+  margin-left: 3px;
 }
 .controlLine2Right {
   display: flex;
@@ -377,7 +389,7 @@ $default-zindex: 10;
 .controlMusicInfo {
   display: flex;
   flex-direction: column;
-  margin-left: 12px;
+  margin-left: 6px;
 }
 
 .applePanel {

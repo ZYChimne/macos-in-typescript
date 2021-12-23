@@ -201,13 +201,18 @@ export const WiFiPanel = (props: PanelProps) => {
           <div className={styles.panelLineBetweenHover}>
             <div className={styles.panelLeft}>
               <div className={styles.panelIconBox} data-on={props.state}>
-                <FontAwesomeIcon className={styles.panelIcon} icon={faWifi} />
+                <FontAwesomeIcon
+                  className={styles.panelIcon}
+                  icon={faWifi}
+                  data-on={props.state}
+                />
               </div>
               <div className={styles.panelText}>Wi-Fi-5G</div>
             </div>
             <div className={styles.panelRight}>
               <FontAwesomeIcon
                 className={styles.panelIconSmall}
+                data-on={false}
                 icon={faLock}
               />
             </div>
@@ -242,7 +247,11 @@ export const InputPanel = (prop: SimplePanelProps) => {
   const InputPanelLine = (props: InputPanelLineProps) => {
     const inputCheck = (
       <div className={styles.inputChecked}>
-        <FontAwesomeIcon className={styles.panelIconSmall} icon={faCheck} />
+        <FontAwesomeIcon
+          className={styles.panelIconSmall}
+          icon={faCheck}
+          data-on={props.state}
+        />
       </div>
     );
     const inputNotCheck = <div className={styles.inputChecked}></div>;
@@ -315,7 +324,11 @@ export const FocusPanel = (props: FocusPanelProps) => {
         }}
       >
         <div className={styles.panelIconBox} data-on={props.state.state}>
-          <FontAwesomeIcon className={styles.panelIcon} icon={faMoon} />
+          <FontAwesomeIcon
+            className={styles.panelIcon}
+            icon={faMoon}
+            data-on={props.state}
+          />
         </div>
         <div className={styles.panelText}>Do Not Disturb</div>
       </div>
@@ -325,7 +338,11 @@ export const FocusPanel = (props: FocusPanelProps) => {
       >
         <div className={styles.focusChecked}>
           {props.state.type === 'Hour' ? (
-            <FontAwesomeIcon className={styles.panelIconSmall} icon={faCheck} />
+            <FontAwesomeIcon
+              className={styles.panelIconSmall}
+              icon={faCheck}
+              data-on={props.state}
+            />
           ) : null}
         </div>
         <div className={styles.panelText}>For 1 hour</div>
@@ -336,7 +353,11 @@ export const FocusPanel = (props: FocusPanelProps) => {
       >
         <div className={styles.focusChecked}>
           {props.state.type === 'Evening' ? (
-            <FontAwesomeIcon className={styles.panelIconSmall} icon={faCheck} />
+            <FontAwesomeIcon
+              className={styles.panelIconSmall}
+              icon={faCheck}
+              data-on={props.state}
+            />
           ) : null}
         </div>
         <div className={styles.panelText}>Until this evening</div>
@@ -347,7 +368,11 @@ export const FocusPanel = (props: FocusPanelProps) => {
       >
         <div className={styles.focusChecked}>
           {props.state.type === 'Event' ? (
-            <FontAwesomeIcon className={styles.panelIconSmall} icon={faCheck} />
+            <FontAwesomeIcon
+              className={styles.panelIconSmall}
+              icon={faCheck}
+              data-on={props.state}
+            />
           ) : null}
         </div>
         <div className={styles.panelText}>Until the end of this event</div>
@@ -359,16 +384,16 @@ export const FocusPanel = (props: FocusPanelProps) => {
     </div>
   );
 };
-export const BluetoothPanel = (prop: PanelProps) => {
+export const BluetoothPanel = (props: PanelProps) => {
   return (
-    <div className={styles.bluetoothPanel} data-show={prop.show}>
+    <div className={styles.bluetoothPanel} data-show={props.show}>
       <div className={styles.panelLineBetween}>
         <div className={styles.panelTitle}>Bluetooth</div>
         <div className={styles.panelSwitch}>
           <Switch
             id="bluetoothPanelSwitch"
-            state={prop.state}
-            onClick={prop.setState}
+            state={props.state}
+            onClick={props.setState}
           />
         </div>
       </div>
@@ -377,10 +402,11 @@ export const BluetoothPanel = (prop: PanelProps) => {
         <div className={styles.panelSubtitle}>Devices</div>
       </div>
       <div className={styles.panelLineNormalHover}>
-        <div className={styles.panelIconBox} data-on={prop.state}>
+        <div className={styles.panelIconBox} data-on={props.state}>
           <FontAwesomeIcon
             className={styles.panelIcon}
             icon={faHeadphonesAlt}
+            data-on={props.state}
           />
         </div>
         <div className={styles.panelText}>WH-1000XM2</div>
@@ -405,7 +431,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
               data-on={props.wifiState}
               onClick={() => props.setWifi(!props.wifiState)}
             >
-              <FontAwesomeIcon className={styles.panelIconBig} icon={faWifi} />
+              <FontAwesomeIcon className={styles.panelIcon} icon={faWifi} />
             </div>
             <div className={styles.controlLine1TextBlock}>
               <div className={styles.controlTitle}>Wi-Fi</div>
@@ -419,7 +445,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
               onClick={() => props.setBluetooth(!props.bluetoothState)}
             >
               <FontAwesomeIcon
-                className={styles.panelIconBig}
+                className={styles.panelIcon}
                 icon={faBluetoothB}
               />
             </div>
@@ -437,7 +463,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
               }
             >
               <FontAwesomeIcon
-                className={styles.panelIconBig}
+                className={styles.panelIcon}
                 icon={faBroadcastTower}
               />
             </div>
@@ -455,10 +481,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
                 data-on={props.focusState.state}
                 onClick={() => props.setFoucs('ChangeFocus')}
               >
-                <FontAwesomeIcon
-                  className={styles.panelIconBig}
-                  icon={faMoon}
-                />
+                <FontAwesomeIcon className={styles.panelIcon} icon={faMoon} />
               </div>
               <div className={styles.panelText}>Focus</div>
             </div>
@@ -480,14 +503,12 @@ export const ControlPanel = (props: ControlPanelProps) => {
       </div>
       <div className={styles.controlLine2}>
         <div className={styles.controlLine2Left}>
-          <div className={styles.controlAlbum}>
-            <img
-              className={styles.controlAlbumImage}
-              src="/assets/icons/ui/profile.png"
-              loading="lazy"
-              alt=""
-            />
-          </div>
+          <img
+            className={styles.controlAlbumImage}
+            src="/assets/icons/ui/profile.png"
+            loading="lazy"
+            alt=""
+          />
           <div className={styles.controlMusicInfo}>
             <div className={styles.controlTitle}>{MusicList[music].title}</div>
             <div className={styles.controlSubtitle}>
