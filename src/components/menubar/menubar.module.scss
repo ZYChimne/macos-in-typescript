@@ -268,7 +268,7 @@ $default-zindex: 10;
   flex-direction: column;
   caret-color: transparent;
   cursor: default;
-  justify-content: space-between;
+  justify-content: space-evenly;
   right: 6px;
   &[data-show='true'] {
     display: flex;
@@ -280,7 +280,6 @@ $default-zindex: 10;
   }
 }
 .controlLine1 {
-  margin-top: 12px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -292,7 +291,7 @@ $default-zindex: 10;
   background: $control-block-background;
   border-radius: 6px;
   align-items: center;
-  margin: 0 6px 12px 6px;
+  margin: 0 6px;
 }
 .controlLine1Left {
   width: 46%;
