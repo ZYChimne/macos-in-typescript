@@ -32,7 +32,7 @@ $default-zindex: 10;
   display: flex;
   justify-content: space-between;
   overflow-x: scroll;
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     display: none;
   }
 }
@@ -300,7 +300,7 @@ $default-zindex: 10;
 .controlLine1Left {
   width: 135px;
   background: $control-block-background;
-  border-radius:12px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;

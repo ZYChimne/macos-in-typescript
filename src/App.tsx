@@ -119,7 +119,7 @@ function App() {
       <Photos show={appState.showPhotos} setApp={appStateDispatcher} />
       <Calendar show={appState.showCalendar} setApp={appStateDispatcher} />
       <Contacts show={appState.showContacts} setApp={appStateDispatcher} />
-      <Reminders show={appState.showReminders} setApp={appStateDispatcher}/>
+      <Reminders show={appState.showReminders} setApp={appStateDispatcher} />
     </div>
   ) : (
     <div>{`Please run on a device with width >= 1024 and height >= 600 for content to display properly. 
