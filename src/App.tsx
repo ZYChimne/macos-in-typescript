@@ -67,7 +67,9 @@ function App() {
     type: 'None',
   });
   const [darkState, setDark] = useState(false);
-  return window.innerHeight >= 600 && window.innerWidth >= 1024 ? (
+  let windowHeight = window.innerHeight,
+    windowWidth = window.innerWidth;
+  return windowHeight >= 600 && windowWidth >= 1024 ? (
     <div className="App">
       <Wallpaper />
       <Menubar
@@ -122,8 +124,14 @@ function App() {
       <Reminders show={appState.showReminders} setApp={appStateDispatcher} />
     </div>
   ) : (
-    <div>{`Please run on a device with width >= 1024 and height >= 600 for content to display properly. 
-    If you are using an iPad, you may need to rotate the screen and refresh the page.`}</div>
+    <div>
+      {`Your Window width = ` +
+        windowWidth +
+        ` and height = ` +
+        windowHeight +
+        ` .Please run on a device with width >= 1024 and height >= 600 for content to display properly. 
+    If you are using an iPad, you may need to rotate the screen and refresh the page.`}
+    </div>
   );
 }
 
