@@ -1,5 +1,5 @@
-import React, { useReducer, useState } from 'react';
-import './App.css';
+import React, { useReducer, useRef, useState } from 'react';
+import './App.scss';
 import { Mail } from './components/app/mail/mail';
 import { Maps } from './components/app/maps/maps';
 import { Preferences } from './components/app/preferences/preferences';
@@ -53,7 +53,7 @@ function App() {
     type: 'None',
   });
   const [darkState, setDark] = useState(false);
-  return (
+  return window.innerHeight >= 600 && window.innerWidth >= 1024 ? (
     <div className="App">
       <Wallpaper />
       <Menubar
@@ -102,6 +102,9 @@ function App() {
       <Mail show={appState.showMail} setApp={appStateDispatcher} />
       <Maps show={appState.showMaps} setApp={appStateDispatcher} />
     </div>
+  ) : (
+      <div>{`Please run on a device with width > 1024 and height > 600 for content to display properly. 
+    If you are using an iPad, you may need to rotate the screen and refresh the page.`}</div>
   );
 }
 

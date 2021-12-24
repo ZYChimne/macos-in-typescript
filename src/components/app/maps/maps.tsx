@@ -7,7 +7,6 @@ import {
   faArchway,
   faBed,
   faBuilding,
-  faGlobeAsia,
   faHome,
   faPaintBrush,
   faPaperPlane,

@@ -4,4 +4,7 @@
   caret-color: transparent;
   cursor: default;
   overflow: hidden;
+  &:root{
+    font-size: 1px;
+  }
 }
