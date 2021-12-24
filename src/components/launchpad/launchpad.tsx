@@ -27,14 +27,14 @@ export const Launchpad = (props: LaunchpadProps) => {
       setPage(page + 1);
     }
   };
-  const switchOnTouchEnd = (event: React.TouchEvent) => {
-    console.log(touch);
-    if (event.changedTouches[0].clientX > touch && page > 0) {
-      setPage(page - 1);
-    } else if (event.changedTouches[0].clientX < touch && page < 1) {
-      setPage(page + 1);
-    }
-  };
+  // const switchOnTouchEnd = (event: React.TouchEvent) => {
+  //   console.log(touch);
+  //   if (event.changedTouches[0].clientX > touch && page > 0) {
+  //     setPage(page - 1);
+  //   } else if (event.changedTouches[0].clientX < touch && page < 1) {
+  //     setPage(page + 1);
+  //   }
+  // };
   const IconPageContainer = (props: IconPageContainerProps) => {
     return (
       <div className={styles.iconPageContainer} data-index={props.index}>
@@ -81,8 +81,16 @@ export const Launchpad = (props: LaunchpadProps) => {
         <IconPageContainer setApp={props.setApp} index={1} start={35} />
       </div>
       <div className={styles.dotContainer}>
-        <div className={styles.dot} data-active={page === 0 ? true : false} />
-        <div className={styles.dot} data-active={page === 1 ? true : false} />
+        <div
+          className={styles.dot}
+          data-active={page === 0 ? true : false}
+          onClick={() => setPage(0)}
+        />
+        <div
+          className={styles.dot}
+          data-active={page === 1 ? true : false}
+          onClick={() => setPage(1)}
+        />
       </div>
     </div>
   );
