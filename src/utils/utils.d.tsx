@@ -15,6 +15,15 @@ export type AppState = {
   showPreferences: boolean;
   showMail: boolean;
   showMaps: boolean;
+  showFinder: boolean;
+  showSafari: boolean;
+  showPhotos: boolean;
+  showCalendar: boolean;
+  showContacts: boolean;
+  showReminders: boolean;
+  showNotes: boolean;
+  showMusic: boolean;
+  showStore: boolean;
 };
 export type AppBarBtnProps = {
   setClose: () => void;
@@ -25,4 +34,13 @@ export type AppLoads =
   | 'Siri'
   | 'Preferences'
   | 'Mail'
-  | 'Maps';
+  | 'Maps'
+  | 'Finder'
+  | 'Safari'
+  | 'Photos'
+  | 'Calendar'
+  | 'Contacts'
+  | 'Reminders'
+  | 'Notes'
+  | 'Music'
+  | 'Store';

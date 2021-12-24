@@ -1,8 +1,13 @@
 import React, { useReducer, useRef, useState } from 'react';
 import './App.scss';
+import { Calendar } from './components/app/calendar/calendar';
+import { Contacts } from './components/app/contacts/contacts';
+import { Finder } from './components/app/finder/finder';
 import { Mail } from './components/app/mail/mail';
 import { Maps } from './components/app/maps/maps';
+import { Photos } from './components/app/photos/photos';
 import { Preferences } from './components/app/preferences/preferences';
+import { Reminders } from './components/app/reminders/reminders';
 import { Siri } from './components/app/siri/siri';
 import { Dock } from './components/dock/dock';
 import { Launchpad } from './components/launchpad/launchpad';
@@ -45,6 +50,15 @@ function App() {
     showPreferences: false,
     showMail: false,
     showMaps: false,
+    showFinder: false,
+    showSafari: false,
+    showPhotos: false,
+    showCalendar: false,
+    showContacts: false,
+    showReminders: false,
+    showNotes: false,
+    showMusic: false,
+    showStore: false,
   });
   const [wifiState, setWifi] = useState(true);
   const [bluetoothState, setBluetooth] = useState(true);
@@ -101,9 +115,14 @@ function App() {
       />
       <Mail show={appState.showMail} setApp={appStateDispatcher} />
       <Maps show={appState.showMaps} setApp={appStateDispatcher} />
+      <Finder show={appState.showFinder} setApp={appStateDispatcher} />
+      <Photos show={appState.showPhotos} setApp={appStateDispatcher} />
+      <Calendar show={appState.showCalendar} setApp={appStateDispatcher} />
+      <Contacts show={appState.showContacts} setApp={appStateDispatcher} />
+      <Reminders show={appState.showReminders} setApp={appStateDispatcher}/>
     </div>
   ) : (
-      <div>{`Please run on a device with width > 1024 and height > 600 for content to display properly. 
+    <div>{`Please run on a device with width >= 1024 and height >= 600 for content to display properly. 
     If you are using an iPad, you may need to rotate the screen and refresh the page.`}</div>
   );
 }
