@@ -22,9 +22,9 @@ export const Launchpad = (props: LaunchpadProps) => {
   };
   const switchOnTouchMove = (event: React.TouchEvent) => {
     console.log(touch);
-    if (event.targetTouches[0].clientX < touch && page > 0) {
+    if (event.targetTouches[0].clientX > touch && page > 0) {
       setPage(page - 1);
-    } else if (event.targetTouches[0].clientX > touch && page < 1) {
+    } else if (event.targetTouches[0].clientX < touch && page < 1) {
       setPage(page + 1);
     }
   };
@@ -64,6 +64,7 @@ export const Launchpad = (props: LaunchpadProps) => {
       onWheel={(event) => switchOnWheel(event)}
       onTouchStart={(event) => switchOnTouchStart(event)}
       onTouchMove={(event) => switchOnTouchMove(event)}
+      // onTouchEnd={(event) => switchOnTouchMove(event)}
     >
       <div className={styles.searchbarContainer}>
         <input className={styles.searchbar} type="text" placeholder="Search" />
