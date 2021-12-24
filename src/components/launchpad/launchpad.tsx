@@ -9,10 +9,22 @@ import {
 import styles from './launchpad.module.scss';
 export const Launchpad = (props: LaunchpadProps) => {
   const [page, setPage] = useState(0);
-  const switchIconContainer = (event: React.WheelEvent) => {
+  const [touch, setTouch] = useState(0);
+  const switchOnWheel = (event: React.WheelEvent) => {
     if (event.deltaY < 0 && page > 0) {
       setPage(page - 1);
     } else if (event.deltaY > 0 && page < 1) {
+      setPage(page + 1);
+    }
+  };
+  const switchOnTouchStart = (event: React.TouchEvent) => {
+    setTouch(event.targetTouches[0].clientX);
+  };
+  const switchOnTouchMove = (event: React.TouchEvent) => {
+    console.log(touch);
+    if (event.targetTouches[0].clientX < touch && page > 0) {
+      setPage(page - 1);
+    } else if (event.targetTouches[0].clientX > touch && page < 1) {
       setPage(page + 1);
     }
   };
@@ -49,7 +61,9 @@ export const Launchpad = (props: LaunchpadProps) => {
     <div
       className={styles.launchpad}
       data-show={props.show}
-      onWheel={(event) => switchIconContainer(event)}
+      onWheel={(event) => switchOnWheel(event)}
+      onTouchStart={(event) => switchOnTouchStart(event)}
+      onTouchMove={(event) => switchOnTouchMove(event)}
     >
       <div className={styles.searchbarContainer}>
         <input className={styles.searchbar} type="text" placeholder="Search" />
