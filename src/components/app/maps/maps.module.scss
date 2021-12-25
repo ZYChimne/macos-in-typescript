@@ -1,13 +1,13 @@
 .maps {
   width: 800px;
-  height: 600px;
+  height: 450px;
   border-radius: 12px;
   flex-direction: row;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   z-index: 10;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -30%, 0);
   overflow: hidden;
   &[data-show='true'] {
     display: flex;
