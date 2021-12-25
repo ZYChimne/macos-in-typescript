@@ -58,7 +58,6 @@ export const Mail = (props: MailProps) => {
               onInput={updateMailto}
             />
           </div>
-          <div className={styles.separator} />
           <div className={styles.contentLine}>
             <div className={styles.contentLineTitle}>Cc:</div>
             <input
@@ -68,7 +67,6 @@ export const Mail = (props: MailProps) => {
               onInput={updateMailcc}
             />
           </div>
-          <div className={styles.separator} />
           <div className={styles.contentLine}>
             <div className={styles.contentLineTitle}>Subject:</div>
             <input
@@ -78,7 +76,6 @@ export const Mail = (props: MailProps) => {
               onInput={updateMailSubject}
             />
           </div>
-          <div className={styles.separator} />
         </div>
         <div className={styles.contentInputContainer}>
           <textarea

@@ -51,14 +51,14 @@
 }
 .contentInfoContainer {
   width: 100%;
-  height: 35%;
+  height: 30%;
   background: white;
   display: flex;
   flex-direction: column;
 }
 .contentInputContainer {
   width: 100%;
-  height: 65%;
+  height: 70%;
   background: white;
   display: flex;
   flex-direction: column;
@@ -71,14 +71,7 @@
   align-items: center;
   align-self: flex-end;
   padding: 6px;
-}
-.separator {
-  width: 95%;
-  height: 0.5px;
-  background: grey;
-  align-self: flex-end;
-  padding: 0 6px;
-  margin: 3px 0;
+  border-bottom: 1px solid grey;
 }
 .contentLineTitle {
   font-size: 0.81rem;
