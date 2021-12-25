@@ -38,6 +38,6 @@ export const MapInfo: MapInfoType[] = [
   { name: 'Xujiahui', lng: 121.443228, lat: 31.200668, type: 'Traffic' },
   { name: 'China Art Museum', lng: 121.500985, lat: 31.189781, type: 'Museum' },
   { name: 'Peace Hotel', lng: 121.496053, lat: 31.244676, type: 'Hotel' },
-  { name: 'The Bund', lng: 121.504045, lat: 31.233102, type: 'Restaurant' },
+  { name: 'Xinrongji', lng: 121.504045, lat: 31.233102, type: 'Restaurant' },
   { name: "People's Square", lng: 121.481099, lat: 31.238688, type: 'Park' },
 ];
