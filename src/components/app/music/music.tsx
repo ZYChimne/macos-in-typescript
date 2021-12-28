@@ -13,40 +13,15 @@ import { MusicLineProps, MusicList, MusicProps } from './music.d';
 import styles from './music.module.scss';
 
 export const Music = (props: MusicProps) => {
-  const player = useRef(
-    new (window as any).QMplayer({ target: 'web', fliter: true, loop: true })
-  );
-  const [musicList, setMuicList] = useState<any>(null);
-  const playerPlayPause = () => {
-    console.log(player.current.data);
-    setMuicList(player.current.data);
-  };
-  const musicPlay = () => {
-    if (musicList) {
-      if (musicList.state === 'playing') {
-        player.current.pause();
-      } else {
-        player.current.play();
-      }
-    } else {
-      player.current.play(MusicList);
-    }
-  };
-  useEffect(() => {
-    player.current.on('play', playerPlayPause);
-    player.current.on('pause', playerPlayPause);
-  }, []);
-  const playOnIndex = (index: number) => {
-    player.current.play(MusicList, { index: index });
-  };
   return (
     <div
       className={styles.music}
       data-show={props.show}
       style={{
         background:
-          MorandiColorList[musicList?.song.genre % MorandiColorList.length] +
-          `CC`,
+          MorandiColorList[
+            props.musicList?.song.genre % MorandiColorList.length
+          ] + `CC`,
       }}
     >
       <div className={styles.appBar}>
@@ -61,34 +36,29 @@ export const Music = (props: MusicProps) => {
             style={{
               background:
                 MorandiColorList[
-                  musicList?.song.genre % MorandiColorList.length
+                  props.musicList?.song.genre % MorandiColorList.length
                 ],
             }}
           >
             <FontAwesomeIcon className={styles.albumIcon} icon={faItunesNote} />
           </div>
           <div className={styles.musicInfoContainer}>
-            <div className={styles.title}>{musicList?.song.title}</div>
+            <div className={styles.title}>{props.musicList?.song.title}</div>
             <div className={styles.subtitle}>
-              {musicList?.song.singer[0].title +
+              {props.musicList?.song.singer[0].title +
                 ` - ` +
-                musicList?.song.album.title}
+                props.musicList?.song.album.title}
             </div>
           </div>
           <div className={styles.musicController}>
-            <div
-              className={styles.controllerIconBox}
-              onClick={() => {
-                player.current.playPrev();
-              }}
-            >
+            <div className={styles.controllerIconBox} onClick={props.playPrev}>
               <FontAwesomeIcon
                 className={styles.controllerIcon}
                 icon={faBackward}
               />
             </div>
-            <div className={styles.controllerIconBox} onClick={musicPlay}>
-              {musicList?.state === 'playing' ? (
+            <div className={styles.controllerIconBox} onClick={props.playMusic}>
+              {props.musicList?.state === 'playing' ? (
                 <FontAwesomeIcon
                   className={styles.controllerIcon}
                   icon={faPause}
@@ -100,12 +70,7 @@ export const Music = (props: MusicProps) => {
                 />
               )}
             </div>
-            <div
-              className={styles.controllerIconBox}
-              onClick={() => {
-                player.current.playNext();
-              }}
-            >
+            <div className={styles.controllerIconBox} onClick={props.playNext}>
               <FontAwesomeIcon
                 className={styles.controllerIcon}
                 icon={faForward}
@@ -115,15 +80,15 @@ export const Music = (props: MusicProps) => {
         </div>
         <div className={styles.musicContent}>
           <div className={styles.musicListContainer}>
-            {musicList
-              ? Object.keys(musicList.songs).map((key, index) => {
+            {props.musicList
+              ? Object.keys(props.musicList.songs).map((key, index) => {
                   return (
                     <MusicListLine
-                      title={musicList.songs[key].title}
-                      singers={musicList.songs[key].singer[0].title}
-                      album={musicList.songs[key].album.title}
+                      title={props.musicList.songs[key].title}
+                      singers={props.musicList.songs[key].singer[0].title}
+                      album={props.musicList.songs[key].album.title}
                       playing={false}
-                      onClick={() => playOnIndex(index)}
+                      onClick={() => props.playOnIndex(index)}
                       key={index}
                     />
                   );

@@ -1,4 +1,4 @@
-import React, { useReducer, useRef, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import './App.scss';
 import { Calendar } from './components/app/calendar/calendar';
 import { Contacts } from './components/app/contacts/contacts';
@@ -6,6 +6,7 @@ import { Finder } from './components/app/finder/finder';
 import { Mail } from './components/app/mail/mail';
 import { Maps } from './components/app/maps/maps';
 import { Music } from './components/app/music/music';
+import { MusicList } from './components/app/music/music.d';
 import { Notes } from './components/app/notes/notes';
 import { Photos } from './components/app/photos/photos';
 import { Preferences } from './components/app/preferences/preferences';
@@ -69,6 +70,38 @@ function App() {
     type: 'None',
   });
   const [darkState, setDark] = useState(false);
+  const player = useRef(
+    new (window as any).QMplayer({ target: 'web', fliter: true, loop: true })
+  );
+  const [musicList, setMuicList] = useState<any>(null);
+  const playerPlayPause = () => {
+    console.log(player.current.data);
+    setMuicList(player.current.data);
+  };
+  const playMusic = () => {
+    if (musicList) {
+      if (musicList.state === 'playing') {
+        player.current.pause();
+      } else {
+        player.current.play();
+      }
+    } else {
+      player.current.play(MusicList);
+    }
+  };
+  const playOnIndex = (index: number) => {
+    player.current.play(MusicList, { index: index });
+  };
+  const playPrev = () => {
+    player.current.playPrev();
+  };
+  const playNext = () => {
+    player.current.playNext();
+  };
+  useEffect(() => {
+    player.current.on('play', playerPlayPause);
+    player.current.on('pause', playerPlayPause);
+  }, []);
   let windowHeight = window.innerHeight,
     windowWidth = window.innerWidth;
   return windowHeight >= 600 && windowWidth >= 1024 ? (
@@ -109,6 +142,10 @@ function App() {
         setFoucs={setFocus}
         darkState={darkState}
         setDark={setDark}
+        musicList={musicList}
+        playMusic={playMusic}
+        playPrev={playPrev}
+        playNext={playNext}
       />
       <Siri show={appState.showSiri} />
       <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher} />
@@ -125,7 +162,15 @@ function App() {
       <Contacts show={appState.showContacts} setApp={appStateDispatcher} />
       <Reminders show={appState.showReminders} setApp={appStateDispatcher} />
       <Notes show={appState.showNotes} setApp={appStateDispatcher} />
-      <Music show={appState.showMusic} setApp={appStateDispatcher} />
+      <Music
+        show={appState.showMusic}
+        setApp={appStateDispatcher}
+        musicList={musicList}
+        playMusic={playMusic}
+        playOnIndex={playOnIndex}
+        playPrev={playPrev}
+        playNext={playNext}
+      />
     </div>
   ) : (
     <div>

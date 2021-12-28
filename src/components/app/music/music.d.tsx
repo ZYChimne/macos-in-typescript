@@ -3,6 +3,11 @@ import { AppLoads } from '../../../utils/utils.d';
 export type MusicProps = {
   show: boolean;
   setApp: React.Dispatch<AppLoads>;
+  musicList: any;
+  playMusic: () => void;
+  playOnIndex: (index: number) => void;
+  playPrev: () => void;
+  playNext: () => void;
 };
 export type MusicInfo = {
   title: string;

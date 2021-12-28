@@ -16,8 +16,13 @@ import {
   faBroadcastTower,
   faLightbulb,
   faTv,
+  faPause,
 } from '@fortawesome/free-solid-svg-icons';
-import { faApple, faBluetoothB } from '@fortawesome/free-brands-svg-icons';
+import {
+  faApple,
+  faBluetoothB,
+  faItunesNote,
+} from '@fortawesome/free-brands-svg-icons';
 import styles from './menubar.module.scss';
 import { Switch } from '../../utils/utlils';
 import {
@@ -26,12 +31,12 @@ import {
   InputLanguages,
   InputPanelLineProps,
   PanelProps,
-  MusicList,
   SimplePanelProps,
   ControlPanelProps,
   FocusPanelProps,
   MenubarPanelAction,
 } from './menubar.d';
+import { MorandiColorList } from '../../utils/utils.d';
 export const Menubar = (props: MenubarProps) => {
   const handleItemClicked = (
     event: React.MouseEvent,
@@ -228,9 +233,6 @@ export const WiFiPanel = (props: PanelProps) => {
 };
 
 export const BatteryPanel = (prop: SimplePanelProps) => {
-  useEffect(() => {
-    console.log('battery');
-  });
   return (
     <div className={styles.batteryPanel} data-show={prop.show}>
       <div className={styles.panelLineBetween}>
@@ -246,9 +248,6 @@ export const BatteryPanel = (prop: SimplePanelProps) => {
 
 export const InputPanel = (prop: SimplePanelProps) => {
   const [state, dispatch] = useState('Pinyin');
-  useEffect(() => {
-    console.log(InputLanguages);
-  });
   const InputPanelLine = (props: InputPanelLineProps) => {
     const inputCheck = (
       <div className={styles.inputChecked}>
@@ -424,7 +423,6 @@ export const BluetoothPanel = (props: PanelProps) => {
   );
 };
 export const ControlPanel = (props: ControlPanelProps) => {
-  const [music, setMusic] = useState(0);
   const [airdrop, setAirDrop] = useState(false);
   return (
     <div className={styles.controlPanel} data-show={props.show}>
@@ -508,27 +506,48 @@ export const ControlPanel = (props: ControlPanelProps) => {
       </div>
       <div className={styles.controlLine2}>
         <div className={styles.controlLine2Left}>
-          <img
-            className={styles.controlAlbumImage}
-            src="/assets/icons/ui/profile.png"
-            loading="lazy"
-            alt=""
-          />
+          <div
+            className={styles.controlAlbumImgBox}
+            style={{
+              background:
+                MorandiColorList[
+                  props.musicList?.song.genre % MorandiColorList.length
+                ],
+            }}
+          >
+            <FontAwesomeIcon
+              className={styles.controlAlbumImg}
+              icon={faItunesNote}
+            />
+          </div>
           <div className={styles.controlMusicInfo}>
-            <div className={styles.controlTitle}>{MusicList[music].title}</div>
+            <div className={styles.controlTitle}>
+              {props.musicList?.song.title}
+            </div>
             <div className={styles.controlSubtitle}>
-              {MusicList[music].singer} - {MusicList[music].album}
+              {props.musicList?.song.singer[0].title} -{' '}
+              {props.musicList?.song.album.title}
             </div>
           </div>
         </div>
         <div className={styles.controlLine2Right}>
-          <FontAwesomeIcon className={styles.panelIcon} icon={faPlay} />
+          {props.musicList?.state === 'playing' ? (
+            <FontAwesomeIcon
+              className={styles.controllerIcon}
+              icon={faPause}
+              onClick={props.playMusic}
+            />
+          ) : (
+            <FontAwesomeIcon
+              className={styles.controllerIcon}
+              icon={faPlay}
+              onClick={props.playMusic}
+            />
+          )}
           <FontAwesomeIcon
             className={styles.panelIcon}
             icon={faForward}
-            onClick={() => {
-              setMusic((music + 1) % MusicList.length);
-            }}
+            onClick={props.playNext}
           />
         </div>
       </div>

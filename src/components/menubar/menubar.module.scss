@@ -368,11 +368,19 @@ $default-zindex: 10;
   justify-content: center;
   text-align: center;
 }
-.controlAlbumImage {
-  padding: 6px;
-  height: 54px;
-  width: 54px;
+.controlAlbumImgBox {
+  background: rgba(233, 234, 234, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 54px;
+  min-width: 54px;
   border-radius: 12px;
+  margin: 6px;
+}
+.controlAlbumImg {
+  padding: 3px;
+  font-size: 36px;
 }
 .controlLine2Left {
   width: 72%;
@@ -394,7 +402,6 @@ $default-zindex: 10;
   flex-direction: column;
   margin-left: 6px;
 }
-
 .applePanel {
   top: $menubar-height + 6px;
   width: 240px;
