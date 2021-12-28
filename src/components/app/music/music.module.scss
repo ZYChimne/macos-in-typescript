@@ -13,6 +13,7 @@
   backdrop-filter: blur(12px);
   overflow: hidden;
   background: rgba(233, 234, 234, 0.9);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   &[data-show='true'] {
     display: flex;
     animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);

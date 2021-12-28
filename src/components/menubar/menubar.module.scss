@@ -377,6 +377,7 @@ $default-zindex: 10;
   min-width: 54px;
   border-radius: 12px;
   margin: 6px;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .controlAlbumImg {
   padding: 3px;
