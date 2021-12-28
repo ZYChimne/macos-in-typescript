@@ -1,6 +1,6 @@
-.contacts {
+.notes {
   width: 800px;
-  height: 600px;
+  height: 450px;
   border-radius: 12px;
   flex-direction: row;
   position: absolute;
@@ -41,7 +41,7 @@
   align-items: center;
   background: rgba(248, 248, 248, 1);
 }
-.contactsBar {
+.notesBar {
   width: 100%;
   height: 6%;
   border-bottom: 1px solid rgba(217, 216, 209, 1);
@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.cotactsSubtitle {
+.notesSubtitle {
   font-size: 0.81rem;
   color: rgba(176, 176, 176, 1);
   padding: 3px;

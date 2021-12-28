@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faWifi,
@@ -228,6 +228,9 @@ export const WiFiPanel = (props: PanelProps) => {
 };
 
 export const BatteryPanel = (prop: SimplePanelProps) => {
+  useEffect(() => {
+    console.log('battery');
+  });
   return (
     <div className={styles.batteryPanel} data-show={prop.show}>
       <div className={styles.panelLineBetween}>
@@ -243,7 +246,9 @@ export const BatteryPanel = (prop: SimplePanelProps) => {
 
 export const InputPanel = (prop: SimplePanelProps) => {
   const [state, dispatch] = useState('Pinyin');
-  const languageKeys = Object.keys(InputLanguages);
+  useEffect(() => {
+    console.log(InputLanguages);
+  });
   const InputPanelLine = (props: InputPanelLineProps) => {
     const inputCheck = (
       <div className={styles.inputChecked}>
@@ -268,13 +273,13 @@ export const InputPanel = (prop: SimplePanelProps) => {
   return (
     <div className={styles.inputPanel} data-show={prop.show}>
       <InputPanelLine checked={true} dispatch={dispatch} state={state} />
-      {languageKeys.map((key, index) => {
+      {Object.keys(InputLanguages).map((key) => {
         return key === state ? null : (
           <InputPanelLine
             checked={false}
             dispatch={dispatch}
             state={key}
-            key={index}
+            key={key}
           />
         );
       })}

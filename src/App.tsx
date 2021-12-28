@@ -5,6 +5,8 @@ import { Contacts } from './components/app/contacts/contacts';
 import { Finder } from './components/app/finder/finder';
 import { Mail } from './components/app/mail/mail';
 import { Maps } from './components/app/maps/maps';
+import { Music } from './components/app/music/music';
+import { Notes } from './components/app/notes/notes';
 import { Photos } from './components/app/photos/photos';
 import { Preferences } from './components/app/preferences/preferences';
 import { Reminders } from './components/app/reminders/reminders';
@@ -122,6 +124,8 @@ function App() {
       <Calendar show={appState.showCalendar} setApp={appStateDispatcher} />
       <Contacts show={appState.showContacts} setApp={appStateDispatcher} />
       <Reminders show={appState.showReminders} setApp={appStateDispatcher} />
+      <Notes show={appState.showNotes} setApp={appStateDispatcher} />
+      <Music show={appState.showMusic} setApp={appStateDispatcher} />
     </div>
   ) : (
     <div>

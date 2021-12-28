@@ -119,12 +119,12 @@
 %appbar-btn-shared {
   color: black;
   border-radius: 50%;
-  height: 15px;
-  width: 15px;
+  height: 12px;
+  width: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 6px;
+  margin: 3px;
 }
 .closeBtn {
   @extend %appbar-btn-shared;
@@ -139,5 +139,5 @@
   background: rgba(colors.$GREEN-LIGHT, 1);
 }
 .appbarBtn {
-  font-size: 0.54rem;
+  font-size: 0.48rem;
 }

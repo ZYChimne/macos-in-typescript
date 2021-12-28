@@ -1,0 +1,122 @@
+.music {
+  width: 800px;
+  height: 450px;
+  border-radius: 12px;
+  flex-direction: column;
+  position: absolute;
+  top: 30px;
+  bottom: 96px;
+  left: 50%;
+  z-index: 10;
+  margin: auto 0px;
+  transform: translate3d(-50%, 0, 0);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  background: rgba(233, 234, 234, 0.9);
+  &[data-show='true'] {
+    display: flex;
+    animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  &[data-show='false'] {
+    display: none;
+    animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+}
+.appBar {
+  width: 100%;
+  height: 6%;
+  display: flex;
+  flex-direction: row;
+}
+.appBarBtnContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 6px;
+}
+.content {
+  width: 100%;
+  height: 94%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.musicBar {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.musicContent {
+  width: 55%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.musicInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+  font-size: 16px;
+  padding: 3px;
+}
+.subtitle {
+  padding: 3px;
+  font-size: 12px;
+  color: rgba(56, 56, 56, 1);
+}
+.musicController {
+  display: flex;
+  flex-direction: row;
+}
+.albumIcon {
+  font-size: 4rem;
+}
+.albumIconBox {
+  height: 144px;
+  width: 144px;
+  border-radius: 12px;
+  margin: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(233, 234, 234, 1);
+}
+.controllerIcon {
+  padding: 3px;
+  font-size: 15px;
+  color: rgba(56, 56, 56, 1);
+}
+.controllerIconBox {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+.musicListContainer {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.musicLine {
+  width: 95%;
+  min-height: 24px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-radius: 12px;
+  font-size: 15px;
+  padding: 3px;
+  color: rgba(56, 56, 56, 1);
+}
