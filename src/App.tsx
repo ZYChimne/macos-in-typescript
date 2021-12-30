@@ -11,6 +11,7 @@ import { Notes } from './components/app/notes/notes';
 import { Photos } from './components/app/photos/photos';
 import { Preferences } from './components/app/preferences/preferences';
 import { Reminders } from './components/app/reminders/reminders';
+import { Safari } from './components/app/safari/safari';
 import { Siri } from './components/app/siri/siri';
 import { Dock } from './components/dock/dock';
 import { Launchpad } from './components/launchpad/launchpad';
@@ -154,6 +155,7 @@ function App() {
         show={appState.showPreferences}
         setApp={appStateDispatcher}
       />
+      <Safari show={appState.showSafari} setApp={appStateDispatcher} />
       <Mail show={appState.showMail} setApp={appStateDispatcher} />
       <Maps show={appState.showMaps} setApp={appStateDispatcher} />
       <Finder show={appState.showFinder} setApp={appStateDispatcher} />

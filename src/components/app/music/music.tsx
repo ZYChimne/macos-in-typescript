@@ -6,10 +6,10 @@ import {
   faPlay,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { MorandiColorList } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
-import { MusicLineProps, MusicList, MusicProps } from './music.d';
+import { MusicLineProps, MusicProps } from './music.d';
 import styles from './music.module.scss';
 
 export const Music = (props: MusicProps) => {
