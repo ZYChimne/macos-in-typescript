@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
+import { Calendar } from 'antd';
 import { CalendarProps } from './calendar.d';
 import styles from './calendar.module.scss';
-export const Calendar = (props: CalendarProps) => {
+import 'antd/dist/antd.css';
+export const MCalendar = (props: CalendarProps) => {
   return (
     <div className={styles.calendar} data-show={props.show}>
-      <div className={styles.appBar}>
-        <div className={styles.appBarBtnContainer}>
-          <AppBarButton setClose={() => props.setApp('Calendar')} />
-        </div>
+      <div className={styles.appBarBtnContainer}>
+        <AppBarButton setClose={() => props.setApp('Calendar')} />
       </div>
-      <div className={styles.content}>
-        <div className={styles.calendarBar}></div>
-        <div className={styles.calendarContent}>
-          <div>Coming Soon</div>
-        </div>
-      </div>
+      <Calendar
+        style={{
+          maxHeight: `100%`,
+          position: `absolute`,
+          width: `100%`,
+          overflowY: `scroll`,
+        }}
+      />
     </div>
   );
 };

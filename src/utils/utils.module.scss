@@ -54,8 +54,8 @@
 }
 .iconImg {
   &[data-type='Dock'] {
-    width: 60px;
-    height: 60px;
+    width: 54px;
+    height: 54px;
     border-radius: 6px;
   }
   &[data-type='Launchpad'] {
@@ -65,7 +65,7 @@
   }
 }
 .iconText {
-  font-size: 0.81rem;
+  font-size: 12px;
   color: white;
 }
 

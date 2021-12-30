@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import './App.scss';
-import { Calendar } from './components/app/calendar/calendar';
+import { MCalendar } from './components/app/calendar/calendar';
 import { Contacts } from './components/app/contacts/contacts';
 import { Finder } from './components/app/finder/finder';
 import { Mail } from './components/app/mail/mail';
@@ -160,7 +160,7 @@ function App() {
       <Maps show={appState.showMaps} setApp={appStateDispatcher} />
       <Finder show={appState.showFinder} setApp={appStateDispatcher} />
       <Photos show={appState.showPhotos} setApp={appStateDispatcher} />
-      <Calendar show={appState.showCalendar} setApp={appStateDispatcher} />
+      <MCalendar show={appState.showCalendar} setApp={appStateDispatcher} />
       <Contacts show={appState.showContacts} setApp={appStateDispatcher} />
       <Reminders show={appState.showReminders} setApp={appStateDispatcher} />
       <Notes show={appState.showNotes} setApp={appStateDispatcher} />

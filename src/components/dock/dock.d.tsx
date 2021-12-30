@@ -13,7 +13,6 @@ export const DockApps: string[] = [
   'reminders',
   'notes',
   'music',
-  'store',
   'preferences',
   'siri',
 ];

@@ -1,6 +1,6 @@
 .finder {
   width: 800px;
-  height: 600px;
+  height: 450px;
   border-radius: 12px;
   flex-direction: row;
   position: absolute;
@@ -21,12 +21,16 @@
   }
 }
 .appBar {
-  width: 30%;
+  width: 25%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
   background: rgba(248, 248, 248, 0.9);
   border-right: 1px solid rgba(198, 198, 200, 1);
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .appBarBtnContainer {
   display: flex;
@@ -34,7 +38,7 @@
   margin: 6px;
 }
 .content {
-  width: 70%;
+  width: 75%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -43,16 +47,52 @@
 }
 .finderBar {
   width: 100%;
-  height: 6%;
+  height: 10%;
   border-bottom: 1px solid rgba(217, 216, 209, 1);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
+.finderContent {
+  width: 100%;
+  height: 90%;
+  display: flex;
+}
 .finderSubtitle {
   font-size: 0.81rem;
   color: rgba(176, 176, 176, 1);
   padding: 3px;
   margin-left: 12px;
+}
+.appBarLine {
+  width: 90%;
+  min-height: 24px;
+  margin: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+}
+.appBarIconBox {
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.appBarIcon {
+  color: rgba(2, 114, 247, 1);
+  font-size: 14px;
+}
+.appBarTitle {
+  font-size: 14px;
+  margin: 0 3px;
+  padding: 3px;
+}
+.appBarCircle {
+  height: 12px;
+  width: 12px;
+  border-radius: 24px;
+  margin: 6px;
 }
