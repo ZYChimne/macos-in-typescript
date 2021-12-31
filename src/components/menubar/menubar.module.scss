@@ -230,11 +230,11 @@ $default-zindex: 10;
   }
 }
 .inputChecked {
-  height: 12px;
-  width: 12px;
+  height: 24px;
+  width: 24px;
   display: flex;
   align-items: center;
-  padding: $default-padding-small;
+  justify-content: center;
 }
 
 .focusPanel {
