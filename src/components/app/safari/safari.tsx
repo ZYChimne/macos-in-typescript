@@ -1,6 +1,5 @@
 import { faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { env } from 'process';
 import React, { useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
 import { SafariProps } from './safari.d';

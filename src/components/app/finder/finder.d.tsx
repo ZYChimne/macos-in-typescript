@@ -91,7 +91,7 @@ export const FinderData = [
             children: [
               { name: 'Inception.mp4', type: 'VIDEO', children: [] },
               { name: 'Innocense.mp4', type: 'MUSIC', children: [] },
-              { name: 'Wallpaper', type: 'DOC', children: [] },
+              { name: 'Wallpaper.png', type: 'PIC', children: [] },
             ],
           },
           {

@@ -26,14 +26,36 @@ import { FinderProps, FinderIconProps, FinderData } from './finder.d';
 import styles from './finder.module.scss';
 export const Finder = (props: FinderProps) => {
   const [finderData, setFinderData] = useState<any>(FinderData);
-  const [prevChildren, setPrevChildren] = useState<any>(null);
-  const [nextChildren, setNextChildren] = useState<any>(null);
-  const [prevPath, setPrevPath] = useState('Macintosh HD');
-  const [nextPath, setNextPath] = useState('');
-  const [path, setPath] = useState('Macintosh HD');
-  const setFinderContent = (finderData: any, path: string) => {
-    setFinderData(finderData);
-    setPath(path);
+  const [prevData, setPrevData] = useState<any[]>([]);
+  const [nextData, setNextData] = useState<any[]>([]);
+  const [prevPath, setPrevPath] = useState<string[]>([]);
+  const [nextPath, setNextPath] = useState<string[]>([]);
+  const [finderPath, setFinderPath] = useState('Macintosh HD');
+  const setFinderContent = (data: any, path: string) => {
+    setPrevData([...prevData, finderData]);
+    setPrevPath([...prevPath, finderPath]);
+    setNextData([]);
+    setNextPath([]);
+    setFinderData(data);
+    setFinderPath(path);
+  };
+  const setForwardContent = () => {
+    if (nextPath.length === 0) return;
+    setPrevData([...prevData, finderData]);
+    setPrevPath([...prevPath, finderPath]);
+    setFinderData(nextData[nextData.length - 1]);
+    setFinderPath(nextPath[nextPath.length - 1]);
+    setNextData(nextData.slice(0, -1));
+    setNextPath(nextPath.slice(0, -1));
+  };
+  const setBackwardContent = () => {
+    if (prevPath.length === 0) return;
+    setNextData([...nextData, finderData]);
+    setNextPath([...nextPath, finderPath]);
+    setFinderData(prevData[prevData.length - 1]);
+    setFinderPath(prevPath[prevPath.length - 1]);
+    setPrevData(prevData.slice(0, -1));
+    setPrevPath(prevPath.slice(0, -1));
   };
   return (
     <div className={styles.finder} data-show={props.show}>
@@ -146,19 +168,27 @@ export const Finder = (props: FinderProps) => {
       </div>
       <div className={styles.content}>
         <div className={styles.finderBar}>
-          <div className={styles.finderBarIconBox}>
+          <div
+            className={styles.finderBarIconBox}
+            onClick={setBackwardContent}
+            data-available={prevPath.length !== 0}
+          >
             <FontAwesomeIcon
               className={styles.finderBarIcon}
               icon={faChevronLeft}
             />
           </div>
-          <div className={styles.finderBarIconBox}>
+          <div
+            className={styles.finderBarIconBox}
+            onClick={setForwardContent}
+            data-available={nextPath.length !== 0}
+          >
             <FontAwesomeIcon
               className={styles.finderBarIcon}
               icon={faChevronRight}
             />
           </div>
-          <div className={styles.finderBarText}>{path}</div>
+          <div className={styles.finderBarText}>{finderPath}</div>
         </div>
         <div className={styles.finderContent}>
           {finderData.map((item: FinderIconProps, index: React.Key) => {
@@ -186,6 +216,7 @@ const FinderIcon = (props: FinderIconProps) => {
           className={styles.finderIcon}
           style={{ color: `rgb(138, 207, 247)` }}
           icon={faFolder}
+          onClick={() => props.setFinderContent(props.children, props.name)}
         />
       );
       break;
@@ -227,10 +258,7 @@ const FinderIcon = (props: FinderIconProps) => {
       break;
   }
   return (
-    <div
-      className={styles.finderIconContainer}
-      onClick={() => props.setFinderContent(props.children, props.name)}
-    >
+    <div className={styles.finderIconContainer}>
       <div className={styles.finderIconBox}>{Icon}</div>
       <div className={styles.finderIconText}>{props.name}</div>
     </div>

@@ -266,11 +266,10 @@
 }
 .aboutContent {
   width: 80%;
-  height: 80%;
   font-size: 0.81rem;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   padding: 3px;
   line-height: 1.44em;
 }

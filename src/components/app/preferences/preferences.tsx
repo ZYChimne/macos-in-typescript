@@ -215,7 +215,10 @@ const Support = () => {
 const About = () => {
   return (
     <div className={styles.about}>
-      <div className={styles.aboutContent}>{AboutContent}</div>
+      <div className={styles.aboutContent}>
+        {AboutContent}
+        <a href="https://github.com/ZYChimne/macos-in-typescript">{`https://github.com/ZYChimne/macos-in-typescript`}</a>
+      </div>
     </div>
   );
 };

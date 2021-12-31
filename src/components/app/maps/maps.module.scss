@@ -108,21 +108,24 @@
   width: 95%;
   display: flex;
   padding: 3px;
-  margin: 3px 0 3px 6px;
   flex-direction: row;
   align-items: center;
+  border-radius: 6px;
+  margin: 3px 0;
+  &:hover {
+    backdrop-filter: brightness(0.9);
+  }
 }
 .mapLineIconBox {
-  padding: 3px;
-  height: 24px;
-  width: 24px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .mapLineIcon {
-  font-size: 1rem;
+  font-size: 16px;
   color: white;
 }
 .mapLineTextContainer {
@@ -133,7 +136,7 @@
 }
 .mapLineTitle {
   font-size: 0.81rem;
-  padding: 3px;
+  padding: 3px 3px 0 3px;
 }
 .mapLineSubtitle {
   font-size: 0.64rem;
