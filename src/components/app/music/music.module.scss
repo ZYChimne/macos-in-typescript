@@ -111,14 +111,17 @@
   }
 }
 .musicLine {
-  width: 95%;
-  min-height: 30px;
+  width: 90%;
+  min-height: 36px;
   overflow-x: hidden;
   overflow-y: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   border-radius: 12px;
   font-size: 15px;
-  padding: 3px;
+  padding: 6px 12px;
   color: rgba(56, 56, 56, 1);
+  &:hover {
+    backdrop-filter: brightness(1);
+  }
 }

@@ -1,4 +1,7 @@
-import { faAppStore, faAppStoreIos } from '@fortawesome/free-brands-svg-icons';
+import {
+  faItunesNote,
+  faAppStoreIos,
+} from '@fortawesome/free-brands-svg-icons';
 import {
   faArrowCircleDown,
   faBroadcastTower,
@@ -6,13 +9,32 @@ import {
   faCloud,
   faDesktop,
   faFile,
+  faFolder,
+  faChevronLeft,
+  faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  faFileAlt,
+  faFileAudio,
+  faFileImage,
+  faFileVideo,
+} from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
-import { FinderProps } from './finder.d';
+import { FinderProps, FinderIconProps, FinderData } from './finder.d';
 import styles from './finder.module.scss';
 export const Finder = (props: FinderProps) => {
+  const [finderData, setFinderData] = useState<any>(FinderData);
+  const [prevChildren, setPrevChildren] = useState<any>(null);
+  const [nextChildren, setNextChildren] = useState<any>(null);
+  const [prevPath, setPrevPath] = useState('Macintosh HD');
+  const [nextPath, setNextPath] = useState('');
+  const [path, setPath] = useState('Macintosh HD');
+  const setFinderContent = (finderData: any, path: string) => {
+    setFinderData(finderData);
+    setPath(path);
+  };
   return (
     <div className={styles.finder} data-show={props.show}>
       <div className={styles.appBar}>
@@ -123,9 +145,94 @@ export const Finder = (props: FinderProps) => {
         </div>
       </div>
       <div className={styles.content}>
-        <div className={styles.finderBar}></div>
-        <div className={styles.finderContent}></div>
+        <div className={styles.finderBar}>
+          <div className={styles.finderBarIconBox}>
+            <FontAwesomeIcon
+              className={styles.finderBarIcon}
+              icon={faChevronLeft}
+            />
+          </div>
+          <div className={styles.finderBarIconBox}>
+            <FontAwesomeIcon
+              className={styles.finderBarIcon}
+              icon={faChevronRight}
+            />
+          </div>
+          <div className={styles.finderBarText}>{path}</div>
+        </div>
+        <div className={styles.finderContent}>
+          {finderData.map((item: FinderIconProps, index: React.Key) => {
+            return (
+              <FinderIcon
+                name={item.name}
+                type={item.type}
+                children={item.children}
+                setFinderContent={setFinderContent}
+                key={index}
+              />
+            );
+          })}
+        </div>
       </div>
+    </div>
+  );
+};
+const FinderIcon = (props: FinderIconProps) => {
+  let Icon;
+  switch (props.type) {
+    case 'FOLDER':
+      Icon = (
+        <FontAwesomeIcon
+          className={styles.finderIcon}
+          style={{ color: `rgb(138, 207, 247)` }}
+          icon={faFolder}
+        />
+      );
+      break;
+    case 'DOC':
+      Icon = (
+        <FontAwesomeIcon
+          className={styles.finderIcon}
+          style={{ color: `rgb(92, 93, 93)` }}
+          icon={faFileAlt}
+        />
+      );
+      break;
+    case 'MUSIC':
+      Icon = (
+        <FontAwesomeIcon
+          className={styles.finderIcon}
+          style={{ color: `rgb(92, 93, 93)` }}
+          icon={faFileAudio}
+        />
+      );
+      break;
+    case 'PIC':
+      Icon = (
+        <FontAwesomeIcon
+          className={styles.finderIcon}
+          style={{ color: `rgb(92, 93, 93)` }}
+          icon={faFileImage}
+        />
+      );
+      break;
+    case 'VIDEO':
+      Icon = (
+        <FontAwesomeIcon
+          className={styles.finderIcon}
+          style={{ color: `rgb(92, 93, 93)` }}
+          icon={faFileVideo}
+        />
+      );
+      break;
+  }
+  return (
+    <div
+      className={styles.finderIconContainer}
+      onClick={() => props.setFinderContent(props.children, props.name)}
+    >
+      <div className={styles.finderIconBox}>{Icon}</div>
+      <div className={styles.finderIconText}>{props.name}</div>
     </div>
   );
 };

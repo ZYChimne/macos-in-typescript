@@ -7,11 +7,11 @@ export type FinderProps = {
 export const FinderData = [
   {
     name: 'Library',
-    type: 'Folder',
+    type: 'FOLDER',
     children: [
       {
         name: 'Apple',
-        type: 'Folder',
+        type: 'FOLDER',
         children: [
           { name: 'Library', type: 'FOLDER', children: [] },
           { name: 'System', type: 'FOLDER', children: [] },
@@ -20,7 +20,7 @@ export const FinderData = [
       },
       {
         name: 'Documentation',
-        type: 'Folder',
+        type: 'FOLDER',
         children: [
           { name: 'Acknowledgements.rtf', type: 'DOC', children: [] },
           { name: 'License.pdf', type: 'DOC', children: [] },
@@ -29,12 +29,8 @@ export const FinderData = [
       },
       {
         name: 'Fonts',
-        type: 'Folder',
-        children: [
-          { name: 'NewYork.ttf', type: 'FONT', children: [] },
-          { name: 'SF-Compat.ttf', type: 'FONT', children: [] },
-          { name: 'SF-Pro.ttf', type: 'FONT', children: [] },
-        ],
+        type: 'FOLDER',
+        children: [],
       },
     ],
   },
@@ -139,3 +135,10 @@ export const FinderData = [
     ],
   },
 ];
+export type FinderIconProps = {
+  name: string;
+  type: FinderIconType;
+  children: any;
+  setFinderContent: (finderData: any, path: string) => void;
+};
+export type FinderIconType = 'FOLDER' | 'DOC' | 'MUSIC' | 'PIC' | 'VIDEO';
