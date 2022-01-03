@@ -18,7 +18,6 @@ export type AppState = {
   showFinder: boolean;
   showSafari: boolean;
   showPhotos: boolean;
-  showCalendar: boolean;
   showContacts: boolean;
   showReminders: boolean;
   showNotes: boolean;
@@ -38,7 +37,6 @@ export type AppLoads =
   | 'Finder'
   | 'Safari'
   | 'Photos'
-  | 'Calendar'
   | 'Contacts'
   | 'Reminders'
   | 'Notes'

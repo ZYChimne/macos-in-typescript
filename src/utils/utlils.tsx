@@ -106,8 +106,6 @@ export const appReducer = (state: AppState, type: AppLoads): AppState => {
       return { ...state, showMail: !state.showMail };
     case 'Maps':
       return { ...state, showMaps: !state.showMaps };
-    case 'Calendar':
-      return { ...state, showCalendar: !state.showCalendar };
     case 'Contacts':
       return { ...state, showContacts: !state.showContacts };
     case 'Finder':

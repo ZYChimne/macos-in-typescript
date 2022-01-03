@@ -8,7 +8,6 @@ export const DockApps: string[] = [
   'mail',
   'maps',
   'photos',
-  'calendar',
   'contacts',
   'reminders',
   'notes',

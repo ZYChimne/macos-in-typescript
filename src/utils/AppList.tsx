@@ -6,7 +6,7 @@ export const AppList: {
   books: { name: 'Books', ctx: 'books', load: 'None' },
   booth: { name: 'Photo Booth', ctx: 'booth', load: 'None' },
   calculator: { name: 'Calculator', ctx: 'calculator', load: 'None' },
-  calendar: { name: 'Calendar', ctx: 'calendar', load: 'Calendar' },
+  calendar: { name: 'Calendar', ctx: 'calendar', load: 'None' },
   compressor: { name: 'Compressor', ctx: 'compressor', load: 'None' },
   contacts: { name: 'Contacts', ctx: 'contacts', load: 'Contacts' },
   cut: { name: 'Cut the Rope', ctx: 'cut', load: 'None' },
