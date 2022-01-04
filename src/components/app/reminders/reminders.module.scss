@@ -21,20 +21,99 @@
   }
 }
 .appBar {
-  width: 30%;
+  width: 34%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background: rgba(248, 248, 248, 0.9);
   border-right: 1px solid rgba(198, 198, 200, 1);
 }
 .appBarBtnContainer {
   display: flex;
-  flex-direction: column;
+  align-self: flex-start;
   margin: 6px;
 }
+.searchbar {
+  width: 90%;
+  height: 24px;
+  margin: 12px 0;
+  text-align: center;
+  background: rgba(220, 218, 218, 1);
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  color: rgba(70, 70, 70, 1);
+  &::-webkit-input-placeholder {
+    color: rgba(176, 176, 176, 0.9);
+  }
+}
+.appBarLine {
+  padding: 3px 0;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.tagContainer {
+  width: 120px;
+  height: 66px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.tagLeftContainer {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 6px;
+}
+.tagRightContainer {
+  display: flex;
+  height: 90%;
+}
+.tagIconBox {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 3px 0;
+}
+.tagIcon {
+  font-size: 16px;
+  color: white;
+}
+.tagText {
+  text-indent: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  &[data-active='true'] {
+    color: white;
+  }
+  &[data-active='false'] {
+    color: rgba(80, 79, 79, 1);
+  }
+}
+.tagNumber {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 3px;
+  margin-right: 3px;
+  &[data-active='true'] {
+    color: white;
+  }
+  &[data-active='false'] {
+    color: rgba(80, 79, 79, 1);
+  }
+}
 .content {
-  width: 70%;
+  width: 66%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -44,7 +123,6 @@
 .remindersBar {
   width: 100%;
   height: 6%;
-  border-bottom: 1px solid rgba(217, 216, 209, 1);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -55,4 +133,9 @@
   color: rgba(176, 176, 176, 1);
   padding: 3px;
   margin-left: 12px;
+}
+.remindersContentTitle {
+  font-size: 36px;
+  color: rgba(92, 98, 105, 1);
+  font-weight: bold;
 }
