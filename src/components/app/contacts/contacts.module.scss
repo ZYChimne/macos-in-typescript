@@ -1,7 +1,7 @@
 @use '../../../utils/colors.scss';
 .contacts {
-  width: 800px;
-  height: 450px;
+  width: 900px;
+  height: 360px;
   border-radius: 12px;
   flex-direction: row;
   position: absolute;
@@ -79,11 +79,13 @@
   align-self: center;
   width: 90%;
   font-size: 14px;
-  color: white;
   border-radius: 6px;
-  background: colors.$BLUE_LIGHT;
-  padding: 3px;
+  padding: 6px 3px;
   text-indent: 6px;
+  &[data-active='true'] {
+    background: colors.$BLUE_LIGHT;
+    color: white;
+  }
 }
 .searchbar {
   width: 90%;
@@ -100,9 +102,12 @@
   }
 }
 .iconContainer {
+  height: 20%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 .contactsIconBox {
   background-color: rgba(163, 167, 179, 1);
@@ -118,13 +123,22 @@
   font-size: 36px;
 }
 .contactsIconText {
+  width: 45%;
   margin-left: 12px;
 }
 .methodContainer {
+  height: 10%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.contactsInfoContainer {
+  display: flex;
+  height: 60%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 .methodIconBox {
   width: 24px;
@@ -139,6 +153,28 @@
 .methodIcon {
   font-size: 14px;
   color: white;
+}
+.contactsInfoLine {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  margin: 3px;
+  padding: 3px;
+}
+.contactsInfoLineTitle {
+  width: 96px;
+  font-size: 14px;
+  text-align: end;
+  color: rgba(176, 176, 176, 1);
+}
+.contactsInfoLineText {
+  font-size: 14px;
+  margin-left: 12px;
+}
+.contactsInfoLineIcon {
+  font-size: 14px;
+  margin: auto 6px;
+  color: rgba(176, 176, 176, 1);
 }
 .cotactsSubtitle {
   font-size: 0.81rem;
