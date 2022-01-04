@@ -367,6 +367,10 @@ $default-zindex: 10;
   align-items: center;
   justify-content: center;
   text-align: center;
+  &[data-active='true'] {
+    background: rgba(colors.$BLUE-LIGHT, 1);
+    color: white;
+  }
 }
 .controlAlbumImgBox {
   background: rgba(233, 234, 234, 1);

@@ -18,6 +18,7 @@
     "@types/react-dom": "^17.0.11",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.5",
+    "marked": "^4.0.8",
     "node-sass": "^6.0.1",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
@@ -60,7 +61,8 @@
     ]
   },
   "devDependencies": {
-    "@types/bmapgl": "^0.0.5"
+    "@types/bmapgl": "^0.0.5",
+    "@types/marked": "^4.0.1"
   },
   "husky": {
     "hooks": {

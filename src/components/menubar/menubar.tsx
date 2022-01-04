@@ -497,9 +497,13 @@ export const ControlPanel = (props: ControlPanelProps) => {
               />
               <div className={styles.controlTitle}>Dark Mode</div>
             </div>
-            <div className={styles.controlBlockSmall}>
+            <div
+              className={styles.controlBlockSmall}
+              data-active={props.fullscreen}
+              onClick={props.enterFullscreen}
+            >
               <FontAwesomeIcon className={styles.panelIcon} icon={faTv} />
-              <div className={styles.controlTitle}>Screen Monitoring</div>
+              <div className={styles.controlTitle}>Fullscreen</div>
             </div>
           </div>
         </div>

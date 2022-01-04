@@ -240,8 +240,10 @@
 }
 .supportText {
   padding: 12px 3px;
+  margin-right: 6px;
   font-size: 0.64rem;
   color: rgba(grey, 0.9);
+  text-align: justify;
 }
 .supportImgBox {
   width: 8rem;
@@ -272,6 +274,7 @@
   justify-content: center;
   padding: 3px;
   line-height: 1.44em;
+  text-align: justify;
 }
 @keyframes fadeIn {
   0% {

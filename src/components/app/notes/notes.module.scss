@@ -25,13 +25,87 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: rgba(248, 248, 248, 0.9);
   border-right: 1px solid rgba(198, 198, 200, 1);
+}
+.appBarHeader {
+  width: 100%;
+  height: 10%;
+  background: rgba(250, 250, 250, 1);
+  border-bottom: 1px solid rgba(217, 216, 209, 1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.appBarContent {
+  width: 100%;
+  height: 90%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .appBarBtnContainer {
   display: flex;
   flex-direction: column;
-  margin: 6px;
+  margin-left: 12px;
+}
+.appBarLine {
+  width: 90%;
+  height: 54px;
+  border-radius: 6px;
+  margin: 6px 0;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &[data-active='true'] {
+    background: rgba(251, 228, 155, 1);
+  }
+}
+.appBarLineTitle {
+  width: 180px;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(39, 39, 39, 1);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.appBarLineSubtitle {
+  width: 180px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.appBarLineTime {
+  display: flex;
+  flex-direction: row;
+  width: 57px;
+  font-size: 12px;
+  color: rgba(39, 39, 39, 1);
+}
+.appBarLinePre {
+  font-size: 12px;
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: rgba(128, 128, 128, 1);
+}
+.appBarLineIcon {
+  font-size: 12px;
+}
+.appBarLineFolder {
+  width: 180px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.appBarLineIcon {
+  padding: 0 3px;
+  font-size: 12px;
+  color: rgba(128, 128, 128, 1);
 }
 .content {
   width: 70%;
@@ -39,16 +113,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(248, 248, 248, 1);
+  background: white;
 }
 .notesBar {
   width: 100%;
-  height: 6%;
+  height: 10%;
+  background: rgba(250, 250, 250, 1);
   border-bottom: 1px solid rgba(217, 216, 209, 1);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+.notesContent {
+  display: block;
+  height: 90%;
+  width: 90%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .notesSubtitle {
   font-size: 0.81rem;

@@ -32,6 +32,7 @@ import { Wallpaper } from './components/wallpaper/wallpaper';
 import { appReducer } from './utils/utlils';
 
 function App() {
+  const appRef = useRef<HTMLDivElement>(null);
   const [menubarPanelState, menubarPanelDispatcher] = useReducer(
     menubarPanelReducer,
     {
@@ -69,6 +70,7 @@ function App() {
     type: 'None',
   });
   const [darkState, setDark] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
   const player = useRef(
     new (window as any).QMplayer({ target: 'web', fliter: true, loop: true })
   );
@@ -101,10 +103,27 @@ function App() {
     player.current.on('play', playerPlayPause);
     player.current.on('pause', playerPlayPause);
   }, []);
+  useEffect(() => {
+    document.onfullscreenchange = (event) => {
+      console.log(fullscreen);
+      setFullscreen(!fullscreen);
+    };
+  }, [fullscreen]);
+  const enterFullscreen = () => {
+    if (appRef.current) {
+      if (!document.fullscreenElement) {
+        appRef.current.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+  };
   let windowHeight = window.innerHeight,
     windowWidth = window.innerWidth;
   return windowHeight >= 600 && windowWidth >= 1024 ? (
-    <div className="App">
+    <div className="App" ref={appRef}>
       <Wallpaper />
       <Menubar
         state="Finder"
@@ -145,6 +164,8 @@ function App() {
         playMusic={playMusic}
         playPrev={playPrev}
         playNext={playNext}
+        fullscreen={fullscreen}
+        enterFullscreen={enterFullscreen}
       />
       <Siri show={appState.showSiri} />
       <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher} />

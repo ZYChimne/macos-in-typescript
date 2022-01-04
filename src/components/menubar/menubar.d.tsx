@@ -43,6 +43,8 @@ export type ControlPanelProps = {
   playMusic: () => void;
   playPrev: () => void;
   playNext: () => void;
+  fullscreen: boolean;
+  enterFullscreen: () => void;
 };
 export type InputPanelLineProps = {
   state: string;
