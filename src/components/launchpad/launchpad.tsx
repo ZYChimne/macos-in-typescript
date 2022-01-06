@@ -17,10 +17,12 @@ export const Launchpad = (props: LaunchpadProps) => {
     }
   };
   const switchOnPointerMove = (event: React.PointerEvent) => {
-    if (event.movementX > 0 && page > 0) {
-      setPage(page - 1);
-    } else if (event.movementX < 0 && page < 1) {
-      setPage(page + 1);
+    if (event.pointerType === 'touch') {
+      if (event.movementX > 0 && page > 0) {
+        setPage(page - 1);
+      } else if (event.movementX < 0 && page < 1) {
+        setPage(page + 1);
+      }
     }
   };
   const IconPageContainer = (props: IconPageContainerProps) => {

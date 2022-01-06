@@ -105,7 +105,6 @@ function App() {
   }, []);
   useEffect(() => {
     document.onfullscreenchange = (event) => {
-      console.log(fullscreen);
       setFullscreen(!fullscreen);
     };
   }, [fullscreen]);

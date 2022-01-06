@@ -68,26 +68,64 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(248, 248, 248, 1);
 }
 .photosBar {
+  background: rgba(250, 250, 250, 1);
   width: 100%;
   height: 10%;
   border-bottom: 1px solid rgba(217, 216, 209, 1);
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+}
+.photosBarIconBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: 24px;
+}
+.photosBarIcon {
+  font-size: 14px;
+  color: rgba(121, 121, 121, 1);
+}
+.searchbar {
+  width: 144px;
+  height: 24px;
+  margin: 0 6px;
+  text-align: center;
+  background: rgba(250, 250, 250, 1);
+  border: solid 1px rgba(238, 237, 237, 1);
+  border-radius: 6px;
+  outline: none;
+  color: rgba(70, 70, 70, 1);
+  &::-webkit-input-placeholder {
+    color: rgba(176, 176, 176, 0.9);
+  }
 }
 .photosContent {
   width: 100%;
   height: 90%;
   display: flex;
   flex-direction: row;
+  background: white;
 }
 .photosSubtitle {
   font-size: 0.81rem;
   color: rgba(176, 176, 176, 1);
   padding: 3px;
   margin-left: 12px;
+}
+.imgContainer {
+  margin: 3px;
+  height: 108px;
+  width: 108px;
+}
+.img {
+  height: 100%;
+  width: 100%;
+}
+.fullImg {
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
