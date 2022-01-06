@@ -182,7 +182,6 @@ const PhotosContent = (props: PhotosContentProps) => {
         alt=""
         loading="lazy"
         style={{
-          position: 'absolute',
           top: props.imgTop,
           left: props.imgLeft,
           display: all ? `none` : 'block',
