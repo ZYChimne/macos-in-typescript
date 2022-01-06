@@ -81,7 +81,7 @@ export const Photos = (props: PhotosProps) => {
     setImgTop(imageState.initialTop);
     setImgHeight(imageState.initialHeight);
     setImgWidth(imageState.initialWidth);
-    setTimeout(() => setId(-1), 1000);
+    setTimeout(() => setId(-1), 250);
   };
   return (
     <div className={styles.photos} data-show={props.show}>
