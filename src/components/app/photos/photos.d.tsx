@@ -25,6 +25,7 @@ export type PhotosContentProps = {
   imgTop: number;
   imgWidth: number;
   imgHeight: number;
+  imgFit: boolean;
   zoomOnClick: (event: React.MouseEvent, id: number) => void;
 };
 const SRC_PREFIX = `assets/photos/`;
@@ -316,17 +317,17 @@ export const PhotosList: PhotoType[] = [
   },
   {
     src: SRC_PREFIX + `58C.jpg`,
-    time: `2021/12/31`,
+    time: `20200101`,
     folder: 'All',
   },
   {
     src: SRC_PREFIX + `59C.jpg`,
-    time: `2021/12/31`,
+    time: `20200101`,
     folder: 'All',
   },
   {
     src: SRC_PREFIX + `60C.jpg`,
-    time: `2021/12/31`,
+    time: `20200101`,
     folder: 'All',
   },
 ];

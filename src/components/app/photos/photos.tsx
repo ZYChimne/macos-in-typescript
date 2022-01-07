@@ -19,6 +19,7 @@ import {
 import styles from './photos.module.scss';
 export const Photos = (props: PhotosProps) => {
   const [id, setId] = useState(-1);
+  const [fit, setFit] = useState(false);
   const [imgLeft, setImgLeft] = useState(0);
   const [imgTop, setImgTop] = useState(0);
   const [imgWidth, setImgWidth] = useState(108);
@@ -60,6 +61,7 @@ export const Photos = (props: PhotosProps) => {
     setImgTop(initialTop);
     setImgHeight(initialHeight);
     setImgWidth(initialWidth);
+    setFit(true);
     setImageState({
       initialWidth: initialWidth,
       initialHeight: initialHeight,
@@ -82,6 +84,7 @@ export const Photos = (props: PhotosProps) => {
     setImgTop(imageState.initialTop);
     setImgHeight(imageState.initialHeight);
     setImgWidth(imageState.initialWidth);
+    setFit(false);
     setTimeout(() => setId(-1), 250);
   };
   return (
@@ -172,6 +175,7 @@ export const Photos = (props: PhotosProps) => {
           imgTop={imgTop}
           imgHeight={imgHeight}
           imgWidth={imgWidth}
+          imgFit={fit}
         />
       </div>
     </div>
@@ -203,7 +207,7 @@ const PhotosContent = (props: PhotosContentProps) => {
           display: all ? `none` : 'block',
           width: props.imgWidth + `px`,
           height: props.imgHeight + `px`,
-          animation: ``,
+          objectFit: !props.imgFit ? 'cover' : `contain`,
         }}
       />
     </div>
