@@ -27,6 +27,8 @@ export type PhotosContentProps = {
   imgHeight: number;
   imgFit: boolean;
   zoomOnClick: (event: React.MouseEvent, id: number) => void;
+  switchOnWheel: (event: React.WheelEvent) => void;
+  switchOnTouch: (event: React.PointerEvent) => void;
 };
 const SRC_PREFIX = `assets/photos/`;
 export const PhotosList: PhotoType[] = [

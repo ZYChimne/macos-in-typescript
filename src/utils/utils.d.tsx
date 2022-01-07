@@ -92,3 +92,17 @@ export const MorandiColorList: string[] = [
   '#FBDAC3',
   '#FFF1DD',
 ];
+export const MonthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];

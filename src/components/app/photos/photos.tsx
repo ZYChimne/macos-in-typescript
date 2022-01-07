@@ -10,6 +10,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
 import { JsxElement } from 'typescript';
+import { MonthNames } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
 import {
   ImageState,
@@ -36,6 +37,25 @@ export const Photos = (props: PhotosProps) => {
     finalLeft: 0,
     finalTop: 0,
   });
+  const switchOnWheel = (event: React.WheelEvent) => {
+    if (id !== -1) {
+      if (id < PhotosList.length - 1 && event.deltaY > 0) {
+        setId(id + 1);
+      } else if (id > 0 && event.deltaY < 0) {
+        setId(id - 1);
+      }
+    }
+  };
+  const switchOnTouch = (event: React.PointerEvent) => {
+    if (id !== -1 && event.pointerType === 'touch') {
+      console.log(event.movementX);
+      if (id < PhotosList.length - 1 && event.movementX < -1) {
+        setId(id + 1);
+      } else if (id > 0 && event.movementX > 1) {
+        setId(id - 1);
+      }
+    }
+  };
   const zoomInOnClick = (event: React.MouseEvent, id: number) => {
     const initialWidth = event.currentTarget.clientWidth;
     const initialHeight = event.currentTarget.clientHeight;
@@ -159,7 +179,15 @@ export const Photos = (props: PhotosProps) => {
           </div>
           <div className={styles.photosBarContainer}>
             {id !== -1 ? (
-              <div className={styles.photosBarText}>{PhotosList[id].time}</div>
+              <div className={styles.photosBarText}>
+                {MonthNames[
+                  Number.parseInt(PhotosList[id].time.substring(4, 6)) - 1
+                ] +
+                  ` ` +
+                  PhotosList[id].time.substring(6) +
+                  `, ` +
+                  PhotosList[id].time.substring(0, 4)}
+              </div>
             ) : null}
           </div>
           <div
@@ -183,6 +211,8 @@ export const Photos = (props: PhotosProps) => {
           imgHeight={imgHeight}
           imgWidth={imgWidth}
           imgFit={fit}
+          switchOnWheel={switchOnWheel}
+          switchOnTouch={switchOnTouch}
         />
       </div>
     </div>
@@ -194,16 +224,17 @@ const PhotosContent = (props: PhotosContentProps) => {
     preI = 0;
   let contentByDateArr: JSX.Element[] = [];
   while (curI < PhotosList.length) {
-    const temp = preI;
-    let curDate = PhotosList[curI].time.slice(0, 6);
-    while (curI < PhotosList.length) {
-      if (PhotosList[curI].time.slice(0, 6) === curDate) {
-        curI++;
-      } else break;
-    }
-    let contentByDate = (
+    const temp = preI,
+      curDate = PhotosList[curI].time.substring(0, 6);
+    const year = curDate.substring(0, 4),
+      month = curDate.substring(4, 6);
+    while (curI < PhotosList.length)
+      if (PhotosList[curI++].time.substring(0, 6) !== curDate) break;
+    const contentByDate = (
       <div className={styles.contentByDate} key={curI}>
-        <div className={styles.contentDate}>{curDate}</div>
+        <div className={styles.contentDate}>
+          {MonthNames[Number.parseInt(month) - 1] + `, ` + year}
+        </div>
         <div className={styles.contentImgContainer}>
           {PhotosList.slice(preI, curI).map((item, index) => {
             return (
@@ -230,7 +261,11 @@ const PhotosContent = (props: PhotosContentProps) => {
     preI = curI;
   }
   return (
-    <div className={styles.photosContent}>
+    <div
+      className={styles.photosContent}
+      onWheel={props.switchOnWheel}
+      onPointerMove={props.switchOnTouch}
+    >
       {contentByDateArr}
       <img
         className={styles.fullImg}
