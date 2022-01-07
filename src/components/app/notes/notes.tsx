@@ -4,7 +4,7 @@ import { NotesList, NotesProps } from './notes.d';
 import { marked } from 'marked';
 import styles from './notes.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFolder } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faFolder } from '@fortawesome/free-regular-svg-icons';
 export const Notes = (props: NotesProps) => {
   const [curNote, setCurNote] = useState(NotesList[0].id);
   const content = useMemo(() => marked.parse(NotesList[0].content), []);
@@ -43,7 +43,15 @@ export const Notes = (props: NotesProps) => {
         </div>
       </div>
       <div className={styles.content}>
-        <div className={styles.notesBar}></div>
+        <div className={styles.notesBar}>
+          <div
+            className={styles.notesBarIconBox}
+            style={{ marginLeft: `12px` }}
+          >
+            <FontAwesomeIcon className={styles.notesBarIcon} icon={faEdit} />
+          </div>
+          <input className={styles.searchbar} type="text" />
+        </div>
         <div
           className={styles.notesContent}
           dangerouslySetInnerHTML={{ __html: content }}
