@@ -207,7 +207,7 @@ const PhotosContent = (props: PhotosContentProps) => {
           display: all ? `none` : 'block',
           width: props.imgWidth + `px`,
           height: props.imgHeight + `px`,
-          objectFit: !props.imgFit ? 'cover' : `contain`,
+          objectFit: props.imgFit ? 'contain' : `cover`,
         }}
       />
     </div>
