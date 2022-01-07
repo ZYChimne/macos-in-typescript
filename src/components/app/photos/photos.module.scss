@@ -119,7 +119,12 @@
   height: 90%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   background: white;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .photosSubtitle {
   font-size: 0.81rem;
