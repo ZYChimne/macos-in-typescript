@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react';
+import { JsxElement } from 'typescript';
 import { AppBarButton } from '../../../utils/utlils';
 import {
   ImageState,
@@ -38,23 +39,29 @@ export const Photos = (props: PhotosProps) => {
   const zoomInOnClick = (event: React.MouseEvent, id: number) => {
     const initialWidth = event.currentTarget.clientWidth;
     const initialHeight = event.currentTarget.clientHeight;
-    const finalHeight = event.currentTarget.parentElement!!.clientHeight;
-    const finalWidth = event.currentTarget.parentElement!!.clientWidth;
+    const finalHeight =
+      event.currentTarget.parentElement!!.parentElement!!.parentElement!!
+        .clientHeight;
+    const finalWidth =
+      event.currentTarget.parentElement!!.parentElement!!.parentElement!!
+        .clientWidth;
     const initialLeft =
       event.currentTarget.getBoundingClientRect().left -
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
         .left;
     const initialTop =
       event.currentTarget.getBoundingClientRect().top -
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
         .top;
     const finalLeft =
-      event.currentTarget.parentElement!!.getBoundingClientRect().left -
       event.currentTarget.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+        .left -
+      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
         .left;
     const finalTop =
-      event.currentTarget.parentElement!!.getBoundingClientRect().top -
       event.currentTarget.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+        .top -
+      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
         .top;
     setId(id);
     setImgLeft(initialLeft);
@@ -183,19 +190,48 @@ export const Photos = (props: PhotosProps) => {
 };
 const PhotosContent = (props: PhotosContentProps) => {
   const all = props.id === -1;
+  let curI = 0,
+    preI = 0;
+  let contentByDateArr: JSX.Element[] = [];
+  while (curI < PhotosList.length) {
+    const temp = preI;
+    let curDate = PhotosList[curI].time.slice(0, 6);
+    while (curI < PhotosList.length) {
+      if (PhotosList[curI].time.slice(0, 6) === curDate) {
+        curI++;
+      } else break;
+    }
+    let contentByDate = (
+      <div className={styles.contentByDate} key={curI}>
+        <div className={styles.contentDate}>{curDate}</div>
+        <div className={styles.contentImgContainer}>
+          {PhotosList.slice(preI, curI).map((item, index) => {
+            return (
+              <div
+                className={styles.imgContainer}
+                key={index}
+                onClick={(event) => {
+                  props.zoomOnClick(event, index + temp);
+                }}
+              >
+                <img
+                  className={styles.img}
+                  src={item.src}
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+    contentByDateArr.push(contentByDate);
+    preI = curI;
+  }
   return (
     <div className={styles.photosContent}>
-      {PhotosList.map((item, index) => {
-        return (
-          <div
-            className={styles.imgContainer}
-            key={index}
-            onClick={(event) => props.zoomOnClick(event, index)}
-          >
-            <img className={styles.img} src={item.src} alt="" loading="lazy" />
-          </div>
-        );
-      })}
+      {contentByDateArr}
       <img
         className={styles.fullImg}
         src={all ? 'data:,' : PhotosList[props.id].src}
