@@ -23,6 +23,7 @@ export const Photos = (props: PhotosProps) => {
   const [imgTop, setImgTop] = useState(0);
   const [imgWidth, setImgWidth] = useState(108);
   const [imgHeight, setImgHeight] = useState(108);
+  const [folder, setFolder] = useState('Library');
   const [imageState, setImageState] = useState<ImageState>({
     initialWidth: 108,
     initialHeight: 108,
@@ -107,12 +108,6 @@ export const Photos = (props: PhotosProps) => {
         </div>
         <div className={styles.appBarLine}>
           <div className={styles.appBarIconBox}>
-            <FontAwesomeIcon className={styles.appBarIcon} icon={faImages} />
-          </div>
-          <div className={styles.appBarTitle}>Library</div>
-        </div>
-        <div className={styles.appBarLine}>
-          <div className={styles.appBarIconBox}>
             <FontAwesomeIcon className={styles.appBarIcon} icon={faUser} />
           </div>
           <div className={styles.appBarTitle}>People</div>
@@ -138,16 +133,37 @@ export const Photos = (props: PhotosProps) => {
       </div>
       <div className={styles.content}>
         <div className={styles.photosBar}>
-          <div className={styles.photosBarIconBox} onClick={zoomOutOnClick}>
-            <FontAwesomeIcon
-              className={styles.photosBarIcon}
-              icon={faChevronLeft}
-            />
+          <div className={styles.photosBarContainer}>
+            {id !== -1 ? (
+              <div
+                className={styles.photosBarIconBox}
+                style={{ marginLeft: `12px` }}
+                onClick={zoomOutOnClick}
+              >
+                <FontAwesomeIcon
+                  className={styles.photosBarIcon}
+                  icon={faChevronLeft}
+                />
+              </div>
+            ) : null}
           </div>
-          <div className={styles.photosBarIconBox}>
-            <FontAwesomeIcon className={styles.photosBarIcon} icon={faHeart} />
+          <div className={styles.photosBarContainer}>
+            {id !== -1 ? (
+              <div className={styles.photosBarText}>{PhotosList[id].time}</div>
+            ) : null}
           </div>
-          <input className={styles.searchbar} type="text" />
+          <div
+            className={styles.photosBarContainer}
+            style={{ justifyContent: `flex-end` }}
+          >
+            <div className={styles.photosBarIconBox}>
+              <FontAwesomeIcon
+                className={styles.photosBarIcon}
+                icon={faHeart}
+              />
+            </div>
+            <input className={styles.searchbar} type="text" />
+          </div>
         </div>
         <PhotosContent
           id={id}

@@ -7,8 +7,8 @@ type WallpaperAction = {
   type: 'light' | 'dark';
 };
 const defaultWallpapers = {
-  light: 'default/light.webp',
-  dark: 'default/dark.webp',
+  light: 'default/lightC.jpeg',
+  dark: 'default/darkC.jpeg',
 };
 export const wallpaperReducer = (
   state: WallpaperState,

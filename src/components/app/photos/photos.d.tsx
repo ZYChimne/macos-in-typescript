@@ -29,12 +29,12 @@ export type PhotosContentProps = {
 };
 export const PhotosList: PhotoType[] = [
   {
-    src: `assets/wallpapers/default/light.webp`,
+    src: `assets/wallpapers/default/lightC.jpeg`,
     time: `2021/12/31`,
     folder: 'All',
   },
   {
-    src: `assets/wallpapers/default/dark.webp`,
+    src: `assets/wallpapers/default/darkC.jpeg`,
     time: `2021/12/31`,
     folder: 'All',
   },
