@@ -121,13 +121,21 @@ export const Photos = (props: PhotosProps) => {
           <AppBarButton setClose={() => props.setApp('Photos')} />
         </div>
         <div className={styles.photosSubtitle}>Photos</div>
-        <div className={styles.appBarLine}>
+        <div
+          className={styles.appBarLine}
+          data-active={folder === 'Library'}
+          onClick={() => setFolder('Library')}
+        >
           <div className={styles.appBarIconBox}>
             <FontAwesomeIcon className={styles.appBarIcon} icon={faImages} />
           </div>
           <div className={styles.appBarTitle}>Library</div>
         </div>
-        <div className={styles.appBarLine}>
+        <div
+          className={styles.appBarLine}
+          data-active={folder === 'Memories'}
+          onClick={() => setFolder('Memories')}
+        >
           <div className={styles.appBarIconBox}>
             <FontAwesomeIcon
               className={styles.appBarIcon}
@@ -136,25 +144,41 @@ export const Photos = (props: PhotosProps) => {
           </div>
           <div className={styles.appBarTitle}>Memories</div>
         </div>
-        <div className={styles.appBarLine}>
+        <div
+          className={styles.appBarLine}
+          data-active={folder === 'People'}
+          onClick={() => setFolder('People')}
+        >
           <div className={styles.appBarIconBox}>
             <FontAwesomeIcon className={styles.appBarIcon} icon={faUser} />
           </div>
           <div className={styles.appBarTitle}>People</div>
         </div>
-        <div className={styles.appBarLine}>
+        <div
+          className={styles.appBarLine}
+          data-active={folder === 'Favorites'}
+          onClick={() => setFolder('Favorites')}
+        >
           <div className={styles.appBarIconBox}>
             <FontAwesomeIcon className={styles.appBarIcon} icon={faHeart} />
           </div>
           <div className={styles.appBarTitle}>Favorites</div>
         </div>
-        <div className={styles.appBarLine}>
+        <div
+          className={styles.appBarLine}
+          data-active={folder === 'Recents'}
+          onClick={() => setFolder('Recents')}
+        >
           <div className={styles.appBarIconBox}>
             <FontAwesomeIcon className={styles.appBarIcon} icon={faClock} />
           </div>
           <div className={styles.appBarTitle}>Recents</div>
         </div>
-        <div className={styles.appBarLine}>
+        <div
+          className={styles.appBarLine}
+          data-active={folder === 'Deleted'}
+          onClick={() => setFolder('Deleted')}
+        >
           <div className={styles.appBarIconBox}>
             <FontAwesomeIcon className={styles.appBarIcon} icon={faTrashAlt} />
           </div>
@@ -194,12 +218,12 @@ export const Photos = (props: PhotosProps) => {
             className={styles.photosBarContainer}
             style={{ justifyContent: `flex-end` }}
           >
-            <div className={styles.photosBarIconBox}>
+            {/* <div className={styles.photosBarIconBox}>
               <FontAwesomeIcon
                 className={styles.photosBarIcon}
                 icon={faHeart}
               />
-            </div>
+            </div> */}
             <input className={styles.searchbar} type="text" />
           </div>
         </div>

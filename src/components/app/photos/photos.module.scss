@@ -40,9 +40,9 @@
   align-items: center;
   width: 95%;
   height: 30px;
-  border-radius: 12px;
+  border-radius: 6px;
   &[data-active='true'] {
-    backdrop-filter: brightness(1);
+    background: rgba(206, 206, 206, 1);
   }
 }
 .appBarIconBox {
