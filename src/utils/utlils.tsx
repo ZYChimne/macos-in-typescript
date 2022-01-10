@@ -92,6 +92,26 @@ export const AppBarButton = (props: AppBarBtnProps) => {
   );
 };
 
+export const activeApp = (state: AppState): string => {
+  if (state.showContacts === true) return 'Contacts';
+  else if (state.showMail === true) return 'Mail';
+  else if (state.showMaps === true) return 'Maps';
+  else if (state.showMusic === true) return 'Music';
+  else if (state.showNotes === true) return 'Notes';
+  else if (state.showPhotos === true) return 'Photos';
+  else if (state.showPreferences === true) return 'Preferences';
+  else if (state.showReminders === true) return 'Reminders';
+  else if (state.showSafari === true) return 'Safari';
+  else if (state.showStore === true) return 'Store';
+  else if (
+    state.showFinder === true ||
+    state.showLaunchpad === true ||
+    state.showSiri === true
+  )
+    return 'Finder';
+  else return 'Finder';
+};
+
 export const appReducer = (state: AppState, type: AppLoads): AppState => {
   switch (type) {
     case 'None':

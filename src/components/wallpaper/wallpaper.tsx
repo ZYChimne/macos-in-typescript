@@ -1,35 +1,15 @@
-import React, { useReducer } from 'react';
+import React from 'react';
+import { WallpaperProps, Wallpapers } from './wallpaper.d';
 import styles from './wallpaper.module.scss';
-type WallpaperState = {
-  src: string;
-};
-type WallpaperAction = {
-  type: 'light' | 'dark';
-};
-const defaultWallpapers = {
-  light: 'default/lightC.jpeg',
-  dark: 'default/darkC.jpeg',
-};
-export const wallpaperReducer = (
-  state: WallpaperState,
-  action: WallpaperAction
-) => {
-  switch (action.type) {
-    case 'light':
-      return { ...state, src: defaultWallpapers.light };
-    case 'dark':
-      return { ...state, src: defaultWallpapers.dark };
-  }
-};
-export const Wallpaper = () => {
-  const [wallpaper, setWallpaper] = useReducer(wallpaperReducer, {
-    src: defaultWallpapers.light,
-  });
+
+export const Wallpaper = (props: WallpaperProps) => {
   return (
     <div
       className={styles.wallpaper}
       style={{
-        backgroundImage: `url(/assets/wallpapers/${wallpaper.src})`,
+        backgroundImage: `url(/assets/wallpapers/${
+          props.dark ? Wallpapers.dark : Wallpapers.light
+        })`,
       }}
     />
   );

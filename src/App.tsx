@@ -23,13 +23,14 @@ import {
   FocusPanel,
   ApplePanel,
   ControlPanel,
+  NotificationPanel,
 } from './components/menubar/menubar';
 import {
   focusReducer,
   menubarPanelReducer,
 } from './components/menubar/menubar.r';
 import { Wallpaper } from './components/wallpaper/wallpaper';
-import { appReducer } from './utils/utlils';
+import { activeApp, appReducer } from './utils/utlils';
 
 function App() {
   const appRef = useRef<HTMLDivElement>(null);
@@ -70,7 +71,7 @@ function App() {
     type: 'None',
   });
   const [darkState, setDark] = useState(false);
-  const [fullscreen, setFullscreen] = useState(false);
+  const [fullscreenState, setFullscreen] = useState(false);
   const player = useRef(
     new (window as any).QMplayer({ target: 'web', fliter: true, loop: true })
   );
@@ -105,9 +106,9 @@ function App() {
   }, []);
   useEffect(() => {
     document.onfullscreenchange = (event) => {
-      setFullscreen(!fullscreen);
+      setFullscreen(!fullscreenState);
     };
-  }, [fullscreen]);
+  }, [fullscreenState]);
   const enterFullscreen = () => {
     if (appRef.current) {
       if (!document.fullscreenElement) {
@@ -123,9 +124,9 @@ function App() {
     windowWidth = window.innerWidth;
   return windowHeight >= 600 && windowWidth >= 1024 ? (
     <div className="App" ref={appRef}>
-      <Wallpaper />
+      <Wallpaper dark={darkState} />
       <Menubar
-        state="Finder"
+        state={activeApp(appState)}
         menubarPanelDispatcher={menubarPanelDispatcher}
         menubarState={menubarPanelState}
         appState={appState}
@@ -163,10 +164,11 @@ function App() {
         playMusic={playMusic}
         playPrev={playPrev}
         playNext={playNext}
-        fullscreen={fullscreen}
+        fullscreen={fullscreenState}
         enterFullscreen={enterFullscreen}
       />
       <Siri show={appState.showSiri} />
+      <NotificationPanel show={menubarPanelState.showNotification} />
       <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher} />
       <Dock setApp={appStateDispatcher} />
       <Preferences

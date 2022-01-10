@@ -48,7 +48,6 @@ export const Photos = (props: PhotosProps) => {
   };
   const switchOnTouch = (event: React.PointerEvent) => {
     if (id !== -1 && event.pointerType === 'touch') {
-      console.log(event.movementX);
       if (id < PhotosList.length - 1 && event.movementX < -1) {
         setId(id + 1);
       } else if (id > 0 && event.movementX > 1) {
@@ -302,7 +301,6 @@ const PhotosContent = (props: PhotosContentProps) => {
           display: all ? `none` : 'block',
           width: props.imgWidth + `px`,
           height: props.imgHeight + `px`,
-          objectFit: props.imgFit ? 'contain' : `cover`,
         }}
       />
     </div>

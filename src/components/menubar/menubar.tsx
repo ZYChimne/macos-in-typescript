@@ -35,6 +35,8 @@ import {
   ControlPanelProps,
   FocusPanelProps,
   MenubarPanelAction,
+  NotificationPanelProps,
+  SampleWeatherData,
 } from './menubar.d';
 import { MorandiColorList } from '../../utils/utils.d';
 export const Menubar = (props: MenubarProps) => {
@@ -490,7 +492,11 @@ export const ControlPanel = (props: ControlPanelProps) => {
             </div>
           </div>
           <div className={styles.controlLine1RightLine2}>
-            <div className={styles.controlBlockSmall}>
+            <div
+              className={styles.controlBlockSmall}
+              data-active={props.darkState}
+              onClick={() => props.setDark(!props.darkState)}
+            >
               <FontAwesomeIcon
                 className={styles.panelIcon}
                 icon={faLightbulb}
@@ -598,6 +604,60 @@ export const ApplePanel = (prop: SimplePanelProps) => {
       </div>
       <div className={styles.panelLineAppleHover}>
         <div className={styles.panelText}>Log Out ZYChimne</div>
+      </div>
+    </div>
+  );
+};
+export const NotificationPanel = (props: NotificationPanelProps) => {
+  const [weatherData, setWeatherData] = useState(SampleWeatherData);
+  useEffect(() => {
+    if (props.show) {
+      fetch(
+        'https://devapi.qweather.com/v7/weather/7d?location=101020100&key=8617f107601d44fab3565012a155b6bc&lang=en'
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.code === 200) setWeatherData(data);
+        });
+    }
+  }, [props.show]);
+  return (
+    <div className={styles.notificationPanel} data-show={props.show}>
+      <div className={styles.weatherPanel}>
+        <div className={styles.weatherHeader}>
+          <div className={styles.weatherHeaderLeft}>
+            <div className={styles.weatherCityName}>Shanghai</div>
+            <div className={styles.weatherTitle}>
+              {Math.round(
+                (Number.parseInt(weatherData.daily[0].tempMax) +
+                  Number.parseInt(weatherData.daily[0].tempMin)) /
+                  2
+              ) + `°`}
+            </div>
+          </div>
+          <div className={styles.weatherHeaderRight}>
+            <img
+              className={styles.weatherHeaderIcon}
+              src={
+                '/assets/qweather/icons/' +
+                weatherData.daily[0].iconDay +
+                '.svg'
+              }
+              alt=""
+            />
+            <div className={styles.weatherSubtitle}>
+              {weatherData.daily[0].textDay}
+            </div>
+            <div className={styles.weatherSubtitle}>
+              {'H: ' +
+                weatherData.daily[0].tempMax +
+                '°, L:' +
+                weatherData.daily[0].tempMin +
+                '°'}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

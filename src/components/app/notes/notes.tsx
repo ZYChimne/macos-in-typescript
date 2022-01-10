@@ -5,9 +5,13 @@ import { marked } from 'marked';
 import styles from './notes.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faFolder } from '@fortawesome/free-regular-svg-icons';
+import { MonthNames } from '../../../utils/utils.d';
 export const Notes = (props: NotesProps) => {
   const [curNote, setCurNote] = useState(NotesList[0].id);
-  const content = useMemo(() => marked.parse(NotesList[0].content), []);
+  const content = useMemo(
+    () => marked.parse(NotesList[curNote].content),
+    [curNote]
+  );
   return (
     <div className={styles.notes} data-show={props.show}>
       <div className={styles.appBar}>
@@ -27,7 +31,13 @@ export const Notes = (props: NotesProps) => {
               >
                 <div className={styles.appBarLineTitle}>{item.title}</div>
                 <div className={styles.appBarLineSubtitle}>
-                  <div className={styles.appBarLineTime}>{item.time}</div>
+                  <div className={styles.appBarLineDate}>
+                    {MonthNames[
+                      Number.parseInt(item.date.substring(4, 6)) - 1
+                    ] +
+                      `, ` +
+                      Number.parseInt(item.date.substring(6, 8))}
+                  </div>
                   <div className={styles.appBarLinePre}>{item.content}</div>
                 </div>
                 <div className={styles.appBarLineFolder}>
@@ -44,12 +54,12 @@ export const Notes = (props: NotesProps) => {
       </div>
       <div className={styles.content}>
         <div className={styles.notesBar}>
-          <div
+          {/* <div
             className={styles.notesBarIconBox}
             style={{ marginLeft: `12px` }}
           >
             <FontAwesomeIcon className={styles.notesBarIcon} icon={faEdit} />
-          </div>
+          </div> */}
           <input className={styles.searchbar} type="text" />
         </div>
         <div

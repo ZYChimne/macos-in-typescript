@@ -13,7 +13,11 @@ This application is developed in Chrome and some features require Chrome to work
 * CSS and Canvas Animations
 * Typescript Best Practice
 * Lighthouse score > 90
-* Integrate Electron for desktop applcation (Coming)
+
+## Upcoming Features
+* Widgets
+* Dark Mode
+* Search
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 [macOS color reference](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/).
