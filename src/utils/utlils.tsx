@@ -103,7 +103,6 @@ export const activeApp = (state: AppState): string => {
   else if (state.showPreferences === true) return 'Preferences';
   else if (state.showReminders === true) return 'Reminders';
   else if (state.showSafari === true) return 'Safari';
-  else if (state.showStore === true) return 'Store';
   else if (
     state.showFinder === true ||
     state.showLaunchpad === true ||
@@ -133,8 +132,6 @@ export const activeAppMapper = (state: AppState, app: string): boolean => {
     case 'safari':
       return state.showSafari;
     // case 'siri': return state.showSiri;
-    case 'store':
-      return state.showStore;
     case 'finder':
       return state.showFinder;
     default:
@@ -167,8 +164,6 @@ export const appReducer = (state: AppState, type: AppLoads): AppState => {
       return { ...state, showReminders: !state.showReminders };
     case 'Music':
       return { ...state, showMusic: !state.showMusic };
-    case 'Store':
-      return { ...state, showStore: !state.showStore };
     case 'Notes':
       return { ...state, showNotes: !state.showNotes };
   }

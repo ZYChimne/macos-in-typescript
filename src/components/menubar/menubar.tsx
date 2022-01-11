@@ -38,6 +38,7 @@ import {
   NotificationPanelProps,
   SampleWeatherData,
   CalendarDataList,
+  ApplePanelProps,
 } from './menubar.d';
 import { MorandiColorList } from '../../utils/utils.d';
 export const Menubar = (props: MenubarProps) => {
@@ -565,24 +566,50 @@ export const ControlPanel = (props: ControlPanelProps) => {
     </div>
   );
 };
-export const ApplePanel = (prop: SimplePanelProps) => {
+export const ApplePanel = (props: ApplePanelProps) => {
   return (
-    <div className={styles.applePanel} data-show={prop.show}>
-      <div className={styles.panelLineAppleHover}>
+    <div className={styles.applePanel} data-show={props.show}>
+      <div
+        className={styles.panelLineAppleHover}
+        onClick={() => {
+          props.menubarPanelDispatcher('ShowApple');
+          if (!props.appState.showPreferences)
+            props.appStateDispatcher('Preferences');
+        }}
+      >
         <div className={styles.panelText}>About This Mac</div>
       </div>
       <div className={styles.separator} />
-      <div className={styles.panelLineAppleHover}>
+      <div
+        className={styles.panelLineAppleHover}
+        onClick={() => {
+          props.menubarPanelDispatcher('ShowApple');
+          if (!props.appState.showPreferences)
+            props.appStateDispatcher('Preferences');
+        }}
+      >
         <div className={styles.panelText}>System Preferences...</div>
       </div>
-      <div className={styles.panelLineAppleHover}>
+      <div
+        className={styles.panelLineAppleHover}
+        onClick={() => {
+          props.menubarPanelDispatcher('ShowApple');
+          if (!props.appState.showMaps) props.appStateDispatcher('Maps');
+        }}
+      >
         <div className={styles.panelText}>Location</div>
       </div>
       <div className={styles.panelLineAppleHover}>
         <div className={styles.panelText}>App Store</div>
       </div>
       <div className={styles.separator} />
-      <div className={styles.panelLineAppleHover}>
+      <div
+        className={styles.panelLineAppleHover}
+        onClick={() => {
+          props.menubarPanelDispatcher('ShowApple');
+          if (!props.appState.showFinder) props.appStateDispatcher('Finder');
+        }}
+      >
         <div className={styles.panelText}>Recent Items</div>
       </div>
       <div className={styles.separator} />

@@ -50,7 +50,7 @@ export const AppList: {
   screenshot: { name: 'Screenshot', ctx: 'screenshot', load: 'None' },
   siri: { name: 'Siri', ctx: 'siri', load: 'Siri' },
   stickies: { name: 'Stickies', ctx: 'stickies', load: 'None' },
-  store: { name: 'App Store', ctx: 'store', load: 'Store' },
+  store: { name: 'App Store', ctx: 'store', load: 'None' },
   swift: { name: 'Swift Playground', ctx: 'swift', load: 'None' },
   terminal: { name: 'Terminal', ctx: 'terminal', load: 'None' },
   textedit: { name: 'TextEdit', ctx: 'textedit', load: 'None' },

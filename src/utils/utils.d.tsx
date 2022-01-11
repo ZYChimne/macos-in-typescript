@@ -23,7 +23,6 @@ export type AppState = {
   showReminders: boolean;
   showNotes: boolean;
   showMusic: boolean;
-  showStore: boolean;
 };
 export type AppBarBtnProps = {
   setClose: () => void;
@@ -41,8 +40,7 @@ export type AppLoads =
   | 'Contacts'
   | 'Reminders'
   | 'Notes'
-  | 'Music'
-  | 'Store';
+  | 'Music';
 export const MorandiColorList: string[] = [
   // 209
   '#E2A5AD',

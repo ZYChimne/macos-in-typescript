@@ -15,6 +15,12 @@ export type PanelProps = {
 export type SimplePanelProps = {
   show: boolean;
 };
+export type ApplePanelProps = {
+  show: boolean;
+  appState: AppState;
+  appStateDispatcher: React.Dispatch<AppLoads>;
+  menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
+};
 export type FocusState = {
   state: boolean;
   type: 'Hour' | 'Evening' | 'Event' | 'None';

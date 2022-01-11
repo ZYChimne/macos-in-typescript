@@ -62,7 +62,6 @@ function App() {
     showReminders: false,
     showNotes: false,
     showMusic: false,
-    showStore: false,
   });
   const [wifiState, setWifi] = useState(true);
   const [bluetoothState, setBluetooth] = useState(true);
@@ -149,7 +148,12 @@ function App() {
         state={focusState}
         dispatch={setFocus}
       />
-      <ApplePanel show={menubarPanelState.showApple} />
+      <ApplePanel
+        show={menubarPanelState.showApple}
+        appState={appState}
+        appStateDispatcher={appStateDispatcher}
+        menubarPanelDispatcher={menubarPanelDispatcher}
+      />
       <ControlPanel
         show={menubarPanelState.showControl}
         wifiState={wifiState}
