@@ -11,6 +11,7 @@ import styles from './launchpad.module.scss';
 export const Launchpad = (props: LaunchpadProps) => {
   const [page, setPage] = useState(0);
   const [launchpadApps, setLaunchpadApps] = useState(LaunchpadApps);
+  const pageMax = Math.floor(launchpadApps.length / 35);
   const onInput = (event: React.FormEvent<HTMLInputElement>) => {
     const temp = event.currentTarget.value;
     if (temp.length > 0)
@@ -24,7 +25,7 @@ export const Launchpad = (props: LaunchpadProps) => {
   const switchOnWheel = (event: React.WheelEvent) => {
     if (event.deltaY < 0 && page > 0) {
       setPage(page - 1);
-    } else if (event.deltaY > 0 && page < 1) {
+    } else if (event.deltaY > 0 && page < pageMax) {
       setPage(page + 1);
     }
   };
@@ -32,7 +33,7 @@ export const Launchpad = (props: LaunchpadProps) => {
     if (event.pointerType === 'touch') {
       if (event.movementX > 0 && page > 0) {
         setPage(page - 1);
-      } else if (event.movementX < 0 && page < 1) {
+      } else if (event.movementX < 0 && page < pageMax) {
         setPage(page + 1);
       }
     }

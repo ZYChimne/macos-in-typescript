@@ -15,9 +15,8 @@ This application is developed in Chrome and some features require Chrome to work
 * Lighthouse score > 90
 
 ## Upcoming Features
-* Widgets
-* Dark Mode
-* Search
+* Drag Window
+* Lock Screen
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 [macOS color reference](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/).
