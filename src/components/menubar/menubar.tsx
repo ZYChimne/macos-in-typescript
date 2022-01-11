@@ -37,6 +37,7 @@ import {
   MenubarPanelAction,
   NotificationPanelProps,
   SampleWeatherData,
+  CalendarDataList,
 } from './menubar.d';
 import { MorandiColorList } from '../../utils/utils.d';
 export const Menubar = (props: MenubarProps) => {
@@ -618,13 +619,51 @@ export const NotificationPanel = (props: NotificationPanelProps) => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          if (data.code === 200) setWeatherData(data);
+          if (data.code === '200') {
+            setWeatherData(data);
+          }
         });
     }
   }, [props.show]);
   return (
     <div className={styles.notificationPanel} data-show={props.show}>
-      <div className={styles.weatherPanel}>
+      <div className={styles.calendarView}>
+        {CalendarDataList.map((item, index) => {
+          return (
+            <div className={styles.calendarLine} key={index}>
+              <div className={styles.calendarLineDate}>
+                {new Date(
+                  Number.parseInt(item.date.substring(0, 4)),
+                  Number.parseInt(item.date.substring(4, 6)) - 1,
+                  Number.parseInt(item.date.substring(6, 8))
+                )
+                  .toLocaleDateString('en-CN', {
+                    weekday: 'long',
+                    month: 'short',
+                    day: 'numeric',
+                  })
+                  .toUpperCase()}
+              </div>
+              <div className={styles.calendarLineContent}>
+                <div className={styles.calendarLineLeft}>
+                  <div className={styles.calendarLineActive} />
+                  <div className={styles.calendarLineTextContainer}>
+                    <div className={styles.calendarLineTitle}>{item.title}</div>
+                    <div className={styles.calendarLineSubtitle}>
+                      {item.subtitle}
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.calendarLineRight}>
+                  <div className={styles.calendarLineSubtitle}>{item.from}</div>
+                  <div className={styles.calendarLineSubtitle}>{item.to}</div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.weatherView}>
         <div className={styles.weatherHeader}>
           <div className={styles.weatherHeaderLeft}>
             <div className={styles.weatherCityName}>Shanghai</div>
@@ -657,6 +696,31 @@ export const NotificationPanel = (props: NotificationPanelProps) => {
                 '°'}
             </div>
           </div>
+        </div>
+        <div className={styles.weatherContent}>
+          {weatherData.daily.slice(1).map((item, index) => {
+            return (
+              <div className={styles.weatherContentCol} key={index}>
+                <div className={styles.weatherContentDate}>
+                  {Number.parseInt(item.fxDate.substring(5, 7)) +
+                    '/' +
+                    Number.parseInt(item.fxDate.substring(8, 10))}
+                </div>
+                <img
+                  className={styles.weatherContentIcon}
+                  src={'/assets/qweather/icons/' + item.iconDay + '.svg'}
+                  alt=""
+                />
+                <div className={styles.weatherContentTemp}>
+                  {Math.round(
+                    (Number.parseInt(item.tempMax) +
+                      Number.parseInt(item.tempMin)) /
+                      2
+                  ) + `°`}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -170,7 +170,7 @@ function App() {
       <Siri show={appState.showSiri} />
       <NotificationPanel show={menubarPanelState.showNotification} />
       <Launchpad show={appState.showLaunchpad} setApp={appStateDispatcher} />
-      <Dock setApp={appStateDispatcher} />
+      <Dock appState={appState} setApp={appStateDispatcher} />
       <Preferences
         show={appState.showPreferences}
         setApp={appStateDispatcher}

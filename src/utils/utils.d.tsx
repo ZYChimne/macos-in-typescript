@@ -7,6 +7,7 @@ export type SwitchProps = {
 export type IconProps = {
   value: string;
   type: 'Dock' | 'Desktop' | 'Launchpad';
+  active: boolean;
   dispatch: React.Dispatch<AppLoads>;
 };
 export type AppState = {

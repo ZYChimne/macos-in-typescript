@@ -48,6 +48,7 @@ export const Launchpad = (props: LaunchpadProps) => {
               value={item}
               key={i}
               dispatch={props.setApp}
+              active={false}
             />
           );
         })}

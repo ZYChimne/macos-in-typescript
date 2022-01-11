@@ -27,7 +27,7 @@ export const Switch = (props: SwitchProps) => {
 };
 
 export const Icon = (props: IconProps) => {
-  if (!(props.value in AppList)) console.log(props.value);
+  // if (!(props.value in AppList)) console.log(props.value);
   switch (props.type) {
     case 'Dock':
       return (
@@ -43,6 +43,7 @@ export const Icon = (props: IconProps) => {
             data-type={props.type}
             onClick={() => props.dispatch(AppList[props.value].load)}
           />
+          <div className={styles.dockIconActive} data-active={props.active} />
         </div>
       );
     case 'Desktop':
@@ -111,7 +112,35 @@ export const activeApp = (state: AppState): string => {
     return 'Finder';
   else return 'Finder';
 };
-
+export const activeAppMapper = (state: AppState, app: string): boolean => {
+  switch (app) {
+    case 'contacts':
+      return state.showContacts;
+    case 'mail':
+      return state.showMail;
+    case 'maps':
+      return state.showMaps;
+    case 'music':
+      return state.showMusic;
+    case 'notes':
+      return state.showNotes;
+    case 'photos':
+      return state.showPhotos;
+    case 'preferences':
+      return state.showPreferences;
+    case 'reminders':
+      return state.showReminders;
+    case 'safari':
+      return state.showSafari;
+    // case 'siri': return state.showSiri;
+    case 'store':
+      return state.showStore;
+    case 'finder':
+      return state.showFinder;
+    default:
+      return false;
+  }
+};
 export const appReducer = (state: AppState, type: AppLoads): AppState => {
   switch (type) {
     case 'None':

@@ -68,7 +68,20 @@
   font-size: 12px;
   color: white;
 }
-
+.dockIconActive {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  background: rgba(30, 30, 30, 0.6);
+  &[data-active='true'] {
+    display: block;
+  }
+  &[data-active='false'] {
+    display: none;
+  }
+}
 %tooltip-shared {
   display: none;
   position: absolute;

@@ -66,6 +66,18 @@ export type MenubarPanelStates = {
   showSearch: boolean;
   showNotification: boolean;
 };
+export type CalendarData = {
+  date: string;
+  from: string;
+  to: string;
+  title: string;
+  subtitle: string;
+};
+export type NotificationData = {
+  app: string;
+  title: string;
+  subtitle: string;
+};
 export type MenubarPanelAction =
   | 'Hide'
   | 'ShowWifi'
@@ -127,6 +139,29 @@ export const MenubarItems: { [key: string]: string[] } = {
   ],
   Preferences: ['System Preferences', 'Edit', 'View', 'Window', 'Help'],
 };
+export const CalendarDataList: CalendarData[] = [
+  {
+    date: '20210101',
+    from: '8:00',
+    to: '20: 00',
+    title: 'Tour to Disney',
+    subtitle: 'Have Fun!',
+  },
+  {
+    date: '20210102',
+    from: '14:00',
+    to: '17: 00',
+    title: 'Afternoon Tea',
+    subtitle: 'At the Peace Hotel',
+  },
+  {
+    date: '20210103',
+    from: '7:00',
+    to: '9: 00',
+    title: 'Business Meeting',
+    subtitle: 'Prepare the Presentaion',
+  },
+];
 export const SampleWeatherData = {
   code: '200',
   updateTime: '2022-01-10T19:35+08:00',
