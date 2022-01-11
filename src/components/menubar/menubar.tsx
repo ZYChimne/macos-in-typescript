@@ -24,7 +24,7 @@ import {
   faItunesNote,
 } from '@fortawesome/free-brands-svg-icons';
 import styles from './menubar.module.scss';
-import { Switch } from '../../utils/utlils';
+import { activeAppMapper, Icon, Switch } from '../../utils/utlils';
 import {
   MenubarItems,
   MenubarProps,
@@ -39,8 +39,10 @@ import {
   SampleWeatherData,
   CalendarDataList,
   ApplePanelProps,
+  SearchPanelProps,
 } from './menubar.d';
 import { MorandiColorList } from '../../utils/utils.d';
+import { AppList } from '../../utils/AppList';
 export const Menubar = (props: MenubarProps) => {
   const handleItemClicked = (
     event: React.MouseEvent,
@@ -423,6 +425,55 @@ export const BluetoothPanel = (props: PanelProps) => {
       <div className={styles.panelLineNormalHover}>
         <div className={styles.panelText}>Bluetooth Preferences...</div>
       </div>
+    </div>
+  );
+};
+export const SearchPanel = (props: SearchPanelProps) => {
+  const [input, setInput] = useState('');
+  let firstItem = true;
+  const onInputChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setInput(event.currentTarget.value);
+  };
+  return (
+    <div className={styles.searchPanel} data-show={props.show}>
+      <input
+        className={styles.searchbar}
+        type="text"
+        onInput={onInputChange}
+        placeholder="Spotlight Search"
+      />
+      {input.length !== 0 ? (
+        <div className={styles.searchContent}>
+          {Object.keys(AppList).map((item, index) => {
+            if (AppList[item].name.toLowerCase().includes(input)) {
+              const temp = (
+                <div
+                  className={styles.searchLine}
+                  key={index}
+                  data-active={firstItem}
+                  onClick={() => {
+                    props.menubarPanelDispatcher('ShowSearch');
+                    if (!activeAppMapper(props.appState, item))
+                      props.appStateDispatcher(AppList[item].load);
+                  }}
+                >
+                  <img
+                    className={styles.searchLineIcon}
+                    src={'/assets/icons/apps/' + AppList[item].ctx + '.png'}
+                    alt=""
+                    loading="lazy"
+                  />
+                  <div className={styles.searchLineText}>
+                    {AppList[item].name}
+                  </div>
+                </div>
+              );
+              firstItem = false;
+              return temp;
+            } else return null;
+          })}
+        </div>
+      ) : null}
     </div>
   );
 };

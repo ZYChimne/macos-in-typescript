@@ -15,6 +15,12 @@ export type PanelProps = {
 export type SimplePanelProps = {
   show: boolean;
 };
+export type SearchPanelProps = {
+  show: boolean;
+  appState: AppState;
+  menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
+  appStateDispatcher: React.Dispatch<AppLoads>;
+};
 export type ApplePanelProps = {
   show: boolean;
   appState: AppState;

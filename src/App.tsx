@@ -24,6 +24,7 @@ import {
   ApplePanel,
   ControlPanel,
   NotificationPanel,
+  SearchPanel,
 } from './components/menubar/menubar';
 import {
   focusReducer,
@@ -142,6 +143,12 @@ function App() {
         show={menubarPanelState.showBluetooth}
         state={bluetoothState}
         setState={setBluetooth}
+      />
+      <SearchPanel
+        show={menubarPanelState.showSearch}
+        appState={appState}
+        appStateDispatcher={appStateDispatcher}
+        menubarPanelDispatcher={menubarPanelDispatcher}
       />
       <FocusPanel
         show={menubarPanelState.showFocus}

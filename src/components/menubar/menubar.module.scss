@@ -259,7 +259,76 @@ $default-zindex: 10;
   @extend %panel-shared;
   right: 6px;
 }
-
+.searchPanel {
+  width: 600px;
+  height: 450px;
+  border-radius: 12px;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  bottom: 96px;
+  left: 50%;
+  z-index: 10;
+  margin: auto 0px;
+  transform: translate3d(-50%, 0, 0);
+  overflow: hidden;
+  &[data-show='true'] {
+    display: flex;
+    animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  &[data-show='false'] {
+    display: none;
+    animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+}
+.searchbar {
+  width: 100%;
+  height: 10%;
+  text-align: center;
+  background: rgba(239, 239, 239, 1);
+  border: none;
+  outline: none;
+  font-size: 24px;
+  color: rgba(70, 70, 70, 1);
+  &::-webkit-input-placeholder {
+    color: rgba(176, 176, 176, 0.9);
+  }
+}
+.searchContent {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(240, 240, 240, 1);
+  align-items: center;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.searchLine {
+  width: 96%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  &[data-active='true'] {
+    color: white;
+    background: rgba(99, 159, 249, 1);
+  }
+}
+.searchLineIcon {
+  height: 24px;
+  width: 24px;
+  border-radius: 6px;
+  margin: 3px;
+}
+.searchLineText {
+  font-size: 12px;
+  text-indent: 6px;
+}
 .controlPanel {
   top: $menubar-height + 6px;
   width: 300px;

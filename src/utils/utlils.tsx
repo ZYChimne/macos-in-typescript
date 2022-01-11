@@ -69,7 +69,9 @@ export const Icon = (props: IconProps) => {
             data-type={props.type}
             loading="lazy"
           />
-          <div className={styles.iconText}>{AppList[props.value].name}</div>
+          <div className={styles.iconText} data-type={props.type}>
+            {AppList[props.value].name}
+          </div>
         </div>
       );
     default:
