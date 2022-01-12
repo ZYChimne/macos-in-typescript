@@ -168,10 +168,16 @@ const EventContent = (props: EventContentProps) => {
   );
 };
 const EventLine = (props: EventLineProps) => {
+  const [check, setCheck] = useState(false);
   return (
     <div className={styles.contentLine}>
       <div className={styles.circleContainer}>
-        <input className={styles.activeCircle} type="radio" />
+        <input
+          className={styles.activeCircle}
+          type="radio"
+          checked={check}
+          onClick={() => setCheck(!check)}
+        />
       </div>
       <div className={styles.contentContainer}>
         <div className={styles.contentText}>{props.title}</div>
