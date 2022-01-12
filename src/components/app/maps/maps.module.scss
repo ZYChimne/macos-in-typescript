@@ -1,11 +1,11 @@
 .maps {
-  width: 800px;
-  height: 450px;
+  width: 810px;
+  height: 480px;
   border-radius: 12px;
   flex-direction: row;
   position: absolute;
   top: 30px;
-  bottom: 96px;
+  bottom: 78px;
   left: 50%;
   z-index: 10;
   margin: auto 0px;
@@ -141,4 +141,20 @@
 .mapLineSubtitle {
   font-size: 0.64rem;
   padding: 0 3px 3px 3px;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

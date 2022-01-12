@@ -26,6 +26,7 @@ export type ApplePanelProps = {
   appState: AppState;
   appStateDispatcher: React.Dispatch<AppLoads>;
   menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
+  setLock: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export type FocusState = {
   state: boolean;

@@ -664,7 +664,13 @@ export const ApplePanel = (props: ApplePanelProps) => {
         <div className={styles.panelText}>Recent Items</div>
       </div>
       <div className={styles.separator} />
-      <div className={styles.panelLineAppleHover}>
+      <div
+        className={styles.panelLineAppleHover}
+        onClick={() => {
+          props.menubarPanelDispatcher('ShowApple');
+          if (!props.appState.showFinder) props.appStateDispatcher('None');
+        }}
+      >
         <div className={styles.panelText}>Force Quit...</div>
       </div>
       <div className={styles.separator} />
@@ -678,11 +684,23 @@ export const ApplePanel = (props: ApplePanelProps) => {
         <div className={styles.panelText}>Shut Down...</div>
       </div>
       <div className={styles.separator} />
-      <div className={styles.panelLineAppleHover}>
+      <div
+        className={styles.panelLineAppleHover}
+        onClick={() => {
+          props.menubarPanelDispatcher('ShowApple');
+          props.setLock(true);
+        }}
+      >
         <div className={styles.panelText}>Lock Screen</div>
       </div>
-      <div className={styles.panelLineAppleHover}>
-        <div className={styles.panelText}>Log Out ZYChimne</div>
+      <div
+        className={styles.panelLineAppleHover}
+        onClick={() => {
+          props.menubarPanelDispatcher('ShowApple');
+          props.setLock(true);
+        }}
+      >
+        <div className={styles.panelText}>Log Out Evan</div>
       </div>
     </div>
   );

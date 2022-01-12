@@ -1,0 +1,71 @@
+.lockscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: brightness(0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  &[data-show='true'] {
+    display: flex;
+    animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  &[data-show='false'] {
+    display: none;
+    animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+}
+.avatar {
+  height: 96px;
+  width: 96px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+.username {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 6px 0;
+}
+.passwordContainer {
+  height: 24px;
+  width: 144px;
+  border-radius: 12px;
+  margin: 6px 0 120px 0;
+  overflow: hidden;
+}
+.password {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background: rgba(191, 183, 176, 0.75);
+  backdrop-filter: blur(6px);
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  &::-webkit-input-placeholder {
+    color: rgba(240, 240, 240, 0.9);
+    font-size: 12px;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
