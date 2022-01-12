@@ -8,8 +8,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useRef, useState } from 'react';
-import { JsxElement } from 'typescript';
+import React, { useState } from 'react';
 import { MonthNames } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
 import {

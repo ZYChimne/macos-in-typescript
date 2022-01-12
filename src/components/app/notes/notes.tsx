@@ -4,7 +4,7 @@ import { NotesList, NotesProps } from './notes.d';
 import { marked } from 'marked';
 import styles from './notes.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faFolder } from '@fortawesome/free-regular-svg-icons';
+import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { MonthNames } from '../../../utils/utils.d';
 export const Notes = (props: NotesProps) => {
   const [curNote, setCurNote] = useState(NotesList[0].id);

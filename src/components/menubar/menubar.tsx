@@ -24,7 +24,7 @@ import {
   faItunesNote,
 } from '@fortawesome/free-brands-svg-icons';
 import styles from './menubar.module.scss';
-import { activeAppMapper, Icon, Switch } from '../../utils/utlils';
+import { activeAppMapper, Switch } from '../../utils/utlils';
 import {
   MenubarItems,
   MenubarProps,

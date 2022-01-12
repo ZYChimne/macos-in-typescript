@@ -1,5 +1,5 @@
 import React from 'react';
-import { activeApp, activeAppMapper, Icon } from '../../utils/utlils';
+import { activeAppMapper, Icon } from '../../utils/utlils';
 import { DockApps, DockProps } from './dock.d';
 import styles from './dock.module.scss';
 export const Dock = (props: DockProps) => {

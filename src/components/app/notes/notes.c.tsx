@@ -1,4 +1,3 @@
-import React from 'react';
 export const MDCONTENT1 = `# macOS in TypeScript
 
 This is my Graduate Capstone Project for Wuhan University.  

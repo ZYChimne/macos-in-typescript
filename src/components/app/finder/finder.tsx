@@ -1,7 +1,4 @@
-import {
-  faItunesNote,
-  faAppStoreIos,
-} from '@fortawesome/free-brands-svg-icons';
+import { faAppStoreIos } from '@fortawesome/free-brands-svg-icons';
 import {
   faArrowCircleDown,
   faBroadcastTower,
