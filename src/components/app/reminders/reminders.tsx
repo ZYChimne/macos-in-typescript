@@ -43,7 +43,13 @@ export const Reminders = (props: RemindersProps) => {
           >
             {curTag}
           </div>
-          <EventContent tag={curTag} />
+          {curTag === 'All' ? (
+            Object.keys(RemindersEvents).map((item, index) => {
+              return <EventContent tag={item} key={index} />;
+            })
+          ) : (
+            <EventContent tag={curTag} />
+          )}
         </div>
       </div>
     </div>
@@ -132,26 +138,13 @@ const TagContainer = (props: TagContainerProps) => {
   );
 };
 const EventContent = (props: EventContentProps) => {
-  if (props.tag === 'All') {
-    return (
-      <>
-        {Object.keys(RemindersEvents).map((item, index) => {
-          return DateContainer(item, index);
-        })}
-      </>
-    );
-  } else {
-    return DateContainer(props.tag, 0);
-  }
-};
-const DateContainer = (tag: string, index: number) => {
   const date = new Date(
-    Number.parseInt(RemindersEvents[tag][0].date.substring(0, 4)),
-    Number.parseInt(RemindersEvents[tag][0].date.substring(4, 6)) - 1,
-    Number.parseInt(RemindersEvents[tag][0].date.substring(6, 8))
+    Number.parseInt(RemindersEvents[props.tag][0].date.substring(0, 4)),
+    Number.parseInt(RemindersEvents[props.tag][0].date.substring(4, 6)) - 1,
+    Number.parseInt(RemindersEvents[props.tag][0].date.substring(6, 8))
   );
   return (
-    <div className={styles.dateContainer} key={index}>
+    <div className={styles.dateContainer}>
       <div className={styles.dateLine}>
         <div className={styles.eventWeek}>
           {date.toLocaleDateString('en-CN', { weekday: 'short' })}
@@ -166,7 +159,7 @@ const DateContainer = (tag: string, index: number) => {
           })}
         </div>
       </div>
-      {RemindersEvents[tag].map((item, index) => {
+      {RemindersEvents[props.tag].map((item, index) => {
         return (
           <EventLine title={item.title} subtitle={item.subtitle} key={index} />
         );
