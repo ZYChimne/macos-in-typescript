@@ -36,7 +36,7 @@ import { activeApp, appReducer } from './utils/utlils';
 
 function App() {
   const appRef = useRef<HTMLDivElement>(null);
-  const [lock, setLock] = useState(false);
+  const [lock, setLock] = useState(true);
   const [menubarPanelState, menubarPanelDispatcher] = useReducer(
     menubarPanelReducer,
     {
