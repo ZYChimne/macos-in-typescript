@@ -11,7 +11,7 @@ $default-menubar-border-radius-large: 12px;
 $default-border-radius-regular: 6px;
 $default-backdrop-filter-blur: 6px;
 $control-block-background: rgba(233, 234, 234, 0.9);
-$control-box-shadow: 0 0 1px 1px rgba(grey, 0.1);
+$control-box-shadow: 0 0 3px 0px rgba(154, 165, 181, 0.75);
 $default-zindex: 10;
 %item-shared {
   height: 100%;
@@ -365,6 +365,7 @@ $default-zindex: 10;
   border-radius: 12px;
   align-items: center;
   margin: 0 10px;
+  box-shadow: $control-box-shadow;
 }
 .controlLine1Left {
   width: 135px;
@@ -534,6 +535,7 @@ $default-zindex: 10;
   border-radius: 12px;
   height: 240px;
   padding: 6px 0;
+  box-shadow: $control-box-shadow;
 }
 .calendarLine {
   display: flex;
@@ -603,6 +605,7 @@ $default-zindex: 10;
   );
   width: 100%;
   margin-top: 12px;
+  box-shadow: $control-box-shadow;
 }
 .weatherHeader {
   display: flex;
