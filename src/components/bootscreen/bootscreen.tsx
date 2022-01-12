@@ -12,7 +12,7 @@ export const BootScreen = (props: BootScreenProps) => {
     setProgress(`100%`);
     setTimeout(() => {
       props.setBoot(false);
-    }, 10000);
+    }, 1000);
   }, [props]);
   return (
     <div className={styles.bootscreen} data-show={props.boot}>
