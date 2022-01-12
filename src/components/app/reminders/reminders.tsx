@@ -177,6 +177,7 @@ const EventLine = (props: EventLineProps) => {
           type="radio"
           checked={check}
           onClick={() => setCheck(!check)}
+          onChange={() => {}}
         />
       </div>
       <div className={styles.contentContainer}>

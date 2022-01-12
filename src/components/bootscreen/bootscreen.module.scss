@@ -1,0 +1,54 @@
+.bootscreen {
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &[data-show='true'] {
+    display: flex;
+    animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  &[data-show='false'] {
+    display: none;
+    animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+}
+.logo {
+  font-size: 90px;
+  color: white;
+}
+.progressBar {
+  height: 3px;
+  width: 144px;
+  background: white;
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: 24px;
+  margin-bottom: 36px;
+}
+.progress {
+  height: 100%;
+  background: grey;
+  transition: all 5s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

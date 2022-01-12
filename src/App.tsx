@@ -12,6 +12,7 @@ import { Preferences } from './components/app/preferences/preferences';
 import { Reminders } from './components/app/reminders/reminders';
 import { Safari } from './components/app/safari/safari';
 import { Siri } from './components/app/siri/siri';
+import { BootScreen } from './components/bootscreen/bootscreen';
 import { Dock } from './components/dock/dock';
 import { Launchpad } from './components/launchpad/launchpad';
 import { LockScreen } from './components/lockscreen/lockscreen';
@@ -36,7 +37,8 @@ import { activeApp, appReducer } from './utils/utlils';
 
 function App() {
   const appRef = useRef<HTMLDivElement>(null);
-  const [lock, setLock] = useState(true);
+  const [boot, setBoot] = useState(true);
+  const [lock, setLock] = useState(false);
   const [menubarPanelState, menubarPanelDispatcher] = useReducer(
     menubarPanelReducer,
     {
@@ -126,97 +128,106 @@ function App() {
     windowWidth = window.innerWidth;
   return windowHeight >= 600 && windowWidth >= 1024 ? (
     <div className="App" ref={appRef}>
-      <LockScreen lock={lock} setLock={setLock} />
-      <Wallpaper dark={darkState} />
-      {!lock ? (
+      {boot ? (
+        <BootScreen boot={boot} setBoot={setBoot} />
+      ) : (
         <>
-          <Menubar
-            state={activeApp(appState)}
-            menubarPanelDispatcher={menubarPanelDispatcher}
-            menubarState={menubarPanelState}
-            appState={appState}
-            appStateDispatcher={appStateDispatcher}
-          />
-          <WiFiPanel
-            show={menubarPanelState.showWifi}
-            state={wifiState}
-            setState={setWifi}
-          />
-          <InputPanel show={menubarPanelState.showInput} />
-          <BatteryPanel show={menubarPanelState.showBattery} />
-          <BluetoothPanel
-            show={menubarPanelState.showBluetooth}
-            state={bluetoothState}
-            setState={setBluetooth}
-          />
-          <SearchPanel
-            show={menubarPanelState.showSearch}
-            appState={appState}
-            appStateDispatcher={appStateDispatcher}
-            menubarPanelDispatcher={menubarPanelDispatcher}
-          />
-          <FocusPanel
-            show={menubarPanelState.showFocus}
-            state={focusState}
-            dispatch={setFocus}
-          />
-          <ApplePanel
-            show={menubarPanelState.showApple}
-            appState={appState}
-            appStateDispatcher={appStateDispatcher}
-            menubarPanelDispatcher={menubarPanelDispatcher}
-            setLock={setLock}
-          />
-          <ControlPanel
-            show={menubarPanelState.showControl}
-            wifiState={wifiState}
-            setWifi={setWifi}
-            bluetoothState={bluetoothState}
-            setBluetooth={setBluetooth}
-            focusState={focusState}
-            setFoucs={setFocus}
-            darkState={darkState}
-            setDark={setDark}
-            musicList={musicList}
-            playMusic={playMusic}
-            playPrev={playPrev}
-            playNext={playNext}
-            fullscreen={fullscreenState}
-            enterFullscreen={enterFullscreen}
-          />
-          <Siri show={appState.showSiri} />
-          <NotificationPanel show={menubarPanelState.showNotification} />
-          <Launchpad
-            show={appState.showLaunchpad}
-            setApp={appStateDispatcher}
-          />
-          <Dock appState={appState} setApp={appStateDispatcher} />
-          <Preferences
-            show={appState.showPreferences}
-            setApp={appStateDispatcher}
-          />
-          <Safari show={appState.showSafari} setApp={appStateDispatcher} />
-          <Mail show={appState.showMail} setApp={appStateDispatcher} />
-          <Maps show={appState.showMaps} setApp={appStateDispatcher} />
-          <Finder show={appState.showFinder} setApp={appStateDispatcher} />
-          <Photos show={appState.showPhotos} setApp={appStateDispatcher} />
-          <Contacts show={appState.showContacts} setApp={appStateDispatcher} />
-          <Reminders
-            show={appState.showReminders}
-            setApp={appStateDispatcher}
-          />
-          <Notes show={appState.showNotes} setApp={appStateDispatcher} />
-          <Music
-            show={appState.showMusic}
-            setApp={appStateDispatcher}
-            musicList={musicList}
-            playMusic={playMusic}
-            playOnIndex={playOnIndex}
-            playPrev={playPrev}
-            playNext={playNext}
-          />
+          <LockScreen lock={lock} setLock={setLock} />
+          <Wallpaper dark={darkState} />
+          {!lock && (
+            <>
+              <Menubar
+                state={activeApp(appState)}
+                menubarPanelDispatcher={menubarPanelDispatcher}
+                menubarState={menubarPanelState}
+                appState={appState}
+                appStateDispatcher={appStateDispatcher}
+              />
+              <WiFiPanel
+                show={menubarPanelState.showWifi}
+                state={wifiState}
+                setState={setWifi}
+              />
+              <InputPanel show={menubarPanelState.showInput} />
+              <BatteryPanel show={menubarPanelState.showBattery} />
+              <BluetoothPanel
+                show={menubarPanelState.showBluetooth}
+                state={bluetoothState}
+                setState={setBluetooth}
+              />
+              <SearchPanel
+                show={menubarPanelState.showSearch}
+                appState={appState}
+                appStateDispatcher={appStateDispatcher}
+                menubarPanelDispatcher={menubarPanelDispatcher}
+              />
+              <FocusPanel
+                show={menubarPanelState.showFocus}
+                state={focusState}
+                dispatch={setFocus}
+              />
+              <ApplePanel
+                show={menubarPanelState.showApple}
+                appState={appState}
+                appStateDispatcher={appStateDispatcher}
+                menubarPanelDispatcher={menubarPanelDispatcher}
+                setLock={setLock}
+              />
+              <ControlPanel
+                show={menubarPanelState.showControl}
+                wifiState={wifiState}
+                setWifi={setWifi}
+                bluetoothState={bluetoothState}
+                setBluetooth={setBluetooth}
+                focusState={focusState}
+                setFoucs={setFocus}
+                darkState={darkState}
+                setDark={setDark}
+                musicList={musicList}
+                playMusic={playMusic}
+                playPrev={playPrev}
+                playNext={playNext}
+                fullscreen={fullscreenState}
+                enterFullscreen={enterFullscreen}
+              />
+              <Siri show={appState.showSiri} />
+              <NotificationPanel show={menubarPanelState.showNotification} />
+              <Launchpad
+                show={appState.showLaunchpad}
+                setApp={appStateDispatcher}
+              />
+              <Dock appState={appState} setApp={appStateDispatcher} />
+              <Preferences
+                show={appState.showPreferences}
+                setApp={appStateDispatcher}
+              />
+              <Safari show={appState.showSafari} setApp={appStateDispatcher} />
+              <Mail show={appState.showMail} setApp={appStateDispatcher} />
+              <Maps show={appState.showMaps} setApp={appStateDispatcher} />
+              <Finder show={appState.showFinder} setApp={appStateDispatcher} />
+              <Photos show={appState.showPhotos} setApp={appStateDispatcher} />
+              <Contacts
+                show={appState.showContacts}
+                setApp={appStateDispatcher}
+              />
+              <Reminders
+                show={appState.showReminders}
+                setApp={appStateDispatcher}
+              />
+              <Notes show={appState.showNotes} setApp={appStateDispatcher} />
+              <Music
+                show={appState.showMusic}
+                setApp={appStateDispatcher}
+                musicList={musicList}
+                playMusic={playMusic}
+                playOnIndex={playOnIndex}
+                playPrev={playPrev}
+                playNext={playNext}
+              />
+            </>
+          )}
         </>
-      ) : null}
+      )}
     </div>
   ) : (
     <div>
