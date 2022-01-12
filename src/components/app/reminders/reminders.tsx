@@ -7,7 +7,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
-import { RemindersProps, TagColors, TagContainerProps } from './reminders.d';
+import {
+  EventContentProps,
+  EventLineProps,
+  RemindersEvents,
+  RemindersProps,
+  TagColors,
+  TagContainerProps,
+} from './reminders.d';
 import styles from './reminders.module.scss';
 export const Reminders = (props: RemindersProps) => {
   const [curTag, setCurTag] = useState('Today');
@@ -36,14 +43,21 @@ export const Reminders = (props: RemindersProps) => {
           >
             {curTag}
           </div>
+          <EventContent tag={curTag} />
         </div>
       </div>
     </div>
   );
 };
 const TagContainer = (props: TagContainerProps) => {
-  let tagIcon;
+  let tagIcon,
+    tagNum: number = 0;
   const active = props.id === props.curTag;
+  if (props.id === 'All') {
+    Object.keys(RemindersEvents).forEach((x) => {
+      tagNum += RemindersEvents[x].length;
+    });
+  } else tagNum = RemindersEvents[props.id].length;
   switch (props.id) {
     case 'Today':
       tagIcon = (
@@ -111,8 +125,64 @@ const TagContainer = (props: TagContainerProps) => {
       </div>
       <div className={styles.tagRightContainer}>
         <div className={styles.tagNumber} data-active={active}>
-          0
+          {tagNum}
         </div>
+      </div>
+    </div>
+  );
+};
+const EventContent = (props: EventContentProps) => {
+  if (props.tag === 'All') {
+    return (
+      <>
+        {Object.keys(RemindersEvents).map((item, index) => {
+          return DateContainer(item, index);
+        })}
+      </>
+    );
+  } else {
+    return DateContainer(props.tag, 0);
+  }
+};
+const DateContainer = (tag: string, index: number) => {
+  const date = new Date(
+    Number.parseInt(RemindersEvents[tag][0].date.substring(0, 4)),
+    Number.parseInt(RemindersEvents[tag][0].date.substring(4, 6)) - 1,
+    Number.parseInt(RemindersEvents[tag][0].date.substring(6, 8))
+  );
+  return (
+    <div className={styles.dateContainer} key={index}>
+      <div className={styles.dateLine}>
+        <div className={styles.eventWeek}>
+          {date.toLocaleDateString('en-CN', { weekday: 'short' })}
+        </div>
+        <div
+          className={styles.eventDate}
+          style={{ color: `rgb(128, 128, 128)` }}
+        >
+          {date.toLocaleDateString('en-CN', {
+            month: 'short',
+            day: 'numeric',
+          })}
+        </div>
+      </div>
+      {RemindersEvents[tag].map((item, index) => {
+        return (
+          <EventLine title={item.title} subtitle={item.subtitle} key={index} />
+        );
+      })}
+    </div>
+  );
+};
+const EventLine = (props: EventLineProps) => {
+  return (
+    <div className={styles.contentLine}>
+      <div className={styles.circleContainer}>
+        <input className={styles.activeCircle} type="radio" />
+      </div>
+      <div className={styles.contentContainer}>
+        <div className={styles.contentText}>{props.title}</div>
+        <div className={styles.contentText}>{props.subtitle}</div>
       </div>
     </div>
   );
