@@ -143,30 +143,186 @@ export const activeAppMapper = (state: AppState, app: string): boolean => {
 export const appReducer = (state: AppState, type: AppLoads): AppState => {
   switch (type) {
     case 'None':
-      return { ...state, showLaunchpad: false };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showFinder: false,
+        showMail: false,
+        showMaps: false,
+        showMusic: false,
+        showNotes: false,
+        showPhotos: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: false,
+      };
     case 'Launchpad':
-      return { ...state, showLaunchpad: !state.showLaunchpad };
+      return {
+        ...state,
+        showLaunchpad: !state.showLaunchpad,
+        showContacts: false,
+        showFinder: false,
+        showMail: false,
+        showMaps: false,
+        showMusic: false,
+        showNotes: false,
+        showPhotos: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: false,
+      };
     case 'Siri':
       return { ...state, showSiri: !state.showSiri };
     case 'Preferences':
-      return { ...state, showPreferences: !state.showPreferences };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showFinder: false,
+        showMail: false,
+        showMaps: false,
+        showMusic: false,
+        showNotes: false,
+        showPhotos: false,
+        showReminders: false,
+        showSafari: false,
+        showPreferences: !state.showPreferences,
+      };
     case 'Mail':
-      return { ...state, showMail: !state.showMail };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showFinder: false,
+        showMaps: false,
+        showMusic: false,
+        showNotes: false,
+        showPhotos: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: false,
+        showMail: !state.showMail,
+      };
     case 'Maps':
-      return { ...state, showMaps: !state.showMaps };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showFinder: false,
+        showMail: false,
+        showMusic: false,
+        showNotes: false,
+        showPhotos: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: false,
+        showMaps: !state.showMaps,
+      };
     case 'Contacts':
-      return { ...state, showContacts: !state.showContacts };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showFinder: false,
+        showMail: false,
+        showMaps: false,
+        showMusic: false,
+        showNotes: false,
+        showPhotos: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: false,
+        showContacts: !state.showContacts,
+      };
     case 'Finder':
-      return { ...state, showFinder: !state.showFinder };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showMail: false,
+        showMaps: false,
+        showMusic: false,
+        showNotes: false,
+        showPhotos: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: false,
+        showFinder: !state.showFinder,
+      };
     case 'Safari':
-      return { ...state, showSafari: !state.showSafari };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showFinder: false,
+        showMail: false,
+        showMaps: false,
+        showMusic: false,
+        showNotes: false,
+        showPhotos: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: !state.showSafari,
+      };
     case 'Photos':
-      return { ...state, showPhotos: !state.showPhotos };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showFinder: false,
+        showMail: false,
+        showMaps: false,
+        showMusic: false,
+        showNotes: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: false,
+        showPhotos: !state.showPhotos,
+      };
     case 'Reminders':
-      return { ...state, showReminders: !state.showReminders };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showFinder: false,
+        showMail: false,
+        showMaps: false,
+        showMusic: false,
+        showNotes: false,
+        showPhotos: false,
+        showPreferences: false,
+        showSafari: false,
+        showReminders: !state.showReminders,
+      };
     case 'Music':
-      return { ...state, showMusic: !state.showMusic };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showFinder: false,
+        showMail: false,
+        showMaps: false,
+        showNotes: false,
+        showPhotos: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: false,
+        showMusic: !state.showMusic,
+      };
     case 'Notes':
-      return { ...state, showNotes: !state.showNotes };
+      return {
+        ...state,
+        showLaunchpad: false,
+        showContacts: false,
+        showFinder: false,
+        showMail: false,
+        showMaps: false,
+        showMusic: false,
+        showPhotos: false,
+        showPreferences: false,
+        showReminders: false,
+        showSafari: false,
+        showNotes: !state.showNotes,
+      };
   }
 };

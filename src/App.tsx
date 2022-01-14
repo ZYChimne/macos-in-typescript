@@ -133,7 +133,10 @@ function App() {
       ) : (
         <>
           <LockScreen lock={lock} setLock={setLock} />
-          <Wallpaper dark={darkState} />
+          <Wallpaper
+            dark={darkState}
+            menubarPanelDispatcher={menubarPanelDispatcher}
+          />
           {!lock && (
             <>
               <Menubar
@@ -196,34 +199,45 @@ function App() {
                 show={appState.showLaunchpad}
                 setApp={appStateDispatcher}
               />
-              <Dock appState={appState} setApp={appStateDispatcher} />
-              <Preferences
-                show={appState.showPreferences}
-                setApp={appStateDispatcher}
-              />
-              <Safari show={appState.showSafari} setApp={appStateDispatcher} />
-              <Mail show={appState.showMail} setApp={appStateDispatcher} />
-              <Maps show={appState.showMaps} setApp={appStateDispatcher} />
-              <Finder show={appState.showFinder} setApp={appStateDispatcher} />
-              <Photos show={appState.showPhotos} setApp={appStateDispatcher} />
-              <Contacts
-                show={appState.showContacts}
-                setApp={appStateDispatcher}
-              />
-              <Reminders
-                show={appState.showReminders}
-                setApp={appStateDispatcher}
-              />
-              <Notes show={appState.showNotes} setApp={appStateDispatcher} />
-              <Music
-                show={appState.showMusic}
-                setApp={appStateDispatcher}
-                musicList={musicList}
-                playMusic={playMusic}
-                playOnIndex={playOnIndex}
-                playPrev={playPrev}
-                playNext={playNext}
-              />
+              <div onClick={() => menubarPanelDispatcher('Hide')}>
+                <Dock appState={appState} setApp={appStateDispatcher} />
+                <Preferences
+                  show={appState.showPreferences}
+                  setApp={appStateDispatcher}
+                />
+                <Safari
+                  show={appState.showSafari}
+                  setApp={appStateDispatcher}
+                />
+                <Mail show={appState.showMail} setApp={appStateDispatcher} />
+                <Maps show={appState.showMaps} setApp={appStateDispatcher} />
+                <Finder
+                  show={appState.showFinder}
+                  setApp={appStateDispatcher}
+                />
+                <Photos
+                  show={appState.showPhotos}
+                  setApp={appStateDispatcher}
+                />
+                <Contacts
+                  show={appState.showContacts}
+                  setApp={appStateDispatcher}
+                />
+                <Reminders
+                  show={appState.showReminders}
+                  setApp={appStateDispatcher}
+                />
+                <Notes show={appState.showNotes} setApp={appStateDispatcher} />
+                <Music
+                  show={appState.showMusic}
+                  setApp={appStateDispatcher}
+                  musicList={musicList}
+                  playMusic={playMusic}
+                  playOnIndex={playOnIndex}
+                  playPrev={playPrev}
+                  playNext={playNext}
+                />
+              </div>
             </>
           )}
         </>

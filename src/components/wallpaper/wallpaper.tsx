@@ -11,6 +11,7 @@ export const Wallpaper = (props: WallpaperProps) => {
           props.dark ? Wallpapers.dark : Wallpapers.light
         })`,
       }}
+      onClick={() => props.menubarPanelDispatcher('Hide')}
     />
   );
 };
