@@ -13,7 +13,7 @@ There is a project setup with Next.js at [macos-in-next](https://github.com/ZYCh
 * State management with React.js only
 * CSS and Canvas Animations
 * Typescript Best Practice
-* Lighthouse score > 90 (Need to setLock=true)
+* Lighthouse score > 90 (Need to set `Lock = true`)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
