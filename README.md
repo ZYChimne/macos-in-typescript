@@ -2,6 +2,7 @@
 
 This is my Graduate Capstone Project for Wuhan University.  
 This application is developed in Chrome and some features require Chrome to work correctly.
+There is a project setup with Next.js at [macos-in-next](https://github.com/ZYChimne/macos-in-next).  
 
 ## Performance Improvements
 
@@ -12,10 +13,8 @@ This application is developed in Chrome and some features require Chrome to work
 * State management with React.js only
 * CSS and Canvas Animations
 * Typescript Best Practice
-* Lighthouse score > 90
+* Lighthouse score > 90 (Need to setLock=true)
 
-## Upcoming Features
-* Lock Screen
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 [macOS color reference](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/).
