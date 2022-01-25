@@ -64,6 +64,9 @@
     height: 6vw;
     border-radius: 6px;
   }
+  &:active {
+    filter: brightness(0.5);
+  }
 }
 .iconText {
   &[data-type='Launchpad'] {

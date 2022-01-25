@@ -18,11 +18,18 @@ import {
 import styles from './reminders.module.scss';
 export const Reminders = (props: RemindersProps) => {
   const [curTag, setCurTag] = useState('Today');
+  const setClosed = () => props.setApp('REMINDERS_CLOSED');
+  const setMinimized = () => props.setApp('REMINDERS_MINIMIZED');
+  const setMaximized = () => props.setApp('REMINDERS_MAXIMIZED');
   return (
-    <div className={styles.reminders} data-show={props.show}>
+    <div className={styles.reminders} data-show={props.state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
-          <AppBarButton setClose={() => props.setApp('Reminders')} />
+          <AppBarButton
+            setClosed={setClosed}
+            setMinimized={setMinimized}
+            setMaximized={setMaximized}
+          />
         </div>
         <input className={styles.searchbar} type="text" />
         <div className={styles.appBarLine}>

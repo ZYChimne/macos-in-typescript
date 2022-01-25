@@ -1,8 +1,8 @@
 import React from 'react';
-import { AppLoads, AppState } from '../../utils/utils.d';
+import { AppState, AppStateAction } from '../../utils/utils.d';
 export type DockProps = {
   appState: AppState;
-  setApp: React.Dispatch<AppLoads>;
+  setApp: React.Dispatch<AppStateAction>;
 };
 export const DockApps: string[] = [
   'safari',

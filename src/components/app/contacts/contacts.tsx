@@ -6,7 +6,7 @@ import {
   faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React from 'react';
 import { AppBarButton } from '../../../utils/utlils';
 import {
   ContactsContentProps,
@@ -16,14 +16,18 @@ import {
 } from './contacts.d';
 import styles from './contacts.module.scss';
 export const Contacts = (props: ContactsProps) => {
-  const [curContact, setCurContact] = useState(
-    Object.keys(ContactsInfoList)[0]
-  );
+  const setClosed = () => props.setApp('CONTACTS_CLOSED');
+  const setMinimized = () => props.setApp('CONTACTS_MINIMIZED');
+  const setMaximized = () => props.setApp('CONTACTS_MAXIMIZED');
   return (
-    <div className={styles.contacts} data-show={props.show}>
+    <div className={styles.contacts} data-show={props.state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
-          <AppBarButton setClose={() => props.setApp('Contacts')} />
+          <AppBarButton
+            setClosed={setClosed}
+            setMinimized={setMinimized}
+            setMaximized={setMaximized}
+          />
           <div className={styles.appBarTitle}>All Contacts</div>
         </div>
       </div>
@@ -35,15 +39,15 @@ export const Contacts = (props: ContactsProps) => {
               <div
                 className={styles.contactsBarTitle}
                 key={index}
-                data-active={item === curContact}
-                onClick={() => setCurContact(item)}
+                data-active={item === props.curContact}
+                onClick={() => props.setCurContact(item)}
               >
                 {item}
               </div>
             );
           })}
         </div>
-        <ContactsContent id={curContact} />
+        <ContactsContent id={props.curContact} />
       </div>
     </div>
   );

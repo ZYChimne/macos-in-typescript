@@ -13,10 +13,13 @@ import { MusicLineProps, MusicProps } from './music.d';
 import styles from './music.module.scss';
 
 export const Music = (props: MusicProps) => {
+  const setClosed = () => props.setApp('MUSIC_CLOSED');
+  const setMinimized = () => props.setApp('MUSIC_MINIMIZED');
+  const setMaximized = () => props.setApp('MUSIC_MAXIMIZED');
   return (
     <div
       className={styles.music}
-      data-show={props.show}
+      data-show={props.state}
       style={{
         background:
           MorandiColorList[
@@ -26,7 +29,11 @@ export const Music = (props: MusicProps) => {
     >
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
-          <AppBarButton setClose={() => props.setApp('Music')} />
+          <AppBarButton
+            setClosed={setClosed}
+            setMinimized={setMinimized}
+            setMaximized={setMaximized}
+          />
         </div>
       </div>
       <div className={styles.content}>

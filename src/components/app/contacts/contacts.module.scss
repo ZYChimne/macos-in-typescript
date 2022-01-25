@@ -1,8 +1,5 @@
 @use '../../../utils/colors.scss';
 .contacts {
-  width: 900px;
-  height: 360px;
-  border-radius: 12px;
   flex-direction: row;
   position: absolute;
   top: 30px;
@@ -12,13 +9,25 @@
   margin: auto 0px;
   transform: translate3d(-50%, 0, 0);
   overflow: hidden;
-  &[data-show='true'] {
-    display: flex;
-    animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
-  }
-  &[data-show='false'] {
+  &[data-show='0'] {
     display: none;
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  &[data-show='1'] {
+    display: flex;
+    animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+    width: 900px;
+    height: 360px;
+    border-radius: 12px;
+  }
+  &[data-show='2'] {
+    display: none;
+    animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  &[data-show='3'] {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 96px);
   }
 }
 .appBar {

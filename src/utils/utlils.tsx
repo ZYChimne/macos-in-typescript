@@ -4,8 +4,8 @@ import React from 'react';
 import { AppList } from './AppList';
 import {
   AppBarBtnProps,
-  AppLoads,
   AppState,
+  AppStateAction,
   IconProps,
   SwitchProps,
 } from './utils.d';
@@ -41,7 +41,7 @@ export const Icon = (props: IconProps) => {
             src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
             alt=""
             data-type={props.type}
-            onClick={() => props.dispatch(AppList[props.value].load)}
+            onClick={() => props.dispatch(AppList[props.value].action)}
           />
           <div className={styles.dockIconActive} data-active={props.active} />
         </div>
@@ -54,7 +54,7 @@ export const Icon = (props: IconProps) => {
             src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
             alt=""
             data-type={props.type}
-            onClick={() => props.dispatch(AppList[props.value].load)}
+            onClick={() => props.dispatch(AppList[props.value].action)}
           />
         </div>
       );
@@ -65,7 +65,7 @@ export const Icon = (props: IconProps) => {
             className={styles.iconImg}
             src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
             alt=""
-            onClick={() => props.dispatch(AppList[props.value].load)}
+            onClick={() => props.dispatch(AppList[props.value].action)}
             data-type={props.type}
             loading="lazy"
           />
@@ -82,247 +82,230 @@ export const Icon = (props: IconProps) => {
 export const AppBarButton = (props: AppBarBtnProps) => {
   return (
     <div className={styles.appBarButtonContainer}>
-      <div className={styles.closeBtn} onClick={props.setClose}>
+      <div className={styles.closeBtn} onClick={props.setClosed}>
         <FontAwesomeIcon className={styles.appbarBtn} icon={faTimes} />
       </div>
-      <div className={styles.minBtn}>
+      <div className={styles.minBtn} onClick={props.setMinimized}>
         <FontAwesomeIcon className={styles.appbarBtn} icon={faMinus} />
       </div>
-      <div className={styles.maxBtn}>
-        <FontAwesomeIcon className={styles.appbarBtn} icon={faPlus} />
-      </div>
+      {props.setMaximized && (
+        <div className={styles.maxBtn} onClick={props.setMaximized}>
+          <FontAwesomeIcon className={styles.appbarBtn} icon={faPlus} />
+        </div>
+      )}
     </div>
   );
 };
-
-export const activeApp = (state: AppState): string => {
-  if (state.showContacts === true) return 'Contacts';
-  else if (state.showMail === true) return 'Mail';
-  else if (state.showMaps === true) return 'Maps';
-  else if (state.showMusic === true) return 'Music';
-  else if (state.showNotes === true) return 'Notes';
-  else if (state.showPhotos === true) return 'Photos';
-  else if (state.showPreferences === true) return 'Preferences';
-  else if (state.showReminders === true) return 'Reminders';
-  else if (state.showSafari === true) return 'Safari';
-  else if (
-    state.showFinder === true ||
-    state.showLaunchpad === true ||
-    state.showSiri === true
-  )
-    return 'Finder';
-  else return 'Finder';
+export const InitialAppState: AppState = {
+  preApp: 'Finder',
+  curApp: 'Finder',
+  launchpad: 0,
+  siri: 0,
+  preferences: 0,
+  mail: 0,
+  maps: 0,
+  finder: 0,
+  safari: 0,
+  photos: 0,
+  contacts: 0,
+  reminders: 0,
+  notes: 0,
+  music: 0,
 };
-export const activeAppMapper = (state: AppState, app: string): boolean => {
-  switch (app) {
-    case 'contacts':
-      return state.showContacts;
-    case 'mail':
-      return state.showMail;
-    case 'maps':
-      return state.showMaps;
-    case 'music':
-      return state.showMusic;
-    case 'notes':
-      return state.showNotes;
-    case 'photos':
-      return state.showPhotos;
-    case 'preferences':
-      return state.showPreferences;
-    case 'reminders':
-      return state.showReminders;
-    case 'safari':
-      return state.showSafari;
-    // case 'siri': return state.showSiri;
-    case 'finder':
-      return state.showFinder;
-    default:
-      return false;
+export const appStateReducer = (
+  appState: AppState,
+  type: AppStateAction
+): AppState => {
+  switch (type) {
+    case 'NONE':
+      return InitialAppState;
+    case 'CONTACTS_CLOSED':
+      return { ...appState, contacts: 0, curApp: appState.preApp };
+    case 'CONTACTS_MAXIMIZED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Contacts',
+        contacts: 3,
+      };
+    case 'CONTACTS_MINIMIZED':
+      return { ...appState, contacts: 2, curApp: appState.preApp };
+    case 'CONTACTS_OPENED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Contacts',
+        contacts: 1,
+      };
+    case 'FINDER_CLOSED':
+      return { ...appState, finder: 0, curApp: appState.preApp };
+    case 'FINDER_MAXIMIZED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Finder',
+        finder: 3,
+      };
+    case 'FINDER_MINIMIZED':
+      return { ...appState, finder: 2, curApp: appState.preApp };
+    case 'FINDER_OPENED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Finder',
+        finder: 1,
+      };
+    case 'LAUNCHPAD_CLOSED':
+      return { ...appState, launchpad: 0 };
+    case 'LAUNCHPAD_OPENED':
+      return { ...appState, launchpad: 1 };
+    case 'MAIL_CLOSED':
+      return { ...appState, mail: 0, curApp: appState.preApp };
+    case 'MAIL_MAXIMIZED':
+      return { ...appState, preApp: appState.curApp, curApp: 'Mail', mail: 3 };
+    case 'MAIL_MINIMIZED':
+      return { ...appState, mail: 2, curApp: appState.preApp };
+    case 'MAIL_OPENED':
+      return { ...appState, preApp: appState.curApp, curApp: 'Mail', mail: 1 };
+    case 'MAPS_CLOSED':
+      return { ...appState, maps: 0, curApp: appState.preApp };
+    case 'MAPS_MAXIMIZED':
+      return { ...appState, preApp: appState.curApp, curApp: 'Maps', maps: 3 };
+    case 'MAPS_MINIMIZED':
+      return { ...appState, maps: 2, curApp: appState.preApp };
+    case 'MAPS_OPENED':
+      return { ...appState, preApp: appState.curApp, curApp: 'Maps', maps: 0 };
+    case 'MUSIC_CLOSED':
+      return { ...appState, music: 0, curApp: appState.preApp };
+    case 'MUSIC_MAXIMIZED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Music',
+        music: 3,
+      };
+    case 'MUSIC_MINIMIZED':
+      return { ...appState, music: 2, curApp: appState.preApp };
+    case 'MUSIC_OPENED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Music',
+        music: 1,
+      };
+    case 'NOTES_CLOSED':
+      return { ...appState, notes: 0, curApp: appState.preApp };
+    case 'NOTES_MAXIMIZED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Notes',
+        notes: 3,
+      };
+    case 'NOTES_MINIMIZED':
+      return { ...appState, notes: 2, curApp: appState.preApp };
+    case 'NOTES_OPENED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Notes',
+        notes: 1,
+      };
+    case 'PHOTOS_CLOSED':
+      return { ...appState, photos: 0, curApp: appState.preApp };
+    case 'PHOTOS_MAXIMIZED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Photos',
+        photos: 3,
+      };
+    case 'PHOTOS_MINIMIZED':
+      return { ...appState, photos: 2, curApp: appState.preApp };
+    case 'PHOTOS_OPENED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Photos',
+        photos: 1,
+      };
+    case 'PREFERENCES_CLOSED':
+      return { ...appState, preferences: 0, curApp: appState.preApp };
+    case 'PREFERENCES_MINIMIZED':
+      return { ...appState, preferences: 2, curApp: appState.preApp };
+    case 'PREFERENCES_OPENED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Preferences',
+        preferences: 1,
+      };
+    case 'REMINDERS_CLOSED':
+      return { ...appState, reminders: 0, curApp: appState.preApp };
+    case 'REMINDERS_MAXIMIZED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Reminders',
+        reminders: 3,
+      };
+    case 'REMINDERS_MINIMIZED':
+      return { ...appState, reminders: 2, curApp: appState.preApp };
+    case 'REMINDERS_OPENED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Reminders',
+        reminders: 1,
+      };
+    case 'SAFARI_CLOSED':
+      return { ...appState, safari: 0, curApp: appState.preApp };
+    case 'SAFARI_MAXIMIZED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Safari',
+        safari: 3,
+      };
+    case 'SAFARI_MINIMIZED':
+      return { ...appState, safari: 2, curApp: appState.preApp };
+    case 'SAFARI_OPENED':
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Safari',
+        safari: 1,
+      };
+    case 'SIRI_CLOSED':
+      return { ...appState, siri: 0 };
+    case 'SIRI_OPENED':
+      return { ...appState, siri: 1 };
   }
 };
-export const appReducer = (state: AppState, type: AppLoads): AppState => {
-  switch (type) {
-    case 'None':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showFinder: false,
-        showMail: false,
-        showMaps: false,
-        showMusic: false,
-        showNotes: false,
-        showPhotos: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: false,
-      };
-    case 'Launchpad':
-      return {
-        ...state,
-        showLaunchpad: !state.showLaunchpad,
-        showContacts: false,
-        showFinder: false,
-        showMail: false,
-        showMaps: false,
-        showMusic: false,
-        showNotes: false,
-        showPhotos: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: false,
-      };
-    case 'Siri':
-      return { ...state, showSiri: !state.showSiri };
-    case 'Preferences':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showFinder: false,
-        showMail: false,
-        showMaps: false,
-        showMusic: false,
-        showNotes: false,
-        showPhotos: false,
-        showReminders: false,
-        showSafari: false,
-        showPreferences: !state.showPreferences,
-      };
-    case 'Mail':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showFinder: false,
-        showMaps: false,
-        showMusic: false,
-        showNotes: false,
-        showPhotos: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: false,
-        showMail: !state.showMail,
-      };
-    case 'Maps':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showFinder: false,
-        showMail: false,
-        showMusic: false,
-        showNotes: false,
-        showPhotos: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: false,
-        showMaps: !state.showMaps,
-      };
-    case 'Contacts':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showFinder: false,
-        showMail: false,
-        showMaps: false,
-        showMusic: false,
-        showNotes: false,
-        showPhotos: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: false,
-        showContacts: !state.showContacts,
-      };
-    case 'Finder':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showMail: false,
-        showMaps: false,
-        showMusic: false,
-        showNotes: false,
-        showPhotos: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: false,
-        showFinder: !state.showFinder,
-      };
-    case 'Safari':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showFinder: false,
-        showMail: false,
-        showMaps: false,
-        showMusic: false,
-        showNotes: false,
-        showPhotos: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: !state.showSafari,
-      };
-    case 'Photos':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showFinder: false,
-        showMail: false,
-        showMaps: false,
-        showMusic: false,
-        showNotes: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: false,
-        showPhotos: !state.showPhotos,
-      };
-    case 'Reminders':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showFinder: false,
-        showMail: false,
-        showMaps: false,
-        showMusic: false,
-        showNotes: false,
-        showPhotos: false,
-        showPreferences: false,
-        showSafari: false,
-        showReminders: !state.showReminders,
-      };
-    case 'Music':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showFinder: false,
-        showMail: false,
-        showMaps: false,
-        showNotes: false,
-        showPhotos: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: false,
-        showMusic: !state.showMusic,
-      };
-    case 'Notes':
-      return {
-        ...state,
-        showLaunchpad: false,
-        showContacts: false,
-        showFinder: false,
-        showMail: false,
-        showMaps: false,
-        showMusic: false,
-        showPhotos: false,
-        showPreferences: false,
-        showReminders: false,
-        showSafari: false,
-        showNotes: !state.showNotes,
-      };
+export const activeAppMapper = (state: AppState, app: string): number => {
+  switch (app) {
+    case 'contacts':
+      return state.contacts;
+    case 'mail':
+      return state.mail;
+    case 'maps':
+      return state.maps;
+    case 'music':
+      return state.music;
+    case 'notes':
+      return state.notes;
+    case 'photos':
+      return state.photos;
+    case 'preferences':
+      return state.preferences;
+    case 'reminders':
+      return state.reminders;
+    case 'safari':
+      return state.safari;
+    // case 'siri': return state.showSiri;
+    case 'finder':
+      return state.finder;
+    default:
+      return 0;
   }
 };

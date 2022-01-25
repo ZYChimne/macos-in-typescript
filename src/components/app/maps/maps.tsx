@@ -34,11 +34,18 @@ const MapsContainer = (props: MapsProps) => {
     setTitle(item.name);
     setZoom(18);
   };
+  const setClosed = () => props.setApp('MAPS_CLOSED');
+  const setMinimized = () => props.setApp('MAPS_MINIMIZED');
+  const setMaximized = () => props.setApp('MAPS_MAXIMIZED');
   return (
-    <div className={styles.maps} data-show={props.show}>
+    <div className={styles.maps} data-show={props.state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
-          <AppBarButton setClose={() => props.setApp('Maps')} />
+          <AppBarButton
+            setClosed={setClosed}
+            setMinimized={setMinimized}
+            setMaximized={setMaximized}
+          />
         </div>
         <div className={styles.mapSubtitle}>Favorites</div>
         <div className={styles.mapInfoContainer}>

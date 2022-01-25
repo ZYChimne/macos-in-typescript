@@ -1,10 +1,10 @@
 import React from 'react';
-import { AppLoads, AppState } from '../../utils/utils.d';
+import { AppState, AppStateAction } from '../../utils/utils.d';
 export type MenubarProps = {
   state: string;
   menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
   menubarState: MenubarPanelStates;
-  appStateDispatcher: React.Dispatch<AppLoads>;
+  setApp: React.Dispatch<AppStateAction>;
   appState: AppState;
 };
 export type PanelProps = {
@@ -19,12 +19,12 @@ export type SearchPanelProps = {
   show: boolean;
   appState: AppState;
   menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
-  appStateDispatcher: React.Dispatch<AppLoads>;
+  setApp: React.Dispatch<AppStateAction>;
 };
 export type ApplePanelProps = {
   show: boolean;
   appState: AppState;
-  appStateDispatcher: React.Dispatch<AppLoads>;
+  setApp: React.Dispatch<AppStateAction>;
   menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
   setLock: React.Dispatch<React.SetStateAction<boolean>>;
 };

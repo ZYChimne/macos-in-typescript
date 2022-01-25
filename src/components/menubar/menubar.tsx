@@ -24,7 +24,7 @@ import {
   faItunesNote,
 } from '@fortawesome/free-brands-svg-icons';
 import styles from './menubar.module.scss';
-import { activeAppMapper, Switch } from '../../utils/utlils';
+import { Switch } from '../../utils/utlils';
 import {
   MenubarItems,
   MenubarProps,
@@ -158,10 +158,11 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className={styles.menubaricon}
-          data-active={props.appState.showSiri}
+          data-active={props.appState.siri === 1}
           onClick={(event) => {
             event.stopPropagation();
-            props.appStateDispatcher('Siri');
+            if (props.appState.siri === 0) props.setApp('SIRI_OPENED');
+            else props.setApp('SIRI_CLOSED');
           }}
         >
           <FontAwesomeIcon
@@ -453,8 +454,7 @@ export const SearchPanel = (props: SearchPanelProps) => {
                   data-active={firstItem}
                   onClick={() => {
                     props.menubarPanelDispatcher('ShowSearch');
-                    if (!activeAppMapper(props.appState, item))
-                      props.appStateDispatcher(AppList[item].load);
+                    props.setApp(AppList[item].action);
                   }}
                 >
                   <img
@@ -624,8 +624,7 @@ export const ApplePanel = (props: ApplePanelProps) => {
         className={styles.panelLineAppleHover}
         onClick={() => {
           props.menubarPanelDispatcher('ShowApple');
-          if (!props.appState.showPreferences)
-            props.appStateDispatcher('Preferences');
+          props.setApp('PREFERENCES_OPENED');
         }}
       >
         <div className={styles.panelText}>About This Mac</div>
@@ -635,8 +634,7 @@ export const ApplePanel = (props: ApplePanelProps) => {
         className={styles.panelLineAppleHover}
         onClick={() => {
           props.menubarPanelDispatcher('ShowApple');
-          if (!props.appState.showPreferences)
-            props.appStateDispatcher('Preferences');
+          props.setApp('PREFERENCES_OPENED');
         }}
       >
         <div className={styles.panelText}>System Preferences...</div>
@@ -645,7 +643,7 @@ export const ApplePanel = (props: ApplePanelProps) => {
         className={styles.panelLineAppleHover}
         onClick={() => {
           props.menubarPanelDispatcher('ShowApple');
-          if (!props.appState.showMaps) props.appStateDispatcher('Maps');
+          props.setApp('MAPS_OPENED');
         }}
       >
         <div className={styles.panelText}>Location</div>
@@ -658,7 +656,7 @@ export const ApplePanel = (props: ApplePanelProps) => {
         className={styles.panelLineAppleHover}
         onClick={() => {
           props.menubarPanelDispatcher('ShowApple');
-          if (!props.appState.showFinder) props.appStateDispatcher('Finder');
+          props.setApp('FINDER_OPENED');
         }}
       >
         <div className={styles.panelText}>Recent Items</div>
@@ -668,7 +666,7 @@ export const ApplePanel = (props: ApplePanelProps) => {
         className={styles.panelLineAppleHover}
         onClick={() => {
           props.menubarPanelDispatcher('ShowApple');
-          if (!props.appState.showFinder) props.appStateDispatcher('None');
+          props.setApp('NONE');
         }}
       >
         <div className={styles.panelText}>Force Quit...</div>

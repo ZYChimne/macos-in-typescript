@@ -54,11 +54,18 @@ export const Finder = (props: FinderProps) => {
     setPrevData(prevData.slice(0, -1));
     setPrevPath(prevPath.slice(0, -1));
   };
+  const setClosed = () => props.setApp('FINDER_CLOSED');
+  const setMinimized = () => props.setApp('FINDER_MINIMIZED');
+  const setMaximized = () => props.setApp('FINDER_MAXIMIZED');
   return (
-    <div className={styles.finder} data-show={props.show}>
+    <div className={styles.finder} data-show={props.state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
-          <AppBarButton setClose={() => props.setApp('Finder')} />
+          <AppBarButton
+            setClosed={setClosed}
+            setMinimized={setMinimized}
+            setMaximized={setMaximized}
+          />
         </div>
         <div className={styles.finderSubtitle}>Favorites</div>
         <div className={styles.appBarLine}>

@@ -1,17 +1,17 @@
 import React from 'react';
-import { AppLoads } from '../../utils/utils.d';
+import { AppStateAction } from '../../utils/utils.d';
 export type LaunchpadProps = {
   show: boolean;
-  setApp: React.Dispatch<AppLoads>;
+  setApp: React.Dispatch<AppStateAction>;
 };
 export type IconPageContainerProps = {
   start: number;
   index: number;
-  setApp: React.Dispatch<AppLoads>;
+  setApp: React.Dispatch<AppStateAction>;
 };
 export type IconLineContainerProps = {
   start: number;
-  setApp: React.Dispatch<AppLoads>;
+  setApp: React.Dispatch<AppStateAction>;
 };
 export const LaunchpadApps: string[] = [
   'books',

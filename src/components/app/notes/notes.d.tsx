@@ -1,9 +1,9 @@
 import React from 'react';
-import { AppLoads } from '../../../utils/utils.d';
+import { AppStateAction } from '../../../utils/utils.d';
 import { MDCONTENT1, MDCONTENT2, MDCONTENT3, MDCONTENT4 } from './notes.c';
 export type NotesProps = {
-  show: boolean;
-  setApp: React.Dispatch<AppLoads>;
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
 };
 export type NoteType = {
   id: number;

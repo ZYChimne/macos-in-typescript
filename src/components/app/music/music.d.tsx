@@ -1,8 +1,8 @@
 import React from 'react';
-import { AppLoads } from '../../../utils/utils.d';
+import { AppStateAction } from '../../../utils/utils.d';
 export type MusicProps = {
-  show: boolean;
-  setApp: React.Dispatch<AppLoads>;
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
   musicList: any;
   playMusic: () => void;
   playOnIndex: (index: number) => void;

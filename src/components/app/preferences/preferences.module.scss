@@ -1,7 +1,4 @@
 .preferences {
-  width: 480px;
-  height: 300px;
-  border-radius: 12px;
   flex-direction: column;
   position: absolute;
   top: 30px;
@@ -11,11 +8,18 @@
   margin: auto 0px;
   transform: translate3d(-50%, 0, 0);
   overflow: hidden;
-  &[data-show='true'] {
+  &[data-show='0'] {
+    display: none;
+    animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  &[data-show='1'] {
     display: flex;
     animation: fadeIn 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+    width: 480px;
+    height: 300px;
+    border-radius: 12px;
   }
-  &[data-show='false'] {
+  &[data-show='2'] {
     display: none;
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
   }

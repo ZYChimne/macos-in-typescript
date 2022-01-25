@@ -12,12 +12,19 @@ export const Notes = (props: NotesProps) => {
     () => marked.parse(NotesList[curNote].content),
     [curNote]
   );
+  const setClosed = () => props.setApp('NOTES_CLOSED');
+  const setMinimized = () => props.setApp('NOTES_MINIMIZED');
+  const setMaximized = () => props.setApp('NOTES_MAXIMIZED');
   return (
-    <div className={styles.notes} data-show={props.show}>
+    <div className={styles.notes} data-show={props.state}>
       <div className={styles.appBar}>
         <div className={styles.appBarHeader}>
           <div className={styles.appBarBtnContainer}>
-            <AppBarButton setClose={() => props.setApp('Notes')} />
+            <AppBarButton
+              setClosed={setClosed}
+              setMinimized={setMinimized}
+              setMaximized={setMaximized}
+            />
           </div>
         </div>
         <div className={styles.appBarContent}>

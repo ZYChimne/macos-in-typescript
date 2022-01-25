@@ -33,11 +33,18 @@ export const Mail = (props: MailProps) => {
   const updateMailBody = (event: React.FormEvent<HTMLTextAreaElement>) => {
     setMailBody(event.currentTarget.value);
   };
+  const setClosed = () => props.setApp('MAIL_CLOSED');
+  const setMaximized = () => props.setApp('MAIL_MAXIMIZED');
+  const setMinimized = () => props.setApp('MAIL_MINIMIZED');
   return (
-    <div className={styles.mail} data-show={props.show}>
+    <div className={styles.mail} data-show={props.state}>
       <div className={styles.appBar}>
         <div className={styles.appBarLeft}>
-          <AppBarButton setClose={() => props.setApp('Mail')} />
+          <AppBarButton
+            setClosed={setClosed}
+            setMaximized={setMaximized}
+            setMinimized={setMinimized}
+          />
         </div>
         <div className={styles.appBarRight}>
           <FontAwesomeIcon

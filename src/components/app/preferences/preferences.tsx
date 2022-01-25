@@ -16,11 +16,17 @@ import styles from './preferences.module.scss';
 export const Preferences = (props: PreferencesProps) => {
   const [contentType, setContentType] =
     useState<PreferencesContentType>('Overview');
+  const setClosed = () => props.setApp('PREFERENCES_CLOSED');
+  const setMinimized = () => props.setApp('PREFERENCES_MINIMIZED');
   return (
-    <div className={styles.preferences} data-show={props.show}>
+    <div className={styles.preferences} data-show={props.state}>
       <div className={styles.appBar}>
         <div className={styles.appBarLeft}>
-          <AppBarButton setClose={() => props.setApp('Preferences')} />
+          <AppBarButton
+            setClosed={setClosed}
+            setMinimized={setMinimized}
+            setMaximized={null}
+          />
         </div>
         <div className={styles.appBarCenter}>
           <div

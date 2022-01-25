@@ -1,8 +1,10 @@
 import React from 'react';
-import { AppLoads } from '../../../utils/utils.d';
+import { AppStateAction } from '../../../utils/utils.d';
 export type ContactsProps = {
-  show: boolean;
-  setApp: React.Dispatch<AppLoads>;
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
+  curContact: string;
+  setCurContact: React.Dispatch<React.SetStateAction<string>>;
 };
 export type ContactType = 'home' | 'work' | 'school' | 'other';
 export type ContactInfo = { type: ContactType; content: string };

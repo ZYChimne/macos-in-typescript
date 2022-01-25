@@ -112,11 +112,18 @@ export const Photos = (props: PhotosProps) => {
     setFit(false);
     setTimeout(() => setId(-1), 250);
   };
+  const setClosed = () => props.setApp('PHOTOS_CLOSED');
+  const setMinimized = () => props.setApp('PHOTOS_MINIMIZED');
+  const setMaximized = () => props.setApp('PHOTOS_MAXIMIZED');
   return (
-    <div className={styles.photos} data-show={props.show}>
+    <div className={styles.photos} data-show={props.state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
-          <AppBarButton setClose={() => props.setApp('Photos')} />
+          <AppBarButton
+            setClosed={setClosed}
+            setMinimized={setMinimized}
+            setMaximized={setMaximized}
+          />
         </div>
         <div className={styles.photosSubtitle}>Photos</div>
         <div

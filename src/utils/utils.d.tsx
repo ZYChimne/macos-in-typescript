@@ -8,39 +8,75 @@ export type IconProps = {
   value: string;
   type: 'Dock' | 'Desktop' | 'Launchpad';
   active: boolean;
-  dispatch: React.Dispatch<AppLoads>;
+  dispatch: React.Dispatch<AppStateAction>;
 };
+// 0 = Closed, 1 = Active, 2 = Maximized, 3 = Minimized
 export type AppState = {
-  showLaunchpad: boolean;
-  showSiri: boolean;
-  showPreferences: boolean;
-  showMail: boolean;
-  showMaps: boolean;
-  showFinder: boolean;
-  showSafari: boolean;
-  showPhotos: boolean;
-  showContacts: boolean;
-  showReminders: boolean;
-  showNotes: boolean;
-  showMusic: boolean;
+  preApp: string;
+  curApp: string;
+  launchpad: number;
+  siri: number;
+  preferences: number;
+  mail: number;
+  maps: number;
+  finder: number;
+  safari: number;
+  photos: number;
+  contacts: number;
+  reminders: number;
+  notes: number;
+  music: number;
 };
 export type AppBarBtnProps = {
-  setClose: () => void;
+  setClosed: () => void;
+  setMinimized: () => void;
+  setMaximized: (() => void) | null;
 };
-export type AppLoads =
-  | 'None'
-  | 'Launchpad'
-  | 'Siri'
-  | 'Preferences'
-  | 'Mail'
-  | 'Maps'
-  | 'Finder'
-  | 'Safari'
-  | 'Photos'
-  | 'Contacts'
-  | 'Reminders'
-  | 'Notes'
-  | 'Music';
+export type AppStateAction =
+  | 'NONE'
+  | 'LAUNCHPAD_CLOSED'
+  | 'LAUNCHPAD_OPENED'
+  | 'SIRI_CLOSED'
+  | 'SIRI_OPENED'
+  | 'PREFERENCES_CLOSED'
+  | 'PREFERENCES_OPENED'
+  | 'PREFERENCES_MINIMIZED'
+  | 'MAIL_CLOSED'
+  | 'MAIL_OPENED'
+  | 'MAIL_MINIMIZED'
+  | 'MAIL_MAXIMIZED'
+  | 'MAPS_CLOSED'
+  | 'MAPS_OPENED'
+  | 'MAPS_MINIMIZED'
+  | 'MAPS_MAXIMIZED'
+  | 'FINDER_CLOSED'
+  | 'FINDER_OPENED'
+  | 'FINDER_MINIMIZED'
+  | 'FINDER_MAXIMIZED'
+  | 'SAFARI_CLOSED'
+  | 'SAFARI_OPENED'
+  | 'SAFARI_MINIMIZED'
+  | 'SAFARI_MAXIMIZED'
+  | 'PHOTOS_CLOSED'
+  | 'PHOTOS_OPENED'
+  | 'PHOTOS_MINIMIZED'
+  | 'PHOTOS_MAXIMIZED'
+  | 'CONTACTS_CLOSED'
+  | 'CONTACTS_OPENED'
+  | 'CONTACTS_MINIMIZED'
+  | 'CONTACTS_MAXIMIZED'
+  | 'REMINDERS_CLOSED'
+  | 'REMINDERS_OPENED'
+  | 'REMINDERS_MINIMIZED'
+  | 'REMINDERS_MAXIMIZED'
+  | 'NOTES_CLOSED'
+  | 'NOTES_OPENED'
+  | 'NOTES_MINIMIZED'
+  | 'NOTES_MAXIMIZED'
+  | 'MUSIC_CLOSED'
+  | 'MUSIC_OPENED'
+  | 'MUSIC_MINIMIZED'
+  | 'MUSIC_MAXIMIZED';
 export const MorandiColorList: string[] = [
   // 209
   '#E2A5AD',

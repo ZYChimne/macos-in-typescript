@@ -9,7 +9,7 @@ export const Dock = (props: DockProps) => {
         type="Dock"
         value="finder"
         dispatch={props.setApp}
-        active={props.appState.showFinder}
+        active={props.appState.finder !== 0}
       />
       <Icon
         type="Dock"
@@ -24,7 +24,7 @@ export const Dock = (props: DockProps) => {
             value={item}
             key={i}
             dispatch={props.setApp}
-            active={activeAppMapper(props.appState, item)}
+            active={activeAppMapper(props.appState, item) !== 0}
           />
         );
       })}

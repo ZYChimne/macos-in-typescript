@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import './App.scss';
 import { Contacts } from './components/app/contacts/contacts';
+import { ContactsInfoList } from './components/app/contacts/contacts.d';
 import { Finder } from './components/app/finder/finder';
 import { Mail } from './components/app/mail/mail';
 import { Maps } from './components/app/maps/maps';
@@ -33,7 +34,7 @@ import {
   menubarPanelReducer,
 } from './components/menubar/menubar.r';
 import { Wallpaper } from './components/wallpaper/wallpaper';
-import { activeApp, appReducer } from './utils/utlils';
+import { appStateReducer, InitialAppState } from './utils/utlils';
 
 function App() {
   const appRef = useRef<HTMLDivElement>(null);
@@ -54,20 +55,10 @@ function App() {
       showNotification: false,
     }
   );
-  const [appState, appStateDispatcher] = useReducer(appReducer, {
-    showLaunchpad: false,
-    showSiri: false,
-    showPreferences: false,
-    showMail: false,
-    showMaps: false,
-    showFinder: false,
-    showSafari: false,
-    showPhotos: false,
-    showContacts: false,
-    showReminders: false,
-    showNotes: false,
-    showMusic: false,
-  });
+  const [appState, appStateDispatcher] = useReducer(
+    appStateReducer,
+    InitialAppState
+  );
   const [wifiState, setWifi] = useState(true);
   const [bluetoothState, setBluetooth] = useState(true);
   const [focusState, setFocus] = useReducer(focusReducer, {
@@ -76,6 +67,9 @@ function App() {
   });
   const [darkState, setDark] = useState(false);
   const [fullscreenState, setFullscreen] = useState(false);
+  const [curContact, setCurContact] = useState(
+    Object.keys(ContactsInfoList)[0]
+  );
   const player = useRef(
     new (window as any).QMplayer({ target: 'web', fliter: true, loop: true })
   );
@@ -140,11 +134,11 @@ function App() {
           {!lock && (
             <>
               <Menubar
-                state={activeApp(appState)}
+                state={appState.curApp}
                 menubarPanelDispatcher={menubarPanelDispatcher}
                 menubarState={menubarPanelState}
                 appState={appState}
-                appStateDispatcher={appStateDispatcher}
+                setApp={appStateDispatcher}
               />
               <WiFiPanel
                 show={menubarPanelState.showWifi}
@@ -161,7 +155,7 @@ function App() {
               <SearchPanel
                 show={menubarPanelState.showSearch}
                 appState={appState}
-                appStateDispatcher={appStateDispatcher}
+                setApp={appStateDispatcher}
                 menubarPanelDispatcher={menubarPanelDispatcher}
               />
               <FocusPanel
@@ -172,7 +166,7 @@ function App() {
               <ApplePanel
                 show={menubarPanelState.showApple}
                 appState={appState}
-                appStateDispatcher={appStateDispatcher}
+                setApp={appStateDispatcher}
                 menubarPanelDispatcher={menubarPanelDispatcher}
                 setLock={setLock}
               />
@@ -193,43 +187,36 @@ function App() {
                 fullscreen={fullscreenState}
                 enterFullscreen={enterFullscreen}
               />
-              <Siri show={appState.showSiri} />
+              <Siri show={appState.siri === 1} />
               <NotificationPanel show={menubarPanelState.showNotification} />
               <Launchpad
-                show={appState.showLaunchpad}
+                show={appState.launchpad === 1}
                 setApp={appStateDispatcher}
               />
               <div onClick={() => menubarPanelDispatcher('Hide')}>
                 <Dock appState={appState} setApp={appStateDispatcher} />
                 <Preferences
-                  show={appState.showPreferences}
+                  state={appState.preferences}
                   setApp={appStateDispatcher}
                 />
-                <Safari
-                  show={appState.showSafari}
-                  setApp={appStateDispatcher}
-                />
-                <Mail show={appState.showMail} setApp={appStateDispatcher} />
-                <Maps show={appState.showMaps} setApp={appStateDispatcher} />
-                <Finder
-                  show={appState.showFinder}
-                  setApp={appStateDispatcher}
-                />
-                <Photos
-                  show={appState.showPhotos}
-                  setApp={appStateDispatcher}
-                />
+                <Safari state={appState.safari} setApp={appStateDispatcher} />
+                <Mail state={appState.mail} setApp={appStateDispatcher} />
+                <Maps state={appState.maps} setApp={appStateDispatcher} />
+                <Finder state={appState.finder} setApp={appStateDispatcher} />
+                <Photos state={appState.photos} setApp={appStateDispatcher} />
                 <Contacts
-                  show={appState.showContacts}
+                  state={appState.contacts}
                   setApp={appStateDispatcher}
+                  curContact={curContact}
+                  setCurContact={setCurContact}
                 />
                 <Reminders
-                  show={appState.showReminders}
+                  state={appState.reminders}
                   setApp={appStateDispatcher}
                 />
-                <Notes show={appState.showNotes} setApp={appStateDispatcher} />
+                <Notes state={appState.notes} setApp={appStateDispatcher} />
                 <Music
-                  show={appState.showMusic}
+                  state={appState.music}
                   setApp={appStateDispatcher}
                   musicList={musicList}
                   playMusic={playMusic}

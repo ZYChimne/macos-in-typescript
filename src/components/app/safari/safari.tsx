@@ -18,11 +18,18 @@ export const Safari = (props: SafariProps) => {
   const onAddressInput = (event: React.FormEvent<HTMLInputElement>) => {
     setAddress(event.currentTarget.value);
   };
+  const setClosed = () => props.setApp('SAFARI_CLOSED');
+  const setMinimized = () => props.setApp('SAFARI_MINIMIZED');
+  const setMaximized = () => props.setApp('SAFARI_MAXIMIZED');
   return (
-    <div className={styles.safari} data-show={props.show}>
+    <div className={styles.safari} data-show={props.state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
-          <AppBarButton setClose={() => props.setApp('Safari')} />
+          <AppBarButton
+            setClosed={setClosed}
+            setMinimized={setMinimized}
+            setMaximized={setMaximized}
+          />
         </div>
         <input
           className={styles.searchbar}
