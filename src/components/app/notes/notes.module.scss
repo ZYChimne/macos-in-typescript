@@ -8,6 +8,7 @@
   margin: auto 0px;
   transform: translate3d(-50%, 0, 0);
   overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   &[data-show='0'] {
     display: none;
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -31,7 +32,7 @@
   }
 }
 .appBar {
-  width: 30%;
+  width: 240px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -39,7 +40,7 @@
 }
 .appBarHeader {
   width: 100%;
-  height: 10%;
+  height: 48px;
   background: rgba(250, 250, 250, 1);
   border-bottom: 1px solid rgba(217, 216, 209, 1);
   display: flex;
@@ -48,7 +49,7 @@
 }
 .appBarContent {
   width: 100%;
-  height: 90%;
+  height: calc(100% - 48px);
   background: white;
   display: flex;
   flex-direction: column;
@@ -118,7 +119,7 @@
   color: rgba(128, 128, 128, 1);
 }
 .content {
-  width: 70%;
+  width: calc(100% - 240px);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -127,7 +128,7 @@
 }
 .notesBar {
   width: 100%;
-  height: 10%;
+  height: 48px;
   background: rgba(250, 250, 250, 1);
   border-bottom: 1px solid rgba(217, 216, 209, 1);
   display: flex;
@@ -162,8 +163,8 @@
 }
 .notesContent {
   display: block;
-  height: 90%;
-  width: 90%;
+  height: calc(100% - 48px);
+  margin: 0 12px;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;

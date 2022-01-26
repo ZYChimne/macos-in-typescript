@@ -20,7 +20,11 @@ export const Safari = (props: SafariProps) => {
   };
   const setClosed = () => props.setApp('SAFARI_CLOSED');
   const setMinimized = () => props.setApp('SAFARI_MINIMIZED');
-  const setMaximized = () => props.setApp('SAFARI_MAXIMIZED');
+  const setMaximized = () => {
+    if (props.state === 3) {
+      props.setApp('SAFARI_OPENED');
+    } else props.setApp('SAFARI_MAXIMIZED');
+  };
   return (
     <div className={styles.safari} data-show={props.state}>
       <div className={styles.appBar}>

@@ -9,6 +9,7 @@
   margin: auto 0px;
   transform: translate3d(-50%, 0, 0);
   overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   &[data-show='0'] {
     display: none;
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);

@@ -8,6 +8,7 @@
   margin: auto 0px;
   transform: translate3d(-50%, 0, 0);
   overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   &[data-show='0'] {
     display: none;
     animation: fadeOut 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -31,7 +32,7 @@
   }
 }
 .appBar {
-  width: 25%;
+  width: 210px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -73,7 +74,7 @@
   padding: 3px;
 }
 .content {
-  width: 75%;
+  width: calc(100% - 210px);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -82,7 +83,7 @@
 .photosBar {
   background: rgba(250, 250, 250, 1);
   width: 100%;
-  height: 10%;
+  height: 48px;
   border-bottom: 1px solid rgba(217, 216, 209, 1);
   display: flex;
   flex-direction: row;
@@ -126,7 +127,7 @@
 }
 .photosContent {
   width: 100%;
-  height: 90%;
+  height: calc(100% - 48px);
   display: flex;
   flex-direction: column;
   background: white;

@@ -14,7 +14,11 @@ export const Notes = (props: NotesProps) => {
   );
   const setClosed = () => props.setApp('NOTES_CLOSED');
   const setMinimized = () => props.setApp('NOTES_MINIMIZED');
-  const setMaximized = () => props.setApp('NOTES_MAXIMIZED');
+  const setMaximized = () => {
+    if (props.state === 3) {
+      props.setApp('NOTES_OPENED');
+    } else props.setApp('NOTES_MAXIMIZED');
+  };
   return (
     <div className={styles.notes} data-show={props.state}>
       <div className={styles.appBar}>

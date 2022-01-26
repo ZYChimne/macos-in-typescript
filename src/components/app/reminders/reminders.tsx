@@ -20,7 +20,11 @@ export const Reminders = (props: RemindersProps) => {
   const [curTag, setCurTag] = useState('Today');
   const setClosed = () => props.setApp('REMINDERS_CLOSED');
   const setMinimized = () => props.setApp('REMINDERS_MINIMIZED');
-  const setMaximized = () => props.setApp('REMINDERS_MAXIMIZED');
+  const setMaximized = () => {
+    if (props.state === 3) {
+      props.setApp('REMINDERS_OPENED');
+    } else props.setApp('REMINDERS_MAXIMIZED');
+  };
   return (
     <div className={styles.reminders} data-show={props.state}>
       <div className={styles.appBar}>

@@ -15,7 +15,11 @@ import styles from './music.module.scss';
 export const Music = (props: MusicProps) => {
   const setClosed = () => props.setApp('MUSIC_CLOSED');
   const setMinimized = () => props.setApp('MUSIC_MINIMIZED');
-  const setMaximized = () => props.setApp('MUSIC_MAXIMIZED');
+  const setMaximized = () => {
+    if (props.state === 3) {
+      props.setApp('MUSIC_OPENED');
+    } else props.setApp('MUSIC_MAXIMIZED');
+  };
   return (
     <div
       className={styles.music}

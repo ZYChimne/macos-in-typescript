@@ -114,7 +114,11 @@ export const Photos = (props: PhotosProps) => {
   };
   const setClosed = () => props.setApp('PHOTOS_CLOSED');
   const setMinimized = () => props.setApp('PHOTOS_MINIMIZED');
-  const setMaximized = () => props.setApp('PHOTOS_MAXIMIZED');
+  const setMaximized = () => {
+    if (props.state === 3) {
+      props.setApp('PHOTOS_OPENED');
+    } else props.setApp('PHOTOS_MAXIMIZED');
+  };
   return (
     <div className={styles.photos} data-show={props.state}>
       <div className={styles.appBar}>
