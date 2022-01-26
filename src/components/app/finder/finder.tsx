@@ -56,7 +56,11 @@ export const Finder = (props: FinderProps) => {
   };
   const setClosed = () => props.setApp('FINDER_CLOSED');
   const setMinimized = () => props.setApp('FINDER_MINIMIZED');
-  const setMaximized = () => props.setApp('FINDER_MAXIMIZED');
+  const setMaximized = () => {
+    if (props.state === 3) {
+      props.setApp('FINDER_OPENED');
+    } else props.setApp('FINDER_MAXIMIZED');
+  };
   return (
     <div className={styles.finder} data-show={props.state}>
       <div className={styles.appBar}>

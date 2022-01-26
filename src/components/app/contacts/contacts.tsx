@@ -18,7 +18,11 @@ import styles from './contacts.module.scss';
 export const Contacts = (props: ContactsProps) => {
   const setClosed = () => props.setApp('CONTACTS_CLOSED');
   const setMinimized = () => props.setApp('CONTACTS_MINIMIZED');
-  const setMaximized = () => props.setApp('CONTACTS_MAXIMIZED');
+  const setMaximized = () => {
+    if (props.state === 3) {
+      props.setApp('CONTACTS_OPENED');
+    } else props.setApp('CONTACTS_MAXIMIZED');
+  };
   return (
     <div className={styles.contacts} data-show={props.state}>
       <div className={styles.appBar}>

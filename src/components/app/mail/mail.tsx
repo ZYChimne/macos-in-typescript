@@ -34,8 +34,12 @@ export const Mail = (props: MailProps) => {
     setMailBody(event.currentTarget.value);
   };
   const setClosed = () => props.setApp('MAIL_CLOSED');
-  const setMaximized = () => props.setApp('MAIL_MAXIMIZED');
   const setMinimized = () => props.setApp('MAIL_MINIMIZED');
+  const setMaximized = () => {
+    if (props.state === 3) {
+      props.setApp('MAIL_OPENED');
+    } else props.setApp('MAIL_MAXIMIZED');
+  };
   return (
     <div className={styles.mail} data-show={props.state}>
       <div className={styles.appBar}>

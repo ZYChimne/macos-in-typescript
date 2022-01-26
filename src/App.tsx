@@ -36,7 +36,7 @@ import {
 import { Wallpaper } from './components/wallpaper/wallpaper';
 import { appStateReducer, InitialAppState } from './utils/utlils';
 
-function App() {
+const App = () => {
   const appRef = useRef<HTMLDivElement>(null);
   const [boot, setBoot] = useState(true);
   const [lock, setLock] = useState(false);
@@ -240,6 +240,6 @@ function App() {
     If you are using an iPad, you may need to rotate the screen and refresh the page.`}
     </div>
   );
-}
+};
 
 export default App;

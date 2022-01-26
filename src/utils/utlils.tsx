@@ -27,7 +27,6 @@ export const Switch = (props: SwitchProps) => {
 };
 
 export const Icon = (props: IconProps) => {
-  // if (!(props.value in AppList)) console.log(props.value);
   switch (props.type) {
     case 'Dock':
       return (
@@ -174,7 +173,7 @@ export const appStateReducer = (
     case 'MAPS_MINIMIZED':
       return { ...appState, maps: 2, curApp: appState.preApp };
     case 'MAPS_OPENED':
-      return { ...appState, preApp: appState.curApp, curApp: 'Maps', maps: 0 };
+      return { ...appState, preApp: appState.curApp, curApp: 'Maps', maps: 1 };
     case 'MUSIC_CLOSED':
       return { ...appState, music: 0, curApp: appState.preApp };
     case 'MUSIC_MAXIMIZED':
@@ -302,7 +301,6 @@ export const activeAppMapper = (state: AppState, app: string): number => {
       return state.reminders;
     case 'safari':
       return state.safari;
-    // case 'siri': return state.showSiri;
     case 'finder':
       return state.finder;
     default:

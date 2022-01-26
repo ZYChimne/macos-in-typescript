@@ -31,7 +31,7 @@
   }
 }
 .appBar {
-  width: 20%;
+  width: 180px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@
   margin: 12px 0;
 }
 .content {
-  width: 80%;
+  width: calc(100% - 180px);
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -79,7 +79,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 .contactsBarTitle {
   display: flex;
@@ -111,12 +110,13 @@
   }
 }
 .iconContainer {
-  height: 20%;
+  height: 72px;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-top: 12px;
 }
 .contactsIconBox {
   background-color: rgba(163, 167, 179, 1);
@@ -136,7 +136,7 @@
   margin-left: 12px;
 }
 .methodContainer {
-  height: 10%;
+  height: 36px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -144,7 +144,7 @@
 }
 .contactsInfoContainer {
   display: flex;
-  height: 60%;
+  height: calc(100% - 120px);
   width: 100%;
   flex-direction: column;
   align-items: center;

@@ -31,7 +31,7 @@
   }
 }
 .appBar {
-  width: 25%;
+  width: 210px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@
   margin: 6px;
 }
 .content {
-  width: 75%;
+  width: calc(100% - 210px);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -57,7 +57,7 @@
 }
 .finderBar {
   width: 100%;
-  height: 12%;
+  height: 60px;
   border-bottom: 1px solid rgba(217, 216, 209, 1);
   display: flex;
   flex-direction: row;
@@ -86,7 +86,7 @@
 }
 .finderContent {
   width: 100%;
-  height: 88%;
+  height: calc(100% - 60px);
   display: flex;
 }
 .finderBarText {
