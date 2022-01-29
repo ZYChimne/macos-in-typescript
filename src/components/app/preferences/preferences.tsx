@@ -1,12 +1,11 @@
 import { faApple } from '@fortawesome/free-brands-svg-icons';
 import { faGlassWhiskey, faTv } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React from 'react';
 import { AppBarButton } from '../../../utils/utlils';
 import {
   AboutContent,
   PreferencesContentProps,
-  PreferencesContentType,
   PreferencesProps,
   SupportImportant,
   SupportText,
@@ -14,8 +13,6 @@ import {
 import styles from './preferences.module.scss';
 
 export const Preferences = (props: PreferencesProps) => {
-  const [contentType, setContentType] =
-    useState<PreferencesContentType>('Overview');
   const setClosed = () => props.setApp('PREFERENCES_CLOSED');
   const setMinimized = () => props.setApp('PREFERENCES_MINIMIZED');
   return (
@@ -31,42 +28,42 @@ export const Preferences = (props: PreferencesProps) => {
         <div className={styles.appBarCenter}>
           <div
             className={styles.appBarBtn}
-            data-active={contentType === 'Overview'}
-            onClick={() => setContentType('Overview')}
+            data-active={props.contentType === 'Overview'}
+            onClick={() => props.setContentType('Overview')}
           >
             Overview
           </div>
           <div
             className={styles.appBarBtn}
-            data-active={contentType === 'Displays'}
-            onClick={() => setContentType('Displays')}
+            data-active={props.contentType === 'Displays'}
+            onClick={() => props.setContentType('Displays')}
           >
             Displays
           </div>
           <div
             className={styles.appBarBtn}
-            data-active={contentType === 'Storage'}
-            onClick={() => setContentType('Storage')}
+            data-active={props.contentType === 'Storage'}
+            onClick={() => props.setContentType('Storage')}
           >
             Storage
           </div>
           <div
             className={styles.appBarBtn}
-            data-active={contentType === 'Support'}
-            onClick={() => setContentType('Support')}
+            data-active={props.contentType === 'Support'}
+            onClick={() => props.setContentType('Support')}
           >
             Support
           </div>
           <div
             className={styles.appBarBtn}
-            data-active={contentType === 'About'}
-            onClick={() => setContentType('About')}
+            data-active={props.contentType === 'About'}
+            onClick={() => props.setContentType('About')}
           >
             About
           </div>
         </div>
       </div>
-      <PreferenceContent contentType={contentType} />
+      <PreferenceContent contentType={props.contentType} />
     </div>
   );
 };

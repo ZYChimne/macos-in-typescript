@@ -9,7 +9,6 @@ import {
 } from './launchpad.d';
 import styles from './launchpad.module.scss';
 export const Launchpad = (props: LaunchpadProps) => {
-  const [page, setPage] = useState(0);
   const [launchpadApps, setLaunchpadApps] = useState(LaunchpadApps);
   const pageMax = Math.floor(launchpadApps.length / 35);
   const onInput = (event: React.FormEvent<HTMLInputElement>) => {
@@ -23,18 +22,18 @@ export const Launchpad = (props: LaunchpadProps) => {
     else setLaunchpadApps(LaunchpadApps);
   };
   const switchOnWheel = (event: React.WheelEvent) => {
-    if (event.deltaY < 0 && page > 0) {
-      setPage(page - 1);
-    } else if (event.deltaY > 0 && page < pageMax) {
-      setPage(page + 1);
+    if (event.deltaY < 0 && props.page > 0) {
+      props.setPage(props.page - 1);
+    } else if (event.deltaY > 0 && props.page < pageMax) {
+      props.setPage(props.page + 1);
     }
   };
   const switchOnPointerMove = (event: React.PointerEvent) => {
     if (event.pointerType === 'touch') {
-      if (event.movementX > 0 && page > 0) {
-        setPage(page - 1);
-      } else if (event.movementX < 0 && page < pageMax) {
-        setPage(page + 1);
+      if (event.movementX > 0 && props.page > 0) {
+        props.setPage(props.page - 1);
+      } else if (event.movementX < 0 && props.page < pageMax) {
+        props.setPage(props.page + 1);
       }
     }
   };
@@ -83,7 +82,7 @@ export const Launchpad = (props: LaunchpadProps) => {
           onInput={onInput}
         />
       </div>
-      <div className={styles.iconContainerTrack} data-page={page}>
+      <div className={styles.iconContainerTrack} data-page={props.page}>
         <IconPageContainer setApp={props.setApp} index={0} start={0} />
         {launchpadApps.length > 35 ? (
           <IconPageContainer setApp={props.setApp} index={1} start={35} />
@@ -93,15 +92,15 @@ export const Launchpad = (props: LaunchpadProps) => {
         {launchpadApps.length > 0 ? (
           <div
             className={styles.dot}
-            data-active={page === 0 ? true : false}
-            onClick={() => setPage(0)}
+            data-active={props.page === 0 ? true : false}
+            onClick={() => props.setPage(0)}
           />
         ) : null}
         {launchpadApps.length > 35 ? (
           <div
             className={styles.dot}
-            data-active={page === 1 ? true : false}
-            onClick={() => setPage(1)}
+            data-active={props.page === 1 ? true : false}
+            onClick={() => props.setPage(1)}
           />
         ) : null}
       </div>

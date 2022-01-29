@@ -3,6 +3,8 @@ import { AppStateAction } from '../../../utils/utils.d';
 export type PreferencesProps = {
   state: number;
   setApp: React.Dispatch<AppStateAction>;
+  contentType: PreferencesContentType;
+  setContentType: React.Dispatch<React.SetStateAction<PreferencesContentType>>;
 };
 export type PreferencesContentType =
   | 'Overview'

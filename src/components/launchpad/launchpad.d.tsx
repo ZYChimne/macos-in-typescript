@@ -3,6 +3,8 @@ import { AppStateAction } from '../../utils/utils.d';
 export type LaunchpadProps = {
   show: boolean;
   setApp: React.Dispatch<AppStateAction>;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 };
 export type IconPageContainerProps = {
   start: number;

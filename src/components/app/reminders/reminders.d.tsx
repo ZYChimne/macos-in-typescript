@@ -3,6 +3,8 @@ import { AppStateAction } from '../../../utils/utils.d';
 export type RemindersProps = {
   state: number;
   setApp: React.Dispatch<AppStateAction>;
+  curTag: string;
+  setCurTag: React.Dispatch<React.SetStateAction<string>>;
 };
 export type TagContainerProps = {
   id: string;

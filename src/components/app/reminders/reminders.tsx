@@ -17,7 +17,6 @@ import {
 } from './reminders.d';
 import styles from './reminders.module.scss';
 export const Reminders = (props: RemindersProps) => {
-  const [curTag, setCurTag] = useState('Today');
   const setClosed = () => props.setApp('REMINDERS_CLOSED');
   const setMinimized = () => props.setApp('REMINDERS_MINIMIZED');
   const setMaximized = () => {
@@ -37,12 +36,28 @@ export const Reminders = (props: RemindersProps) => {
         </div>
         <input className={styles.searchbar} type="text" />
         <div className={styles.appBarLine}>
-          <TagContainer id="Today" curTag={curTag} setCurTag={setCurTag} />
-          <TagContainer id="Scheduled" curTag={curTag} setCurTag={setCurTag} />
+          <TagContainer
+            id="Today"
+            curTag={props.curTag}
+            setCurTag={props.setCurTag}
+          />
+          <TagContainer
+            id="Scheduled"
+            curTag={props.curTag}
+            setCurTag={props.setCurTag}
+          />
         </div>
         <div className={styles.appBarLine}>
-          <TagContainer id="All" curTag={curTag} setCurTag={setCurTag} />
-          <TagContainer id="Flagged" curTag={curTag} setCurTag={setCurTag} />
+          <TagContainer
+            id="All"
+            curTag={props.curTag}
+            setCurTag={props.setCurTag}
+          />
+          <TagContainer
+            id="Flagged"
+            curTag={props.curTag}
+            setCurTag={props.setCurTag}
+          />
         </div>
       </div>
       <div className={styles.content}>
@@ -50,16 +65,16 @@ export const Reminders = (props: RemindersProps) => {
         <div className={styles.remindersContent}>
           <div
             className={styles.remindersContentTitle}
-            style={{ color: TagColors[curTag] }}
+            style={{ color: TagColors[props.curTag] }}
           >
-            {curTag}
+            {props.curTag}
           </div>
-          {curTag === 'All' ? (
+          {props.curTag === 'All' ? (
             Object.keys(RemindersEvents).map((item, index) => {
               return <EventContent tag={item} key={index} />;
             })
           ) : (
-            <EventContent tag={curTag} />
+            <EventContent tag={props.curTag} />
           )}
         </div>
       </div>

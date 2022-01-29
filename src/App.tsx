@@ -10,6 +10,7 @@ import { MusicList } from './components/app/music/music.d';
 import { Notes } from './components/app/notes/notes';
 import { Photos } from './components/app/photos/photos';
 import { Preferences } from './components/app/preferences/preferences';
+import { PreferencesContentType } from './components/app/preferences/preferences.d';
 import { Reminders } from './components/app/reminders/reminders';
 import { Safari } from './components/app/safari/safari';
 import { Siri } from './components/app/siri/siri';
@@ -70,6 +71,10 @@ const App = () => {
   const [curContact, setCurContact] = useState(
     Object.keys(ContactsInfoList)[0]
   );
+  const [contentType, setContentType] =
+    useState<PreferencesContentType>('Overview');
+  const [curTag, setCurTag] = useState('Today');
+  const [launchpadPage, setLaunchpadPage] = useState(0);
   const player = useRef(
     new (window as any).QMplayer({ target: 'web', fliter: true, loop: true })
   );
@@ -192,12 +197,16 @@ const App = () => {
               <Launchpad
                 show={appState.launchpad === 1}
                 setApp={appStateDispatcher}
+                page={launchpadPage}
+                setPage={setLaunchpadPage}
               />
               <div onClick={() => menubarPanelDispatcher('Hide')}>
                 <Dock appState={appState} setApp={appStateDispatcher} />
                 <Preferences
                   state={appState.preferences}
                   setApp={appStateDispatcher}
+                  contentType={contentType}
+                  setContentType={setContentType}
                 />
                 <Safari state={appState.safari} setApp={appStateDispatcher} />
                 <Mail state={appState.mail} setApp={appStateDispatcher} />
@@ -213,6 +222,8 @@ const App = () => {
                 <Reminders
                   state={appState.reminders}
                   setApp={appStateDispatcher}
+                  curTag={curTag}
+                  setCurTag={setCurTag}
                 />
                 <Notes state={appState.notes} setApp={appStateDispatcher} />
                 <Music
