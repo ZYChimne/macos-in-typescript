@@ -789,7 +789,7 @@ export const NotificationPanel = (props: NotificationPanelProps) => {
             return (
               <div className={styles.weatherContentCol} key={index}>
                 <div className={styles.weatherContentDate}>
-                  {Number.parseInt(item.fxDate.substring(5, 7))} /{' '}
+                  {Number.parseInt(item.fxDate.substring(5, 7))}/
                   {Number.parseInt(item.fxDate.substring(8, 10))}
                 </div>
                 <img

@@ -9,6 +9,7 @@ There is a project setup with Next.js at [macos-in-next](https://github.com/ZYCh
 * Change event callbacks [React Events](https://reactjs.org/docs/handling-events.html).
 
 ## Features
+* Follow Airbnb JavaScript guide
 * Built components from sratch
 * State management with React.js only
 * CSS and Canvas Animations
