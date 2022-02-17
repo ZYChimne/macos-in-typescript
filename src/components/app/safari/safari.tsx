@@ -1,10 +1,13 @@
 import { faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import { AppStateAction } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
-import { SafariProps } from './safari.d';
 import styles from './safari.module.scss';
-export const Safari = (props: SafariProps) => {
+export const Safari = (props: {
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
+}) => {
   const [address, setAddress] = useState('');
   const onKeyPress = (event: React.KeyboardEvent) => {
     switch (event.key) {

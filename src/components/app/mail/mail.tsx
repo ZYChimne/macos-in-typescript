@@ -1,10 +1,13 @@
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import { AppStateAction } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
-import { MailProps } from './mail.d';
 import styles from './mail.module.scss';
-export const Mail = (props: MailProps) => {
+export const Mail = (props: {
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
+}) => {
   const [mailto, setMailTo] = useState('');
   const [mailcc, setMailcc] = useState('');
   const [mailSubject, setMailSubject] = useState('');

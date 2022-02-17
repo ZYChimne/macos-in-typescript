@@ -305,12 +305,10 @@ export const FocusPanel = (props: FocusPanelProps) => {
     case 'Hour':
       let date = new Date();
       date.setHours(date.getHours() + 1);
-      OnText =
-        'On Until ' +
-        date.toLocaleTimeString('en-CN', {
-          hour: '2-digit',
-          minute: '2-digit',
-        });
+      OnText = `On Until ${date.toLocaleTimeString('en-CN', {
+        hour: '2-digit',
+        minute: '2-digit',
+      })}`;
       break;
     case 'Event':
       OnText = 'On Until 3:00 PM';

@@ -1,7 +1,9 @@
 import React from 'react';
-import { LockScreenProps } from './lockscreen.d';
 import styles from './lockscreen.module.scss';
-export const LockScreen = (props: LockScreenProps) => {
+export const LockScreen = (props: {
+  lock: boolean;
+  setLock: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' || event.code === 'Enter') {
       props.setLock(false);
