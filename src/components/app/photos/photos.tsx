@@ -227,12 +227,6 @@ export const Photos = (props: PhotosProps) => {
             className={styles.photosBarContainer}
             style={{ justifyContent: `flex-end` }}
           >
-            {/* <div className={styles.photosBarIconBox}>
-              <FontAwesomeIcon
-                className={styles.photosBarIcon}
-                icon={faHeart}
-              />
-            </div> */}
             <input className={styles.searchbar} type="text" />
           </div>
         </div>
@@ -266,7 +260,7 @@ const PhotosContent = (props: PhotosContentProps) => {
     const contentByDate = (
       <div className={styles.contentByDate} key={curI}>
         <div className={styles.contentDate}>
-          {MonthNames[Number.parseInt(month) - 1] + `, ` + year}
+          {MonthNames[Number.parseInt(month) - 1]}, {year}
         </div>
         <div className={styles.contentImgContainer}>
           {PhotosList.slice(preI, curI).map((item, index) => {
@@ -309,8 +303,8 @@ const PhotosContent = (props: PhotosContentProps) => {
           top: props.imgTop,
           left: props.imgLeft,
           display: all ? `none` : 'block',
-          width: props.imgWidth + `px`,
-          height: props.imgHeight + `px`,
+          width: `${props.imgWidth}px`,
+          height: `${props.imgHeight}px`,
         }}
       />
     </div>

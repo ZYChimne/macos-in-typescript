@@ -43,11 +43,8 @@ export const Notes = (props: NotesProps) => {
                 <div className={styles.appBarLineTitle}>{item.title}</div>
                 <div className={styles.appBarLineSubtitle}>
                   <div className={styles.appBarLineDate}>
-                    {MonthNames[
-                      Number.parseInt(item.date.substring(4, 6)) - 1
-                    ] +
-                      `, ` +
-                      Number.parseInt(item.date.substring(6, 8))}
+                    {MonthNames[Number.parseInt(item.date.substring(4, 6)) - 1]}
+                    , {Number.parseInt(item.date.substring(6, 8))}
                   </div>
                   <div className={styles.appBarLinePre}>{item.content}</div>
                 </div>
@@ -65,12 +62,6 @@ export const Notes = (props: NotesProps) => {
       </div>
       <div className={styles.content}>
         <div className={styles.notesBar}>
-          {/* <div
-            className={styles.notesBarIconBox}
-            style={{ marginLeft: `12px` }}
-          >
-            <FontAwesomeIcon className={styles.notesBarIcon} icon={faEdit} />
-          </div> */}
           <input className={styles.searchbar} type="text" />
         </div>
         <div

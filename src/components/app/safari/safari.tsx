@@ -9,7 +9,7 @@ export const Safari = (props: SafariProps) => {
   const onKeyPress = (event: React.KeyboardEvent) => {
     switch (event.key) {
       case 'Enter':
-        window.open(`https://` + address, '_blank');
+        window.open(`https://${address}`, '_blank');
         return;
       default:
         return;

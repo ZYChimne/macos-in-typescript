@@ -114,7 +114,7 @@ export const Music = (props: MusicProps) => {
 const MusicListLine = (props: MusicLineProps) => {
   return (
     <div className={styles.musicLine} onClick={props.onClick}>
-      {props.title + ' - ' + props.singers + ' - ' + props.album}
+      {props.title} - {props.singers} - {props.album}
     </div>
   );
 };

@@ -243,12 +243,10 @@ const App = () => {
     </div>
   ) : (
     <div>
-      {`Your Window width = ` +
-        windowWidth +
-        ` and height = ` +
-        windowHeight +
-        ` .Please run on a device with width >= 1024 and height >= 600 for content to display properly. 
-    If you are using an iPad, you may need to rotate the screen and refresh the page.`}
+      Your Window width = {windowWidth} and height = {windowHeight}.Please run
+      on a device with width `&gt;`= 1024 and height `&gt;`= 600 for content to
+      display properly. If you are using an iPad, you may need to rotate the
+      screen and refresh the page.
     </div>
   );
 };

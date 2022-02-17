@@ -459,7 +459,7 @@ export const SearchPanel = (props: SearchPanelProps) => {
                 >
                   <img
                     className={styles.searchLineIcon}
-                    src={'/assets/icons/apps/' + AppList[item].ctx + '.png'}
+                    src={`/assets/icons/apps/${AppList[item].ctx}.png`}
                     alt=""
                     loading="lazy"
                   />
@@ -772,22 +772,15 @@ export const NotificationPanel = (props: NotificationPanelProps) => {
           <div className={styles.weatherHeaderRight}>
             <img
               className={styles.weatherHeaderIcon}
-              src={
-                '/assets/qweather/icons/' +
-                weatherData.daily[0].iconDay +
-                '.svg'
-              }
+              src={`/assets/qweather/icons/${weatherData.daily[0].iconDay}.svg`}
               alt=""
             />
             <div className={styles.weatherSubtitle}>
               {weatherData.daily[0].textDay}
             </div>
             <div className={styles.weatherSubtitle}>
-              {'H: ' +
-                weatherData.daily[0].tempMax +
-                '°, L:' +
-                weatherData.daily[0].tempMin +
-                '°'}
+              H: {weatherData.daily[0].tempMax}°, L:{' '}
+              {weatherData.daily[0].tempMin}°
             </div>
           </div>
         </div>
@@ -796,13 +789,12 @@ export const NotificationPanel = (props: NotificationPanelProps) => {
             return (
               <div className={styles.weatherContentCol} key={index}>
                 <div className={styles.weatherContentDate}>
-                  {Number.parseInt(item.fxDate.substring(5, 7)) +
-                    '/' +
-                    Number.parseInt(item.fxDate.substring(8, 10))}
+                  {Number.parseInt(item.fxDate.substring(5, 7))} /{' '}
+                  {Number.parseInt(item.fxDate.substring(8, 10))}
                 </div>
                 <img
                   className={styles.weatherContentIcon}
-                  src={'/assets/qweather/icons/' + item.iconDay + '.svg'}
+                  src={`/assets/qweather/icons/${item.iconDay}.svg`}
                   alt=""
                 />
                 <div className={styles.weatherContentTemp}>
@@ -810,7 +802,8 @@ export const NotificationPanel = (props: NotificationPanelProps) => {
                     (Number.parseInt(item.tempMax) +
                       Number.parseInt(item.tempMin)) /
                       2
-                  ) + `°`}
+                  )}
+                  °
                 </div>
               </div>
             );

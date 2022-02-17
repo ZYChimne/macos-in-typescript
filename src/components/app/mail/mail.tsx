@@ -11,14 +11,7 @@ export const Mail = (props: MailProps) => {
   const [mailBody, setMailBody] = useState('');
   const sendOnClick = () => {
     window.open(
-      'mailto:' +
-        mailto +
-        '?cc=' +
-        mailcc +
-        '&subject=' +
-        mailSubject +
-        '&body=' +
-        mailBody
+      `mailto:${mailto}?cc=${mailcc}&subject=${mailSubject}&body=${mailBody}`
     );
   };
   const updateMailto = (event: React.FormEvent<HTMLInputElement>) => {

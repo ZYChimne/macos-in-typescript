@@ -202,10 +202,7 @@ const MapLine = (props: MapLineProps) => {
       <div className={styles.mapLineTextContainer}>
         <div className={styles.mapLineTitle}>{props.name}</div>
         <div className={styles.mapLineSubtitle}>
-          {'Longitude: ' +
-            props.lng.toFixed(2) +
-            ', Latitude: ' +
-            props.lat.toFixed(2)}
+          Longitude: {props.lng.toFixed(2)} Latitude: {props.lat.toFixed(2)}
         </div>
       </div>
     </div>

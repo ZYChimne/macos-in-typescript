@@ -37,7 +37,7 @@ export const Icon = (props: IconProps) => {
         >
           <img
             className={styles.iconImg}
-            src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
+            src={`/assets/icons/apps/${AppList[props.value].ctx}.png`}
             alt=""
             data-type={props.type}
             onClick={() => props.dispatch(AppList[props.value].action)}
@@ -50,7 +50,7 @@ export const Icon = (props: IconProps) => {
         <div className={styles.icon} data-type={props.type}>
           <img
             className={styles.iconImg}
-            src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
+            src={`/assets/icons/apps/${AppList[props.value].ctx}.png`}
             alt=""
             data-type={props.type}
             onClick={() => props.dispatch(AppList[props.value].action)}
@@ -62,7 +62,7 @@ export const Icon = (props: IconProps) => {
         <div className={styles.icon} data-type={props.type}>
           <img
             className={styles.iconImg}
-            src={'/assets/icons/apps/' + AppList[props.value].ctx + '.png'}
+            src={`/assets/icons/apps/${AppList[props.value].ctx}.png`}
             alt=""
             onClick={() => props.dispatch(AppList[props.value].action)}
             data-type={props.type}
