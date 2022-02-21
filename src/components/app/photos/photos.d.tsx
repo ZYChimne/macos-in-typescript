@@ -1,9 +1,4 @@
 import React from 'react';
-import { AppStateAction } from '../../../utils/utils.d';
-export type PhotosProps = {
-  state: number;
-  setApp: React.Dispatch<AppStateAction>;
-};
 export type PhotoType = {
   src: string;
   time: string;

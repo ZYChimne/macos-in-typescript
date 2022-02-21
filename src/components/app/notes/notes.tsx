@@ -1,26 +1,32 @@
 import React, { useMemo, useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
-import { NotesList, NotesProps } from './notes.d';
+import { NotesList } from './notes.d';
 import { marked } from 'marked';
 import styles from './notes.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
-import { MonthNames } from '../../../utils/utils.d';
-export const Notes = (props: NotesProps) => {
+import { AppStateAction, MonthNames } from '../../../utils/utils.d';
+export const Notes = ({
+  state,
+  setApp,
+}: {
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
+}) => {
   const [curNote, setCurNote] = useState(NotesList[0].id);
   const content = useMemo(
     () => marked.parse(NotesList[curNote].content),
     [curNote]
   );
-  const setClosed = () => props.setApp('NOTES_CLOSED');
-  const setMinimized = () => props.setApp('NOTES_MINIMIZED');
+  const setClosed = () => setApp('NOTES_CLOSED');
+  const setMinimized = () => setApp('NOTES_MINIMIZED');
   const setMaximized = () => {
-    if (props.state === 3) {
-      props.setApp('NOTES_OPENED');
-    } else props.setApp('NOTES_MAXIMIZED');
+    if (state === 3) {
+      setApp('NOTES_OPENED');
+    } else setApp('NOTES_MAXIMIZED');
   };
   return (
-    <div className={styles.notes} data-show={props.state}>
+    <div className={styles.notes} data-show={state}>
       <div className={styles.appBar}>
         <div className={styles.appBarHeader}>
           <div className={styles.appBarBtnContainer}>

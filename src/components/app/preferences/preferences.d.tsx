@@ -12,9 +12,6 @@ export type PreferencesContentType =
   | 'Storage'
   | 'Support'
   | 'About';
-export type PreferencesContentProps = {
-  contentType: PreferencesContentType;
-};
 export type StoragStatus = {
   apps: number;
   documents: number;

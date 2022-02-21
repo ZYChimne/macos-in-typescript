@@ -4,7 +4,10 @@ import React, { useState } from 'react';
 import { AppStateAction } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
 import styles from './mail.module.scss';
-export const Mail = (props: {
+export const Mail = ({
+  state,
+  setApp,
+}: {
   state: number;
   setApp: React.Dispatch<AppStateAction>;
 }) => {
@@ -29,15 +32,15 @@ export const Mail = (props: {
   const updateMailBody = (event: React.FormEvent<HTMLTextAreaElement>) => {
     setMailBody(event.currentTarget.value);
   };
-  const setClosed = () => props.setApp('MAIL_CLOSED');
-  const setMinimized = () => props.setApp('MAIL_MINIMIZED');
+  const setClosed = () => setApp('MAIL_CLOSED');
+  const setMinimized = () => setApp('MAIL_MINIMIZED');
   const setMaximized = () => {
-    if (props.state === 3) {
-      props.setApp('MAIL_OPENED');
-    } else props.setApp('MAIL_MAXIMIZED');
+    if (state === 3) {
+      setApp('MAIL_OPENED');
+    } else setApp('MAIL_MAXIMIZED');
   };
   return (
-    <div className={styles.mail} data-show={props.state}>
+    <div className={styles.mail} data-show={state}>
       <div className={styles.appBar}>
         <div className={styles.appBarLeft}>
           <AppBarButton

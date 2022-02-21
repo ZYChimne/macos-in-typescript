@@ -1,28 +1,3 @@
-import React from 'react';
-import { AppStateAction } from '../../../utils/utils.d';
-export type MusicProps = {
-  state: number;
-  setApp: React.Dispatch<AppStateAction>;
-  musicList: any;
-  playMusic: () => void;
-  playOnIndex: (index: number) => void;
-  playPrev: () => void;
-  playNext: () => void;
-};
-export type MusicInfo = {
-  title: string;
-  singers: string[];
-  album: string;
-  playing: boolean;
-  no: number;
-};
-export type MusicLineProps = {
-  title: string;
-  singers: string[];
-  album: string;
-  playing: boolean;
-  onClick: () => void;
-};
 export const MusicList = [
   '000NbrvJ2RJ73B', // Lost Stars
   '000zGFHg3JQ0Hv', // All of Me

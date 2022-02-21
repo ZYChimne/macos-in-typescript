@@ -1,11 +1,3 @@
-import React from 'react';
-import { AppStateAction } from '../../../utils/utils.d';
-export type ContactsProps = {
-  state: number;
-  setApp: React.Dispatch<AppStateAction>;
-  curContact: string;
-  setCurContact: React.Dispatch<React.SetStateAction<string>>;
-};
 export type ContactType = 'home' | 'work' | 'school' | 'other';
 export type ContactInfo = { type: ContactType; content: string };
 export type ContactsInfo = {
@@ -18,10 +10,6 @@ export type ContactsInfo = {
 };
 export type ContactsContentProps = {
   id: string;
-};
-export type ContactsLineProps = {
-  title: string;
-  text: string;
 };
 export const ContactsInfoList: { [key: string]: ContactsInfo } = {
   'Apple (China)': {

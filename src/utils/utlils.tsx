@@ -2,74 +2,86 @@ import { faMinus, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { AppList } from './AppList';
-import {
-  AppBarBtnProps,
-  AppState,
-  AppStateAction,
-  IconProps,
-  SwitchProps,
-} from './utils.d';
+import { AppState, AppStateAction } from './utils.d';
 import styles from './utils.module.scss';
 
-export const Switch = (props: SwitchProps) => {
+export const Switch = ({
+  id,
+  onClick,
+  state,
+}: {
+  id: string;
+  onClick: Function;
+  state: boolean;
+}) => {
   return (
     <div className={styles.switch}>
       <input
         className={styles.switchInput}
         type="checkbox"
-        id={props.id}
-        checked={props.state}
-        onChange={() => props.onClick(!props.state)}
+        id={id}
+        checked={state}
+        onChange={() => onClick(!state)}
       />
-      <label className={styles.switchCore} htmlFor={props.id} />
+      <label className={styles.switchCore} htmlFor={id} />
     </div>
   );
 };
 
-export const Icon = (props: IconProps) => {
-  switch (props.type) {
+export const Icon = ({
+  value,
+  type,
+  active,
+  dispatch,
+}: {
+  value: string;
+  type: 'Dock' | 'Desktop' | 'Launchpad';
+  active: boolean;
+  dispatch: React.Dispatch<AppStateAction>;
+}) => {
+  switch (type) {
     case 'Dock':
       return (
         <div
           className={styles.icon}
-          data-tooltip={AppList[props.value].name}
-          data-type={props.type}
+          data-tooltip={AppList[value].name}
+          data-type={type}
         >
           <img
             className={styles.iconImg}
-            src={`/assets/icons/apps/${AppList[props.value].ctx}.png`}
+            src={`/assets/icons/apps/${AppList[value].ctx}.png`}
             alt=""
-            data-type={props.type}
-            onClick={() => props.dispatch(AppList[props.value].action)}
+            data-type={type}
+            onClick={() => dispatch(AppList[value].action)}
           />
-          <div className={styles.dockIconActive} data-active={props.active} />
+          <div className={styles.dockIconActive} data-active={active} />
         </div>
       );
     case 'Desktop':
       return (
-        <div className={styles.icon} data-type={props.type}>
+        <div className={styles.icon} data-type={type}>
           <img
             className={styles.iconImg}
-            src={`/assets/icons/apps/${AppList[props.value].ctx}.png`}
+            src={`/assets/icons/apps/${AppList[value].ctx}.png`}
             alt=""
-            data-type={props.type}
-            onClick={() => props.dispatch(AppList[props.value].action)}
+            data-type={type}
+            onClick={() => dispatch(AppList[value].action)}
           />
         </div>
       );
     case 'Launchpad':
       return (
-        <div className={styles.icon} data-type={props.type}>
+        <div className={styles.icon} data-type={type}>
           <img
             className={styles.iconImg}
-            src={`/assets/icons/apps/${AppList[props.value].ctx}.png`}
+            src={`/assets/icons/apps/${AppList[value].ctx}.png`}
             alt=""
-            onClick={() => props.dispatch(AppList[props.value].action)}
-            data-type={props.type}
+            onClick={() => dispatch(AppList[value].action)}
+            data-type={type}
             loading="lazy"
           />
-          <div className={styles.iconText} data-type={props.type}>
-            {AppList[props.value].name}
+          <div className={styles.iconText} data-type={type}>
+            {AppList[value].name}
           </div>
         </div>
       );
@@ -78,17 +90,25 @@ export const Icon = (props: IconProps) => {
   }
 };
 
-export const AppBarButton = (props: AppBarBtnProps) => {
+export const AppBarButton = ({
+  setClosed,
+  setMinimized,
+  setMaximized,
+}: {
+  setClosed: () => void;
+  setMinimized: () => void;
+  setMaximized: (() => void) | null;
+}) => {
   return (
     <div className={styles.appBarButtonContainer}>
-      <div className={styles.closeBtn} onClick={props.setClosed}>
+      <div className={styles.closeBtn} onClick={setClosed}>
         <FontAwesomeIcon className={styles.appbarBtn} icon={faTimes} />
       </div>
-      <div className={styles.minBtn} onClick={props.setMinimized}>
+      <div className={styles.minBtn} onClick={setMinimized}>
         <FontAwesomeIcon className={styles.appbarBtn} icon={faMinus} />
       </div>
-      {props.setMaximized && (
-        <div className={styles.maxBtn} onClick={props.setMaximized}>
+      {setMaximized && (
+        <div className={styles.maxBtn} onClick={setMaximized}>
           <FontAwesomeIcon className={styles.appbarBtn} icon={faPlus} />
         </div>
       )}

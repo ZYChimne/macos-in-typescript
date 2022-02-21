@@ -7,27 +7,6 @@ export type MenubarProps = {
   setApp: React.Dispatch<AppStateAction>;
   appState: AppState;
 };
-export type PanelProps = {
-  show: boolean;
-  state: boolean;
-  setState: React.Dispatch<React.SetStateAction<boolean>>;
-};
-export type SimplePanelProps = {
-  show: boolean;
-};
-export type SearchPanelProps = {
-  show: boolean;
-  appState: AppState;
-  menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
-  setApp: React.Dispatch<AppStateAction>;
-};
-export type ApplePanelProps = {
-  show: boolean;
-  appState: AppState;
-  setApp: React.Dispatch<AppStateAction>;
-  menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
-  setLock: React.Dispatch<React.SetStateAction<boolean>>;
-};
 export type FocusState = {
   state: boolean;
   type: 'Hour' | 'Evening' | 'Event' | 'None';
@@ -37,11 +16,6 @@ export type FocusAction =
   | 'HourChecked'
   | 'EveningChecked'
   | 'EventChecked';
-export type FocusPanelProps = {
-  show: boolean;
-  state: FocusState;
-  dispatch: React.Dispatch<FocusAction>;
-};
 export type ControlPanelProps = {
   show: boolean;
   wifiState: boolean;
@@ -58,14 +32,6 @@ export type ControlPanelProps = {
   playNext: () => void;
   fullscreen: boolean;
   enterFullscreen: () => void;
-};
-export type InputPanelLineProps = {
-  state: string;
-  checked: boolean;
-  dispatch: React.Dispatch<React.SetStateAction<string>>;
-};
-export type NotificationPanelProps = {
-  show: boolean;
 };
 export type MenubarPanelStates = {
   showWifi: boolean;

@@ -29,39 +29,44 @@ import {
   MenubarItems,
   MenubarProps,
   InputLanguages,
-  InputPanelLineProps,
-  PanelProps,
-  SimplePanelProps,
   ControlPanelProps,
-  FocusPanelProps,
   MenubarPanelAction,
-  NotificationPanelProps,
   SampleWeatherData,
   CalendarDataList,
-  ApplePanelProps,
-  SearchPanelProps,
+  FocusAction,
+  FocusState,
 } from './menubar.d';
-import { MorandiColorList } from '../../utils/utils.d';
+import {
+  AppState,
+  AppStateAction,
+  MorandiColorList,
+} from '../../utils/utils.d';
 import { AppList } from '../../utils/AppList';
-export const Menubar = (props: MenubarProps) => {
+export const Menubar = ({
+  state,
+  menubarPanelDispatcher,
+  menubarState,
+  setApp,
+  appState,
+}: MenubarProps) => {
   const handleItemClicked = (
     event: React.MouseEvent,
     type: MenubarPanelAction
   ) => {
     event.stopPropagation();
-    props.menubarPanelDispatcher(type);
+    menubarPanelDispatcher(type);
   };
   return (
     <div
       className={styles.menubar}
       onClick={() => {
-        props.menubarPanelDispatcher('Hide');
+        menubarPanelDispatcher('Hide');
       }}
     >
       <div className={styles.menubarLeft}>
         <div
           className={styles.menubariconapple}
-          data-active={props.menubarState.showApple}
+          data-active={menubarState.showApple}
           onClick={(event) => handleItemClicked(event, 'ShowApple')}
         >
           <FontAwesomeIcon
@@ -69,7 +74,7 @@ export const Menubar = (props: MenubarProps) => {
             icon={faApple}
           />
         </div>
-        {MenubarItems[props.state].map((item, i) => {
+        {MenubarItems[state].map((item, i) => {
           return i === 0 ? (
             <div
               className={styles.menubarItem}
@@ -88,7 +93,7 @@ export const Menubar = (props: MenubarProps) => {
       <div className={styles.menubarRight}>
         <div
           className={styles.menubaricon}
-          data-active={props.menubarState.showFocus}
+          data-active={menubarState.showFocus}
           onClick={(event) => handleItemClicked(event, 'ShowFocus')}
         >
           <FontAwesomeIcon
@@ -98,7 +103,7 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className={styles.menubaricon}
-          data-active={props.menubarState.showInput}
+          data-active={menubarState.showInput}
           onClick={(event) => handleItemClicked(event, 'ShowInput')}
         >
           <FontAwesomeIcon
@@ -108,7 +113,7 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className={styles.menubaricon}
-          data-active={props.menubarState.showBattery}
+          data-active={menubarState.showBattery}
           onClick={(event) => handleItemClicked(event, 'ShowBattery')}
         >
           <FontAwesomeIcon
@@ -118,7 +123,7 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className={styles.menubaricon}
-          data-active={props.menubarState.showWifi}
+          data-active={menubarState.showWifi}
           onClick={(event) => handleItemClicked(event, 'ShowWifi')}
         >
           <FontAwesomeIcon
@@ -128,7 +133,7 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className={styles.menubaricon}
-          data-active={props.menubarState.showBluetooth}
+          data-active={menubarState.showBluetooth}
           onClick={(event) => handleItemClicked(event, 'ShowBluetooth')}
         >
           <FontAwesomeIcon
@@ -138,7 +143,7 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className={styles.menubaricon}
-          data-active={props.menubarState.showSearch}
+          data-active={menubarState.showSearch}
           onClick={(event) => handleItemClicked(event, 'ShowSearch')}
         >
           <FontAwesomeIcon
@@ -148,7 +153,7 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className={styles.menubaricon}
-          data-active={props.menubarState.showControl}
+          data-active={menubarState.showControl}
           onClick={(event) => handleItemClicked(event, 'ShowControl')}
         >
           <FontAwesomeIcon
@@ -158,11 +163,11 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className={styles.menubaricon}
-          data-active={props.appState.siri === 1}
+          data-active={appState.siri === 1}
           onClick={(event) => {
             event.stopPropagation();
-            if (props.appState.siri === 0) props.setApp('SIRI_OPENED');
-            else props.setApp('SIRI_CLOSED');
+            if (appState.siri === 0) setApp('SIRI_OPENED');
+            else setApp('SIRI_CLOSED');
           }}
         >
           <FontAwesomeIcon
@@ -172,7 +177,7 @@ export const Menubar = (props: MenubarProps) => {
         </div>
         <div
           className={styles.date}
-          data-active={props.menubarState.showNotification}
+          data-active={menubarState.showNotification}
           onClick={(event) => handleItemClicked(event, 'ShowNotification')}
         >
           {new Date().toLocaleDateString('en-CN', {
@@ -191,32 +196,36 @@ export const Menubar = (props: MenubarProps) => {
   );
 };
 
-export const WiFiPanel = (props: PanelProps) => {
+export const WiFiPanel = ({
+  show,
+  state,
+  setState,
+}: {
+  show: boolean;
+  state: boolean;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
-    <div className={styles.wifiPanel} data-show={props.show}>
+    <div className={styles.wifiPanel} data-show={show}>
       <div className={styles.panelLineBetween}>
         <div className={styles.panelTitle}>Wi-Fi</div>
         <div className={styles.panelSwitch}>
-          <Switch
-            id="wifiPanelSwitch"
-            state={props.state}
-            onClick={props.setState}
-          />
+          <Switch id="wifiPanelSwitch" state={state} onClick={setState} />
         </div>
       </div>
       <div className={styles.separator} />
-      {props.state ? (
+      {state ? (
         <>
           <div className={styles.panelLineNormal}>
             <div className={styles.panelSubtitle}>Preferred Network</div>
           </div>
           <div className={styles.panelLineBetweenHover}>
             <div className={styles.panelLeft}>
-              <div className={styles.panelIconBox} data-on={props.state}>
+              <div className={styles.panelIconBox} data-on={state}>
                 <FontAwesomeIcon
                   className={styles.panelIcon}
                   icon={faWifi}
-                  data-on={props.state}
+                  data-on={state}
                 />
               </div>
               <div className={styles.panelText}>Wi-Fi-5G</div>
@@ -239,9 +248,9 @@ export const WiFiPanel = (props: PanelProps) => {
   );
 };
 
-export const BatteryPanel = (prop: SimplePanelProps) => {
+export const BatteryPanel = ({ show }: { show: boolean }) => {
   return (
-    <div className={styles.batteryPanel} data-show={prop.show}>
+    <div className={styles.batteryPanel} data-show={show}>
       <div className={styles.panelLineBetween}>
         <div className={styles.panelTitle}>Battery</div>
         <div className={styles.panelSubtitle}>100%</div>
@@ -253,31 +262,36 @@ export const BatteryPanel = (prop: SimplePanelProps) => {
   );
 };
 
-export const InputPanel = (prop: SimplePanelProps) => {
+export const InputPanel = ({ show }: { show: boolean }) => {
   const [state, dispatch] = useState('Pinyin');
-  const InputPanelLine = (props: InputPanelLineProps) => {
+  const InputPanelLine = ({
+    state,
+    checked,
+    dispatch,
+  }: {
+    state: string;
+    checked: boolean;
+    dispatch: React.Dispatch<React.SetStateAction<string>>;
+  }) => {
     const inputCheck = (
       <div className={styles.inputChecked}>
         <FontAwesomeIcon
           className={styles.panelIconSmall}
           icon={faCheck}
-          data-on={props.state}
+          data-on={state}
         />
       </div>
     );
     const inputNotCheck = <div className={styles.inputChecked}></div>;
     return (
-      <div
-        className={styles.inputLine}
-        onClick={() => props.dispatch(props.state)}
-      >
-        {props.checked ? inputCheck : inputNotCheck}
-        <div className={styles.panelText}>{InputLanguages[props.state]}</div>
+      <div className={styles.inputLine} onClick={() => dispatch(state)}>
+        {checked ? inputCheck : inputNotCheck}
+        <div className={styles.panelText}>{InputLanguages[state]}</div>
       </div>
     );
   };
   return (
-    <div className={styles.inputPanel} data-show={prop.show}>
+    <div className={styles.inputPanel} data-show={show}>
       <InputPanelLine checked={true} dispatch={dispatch} state={state} />
       {Object.keys(InputLanguages).map((key) => {
         return key === state ? null : (
@@ -293,9 +307,17 @@ export const InputPanel = (prop: SimplePanelProps) => {
   );
 };
 
-export const FocusPanel = (props: FocusPanelProps) => {
+export const FocusPanel = ({
+  show,
+  state,
+  dispatch,
+}: {
+  show: boolean;
+  state: FocusState;
+  dispatch: React.Dispatch<FocusAction>;
+}) => {
   let OnText: string;
-  switch (props.state.type) {
+  switch (state.type) {
     case 'None':
       OnText = 'On';
       break;
@@ -318,10 +340,10 @@ export const FocusPanel = (props: FocusPanelProps) => {
       break;
   }
   return (
-    <div className={styles.focusPanel} data-show={props.show}>
+    <div className={styles.focusPanel} data-show={show}>
       <div className={styles.focusLine1}>
         <div className={styles.panelTitle}>Focus</div>
-        {props.state.state ? (
+        {state.state ? (
           <div className={styles.panelSubtitle}>{OnText}</div>
         ) : null}
       </div>
@@ -329,28 +351,28 @@ export const FocusPanel = (props: FocusPanelProps) => {
       <div
         className={styles.panelLineNormalHover}
         onClick={() => {
-          props.dispatch('ChangeFocus');
+          dispatch('ChangeFocus');
         }}
       >
-        <div className={styles.panelIconBox} data-on={props.state.state}>
+        <div className={styles.panelIconBox} data-on={state.state}>
           <FontAwesomeIcon
             className={styles.panelIcon}
             icon={faMoon}
-            data-on={props.state}
+            data-on={state}
           />
         </div>
         <div className={styles.panelText}>Do Not Disturb</div>
       </div>
       <div
         className={styles.panelLineNormalHover}
-        onClick={() => props.dispatch('HourChecked')}
+        onClick={() => dispatch('HourChecked')}
       >
         <div className={styles.focusChecked}>
-          {props.state.type === 'Hour' ? (
+          {state.type === 'Hour' ? (
             <FontAwesomeIcon
               className={styles.panelIconSmall}
               icon={faCheck}
-              data-on={props.state}
+              data-on={state}
             />
           ) : null}
         </div>
@@ -358,14 +380,14 @@ export const FocusPanel = (props: FocusPanelProps) => {
       </div>
       <div
         className={styles.panelLineNormalHover}
-        onClick={() => props.dispatch('EveningChecked')}
+        onClick={() => dispatch('EveningChecked')}
       >
         <div className={styles.focusChecked}>
-          {props.state.type === 'Evening' ? (
+          {state.type === 'Evening' ? (
             <FontAwesomeIcon
               className={styles.panelIconSmall}
               icon={faCheck}
-              data-on={props.state}
+              data-on={state}
             />
           ) : null}
         </div>
@@ -373,14 +395,14 @@ export const FocusPanel = (props: FocusPanelProps) => {
       </div>
       <div
         className={styles.panelLineNormalHover}
-        onClick={() => props.dispatch('EventChecked')}
+        onClick={() => dispatch('EventChecked')}
       >
         <div className={styles.focusChecked}>
-          {props.state.type === 'Event' ? (
+          {state.type === 'Event' ? (
             <FontAwesomeIcon
               className={styles.panelIconSmall}
               icon={faCheck}
-              data-on={props.state}
+              data-on={state}
             />
           ) : null}
         </div>
@@ -393,17 +415,21 @@ export const FocusPanel = (props: FocusPanelProps) => {
     </div>
   );
 };
-export const BluetoothPanel = (props: PanelProps) => {
+export const BluetoothPanel = ({
+  show,
+  state,
+  setState,
+}: {
+  show: boolean;
+  state: boolean;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
-    <div className={styles.bluetoothPanel} data-show={props.show}>
+    <div className={styles.bluetoothPanel} data-show={show}>
       <div className={styles.panelLineBetween}>
         <div className={styles.panelTitle}>Bluetooth</div>
         <div className={styles.panelSwitch}>
-          <Switch
-            id="bluetoothPanelSwitch"
-            state={props.state}
-            onClick={props.setState}
-          />
+          <Switch id="bluetoothPanelSwitch" state={state} onClick={setState} />
         </div>
       </div>
       <div className={styles.separator} />
@@ -411,11 +437,11 @@ export const BluetoothPanel = (props: PanelProps) => {
         <div className={styles.panelSubtitle}>Devices</div>
       </div>
       <div className={styles.panelLineNormalHover}>
-        <div className={styles.panelIconBox} data-on={props.state}>
+        <div className={styles.panelIconBox} data-on={state}>
           <FontAwesomeIcon
             className={styles.panelIcon}
             icon={faHeadphonesAlt}
-            data-on={props.state}
+            data-on={state}
           />
         </div>
         <div className={styles.panelText}>WH-1000XM2</div>
@@ -427,14 +453,24 @@ export const BluetoothPanel = (props: PanelProps) => {
     </div>
   );
 };
-export const SearchPanel = (props: SearchPanelProps) => {
+export const SearchPanel = ({
+  show,
+  appState,
+  menubarPanelDispatcher,
+  setApp,
+}: {
+  show: boolean;
+  appState: AppState;
+  menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
+  setApp: React.Dispatch<AppStateAction>;
+}) => {
   const [input, setInput] = useState('');
   let firstItem = true;
   const onInputChange = (event: React.FormEvent<HTMLInputElement>) => {
     setInput(event.currentTarget.value);
   };
   return (
-    <div className={styles.searchPanel} data-show={props.show}>
+    <div className={styles.searchPanel} data-show={show}>
       <input
         className={styles.searchbar}
         type="text"
@@ -451,8 +487,8 @@ export const SearchPanel = (props: SearchPanelProps) => {
                   key={index}
                   data-active={firstItem}
                   onClick={() => {
-                    props.menubarPanelDispatcher('ShowSearch');
-                    props.setApp(AppList[item].action);
+                    menubarPanelDispatcher('ShowSearch');
+                    setApp(AppList[item].action);
                   }}
                 >
                   <img
@@ -615,14 +651,26 @@ export const ControlPanel = (props: ControlPanelProps) => {
     </div>
   );
 };
-export const ApplePanel = (props: ApplePanelProps) => {
+export const ApplePanel = ({
+  show,
+  appState,
+  setApp,
+  menubarPanelDispatcher,
+  setLock,
+}: {
+  show: boolean;
+  appState: AppState;
+  setApp: React.Dispatch<AppStateAction>;
+  menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
+  setLock: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
-    <div className={styles.applePanel} data-show={props.show}>
+    <div className={styles.applePanel} data-show={show}>
       <div
         className={styles.panelLineAppleHover}
         onClick={() => {
-          props.menubarPanelDispatcher('ShowApple');
-          props.setApp('PREFERENCES_OPENED');
+          menubarPanelDispatcher('ShowApple');
+          setApp('PREFERENCES_OPENED');
         }}
       >
         <div className={styles.panelText}>About This Mac</div>
@@ -631,8 +679,8 @@ export const ApplePanel = (props: ApplePanelProps) => {
       <div
         className={styles.panelLineAppleHover}
         onClick={() => {
-          props.menubarPanelDispatcher('ShowApple');
-          props.setApp('PREFERENCES_OPENED');
+          menubarPanelDispatcher('ShowApple');
+          setApp('PREFERENCES_OPENED');
         }}
       >
         <div className={styles.panelText}>System Preferences...</div>
@@ -640,8 +688,8 @@ export const ApplePanel = (props: ApplePanelProps) => {
       <div
         className={styles.panelLineAppleHover}
         onClick={() => {
-          props.menubarPanelDispatcher('ShowApple');
-          props.setApp('MAPS_OPENED');
+          menubarPanelDispatcher('ShowApple');
+          setApp('MAPS_OPENED');
         }}
       >
         <div className={styles.panelText}>Location</div>
@@ -653,8 +701,8 @@ export const ApplePanel = (props: ApplePanelProps) => {
       <div
         className={styles.panelLineAppleHover}
         onClick={() => {
-          props.menubarPanelDispatcher('ShowApple');
-          props.setApp('FINDER_OPENED');
+          menubarPanelDispatcher('ShowApple');
+          setApp('FINDER_OPENED');
         }}
       >
         <div className={styles.panelText}>Recent Items</div>
@@ -663,8 +711,8 @@ export const ApplePanel = (props: ApplePanelProps) => {
       <div
         className={styles.panelLineAppleHover}
         onClick={() => {
-          props.menubarPanelDispatcher('ShowApple');
-          props.setApp('NONE');
+          menubarPanelDispatcher('ShowApple');
+          setApp('NONE');
         }}
       >
         <div className={styles.panelText}>Force Quit...</div>
@@ -683,8 +731,8 @@ export const ApplePanel = (props: ApplePanelProps) => {
       <div
         className={styles.panelLineAppleHover}
         onClick={() => {
-          props.menubarPanelDispatcher('ShowApple');
-          props.setLock(true);
+          menubarPanelDispatcher('ShowApple');
+          setLock(true);
         }}
       >
         <div className={styles.panelText}>Lock Screen</div>
@@ -692,8 +740,8 @@ export const ApplePanel = (props: ApplePanelProps) => {
       <div
         className={styles.panelLineAppleHover}
         onClick={() => {
-          props.menubarPanelDispatcher('ShowApple');
-          props.setLock(true);
+          menubarPanelDispatcher('ShowApple');
+          setLock(true);
         }}
       >
         <div className={styles.panelText}>Log Out Evan</div>
@@ -701,10 +749,10 @@ export const ApplePanel = (props: ApplePanelProps) => {
     </div>
   );
 };
-export const NotificationPanel = (props: NotificationPanelProps) => {
+export const NotificationPanel = ({ show }: { show: boolean }) => {
   const [weatherData, setWeatherData] = useState(SampleWeatherData);
   useEffect(() => {
-    if (props.show) {
+    if (show) {
       fetch(
         'https://devapi.qweather.com/v7/weather/7d?location=101020100&key=8617f107601d44fab3565012a155b6bc&lang=en'
       )
@@ -716,9 +764,9 @@ export const NotificationPanel = (props: NotificationPanelProps) => {
           }
         });
     }
-  }, [props.show]);
+  }, [show]);
   return (
-    <div className={styles.notificationPanel} data-show={props.show}>
+    <div className={styles.notificationPanel} data-show={show}>
       <div className={styles.calendarView}>
         {CalendarDataList.map((item, index) => {
           return (

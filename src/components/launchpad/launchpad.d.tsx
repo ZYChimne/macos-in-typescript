@@ -1,20 +1,3 @@
-import React from 'react';
-import { AppStateAction } from '../../utils/utils.d';
-export type LaunchpadProps = {
-  show: boolean;
-  setApp: React.Dispatch<AppStateAction>;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-};
-export type IconPageContainerProps = {
-  start: number;
-  index: number;
-  setApp: React.Dispatch<AppStateAction>;
-};
-export type IconLineContainerProps = {
-  start: number;
-  setApp: React.Dispatch<AppStateAction>;
-};
 export const LaunchpadApps: string[] = [
   'books',
   'booth',

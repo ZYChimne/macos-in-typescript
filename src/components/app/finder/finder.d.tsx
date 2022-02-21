@@ -1,9 +1,3 @@
-import React from 'react';
-import { AppStateAction } from '../../../utils/utils.d';
-export type FinderProps = {
-  state: number;
-  setApp: React.Dispatch<AppStateAction>;
-};
 export const FinderData = [
   {
     name: 'Library',

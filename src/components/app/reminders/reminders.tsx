@@ -7,25 +7,23 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
-import {
-  EventContentProps,
-  EventLineProps,
-  RemindersEvents,
-  RemindersProps,
-  TagColors,
-  TagContainerProps,
-} from './reminders.d';
+import { RemindersEvents, RemindersProps, TagColors } from './reminders.d';
 import styles from './reminders.module.scss';
-export const Reminders = (props: RemindersProps) => {
-  const setClosed = () => props.setApp('REMINDERS_CLOSED');
-  const setMinimized = () => props.setApp('REMINDERS_MINIMIZED');
+export const Reminders = ({
+  state,
+  setApp,
+  curTag,
+  setCurTag,
+}: RemindersProps) => {
+  const setClosed = () => setApp('REMINDERS_CLOSED');
+  const setMinimized = () => setApp('REMINDERS_MINIMIZED');
   const setMaximized = () => {
-    if (props.state === 3) {
-      props.setApp('REMINDERS_OPENED');
-    } else props.setApp('REMINDERS_MAXIMIZED');
+    if (state === 3) {
+      setApp('REMINDERS_OPENED');
+    } else setApp('REMINDERS_MAXIMIZED');
   };
   return (
-    <div className={styles.reminders} data-show={props.state}>
+    <div className={styles.reminders} data-show={state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton
@@ -36,28 +34,12 @@ export const Reminders = (props: RemindersProps) => {
         </div>
         <input className={styles.searchbar} type="text" />
         <div className={styles.appBarLine}>
-          <TagContainer
-            id="Today"
-            curTag={props.curTag}
-            setCurTag={props.setCurTag}
-          />
-          <TagContainer
-            id="Scheduled"
-            curTag={props.curTag}
-            setCurTag={props.setCurTag}
-          />
+          <TagContainer id="Today" curTag={curTag} setCurTag={setCurTag} />
+          <TagContainer id="Scheduled" curTag={curTag} setCurTag={setCurTag} />
         </div>
         <div className={styles.appBarLine}>
-          <TagContainer
-            id="All"
-            curTag={props.curTag}
-            setCurTag={props.setCurTag}
-          />
-          <TagContainer
-            id="Flagged"
-            curTag={props.curTag}
-            setCurTag={props.setCurTag}
-          />
+          <TagContainer id="All" curTag={curTag} setCurTag={setCurTag} />
+          <TagContainer id="Flagged" curTag={curTag} setCurTag={setCurTag} />
         </div>
       </div>
       <div className={styles.content}>
@@ -65,39 +47,47 @@ export const Reminders = (props: RemindersProps) => {
         <div className={styles.remindersContent}>
           <div
             className={styles.remindersContentTitle}
-            style={{ color: TagColors[props.curTag] }}
+            style={{ color: TagColors[curTag] }}
           >
-            {props.curTag}
+            {curTag}
           </div>
-          {props.curTag === 'All' ? (
+          {curTag === 'All' ? (
             Object.keys(RemindersEvents).map((item, index) => {
               return <EventContent tag={item} key={index} />;
             })
           ) : (
-            <EventContent tag={props.curTag} />
+            <EventContent tag={curTag} />
           )}
         </div>
       </div>
     </div>
   );
 };
-const TagContainer = (props: TagContainerProps) => {
+const TagContainer = ({
+  id,
+  curTag,
+  setCurTag,
+}: {
+  id: string;
+  curTag: string;
+  setCurTag: (value: React.SetStateAction<string>) => void;
+}) => {
   let tagIcon,
     tagNum: number = 0;
-  const active = props.id === props.curTag;
-  if (props.id === 'All') {
+  const active = id === curTag;
+  if (id === 'All') {
     Object.keys(RemindersEvents).forEach((x) => {
       tagNum += RemindersEvents[x].length;
     });
-  } else tagNum = RemindersEvents[props.id].length;
-  switch (props.id) {
+  } else tagNum = RemindersEvents[id].length;
+  switch (id) {
     case 'Today':
       tagIcon = (
         <FontAwesomeIcon
           className={styles.tagIcon}
           icon={faCalendarDay}
           style={{
-            color: active ? TagColors[props.id] : `#FFFFFF`,
+            color: active ? TagColors[id] : `#FFFFFF`,
           }}
         />
       );
@@ -108,7 +98,7 @@ const TagContainer = (props: TagContainerProps) => {
           className={styles.tagIcon}
           icon={faCalendarAlt}
           style={{
-            color: active ? TagColors[props.id] : `#FFFFFF`,
+            color: active ? TagColors[id] : `#FFFFFF`,
           }}
         />
       );
@@ -119,7 +109,7 @@ const TagContainer = (props: TagContainerProps) => {
           className={styles.tagIcon}
           icon={faInbox}
           style={{
-            color: active ? TagColors[props.id] : `#FFFFFF`,
+            color: active ? TagColors[id] : `#FFFFFF`,
           }}
         />
       );
@@ -130,7 +120,7 @@ const TagContainer = (props: TagContainerProps) => {
           className={styles.tagIcon}
           icon={faFlag}
           style={{
-            color: active ? TagColors[props.id] : `#FFFFFF`,
+            color: active ? TagColors[id] : `#FFFFFF`,
           }}
         />
       );
@@ -139,20 +129,20 @@ const TagContainer = (props: TagContainerProps) => {
   return (
     <div
       className={styles.tagContainer}
-      onClick={() => props.setCurTag(props.id)}
+      onClick={() => setCurTag(id)}
       style={{
-        background: active ? TagColors[props.id] : `rgba(207, 206, 206, 1)`,
+        background: active ? TagColors[id] : `rgba(207, 206, 206, 1)`,
       }}
     >
       <div className={styles.tagLeftContainer}>
         <div
           className={styles.tagIconBox}
-          style={{ background: active ? `#FFFFFF` : TagColors[props.id] }}
+          style={{ background: active ? `#FFFFFF` : TagColors[id] }}
         >
           {tagIcon}
         </div>
         <div className={styles.tagText} data-active={active}>
-          {props.id}
+          {id}
         </div>
       </div>
       <div className={styles.tagRightContainer}>
@@ -163,11 +153,11 @@ const TagContainer = (props: TagContainerProps) => {
     </div>
   );
 };
-const EventContent = (props: EventContentProps) => {
+const EventContent = ({ tag }: { tag: string }) => {
   const date = new Date(
-    Number.parseInt(RemindersEvents[props.tag][0].date.substring(0, 4)),
-    Number.parseInt(RemindersEvents[props.tag][0].date.substring(4, 6)) - 1,
-    Number.parseInt(RemindersEvents[props.tag][0].date.substring(6, 8))
+    Number.parseInt(RemindersEvents[tag][0].date.substring(0, 4)),
+    Number.parseInt(RemindersEvents[tag][0].date.substring(4, 6)) - 1,
+    Number.parseInt(RemindersEvents[tag][0].date.substring(6, 8))
   );
   return (
     <div className={styles.dateContainer}>
@@ -185,7 +175,7 @@ const EventContent = (props: EventContentProps) => {
           })}
         </div>
       </div>
-      {RemindersEvents[props.tag].map((item, index) => {
+      {RemindersEvents[tag].map((item, index) => {
         return (
           <EventLine title={item.title} subtitle={item.subtitle} key={index} />
         );
@@ -193,7 +183,13 @@ const EventContent = (props: EventContentProps) => {
     </div>
   );
 };
-const EventLine = (props: EventLineProps) => {
+const EventLine = ({
+  title,
+  subtitle,
+}: {
+  title: string;
+  subtitle: string;
+}) => {
   const [check, setCheck] = useState(false);
   return (
     <div className={styles.contentLine}>
@@ -207,8 +203,8 @@ const EventLine = (props: EventLineProps) => {
         />
       </div>
       <div className={styles.contentContainer}>
-        <div className={styles.contentText}>{props.title}</div>
-        <div className={styles.contentText}>{props.subtitle}</div>
+        <div className={styles.contentText}>{title}</div>
+        <div className={styles.contentText}>{subtitle}</div>
       </div>
     </div>
   );

@@ -5,18 +5,23 @@ import React from 'react';
 import { AppBarButton } from '../../../utils/utlils';
 import {
   AboutContent,
-  PreferencesContentProps,
+  PreferencesContentType,
   PreferencesProps,
   SupportImportant,
   SupportText,
 } from './preferences.d';
 import styles from './preferences.module.scss';
 
-export const Preferences = (props: PreferencesProps) => {
-  const setClosed = () => props.setApp('PREFERENCES_CLOSED');
-  const setMinimized = () => props.setApp('PREFERENCES_MINIMIZED');
+export const Preferences = ({
+  state,
+  setApp,
+  contentType,
+  setContentType,
+}: PreferencesProps) => {
+  const setClosed = () => setApp('PREFERENCES_CLOSED');
+  const setMinimized = () => setApp('PREFERENCES_MINIMIZED');
   return (
-    <div className={styles.preferences} data-show={props.state}>
+    <div className={styles.preferences} data-show={state}>
       <div className={styles.appBar}>
         <div className={styles.appBarLeft}>
           <AppBarButton
@@ -28,42 +33,42 @@ export const Preferences = (props: PreferencesProps) => {
         <div className={styles.appBarCenter}>
           <div
             className={styles.appBarBtn}
-            data-active={props.contentType === 'Overview'}
-            onClick={() => props.setContentType('Overview')}
+            data-active={contentType === 'Overview'}
+            onClick={() => setContentType('Overview')}
           >
             Overview
           </div>
           <div
             className={styles.appBarBtn}
-            data-active={props.contentType === 'Displays'}
-            onClick={() => props.setContentType('Displays')}
+            data-active={contentType === 'Displays'}
+            onClick={() => setContentType('Displays')}
           >
             Displays
           </div>
           <div
             className={styles.appBarBtn}
-            data-active={props.contentType === 'Storage'}
-            onClick={() => props.setContentType('Storage')}
+            data-active={contentType === 'Storage'}
+            onClick={() => setContentType('Storage')}
           >
             Storage
           </div>
           <div
             className={styles.appBarBtn}
-            data-active={props.contentType === 'Support'}
-            onClick={() => props.setContentType('Support')}
+            data-active={contentType === 'Support'}
+            onClick={() => setContentType('Support')}
           >
             Support
           </div>
           <div
             className={styles.appBarBtn}
-            data-active={props.contentType === 'About'}
-            onClick={() => props.setContentType('About')}
+            data-active={contentType === 'About'}
+            onClick={() => setContentType('About')}
           >
             About
           </div>
         </div>
       </div>
-      <PreferenceContent contentType={props.contentType} />
+      <PreferenceContent contentType={contentType} />
     </div>
   );
 };
@@ -225,8 +230,12 @@ const About = () => {
     </div>
   );
 };
-const PreferenceContent = (props: PreferencesContentProps) => {
-  switch (props.contentType) {
+const PreferenceContent = ({
+  contentType,
+}: {
+  contentType: PreferencesContentType;
+}) => {
+  switch (contentType) {
     case 'Overview':
       return <Overview />;
     case 'Displays':

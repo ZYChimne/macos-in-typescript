@@ -6,11 +6,6 @@ export type RemindersProps = {
   curTag: string;
   setCurTag: React.Dispatch<React.SetStateAction<string>>;
 };
-export type TagContainerProps = {
-  id: string;
-  curTag: string;
-  setCurTag: (value: React.SetStateAction<string>) => void;
-};
 export const TagColors: { [key: string]: string } = {
   Today: `rgb(48, 123, 246)`,
   Scheduled: `rgb(236, 77, 61)`,
@@ -19,13 +14,6 @@ export const TagColors: { [key: string]: string } = {
 };
 export type RemindersEvent = {
   date: string;
-  title: string;
-  subtitle: string;
-};
-export type EventContentProps = {
-  tag: string;
-};
-export type EventLineProps = {
   title: string;
   subtitle: string;
 };

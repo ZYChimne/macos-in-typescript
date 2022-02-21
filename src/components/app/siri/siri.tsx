@@ -1,12 +1,12 @@
 // Animations adapted from https://codepen.io/jscottsmith/pen/oWyxjp
 import React, { useEffect, useRef, useState } from 'react';
-import { SiriCanvasProps, SiriProps, SwingPoint } from './siri.d';
+import { SiriCanvasProps, SwingPoint } from './siri.d';
 import styles from './siri.module.scss';
-export const Siri = (props: SiriProps) => {
+export const Siri = ({ show }: { show: boolean }) => {
   const text = 'What can I help you with?';
   const [onSiri, setSiri] = useState(true);
   return (
-    <div className={styles.siri} data-show={props.show}>
+    <div className={styles.siri} data-show={show}>
       <div className={styles.siriText}>{text}</div>
       <SiriCavas
         height={45}

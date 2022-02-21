@@ -4,7 +4,10 @@ import React, { useState } from 'react';
 import { AppStateAction } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
 import styles from './safari.module.scss';
-export const Safari = (props: {
+export const Safari = ({
+  state,
+  setApp,
+}: {
   state: number;
   setApp: React.Dispatch<AppStateAction>;
 }) => {
@@ -21,15 +24,15 @@ export const Safari = (props: {
   const onAddressInput = (event: React.FormEvent<HTMLInputElement>) => {
     setAddress(event.currentTarget.value);
   };
-  const setClosed = () => props.setApp('SAFARI_CLOSED');
-  const setMinimized = () => props.setApp('SAFARI_MINIMIZED');
+  const setClosed = () => setApp('SAFARI_CLOSED');
+  const setMinimized = () => setApp('SAFARI_MINIMIZED');
   const setMaximized = () => {
-    if (props.state === 3) {
-      props.setApp('SAFARI_OPENED');
-    } else props.setApp('SAFARI_MAXIMIZED');
+    if (state === 3) {
+      setApp('SAFARI_OPENED');
+    } else setApp('SAFARI_MAXIMIZED');
   };
   return (
-    <div className={styles.safari} data-show={props.state}>
+    <div className={styles.safari} data-show={state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton

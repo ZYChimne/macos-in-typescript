@@ -9,16 +9,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { MonthNames } from '../../../utils/utils.d';
+import { AppStateAction, MonthNames } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
-import {
-  ImageState,
-  PhotosContentProps,
-  PhotosList,
-  PhotosProps,
-} from './photos.d';
+import { ImageState, PhotosContentProps, PhotosList } from './photos.d';
 import styles from './photos.module.scss';
-export const Photos = (props: PhotosProps) => {
+export const Photos = ({
+  state,
+  setApp,
+}: {
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
+}) => {
   const [id, setId] = useState(-1);
   const [fit, setFit] = useState(false);
   const [imgLeft, setImgLeft] = useState(0);
@@ -112,15 +113,15 @@ export const Photos = (props: PhotosProps) => {
     setFit(false);
     setTimeout(() => setId(-1), 250);
   };
-  const setClosed = () => props.setApp('PHOTOS_CLOSED');
-  const setMinimized = () => props.setApp('PHOTOS_MINIMIZED');
+  const setClosed = () => setApp('PHOTOS_CLOSED');
+  const setMinimized = () => setApp('PHOTOS_MINIMIZED');
   const setMaximized = () => {
-    if (props.state === 3) {
-      props.setApp('PHOTOS_OPENED');
-    } else props.setApp('PHOTOS_MAXIMIZED');
+    if (state === 3) {
+      setApp('PHOTOS_OPENED');
+    } else setApp('PHOTOS_MAXIMIZED');
   };
   return (
-    <div className={styles.photos} data-show={props.state}>
+    <div className={styles.photos} data-show={state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton

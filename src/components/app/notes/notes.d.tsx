@@ -1,10 +1,4 @@
-import React from 'react';
-import { AppStateAction } from '../../../utils/utils.d';
 import { MDCONTENT1, MDCONTENT2, MDCONTENT3, MDCONTENT4 } from './notes.c';
-export type NotesProps = {
-  state: number;
-  setApp: React.Dispatch<AppStateAction>;
-};
 export type NoteType = {
   id: number;
   title: string;

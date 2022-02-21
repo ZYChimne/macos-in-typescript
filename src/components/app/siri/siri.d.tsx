@@ -20,6 +20,3 @@ export type SwingPoint = {
   range: number;
   phase: number;
 };
-export type SiriProps = {
-  show: boolean;
-};

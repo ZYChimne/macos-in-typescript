@@ -1,17 +1,3 @@
-import React from 'react';
-import { AppStateAction } from '../../../utils/utils.d';
-export type MapsProps = {
-  state: number;
-  setApp: React.Dispatch<AppStateAction>;
-};
-export type MapLineProps = {
-  name: string;
-  type: LocType;
-  lng: number;
-  lat: number;
-  id: number;
-  setLOC: () => void;
-};
 export type LocType =
   | 'Home'
   | 'Work'

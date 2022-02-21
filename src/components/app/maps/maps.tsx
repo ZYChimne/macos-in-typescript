@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapInfo, MapInfoType, MapLineProps, MapsProps } from './maps.d';
+import { LocType, MapInfo, MapInfoType } from './maps.d';
 import styles from './maps.module.scss';
 import { Map, MapApiLoaderHOC } from 'react-bmapgl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,7 +17,14 @@ import {
   faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
 import { AppBarButton } from '../../../utils/utlils';
-const MapsContainer = (props: MapsProps) => {
+import { AppStateAction } from '../../../utils/utils.d';
+const MapsContainer = ({
+  state,
+  setApp,
+}: {
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
+}) => {
   const [position, setPosition] = useState(
     new BMapGL.Point(MapInfo[0].lng, MapInfo[0].lat)
   );
@@ -34,11 +41,11 @@ const MapsContainer = (props: MapsProps) => {
     setTitle(item.name);
     setZoom(18);
   };
-  const setClosed = () => props.setApp('MAPS_CLOSED');
-  const setMinimized = () => props.setApp('MAPS_MINIMIZED');
-  const setMaximized = () => props.setApp('MAPS_MAXIMIZED');
+  const setClosed = () => setApp('MAPS_CLOSED');
+  const setMinimized = () => setApp('MAPS_MINIMIZED');
+  const setMaximized = () => setApp('MAPS_MAXIMIZED');
   return (
-    <div className={styles.maps} data-show={props.state}>
+    <div className={styles.maps} data-show={state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton
@@ -92,9 +99,23 @@ const MapsContainer = (props: MapsProps) => {
     </div>
   );
 };
-const MapLine = (props: MapLineProps) => {
+const MapLine = ({
+  name,
+  type,
+  lng,
+  lat,
+  id,
+  setLOC,
+}: {
+  name: string;
+  type: LocType;
+  lng: number;
+  lat: number;
+  id: number;
+  setLOC: () => void;
+}) => {
   let icon = null;
-  switch (props.type) {
+  switch (type) {
     case 'Home':
       icon = (
         <div
@@ -197,12 +218,12 @@ const MapLine = (props: MapLineProps) => {
       break;
   }
   return (
-    <div className={styles.mapLine} onClick={props.setLOC}>
+    <div className={styles.mapLine} onClick={setLOC}>
       {icon}
       <div className={styles.mapLineTextContainer}>
-        <div className={styles.mapLineTitle}>{props.name}</div>
+        <div className={styles.mapLineTitle}>{name}</div>
         <div className={styles.mapLineSubtitle}>
-          Longitude: {props.lng.toFixed(2)} Latitude: {props.lat.toFixed(2)}
+          Longitude: {lng.toFixed(2)} Latitude: {lat.toFixed(2)}
         </div>
       </div>
     </div>

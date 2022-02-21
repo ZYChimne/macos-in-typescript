@@ -1,15 +1,3 @@
-import React from 'react';
-export type SwitchProps = {
-  id: string;
-  onClick: Function;
-  state: boolean;
-};
-export type IconProps = {
-  value: string;
-  type: 'Dock' | 'Desktop' | 'Launchpad';
-  active: boolean;
-  dispatch: React.Dispatch<AppStateAction>;
-};
 // 0 = Closed, 1 = Active, 2 = Maximized, 3 = Minimized
 export type AppState = {
   preApp: string;
@@ -26,11 +14,6 @@ export type AppState = {
   reminders: number;
   notes: number;
   music: number;
-};
-export type AppBarBtnProps = {
-  setClosed: () => void;
-  setMinimized: () => void;
-  setMaximized: (() => void) | null;
 };
 export type AppStateAction =
   | 'NONE'

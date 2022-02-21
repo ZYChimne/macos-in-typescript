@@ -19,9 +19,16 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
-import { FinderProps, FinderIconProps, FinderData } from './finder.d';
+import { FinderData, FinderIconProps } from './finder.d';
 import styles from './finder.module.scss';
-export const Finder = (props: FinderProps) => {
+import { AppStateAction } from '../../../utils/utils.d';
+export const Finder = ({
+  state,
+  setApp,
+}: {
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
+}) => {
   const [finderData, setFinderData] = useState<any>(FinderData);
   const [prevData, setPrevData] = useState<any[]>([]);
   const [nextData, setNextData] = useState<any[]>([]);
@@ -54,15 +61,15 @@ export const Finder = (props: FinderProps) => {
     setPrevData(prevData.slice(0, -1));
     setPrevPath(prevPath.slice(0, -1));
   };
-  const setClosed = () => props.setApp('FINDER_CLOSED');
-  const setMinimized = () => props.setApp('FINDER_MINIMIZED');
+  const setClosed = () => setApp('FINDER_CLOSED');
+  const setMinimized = () => setApp('FINDER_MINIMIZED');
   const setMaximized = () => {
-    if (props.state === 3) {
-      props.setApp('FINDER_OPENED');
-    } else props.setApp('FINDER_MAXIMIZED');
+    if (state === 3) {
+      setApp('FINDER_OPENED');
+    } else setApp('FINDER_MAXIMIZED');
   };
   return (
-    <div className={styles.finder} data-show={props.state}>
+    <div className={styles.finder} data-show={state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton

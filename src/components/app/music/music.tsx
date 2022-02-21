@@ -7,28 +7,41 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { MorandiColorList } from '../../../utils/utils.d';
+import { AppStateAction, MorandiColorList } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
-import { MusicLineProps, MusicProps } from './music.d';
 import styles from './music.module.scss';
-
-export const Music = (props: MusicProps) => {
-  const setClosed = () => props.setApp('MUSIC_CLOSED');
-  const setMinimized = () => props.setApp('MUSIC_MINIMIZED');
+export const Music = ({
+  state,
+  setApp,
+  musicList,
+  playMusic,
+  playOnIndex,
+  playPrev,
+  playNext,
+}: {
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
+  musicList: any;
+  playMusic: () => void;
+  playOnIndex: (index: number) => void;
+  playPrev: () => void;
+  playNext: () => void;
+}) => {
+  const setClosed = () => setApp('MUSIC_CLOSED');
+  const setMinimized = () => setApp('MUSIC_MINIMIZED');
   const setMaximized = () => {
-    if (props.state === 3) {
-      props.setApp('MUSIC_OPENED');
-    } else props.setApp('MUSIC_MAXIMIZED');
+    if (state === 3) {
+      setApp('MUSIC_OPENED');
+    } else setApp('MUSIC_MAXIMIZED');
   };
   return (
     <div
       className={styles.music}
-      data-show={props.state}
+      data-show={state}
       style={{
-        background:
-          MorandiColorList[
-            props.musicList?.song.genre % MorandiColorList.length
-          ] + `CC`,
+        background: `${
+          MorandiColorList[musicList?.song.genre % MorandiColorList.length]
+        }CC`,
       }}
     >
       <div className={styles.appBar}>
@@ -47,29 +60,27 @@ export const Music = (props: MusicProps) => {
             style={{
               background:
                 MorandiColorList[
-                  props.musicList?.song.genre % MorandiColorList.length
+                  musicList?.song.genre % MorandiColorList.length
                 ],
             }}
           >
             <FontAwesomeIcon className={styles.albumIcon} icon={faItunesNote} />
           </div>
           <div className={styles.musicInfoContainer}>
-            <div className={styles.title}>{props.musicList?.song.title}</div>
+            <div className={styles.title}>{musicList?.song.title}</div>
             <div className={styles.subtitle}>
-              {props.musicList?.song.singer[0].title +
-                ` - ` +
-                props.musicList?.song.album.title}
+              {musicList?.song.singer[0].title} - {musicList?.song.album.title}
             </div>
           </div>
           <div className={styles.musicController}>
-            <div className={styles.controllerIconBox} onClick={props.playPrev}>
+            <div className={styles.controllerIconBox} onClick={playPrev}>
               <FontAwesomeIcon
                 className={styles.controllerIcon}
                 icon={faBackward}
               />
             </div>
-            <div className={styles.controllerIconBox} onClick={props.playMusic}>
-              {props.musicList?.state === 'playing' ? (
+            <div className={styles.controllerIconBox} onClick={playMusic}>
+              {musicList?.state === 'playing' ? (
                 <FontAwesomeIcon
                   className={styles.controllerIcon}
                   icon={faPause}
@@ -81,7 +92,7 @@ export const Music = (props: MusicProps) => {
                 />
               )}
             </div>
-            <div className={styles.controllerIconBox} onClick={props.playNext}>
+            <div className={styles.controllerIconBox} onClick={playNext}>
               <FontAwesomeIcon
                 className={styles.controllerIcon}
                 icon={faForward}
@@ -91,15 +102,15 @@ export const Music = (props: MusicProps) => {
         </div>
         <div className={styles.musicContent}>
           <div className={styles.musicListContainer}>
-            {props.musicList
-              ? Object.keys(props.musicList.songs).map((key, index) => {
+            {musicList
+              ? Object.keys(musicList.songs).map((key, index) => {
                   return (
                     <MusicListLine
-                      title={props.musicList.songs[key].title}
-                      singers={props.musicList.songs[key].singer[0].title}
-                      album={props.musicList.songs[key].album.title}
+                      title={musicList.songs[key].title}
+                      singers={musicList.songs[key].singer[0].title}
+                      album={musicList.songs[key].album.title}
                       playing={false}
-                      onClick={() => props.playOnIndex(index)}
+                      onClick={() => playOnIndex(index)}
                       key={index}
                     />
                   );
@@ -111,10 +122,22 @@ export const Music = (props: MusicProps) => {
     </div>
   );
 };
-const MusicListLine = (props: MusicLineProps) => {
+const MusicListLine = ({
+  title,
+  singers,
+  album,
+  playing,
+  onClick,
+}: {
+  title: string;
+  singers: string[];
+  album: string;
+  playing: boolean;
+  onClick: () => void;
+}) => {
   return (
-    <div className={styles.musicLine} onClick={props.onClick}>
-      {props.title} - {props.singers} - {props.album}
+    <div className={styles.musicLine} onClick={onClick}>
+      {title} - {singers} - {album}
     </div>
   );
 };

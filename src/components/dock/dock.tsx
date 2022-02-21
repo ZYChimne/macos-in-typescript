@@ -1,30 +1,32 @@
 import React from 'react';
+import { AppState, AppStateAction } from '../../utils/utils.d';
 import { activeAppMapper, Icon } from '../../utils/utlils';
-import { DockApps, DockProps } from './dock.d';
+import { DockApps } from './dock.d';
 import styles from './dock.module.scss';
-export const Dock = (props: DockProps) => {
+export const Dock = ({
+  appState,
+  setApp,
+}: {
+  appState: AppState;
+  setApp: React.Dispatch<AppStateAction>;
+}) => {
   return (
     <div className={styles.dock}>
       <Icon
         type="Dock"
         value="finder"
-        dispatch={props.setApp}
-        active={props.appState.finder !== 0}
+        dispatch={setApp}
+        active={appState.finder !== 0}
       />
-      <Icon
-        type="Dock"
-        value="launchpad"
-        dispatch={props.setApp}
-        active={false}
-      />
+      <Icon type="Dock" value="launchpad" dispatch={setApp} active={false} />
       {DockApps.map((item, i) => {
         return (
           <Icon
             type="Dock"
             value={item}
             key={i}
-            dispatch={props.setApp}
-            active={activeAppMapper(props.appState, item) !== 0}
+            dispatch={setApp}
+            active={activeAppMapper(appState, item) !== 0}
           />
         );
       })}

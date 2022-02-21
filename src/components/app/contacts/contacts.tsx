@@ -7,24 +7,30 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { AppStateAction } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
-import {
-  ContactsContentProps,
-  ContactsInfoList,
-  ContactsLineProps,
-  ContactsProps,
-} from './contacts.d';
+import { ContactsInfoList } from './contacts.d';
 import styles from './contacts.module.scss';
-export const Contacts = (props: ContactsProps) => {
-  const setClosed = () => props.setApp('CONTACTS_CLOSED');
-  const setMinimized = () => props.setApp('CONTACTS_MINIMIZED');
+export const Contacts = ({
+  state,
+  setApp,
+  curContact,
+  setCurContact,
+}: {
+  state: number;
+  setApp: React.Dispatch<AppStateAction>;
+  curContact: string;
+  setCurContact: React.Dispatch<React.SetStateAction<string>>;
+}) => {
+  const setClosed = () => setApp('CONTACTS_CLOSED');
+  const setMinimized = () => setApp('CONTACTS_MINIMIZED');
   const setMaximized = () => {
-    if (props.state === 3) {
-      props.setApp('CONTACTS_OPENED');
-    } else props.setApp('CONTACTS_MAXIMIZED');
+    if (state === 3) {
+      setApp('CONTACTS_OPENED');
+    } else setApp('CONTACTS_MAXIMIZED');
   };
   return (
-    <div className={styles.contacts} data-show={props.state}>
+    <div className={styles.contacts} data-show={state}>
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton
@@ -43,35 +49,35 @@ export const Contacts = (props: ContactsProps) => {
               <div
                 className={styles.contactsBarTitle}
                 key={index}
-                data-active={item === props.curContact}
-                onClick={() => props.setCurContact(item)}
+                data-active={item === curContact}
+                onClick={() => setCurContact(item)}
               >
                 {item}
               </div>
             );
           })}
         </div>
-        <ContactsContent id={props.curContact} />
+        <ContactsContent id={curContact} />
       </div>
     </div>
   );
 };
-const ContactsContent = (props: ContactsContentProps) => {
+const ContactsContent = ({ id }: { id: string }) => {
   let contactsIcon;
-  switch (ContactsInfoList[props.id].type) {
+  switch (ContactsInfoList[id].type) {
     case 'BUILDING':
       contactsIcon = (
         <FontAwesomeIcon className={styles.contactsIcon} icon={faBuilding} />
       );
       break;
     case 'NAME':
-      contactsIcon = <div className={styles.contactsIcon}>{props.id[0]}</div>;
+      contactsIcon = <div className={styles.contactsIcon}>{id[0]}</div>;
   }
   return (
     <div className={styles.contactsContent}>
       <div className={styles.iconContainer}>
         <div className={styles.contactsIconBox}>{contactsIcon}</div>
-        <div className={styles.contactsIconText}>{props.id}</div>
+        <div className={styles.contactsIconText}>{id}</div>
       </div>
       <div className={styles.methodContainer}>
         <div className={styles.methodIconBox}>
@@ -88,11 +94,8 @@ const ContactsContent = (props: ContactsContentProps) => {
         </div>
       </div>
       <div className={styles.contactsInfoContainer}>
-        {ContactsInfoList[props.id].phone !== '' ? (
-          <ContactsInfoLine
-            title="phone"
-            text={ContactsInfoList[props.id].phone}
-          />
+        {ContactsInfoList[id].phone !== '' ? (
+          <ContactsInfoLine title="phone" text={ContactsInfoList[id].phone} />
         ) : null}
         <div className={styles.contactsInfoLine}>
           <div className={styles.contactsInfoLineTitle}>Facetime</div>
@@ -107,8 +110,8 @@ const ContactsContent = (props: ContactsContentProps) => {
             />
           </div>
         </div>
-        {ContactsInfoList[props.id].email.length !== 0
-          ? ContactsInfoList[props.id].email.map((item, index) => {
+        {ContactsInfoList[id].email.length !== 0
+          ? ContactsInfoList[id].email.map((item, index) => {
               return (
                 <ContactsInfoLine
                   title={item.type}
@@ -118,20 +121,20 @@ const ContactsContent = (props: ContactsContentProps) => {
               );
             })
           : null}
-        {ContactsInfoList[props.id].homepage !== '' ? (
+        {ContactsInfoList[id].homepage !== '' ? (
           <ContactsInfoLine
             title="home page"
-            text={ContactsInfoList[props.id].homepage}
+            text={ContactsInfoList[id].homepage}
           />
         ) : null}
-        {ContactsInfoList[props.id].birthday !== '' ? (
+        {ContactsInfoList[id].birthday !== '' ? (
           <ContactsInfoLine
             title="birthday"
-            text={ContactsInfoList[props.id].birthday}
+            text={ContactsInfoList[id].birthday}
           />
         ) : null}
-        {ContactsInfoList[props.id].address.length !== 0
-          ? ContactsInfoList[props.id].address.map((item, index) => {
+        {ContactsInfoList[id].address.length !== 0
+          ? ContactsInfoList[id].address.map((item, index) => {
               return (
                 <ContactsInfoLine
                   title={item.type}
@@ -145,11 +148,11 @@ const ContactsContent = (props: ContactsContentProps) => {
     </div>
   );
 };
-const ContactsInfoLine = (props: ContactsLineProps) => {
+const ContactsInfoLine = ({ title, text }: { title: string; text: string }) => {
   return (
     <div className={styles.contactsInfoLine}>
-      <div className={styles.contactsInfoLineTitle}>{props.title}</div>
-      <div className={styles.contactsInfoLineText}>{props.text}</div>
+      <div className={styles.contactsInfoLineTitle}>{title}</div>
+      <div className={styles.contactsInfoLineText}>{text}</div>
     </div>
   );
 };

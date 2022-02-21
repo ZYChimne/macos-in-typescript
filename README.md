@@ -7,6 +7,7 @@ There is a project setup with Next.js at [macos-in-next](https://github.com/ZYCh
 ## Performance Improvements
 
 * Change event callbacks [React Events](https://reactjs.org/docs/handling-events.html).
+* Migrate Data to Temporal.
 
 ## Features
 * Follow Airbnb JavaScript guide
