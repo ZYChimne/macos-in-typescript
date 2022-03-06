@@ -69,7 +69,7 @@ export const Finder = ({
     } else setApp('FINDER_MAXIMIZED');
   };
   return (
-    <div className={styles.finder} data-show={state}>
+    <div className={styles.finder} data-show={state} draggable="true">
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton

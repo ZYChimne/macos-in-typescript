@@ -43,6 +43,7 @@ export const Music = ({
           MorandiColorList[musicList?.song.genre % MorandiColorList.length]
         }CC`,
       }}
+      draggable="true"
     >
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>

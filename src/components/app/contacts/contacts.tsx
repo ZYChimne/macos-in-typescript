@@ -30,7 +30,7 @@ export const Contacts = ({
     } else setApp('CONTACTS_MAXIMIZED');
   };
   return (
-    <div className={styles.contacts} data-show={state}>
+    <div className={styles.contacts} data-show={state} draggable="true">
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton

@@ -32,7 +32,7 @@ export const Safari = ({
     } else setApp('SAFARI_MAXIMIZED');
   };
   return (
-    <div className={styles.safari} data-show={state}>
+    <div className={styles.safari} data-show={state} draggable="true">
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton

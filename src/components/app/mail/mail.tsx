@@ -40,7 +40,7 @@ export const Mail = ({
     } else setApp('MAIL_MAXIMIZED');
   };
   return (
-    <div className={styles.mail} data-show={state}>
+    <div className={styles.mail} data-show={state} draggable="true">
       <div className={styles.appBar}>
         <div className={styles.appBarLeft}>
           <AppBarButton

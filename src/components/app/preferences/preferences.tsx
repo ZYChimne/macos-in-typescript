@@ -21,7 +21,7 @@ export const Preferences = ({
   const setClosed = () => setApp('PREFERENCES_CLOSED');
   const setMinimized = () => setApp('PREFERENCES_MINIMIZED');
   return (
-    <div className={styles.preferences} data-show={state}>
+    <div className={styles.preferences} data-show={state} draggable="true">
       <div className={styles.appBar}>
         <div className={styles.appBarLeft}>
           <AppBarButton

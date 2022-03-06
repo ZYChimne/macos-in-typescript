@@ -23,7 +23,7 @@ export const Reminders = ({
     } else setApp('REMINDERS_MAXIMIZED');
   };
   return (
-    <div className={styles.reminders} data-show={state}>
+    <div className={styles.reminders} data-show={state} draggable="true">
       <div className={styles.appBar}>
         <div className={styles.appBarBtnContainer}>
           <AppBarButton

@@ -26,7 +26,7 @@ export const Notes = ({
     } else setApp('NOTES_MAXIMIZED');
   };
   return (
-    <div className={styles.notes} data-show={state}>
+    <div className={styles.notes} data-show={state} draggable="true">
       <div className={styles.appBar}>
         <div className={styles.appBarHeader}>
           <div className={styles.appBarBtnContainer}>

@@ -43,7 +43,10 @@ const MapsContainer = ({
   };
   const setClosed = () => setApp('MAPS_CLOSED');
   const setMinimized = () => setApp('MAPS_MINIMIZED');
-  const setMaximized = () => setApp('MAPS_MAXIMIZED');
+  const setMaximized = () => {
+    if (state === 3) setApp('MAIL_OPENED');
+    else setApp('MAPS_MAXIMIZED');
+  };
   return (
     <div className={styles.maps} data-show={state}>
       <div className={styles.appBar}>
