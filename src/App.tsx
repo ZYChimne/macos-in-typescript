@@ -1,35 +1,16 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react';
+import React, {
+  Suspense,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 import './App.scss';
-import { Contacts } from './components/app/contacts/contacts';
 import { ContactsInfoList } from './components/app/contacts/contacts.d';
-import { Finder } from './components/app/finder/finder';
-import { Mail } from './components/app/mail/mail';
-import { Maps } from './components/app/maps/maps';
-import { Music } from './components/app/music/music';
 import { MusicList } from './components/app/music/music.d';
-import { Notes } from './components/app/notes/notes';
-import { Photos } from './components/app/photos/photos';
-import { Preferences } from './components/app/preferences/preferences';
 import { PreferencesContentType } from './components/app/preferences/preferences.d';
-import { Reminders } from './components/app/reminders/reminders';
-import { Safari } from './components/app/safari/safari';
-import { Siri } from './components/app/siri/siri';
 import { BootScreen } from './components/bootscreen/bootscreen';
-import { Dock } from './components/dock/dock';
-import { Launchpad } from './components/launchpad/launchpad';
 import { LockScreen } from './components/lockscreen/lockscreen';
-import {
-  Menubar,
-  WiFiPanel,
-  BatteryPanel,
-  InputPanel,
-  BluetoothPanel,
-  FocusPanel,
-  ApplePanel,
-  ControlPanel,
-  NotificationPanel,
-  SearchPanel,
-} from './components/menubar/menubar';
 import {
   focusReducer,
   menubarPanelReducer,
@@ -39,8 +20,8 @@ import { appStateReducer, InitialAppState } from './utils/utlils';
 
 const App = () => {
   const appRef = useRef<HTMLDivElement>(null);
-  const [boot, setBoot] = useState(true);
-  const [lock, setLock] = useState(false);
+  const [boot, setBoot] = useState(false);
+  const [lock, setLock] = useState(true);
   const [menubarPanelState, menubarPanelDispatcher] = useReducer(
     menubarPanelReducer,
     {
@@ -123,7 +104,29 @@ const App = () => {
       }
     }
   };
-  let windowHeight = window.innerHeight,
+  const Dock = React.lazy(() => import('./components/dock/dock'));
+  const Launchpad = React.lazy(
+    () => import('./components/launchpad/launchpad')
+  );
+  const Menubar = React.lazy(() => import('./components/menubar/menubar'));
+  const Contacts = React.lazy(
+    () => import('./components/app/contacts/contacts')
+  );
+  const Finder = React.lazy(() => import('./components/app/finder/finder'));
+  const Mail = React.lazy(() => import('./components/app/mail/mail'));
+  const Maps = React.lazy(() => import('./components/app/maps/maps'));
+  const Music = React.lazy(() => import('./components/app/music/music'));
+  const Notes = React.lazy(() => import('./components/app/notes/notes'));
+  const Photos = React.lazy(() => import('./components/app/photos/photos'));
+  const Preferences = React.lazy(
+    () => import('./components/app/preferences/preferences')
+  );
+  const Reminders = React.lazy(
+    () => import('./components/app/reminders/reminders')
+  );
+  const Safari = React.lazy(() => import('./components/app/safari/safari'));
+  const Siri = React.lazy(() => import('./components/app/siri/siri'));
+  const windowHeight = window.innerHeight,
     windowWidth = window.innerWidth;
   return windowHeight >= 600 && windowWidth >= 1024 ? (
     <div className="App" ref={appRef}>
@@ -137,52 +140,19 @@ const App = () => {
             menubarPanelDispatcher={menubarPanelDispatcher}
           />
           {!lock && (
-            <>
+            <Suspense fallback={<div>Loading...</div>}>
               <Menubar
-                state={appState.curApp}
+                curAppState={appState.curApp}
                 menubarPanelDispatcher={menubarPanelDispatcher}
                 menubarState={menubarPanelState}
                 appState={appState}
                 setApp={appStateDispatcher}
-              />
-              <WiFiPanel
-                show={menubarPanelState.showWifi}
-                state={wifiState}
-                setState={setWifi}
-              />
-              <InputPanel show={menubarPanelState.showInput} />
-              <BatteryPanel show={menubarPanelState.showBattery} />
-              <BluetoothPanel
-                show={menubarPanelState.showBluetooth}
-                state={bluetoothState}
-                setState={setBluetooth}
-              />
-              <SearchPanel
-                show={menubarPanelState.showSearch}
-                appState={appState}
-                setApp={appStateDispatcher}
-                menubarPanelDispatcher={menubarPanelDispatcher}
-              />
-              <FocusPanel
-                show={menubarPanelState.showFocus}
-                state={focusState}
-                dispatch={setFocus}
-              />
-              <ApplePanel
-                show={menubarPanelState.showApple}
-                appState={appState}
-                setApp={appStateDispatcher}
-                menubarPanelDispatcher={menubarPanelDispatcher}
-                setLock={setLock}
-              />
-              <ControlPanel
-                show={menubarPanelState.showControl}
                 wifiState={wifiState}
                 setWifi={setWifi}
                 bluetoothState={bluetoothState}
                 setBluetooth={setBluetooth}
                 focusState={focusState}
-                setFoucs={setFocus}
+                setFocus={setFocus}
                 darkState={darkState}
                 setDark={setDark}
                 musicList={musicList}
@@ -191,9 +161,9 @@ const App = () => {
                 playNext={playNext}
                 fullscreen={fullscreenState}
                 enterFullscreen={enterFullscreen}
+                setLock={setLock}
               />
               <Siri show={appState.siri === 1} />
-              <NotificationPanel show={menubarPanelState.showNotification} />
               <Launchpad
                 show={appState.launchpad === 1}
                 setApp={appStateDispatcher}
@@ -236,7 +206,7 @@ const App = () => {
                   playNext={playNext}
                 />
               </div>
-            </>
+            </Suspense>
           )}
         </>
       )}

@@ -43,11 +43,26 @@ import {
 } from '../../utils/utils.d';
 import { AppList } from '../../utils/AppList';
 export const Menubar = ({
-  state,
+  curAppState,
   menubarPanelDispatcher,
   menubarState,
   setApp,
   appState,
+  wifiState,
+  setWifi,
+  darkState,
+  setDark,
+  bluetoothState,
+  setBluetooth,
+  focusState,
+  setFocus,
+  musicList,
+  playMusic,
+  playPrev,
+  playNext,
+  fullscreen,
+  enterFullscreen,
+  setLock,
 }: MenubarProps) => {
   const handleItemClicked = (
     event: React.MouseEvent,
@@ -57,146 +72,196 @@ export const Menubar = ({
     menubarPanelDispatcher(type);
   };
   return (
-    <div
-      className={styles.menubar}
-      onClick={() => {
-        menubarPanelDispatcher('Hide');
-      }}
-    >
-      <div className={styles.menubarLeft}>
-        <div
-          className={styles.menubariconapple}
-          data-active={menubarState.showApple}
-          onClick={(event) => handleItemClicked(event, 'ShowApple')}
-        >
-          <FontAwesomeIcon
-            className={styles.menubariconContent}
-            icon={faApple}
-          />
-        </div>
-        {MenubarItems[state].map((item, i) => {
-          return i === 0 ? (
-            <div
-              className={styles.menubarItem}
-              style={{ fontWeight: 'bold' }}
-              key={i}
-            >
-              {item}
-            </div>
-          ) : (
-            <div className={styles.menubarItem} key={i}>
-              {item}
-            </div>
-          );
-        })}
-      </div>
-      <div className={styles.menubarRight}>
-        <div
-          className={styles.menubaricon}
-          data-active={menubarState.showFocus}
-          onClick={(event) => handleItemClicked(event, 'ShowFocus')}
-        >
-          <FontAwesomeIcon
-            className={styles.menubariconContent}
-            icon={faMoon}
-          />
-        </div>
-        <div
-          className={styles.menubaricon}
-          data-active={menubarState.showInput}
-          onClick={(event) => handleItemClicked(event, 'ShowInput')}
-        >
-          <FontAwesomeIcon
-            className={styles.menubariconContent}
-            icon={faLanguage}
-          />
-        </div>
-        <div
-          className={styles.menubaricon}
-          data-active={menubarState.showBattery}
-          onClick={(event) => handleItemClicked(event, 'ShowBattery')}
-        >
-          <FontAwesomeIcon
-            className={styles.menubariconContent}
-            icon={faBatteryFull}
-          />
-        </div>
-        <div
-          className={styles.menubaricon}
-          data-active={menubarState.showWifi}
-          onClick={(event) => handleItemClicked(event, 'ShowWifi')}
-        >
-          <FontAwesomeIcon
-            className={styles.menubariconContent}
-            icon={faWifi}
-          />
-        </div>
-        <div
-          className={styles.menubaricon}
-          data-active={menubarState.showBluetooth}
-          onClick={(event) => handleItemClicked(event, 'ShowBluetooth')}
-        >
-          <FontAwesomeIcon
-            className={styles.menubariconContent}
-            icon={faBluetoothB}
-          />
-        </div>
-        <div
-          className={styles.menubaricon}
-          data-active={menubarState.showSearch}
-          onClick={(event) => handleItemClicked(event, 'ShowSearch')}
-        >
-          <FontAwesomeIcon
-            className={styles.menubariconContent}
-            icon={faSearch}
-          />
-        </div>
-        <div
-          className={styles.menubaricon}
-          data-active={menubarState.showControl}
-          onClick={(event) => handleItemClicked(event, 'ShowControl')}
-        >
-          <FontAwesomeIcon
-            className={styles.menubariconContent}
-            icon={faSlidersH}
-          />
-        </div>
-        <div
-          className={styles.menubaricon}
-          data-active={appState.siri === 1}
-          onClick={(event) => {
-            event.stopPropagation();
-            if (appState.siri === 0) setApp('SIRI_OPENED');
-            else setApp('SIRI_CLOSED');
-          }}
-        >
-          <FontAwesomeIcon
-            className={styles.menubariconContent}
-            icon={faCircleNotch}
-          />
-        </div>
-        <div
-          className={styles.date}
-          data-active={menubarState.showNotification}
-          onClick={(event) => handleItemClicked(event, 'ShowNotification')}
-        >
-          {new Date().toLocaleDateString('en-CN', {
-            weekday: 'short',
-            month: 'short',
-            day: 'numeric',
-          })}
-          &nbsp;&nbsp;
-          {new Date().toLocaleTimeString('en-CN', {
-            hour: '2-digit',
-            minute: '2-digit',
+    <>
+      <div
+        className={styles.menubar}
+        onClick={() => {
+          menubarPanelDispatcher('Hide');
+        }}
+      >
+        <div className={styles.menubarLeft}>
+          <div
+            className={styles.menubariconapple}
+            data-active={menubarState.showApple}
+            onClick={(event) => handleItemClicked(event, 'ShowApple')}
+          >
+            <FontAwesomeIcon
+              className={styles.menubariconContent}
+              icon={faApple}
+            />
+          </div>
+          {MenubarItems[curAppState].map((item, i) => {
+            return i === 0 ? (
+              <div
+                className={styles.menubarItem}
+                style={{ fontWeight: 'bold' }}
+                key={i}
+              >
+                {item}
+              </div>
+            ) : (
+              <div className={styles.menubarItem} key={i}>
+                {item}
+              </div>
+            );
           })}
         </div>
+        <div className={styles.menubarRight}>
+          <div
+            className={styles.menubaricon}
+            data-active={menubarState.showFocus}
+            onClick={(event) => handleItemClicked(event, 'ShowFocus')}
+          >
+            <FontAwesomeIcon
+              className={styles.menubariconContent}
+              icon={faMoon}
+            />
+          </div>
+          <div
+            className={styles.menubaricon}
+            data-active={menubarState.showInput}
+            onClick={(event) => handleItemClicked(event, 'ShowInput')}
+          >
+            <FontAwesomeIcon
+              className={styles.menubariconContent}
+              icon={faLanguage}
+            />
+          </div>
+          <div
+            className={styles.menubaricon}
+            data-active={menubarState.showBattery}
+            onClick={(event) => handleItemClicked(event, 'ShowBattery')}
+          >
+            <FontAwesomeIcon
+              className={styles.menubariconContent}
+              icon={faBatteryFull}
+            />
+          </div>
+          <div
+            className={styles.menubaricon}
+            data-active={menubarState.showWifi}
+            onClick={(event) => handleItemClicked(event, 'ShowWifi')}
+          >
+            <FontAwesomeIcon
+              className={styles.menubariconContent}
+              icon={faWifi}
+            />
+          </div>
+          <div
+            className={styles.menubaricon}
+            data-active={menubarState.showBluetooth}
+            onClick={(event) => handleItemClicked(event, 'ShowBluetooth')}
+          >
+            <FontAwesomeIcon
+              className={styles.menubariconContent}
+              icon={faBluetoothB}
+            />
+          </div>
+          <div
+            className={styles.menubaricon}
+            data-active={menubarState.showSearch}
+            onClick={(event) => handleItemClicked(event, 'ShowSearch')}
+          >
+            <FontAwesomeIcon
+              className={styles.menubariconContent}
+              icon={faSearch}
+            />
+          </div>
+          <div
+            className={styles.menubaricon}
+            data-active={menubarState.showControl}
+            onClick={(event) => handleItemClicked(event, 'ShowControl')}
+          >
+            <FontAwesomeIcon
+              className={styles.menubariconContent}
+              icon={faSlidersH}
+            />
+          </div>
+          <div
+            className={styles.menubaricon}
+            data-active={appState.siri === 1}
+            onClick={(event) => {
+              event.stopPropagation();
+              if (appState.siri === 0) setApp('SIRI_OPENED');
+              else setApp('SIRI_CLOSED');
+            }}
+          >
+            <FontAwesomeIcon
+              className={styles.menubariconContent}
+              icon={faCircleNotch}
+            />
+          </div>
+          <div
+            className={styles.date}
+            data-active={menubarState.showNotification}
+            onClick={(event) => handleItemClicked(event, 'ShowNotification')}
+          >
+            {new Date().toLocaleDateString('en-CN', {
+              weekday: 'short',
+              month: 'short',
+              day: 'numeric',
+            })}
+            &nbsp;&nbsp;
+            {new Date().toLocaleTimeString('en-CN', {
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
+          </div>
+        </div>
       </div>
-    </div>
+      <InputPanel show={menubarState.showInput} />
+      <BatteryPanel show={menubarState.showBattery} />
+      <NotificationPanel show={menubarState.showNotification} />
+      <WiFiPanel
+        show={menubarState.showWifi}
+        state={wifiState}
+        setState={setWifi}
+      />
+      <BluetoothPanel
+        show={menubarState.showBluetooth}
+        state={bluetoothState}
+        setState={setBluetooth}
+      />
+      <SearchPanel
+        show={menubarState.showSearch}
+        appState={appState}
+        setApp={setApp}
+        menubarPanelDispatcher={menubarPanelDispatcher}
+      />
+      <FocusPanel
+        show={menubarState.showFocus}
+        state={focusState}
+        dispatch={setFocus}
+      />
+      <ApplePanel
+        show={menubarState.showApple}
+        appState={appState}
+        setApp={setApp}
+        menubarPanelDispatcher={menubarPanelDispatcher}
+        setLock={setLock}
+      />
+      <ControlPanel
+        show={menubarState.showControl}
+        wifiState={wifiState}
+        setWifi={setWifi}
+        bluetoothState={bluetoothState}
+        setBluetooth={setBluetooth}
+        focusState={focusState}
+        setFocus={setFocus}
+        darkState={darkState}
+        setDark={setDark}
+        musicList={musicList}
+        playMusic={playMusic}
+        playPrev={playPrev}
+        playNext={playNext}
+        fullscreen={fullscreen}
+        enterFullscreen={enterFullscreen}
+      />
+    </>
   );
 };
 
-export const WiFiPanel = ({
+const WiFiPanel = ({
   show,
   state,
   setState,
@@ -248,7 +313,7 @@ export const WiFiPanel = ({
   );
 };
 
-export const BatteryPanel = ({ show }: { show: boolean }) => {
+const BatteryPanel = ({ show }: { show: boolean }) => {
   return (
     <div className={styles.batteryPanel} data-show={show}>
       <div className={styles.panelLineBetween}>
@@ -262,7 +327,7 @@ export const BatteryPanel = ({ show }: { show: boolean }) => {
   );
 };
 
-export const InputPanel = ({ show }: { show: boolean }) => {
+const InputPanel = ({ show }: { show: boolean }) => {
   const [state, dispatch] = useState('Pinyin');
   const InputPanelLine = ({
     state,
@@ -307,7 +372,7 @@ export const InputPanel = ({ show }: { show: boolean }) => {
   );
 };
 
-export const FocusPanel = ({
+const FocusPanel = ({
   show,
   state,
   dispatch,
@@ -415,7 +480,8 @@ export const FocusPanel = ({
     </div>
   );
 };
-export const BluetoothPanel = ({
+
+const BluetoothPanel = ({
   show,
   state,
   setState,
@@ -453,7 +519,8 @@ export const BluetoothPanel = ({
     </div>
   );
 };
-export const SearchPanel = ({
+
+const SearchPanel = ({
   show,
   appState,
   menubarPanelDispatcher,
@@ -511,7 +578,8 @@ export const SearchPanel = ({
     </div>
   );
 };
-export const ControlPanel = (props: ControlPanelProps) => {
+
+const ControlPanel = (props: ControlPanelProps) => {
   const [airdrop, setAirDrop] = useState(false);
   return (
     <div className={styles.controlPanel} data-show={props.show}>
@@ -571,7 +639,7 @@ export const ControlPanel = (props: ControlPanelProps) => {
               <div
                 className={styles.panelIconBox}
                 data-on={props.focusState.state}
-                onClick={() => props.setFoucs('ChangeFocus')}
+                onClick={() => props.setFocus('ChangeFocus')}
               >
                 <FontAwesomeIcon className={styles.panelIcon} icon={faMoon} />
               </div>
@@ -651,7 +719,8 @@ export const ControlPanel = (props: ControlPanelProps) => {
     </div>
   );
 };
-export const ApplePanel = ({
+
+const ApplePanel = ({
   show,
   appState,
   setApp,
@@ -749,7 +818,8 @@ export const ApplePanel = ({
     </div>
   );
 };
-export const NotificationPanel = ({ show }: { show: boolean }) => {
+
+const NotificationPanel = ({ show }: { show: boolean }) => {
   const [weatherData, setWeatherData] = useState(SampleWeatherData);
   useEffect(() => {
     if (show) {
@@ -859,3 +929,4 @@ export const NotificationPanel = ({ show }: { show: boolean }) => {
     </div>
   );
 };
+export default Menubar;

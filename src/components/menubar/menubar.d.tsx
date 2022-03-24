@@ -1,11 +1,26 @@
 import React from 'react';
 import { AppState, AppStateAction } from '../../utils/utils.d';
 export type MenubarProps = {
-  state: string;
+  curAppState: string;
   menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
   menubarState: MenubarPanelStates;
   setApp: React.Dispatch<AppStateAction>;
   appState: AppState;
+  wifiState: boolean;
+  setWifi: React.Dispatch<React.SetStateAction<boolean>>;
+  darkState: boolean;
+  setDark: React.Dispatch<React.SetStateAction<boolean>>;
+  bluetoothState: boolean;
+  setBluetooth: React.Dispatch<React.SetStateAction<boolean>>;
+  focusState: FocusState;
+  setFocus: React.Dispatch<FocusAction>;
+  musicList: any;
+  playMusic: () => void;
+  playPrev: () => void;
+  playNext: () => void;
+  fullscreen: boolean;
+  enterFullscreen: () => void;
+  setLock: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export type FocusState = {
   state: boolean;
@@ -25,7 +40,7 @@ export type ControlPanelProps = {
   bluetoothState: boolean;
   setBluetooth: React.Dispatch<React.SetStateAction<boolean>>;
   focusState: FocusState;
-  setFoucs: React.Dispatch<FocusAction>;
+  setFocus: React.Dispatch<FocusAction>;
   musicList: any;
   playMusic: () => void;
   playPrev: () => void;

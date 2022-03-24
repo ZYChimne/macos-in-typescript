@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { SiriCanvasProps, SwingPoint } from './siri.d';
 import styles from './siri.module.scss';
-export const Siri = ({ show }: { show: boolean }) => {
+const Siri = ({ show }: { show: boolean }) => {
   const text = 'What can I help you with?';
   const [onSiri, setSiri] = useState(true);
   return (
@@ -146,3 +146,4 @@ const SiriCavas = (props: SiriCanvasProps) => {
   });
   return <canvas ref={siriRef} onClick={() => props.onClick(!props.on)} />;
 };
+export default Siri;

@@ -3,7 +3,7 @@ import { AppState, AppStateAction } from '../../utils/utils.d';
 import { activeAppMapper, Icon } from '../../utils/utlils';
 import { DockApps } from './dock.d';
 import styles from './dock.module.scss';
-export const Dock = ({
+const Dock = ({
   appState,
   setApp,
 }: {
@@ -33,3 +33,4 @@ export const Dock = ({
     </div>
   );
 };
+export default Dock;

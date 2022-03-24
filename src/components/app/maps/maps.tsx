@@ -232,6 +232,7 @@ const MapLine = ({
     </div>
   );
 };
-export const Maps = MapApiLoaderHOC({ ak: 'YymPEbKHAZuLlK8bHRUd9xsK0MXE7Gc1' })(
+const Maps = MapApiLoaderHOC({ ak: 'YymPEbKHAZuLlK8bHRUd9xsK0MXE7Gc1' })(
   MapsContainer
 );
+export default Maps;

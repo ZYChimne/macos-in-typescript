@@ -4,7 +4,7 @@ import { AppStateAction } from '../../utils/utils.d';
 import { Icon } from '../../utils/utlils';
 import { LaunchpadApps } from './launchpad.d';
 import styles from './launchpad.module.scss';
-export const Launchpad = ({
+const Launchpad = ({
   show,
   setApp,
   page,
@@ -127,3 +127,4 @@ export const Launchpad = ({
     </div>
   );
 };
+export default Launchpad;

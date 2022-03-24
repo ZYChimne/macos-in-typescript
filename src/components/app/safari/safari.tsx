@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { AppStateAction } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
 import styles from './safari.module.scss';
-export const Safari = ({
+const Safari = ({
   state,
   setApp,
 }: {
@@ -83,3 +83,4 @@ export const Safari = ({
     </div>
   );
 };
+export default Safari;

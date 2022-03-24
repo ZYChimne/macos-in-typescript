@@ -22,7 +22,7 @@ import { AppBarButton } from '../../../utils/utlils';
 import { FinderData, FinderIconProps } from './finder.d';
 import styles from './finder.module.scss';
 import { AppStateAction } from '../../../utils/utils.d';
-export const Finder = ({
+const Finder = ({
   state,
   setApp,
 }: {
@@ -279,3 +279,4 @@ const FinderIcon = (props: FinderIconProps) => {
     </div>
   );
 };
+export default Finder;

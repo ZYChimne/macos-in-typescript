@@ -11,7 +11,7 @@ import { AppStateAction } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
 import { ContactsInfoList } from './contacts.d';
 import styles from './contacts.module.scss';
-export const Contacts = ({
+const Contacts = ({
   state,
   setApp,
   curContact,
@@ -156,3 +156,4 @@ const ContactsInfoLine = ({ title, text }: { title: string; text: string }) => {
     </div>
   );
 };
+export default Contacts;

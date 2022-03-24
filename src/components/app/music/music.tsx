@@ -10,7 +10,7 @@ import React from 'react';
 import { AppStateAction, MorandiColorList } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
 import styles from './music.module.scss';
-export const Music = ({
+const Music = ({
   state,
   setApp,
   musicList,
@@ -142,3 +142,4 @@ const MusicListLine = ({
     </div>
   );
 };
+export default Music;

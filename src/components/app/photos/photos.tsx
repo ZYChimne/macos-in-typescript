@@ -13,7 +13,7 @@ import { AppStateAction, MonthNames } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
 import { ImageState, PhotosContentProps, PhotosList } from './photos.d';
 import styles from './photos.module.scss';
-export const Photos = ({
+const Photos = ({
   state,
   setApp,
 }: {
@@ -311,3 +311,4 @@ const PhotosContent = (props: PhotosContentProps) => {
     </div>
   );
 };
+export default Photos;

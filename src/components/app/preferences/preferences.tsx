@@ -12,7 +12,7 @@ import {
 } from './preferences.d';
 import styles from './preferences.module.scss';
 
-export const Preferences = ({
+const Preferences = ({
   state,
   setApp,
   contentType,
@@ -248,3 +248,4 @@ const PreferenceContent = ({
       return <About />;
   }
 };
+export default Preferences;

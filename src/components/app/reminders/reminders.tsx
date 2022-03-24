@@ -9,12 +9,7 @@ import React, { useState } from 'react';
 import { AppBarButton } from '../../../utils/utlils';
 import { RemindersEvents, RemindersProps, TagColors } from './reminders.d';
 import styles from './reminders.module.scss';
-export const Reminders = ({
-  state,
-  setApp,
-  curTag,
-  setCurTag,
-}: RemindersProps) => {
+const Reminders = ({ state, setApp, curTag, setCurTag }: RemindersProps) => {
   const setClosed = () => setApp('REMINDERS_CLOSED');
   const setMinimized = () => setApp('REMINDERS_MINIMIZED');
   const setMaximized = () => {
@@ -209,3 +204,4 @@ const EventLine = ({
     </div>
   );
 };
+export default Reminders;

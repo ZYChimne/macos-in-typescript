@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { AppStateAction } from '../../../utils/utils.d';
 import { AppBarButton } from '../../../utils/utlils';
 import styles from './mail.module.scss';
-export const Mail = ({
+const Mail = ({
   state,
   setApp,
 }: {
@@ -98,3 +98,4 @@ export const Mail = ({
     </div>
   );
 };
+export default Mail;

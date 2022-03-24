@@ -6,7 +6,7 @@ import styles from './notes.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { AppStateAction, MonthNames } from '../../../utils/utils.d';
-export const Notes = ({
+const Notes = ({
   state,
   setApp,
 }: {
@@ -79,3 +79,4 @@ export const Notes = ({
     </div>
   );
 };
+export default Notes;
