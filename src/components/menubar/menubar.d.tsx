@@ -21,6 +21,7 @@ export type MenubarProps = {
   fullscreen: boolean;
   enterFullscreen: () => void;
   setLock: React.Dispatch<React.SetStateAction<boolean>>;
+  setBoot: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export type FocusState = {
   state: boolean;

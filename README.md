@@ -17,6 +17,10 @@ There is a project setup with Next.js at [macos-in-next](https://github.com/ZYCh
 * Typescript Best Practice
 * Lighthouse score > 90 (Need to set `Lock = true`)
 
+## Performance
+
+![Lighthouse (with Vercel Online)](/Lighthouse.png)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 [macOS color reference](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/).

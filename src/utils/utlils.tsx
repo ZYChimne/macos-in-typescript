@@ -115,6 +115,7 @@ export const AppBarButton = ({
     </div>
   );
 };
+
 export const InitialAppState: AppState = {
   preApp: 'Finder',
   curApp: 'Finder',
@@ -131,6 +132,7 @@ export const InitialAppState: AppState = {
   notes: 0,
   music: 0,
 };
+
 export const appStateReducer = (
   appState: AppState,
   type: AppStateAction
@@ -155,6 +157,7 @@ export const appStateReducer = (
         preApp: appState.curApp,
         curApp: 'Contacts',
         contacts: 1,
+        launchpad: 0,
       };
     case 'FINDER_CLOSED':
       return { ...appState, finder: 0, curApp: appState.preApp };
@@ -173,6 +176,7 @@ export const appStateReducer = (
         preApp: appState.curApp,
         curApp: 'Finder',
         finder: 1,
+        launchpad: 0,
       };
     case 'LAUNCHPAD_CLOSED':
       return { ...appState, launchpad: 0 };
@@ -185,7 +189,13 @@ export const appStateReducer = (
     case 'MAIL_MINIMIZED':
       return { ...appState, mail: 2, curApp: appState.preApp };
     case 'MAIL_OPENED':
-      return { ...appState, preApp: appState.curApp, curApp: 'Mail', mail: 1 };
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Mail',
+        mail: 1,
+        launchpad: 0,
+      };
     case 'MAPS_CLOSED':
       return { ...appState, maps: 0, curApp: appState.preApp };
     case 'MAPS_MAXIMIZED':
@@ -193,7 +203,13 @@ export const appStateReducer = (
     case 'MAPS_MINIMIZED':
       return { ...appState, maps: 2, curApp: appState.preApp };
     case 'MAPS_OPENED':
-      return { ...appState, preApp: appState.curApp, curApp: 'Maps', maps: 1 };
+      return {
+        ...appState,
+        preApp: appState.curApp,
+        curApp: 'Maps',
+        maps: 1,
+        launchpad: 0,
+      };
     case 'MUSIC_CLOSED':
       return { ...appState, music: 0, curApp: appState.preApp };
     case 'MUSIC_MAXIMIZED':
@@ -211,6 +227,7 @@ export const appStateReducer = (
         preApp: appState.curApp,
         curApp: 'Music',
         music: 1,
+        launchpad: 0,
       };
     case 'NOTES_CLOSED':
       return { ...appState, notes: 0, curApp: appState.preApp };
@@ -229,6 +246,7 @@ export const appStateReducer = (
         preApp: appState.curApp,
         curApp: 'Notes',
         notes: 1,
+        launchpad: 0,
       };
     case 'PHOTOS_CLOSED':
       return { ...appState, photos: 0, curApp: appState.preApp };
@@ -247,6 +265,7 @@ export const appStateReducer = (
         preApp: appState.curApp,
         curApp: 'Photos',
         photos: 1,
+        launchpad: 0,
       };
     case 'PREFERENCES_CLOSED':
       return { ...appState, preferences: 0, curApp: appState.preApp };
@@ -258,6 +277,7 @@ export const appStateReducer = (
         preApp: appState.curApp,
         curApp: 'Preferences',
         preferences: 1,
+        launchpad: 0,
       };
     case 'REMINDERS_CLOSED':
       return { ...appState, reminders: 0, curApp: appState.preApp };
@@ -276,6 +296,7 @@ export const appStateReducer = (
         preApp: appState.curApp,
         curApp: 'Reminders',
         reminders: 1,
+        launchpad: 0,
       };
     case 'SAFARI_CLOSED':
       return { ...appState, safari: 0, curApp: appState.preApp };
@@ -294,6 +315,7 @@ export const appStateReducer = (
         preApp: appState.curApp,
         curApp: 'Safari',
         safari: 1,
+        launchpad: 0,
       };
     case 'SIRI_CLOSED':
       return { ...appState, siri: 0 };
@@ -301,6 +323,7 @@ export const appStateReducer = (
       return { ...appState, siri: 1 };
   }
 };
+
 export const activeAppMapper = (state: AppState, app: string): number => {
   switch (app) {
     case 'contacts':

@@ -63,6 +63,7 @@ export const Menubar = ({
   fullscreen,
   enterFullscreen,
   setLock,
+  setBoot,
 }: MenubarProps) => {
   const handleItemClicked = (
     event: React.MouseEvent,
@@ -239,6 +240,7 @@ export const Menubar = ({
         setApp={setApp}
         menubarPanelDispatcher={menubarPanelDispatcher}
         setLock={setLock}
+        setBoot={setBoot}
       />
       <ControlPanel
         show={menubarState.showControl}
@@ -547,7 +549,9 @@ const SearchPanel = ({
       {input.length !== 0 ? (
         <div className={styles.searchContent}>
           {Object.keys(AppList).map((item, index) => {
-            if (AppList[item].name.toLowerCase().includes(input)) {
+            if (
+              AppList[item].name.toLowerCase().includes(input.toLowerCase())
+            ) {
               const temp = (
                 <div
                   className={styles.searchLine}
@@ -726,12 +730,14 @@ const ApplePanel = ({
   setApp,
   menubarPanelDispatcher,
   setLock,
+  setBoot,
 }: {
   show: boolean;
   appState: AppState;
   setApp: React.Dispatch<AppStateAction>;
   menubarPanelDispatcher: React.Dispatch<MenubarPanelAction>;
   setLock: React.Dispatch<React.SetStateAction<boolean>>;
+  setBoot: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <div className={styles.applePanel} data-show={show}>
@@ -790,7 +796,13 @@ const ApplePanel = ({
       <div className={styles.panelLineAppleHover}>
         <div className={styles.panelText}>Sleep</div>
       </div>
-      <div className={styles.panelLineAppleHover}>
+      <div
+        className={styles.panelLineAppleHover}
+        onClick={() => {
+          menubarPanelDispatcher('ShowApple');
+          setBoot(true);
+        }}
+      >
         <div className={styles.panelText}>Restart...</div>
       </div>
       <div className={styles.panelLineAppleHover}>
