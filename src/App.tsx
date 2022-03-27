@@ -18,6 +18,25 @@ import {
 import { Wallpaper } from './components/wallpaper/wallpaper';
 import { appStateReducer, InitialAppState } from './utils/utlils';
 
+const Maps = React.lazy(() => import('./components/app/maps/maps'));
+const Dock = React.lazy(() => import('./components/dock/dock'));
+const Launchpad = React.lazy(() => import('./components/launchpad/launchpad'));
+const Menubar = React.lazy(() => import('./components/menubar/menubar'));
+const Contacts = React.lazy(() => import('./components/app/contacts/contacts'));
+const Finder = React.lazy(() => import('./components/app/finder/finder'));
+const Mail = React.lazy(() => import('./components/app/mail/mail'));
+const Music = React.lazy(() => import('./components/app/music/music'));
+const Notes = React.lazy(() => import('./components/app/notes/notes'));
+const Photos = React.lazy(() => import('./components/app/photos/photos'));
+const Preferences = React.lazy(
+  () => import('./components/app/preferences/preferences')
+);
+const Reminders = React.lazy(
+  () => import('./components/app/reminders/reminders')
+);
+const Safari = React.lazy(() => import('./components/app/safari/safari'));
+const Siri = React.lazy(() => import('./components/app/siri/siri'));
+
 const App = () => {
   const appRef = useRef<HTMLDivElement>(null);
   const [boot, setBoot] = useState(false);
@@ -104,48 +123,6 @@ const App = () => {
       }
     }
   };
-  const Dock = React.useRef(
-    React.lazy(() => import('./components/dock/dock'))
-  ).current;
-  const Launchpad = React.useRef(
-    React.lazy(() => import('./components/launchpad/launchpad'))
-  ).current;
-  const Menubar = React.useRef(
-    React.lazy(() => import('./components/menubar/menubar'))
-  ).current;
-  const Contacts = React.useRef(
-    React.lazy(() => import('./components/app/contacts/contacts'))
-  ).current;
-  const Finder = React.useRef(
-    React.lazy(() => import('./components/app/finder/finder'))
-  ).current;
-  const Mail = React.useRef(
-    React.lazy(() => import('./components/app/mail/mail'))
-  ).current;
-  const Maps = React.useRef(
-    React.lazy(() => import('./components/app/maps/maps'))
-  ).current;
-  const Music = React.useRef(
-    React.lazy(() => import('./components/app/music/music'))
-  ).current;
-  const Notes = React.useRef(
-    React.lazy(() => import('./components/app/notes/notes'))
-  ).current;
-  const Photos = React.useRef(
-    React.lazy(() => import('./components/app/photos/photos'))
-  ).current;
-  const Preferences = React.useRef(
-    React.lazy(() => import('./components/app/preferences/preferences'))
-  ).current;
-  const Reminders = React.useRef(
-    React.lazy(() => import('./components/app/reminders/reminders'))
-  ).current;
-  const Safari = React.useRef(
-    React.lazy(() => import('./components/app/safari/safari'))
-  ).current;
-  const Siri = React.useRef(
-    React.lazy(() => import('./components/app/siri/siri'))
-  ).current;
   const windowHeight = window.innerHeight,
     windowWidth = window.innerWidth;
   return windowHeight >= 600 && windowWidth >= 1024 ? (
