@@ -4,6 +4,7 @@ import { NotesList } from './notes.d';
 import { marked } from 'marked';
 import styles from './notes.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import DOMPurify from 'dompurify';
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { AppStateAction, MonthNames } from '../../../utils/utils.d';
 const Notes = ({
@@ -72,7 +73,7 @@ const Notes = ({
         </div>
         <div
           className={styles.notesContent}
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
           style={{ fontSize: `14px` }}
         ></div>
       </div>
