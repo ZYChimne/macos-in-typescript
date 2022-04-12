@@ -16,7 +16,7 @@ const Notes = ({
 }) => {
   const [curNote, setCurNote] = useState(NotesList[0].id);
   const content = useMemo(
-    () => marked.parse(NotesList[curNote].content),
+    () => DOMPurify.sanitize(marked.parse(NotesList[curNote].content)),
     [curNote]
   );
   const setClosed = () => setApp('NOTES_CLOSED');
@@ -73,7 +73,7 @@ const Notes = ({
         </div>
         <div
           className={styles.notesContent}
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
+          dangerouslySetInnerHTML={{ __html: content }}
           style={{ fontSize: `14px` }}
         ></div>
       </div>
