@@ -4,7 +4,7 @@ import { SiriCanvasProps, SwingPoint } from './siri.d';
 import styles from './siri.module.scss';
 const Siri = ({ show }: { show: boolean }) => {
   const text = 'What can I help you with?';
-  const [onSiri, setSiri] = useState(true);
+  const [on, setOn] = useState(true);
   return (
     <div className={styles.siri} data-show={show}>
       <div className={styles.siriText}>{text}</div>
@@ -19,8 +19,8 @@ const Siri = ({ show }: { show: boolean }) => {
         onSpeed={0.015}
         offPhase={3}
         offSpeed={0.005}
-        onClick={setSiri}
-        on={onSiri}
+        onClick={setOn}
+        on={on}
       />
     </div>
   );
@@ -64,21 +64,16 @@ const SiriCavas = (props: SiriCanvasProps) => {
         canvas.height = h * dpr;
         canvas.style.width = w + 'px';
         canvas.style.height = h + 'px';
-        const cycle = (num1: number, num2: number) => {
-          return ((num1 % num2) + num2) % num2;
-        };
-        const random = (num1: number, num2: number) => {
-          var max = Math.max(num1, num2);
-          var min = Math.min(num1, num2);
+        const random = (min: number, max: number) => {
           return Math.floor(Math.random() * (max - min + 1)) + min;
         };
-        for (var idx = 0; idx <= gradients.length - 1; idx++) {
+        for (let idx = 0; idx < gradients.length; idx++) {
           let swingpoints = [];
           let radian = 0;
-          for (var i = 0; i < points; i++) {
+          for (let i = 0; i < points; i++) {
             radian = ((pi * 2) / points) * i;
-            var ptX = center.x + radius * Math.cos(radian);
-            var ptY = center.y + radius * Math.sin(radian);
+            let ptX = center.x + radius * Math.cos(radian);
+            let ptY = center.y + radius * Math.sin(radian);
             swingpoints.push({
               x: ptX,
               y: ptY,
@@ -89,25 +84,25 @@ const SiriCavas = (props: SiriCanvasProps) => {
           }
           circles.push(swingpoints);
         }
+        ctx.globalAlpha = 1;
+        ctx.globalCompositeOperation = 'screen';
         const swingCircle = () => {
           ctx.clearRect(0, 0, w * dpr, h * dpr);
-          ctx.globalAlpha = 1;
-          ctx.globalCompositeOperation = 'screen';
           for (let k = 0; k < circles.length; k++) {
             let swingpoints = circles[k];
-            for (var i = 0; i < swingpoints.length; i++) {
+            for (let i = 0; i < swingpoints.length; i++) {
               swingpoints[i].phase +=
                 random(1, 10) * -(props.on ? props.onSpeed : props.offSpeed);
               let phase =
                 (props.on ? props.onPhase : props.offPhase) *
                 Math.sin(tick / 60);
-              var r =
+              let r =
                 radius +
                 swingpoints[i].range * phase * Math.sin(swingpoints[i].phase) -
                 rangeMax;
               swingpoints[i].radian += pi / 360;
-              var ptX = center.x + r * Math.cos(swingpoints[i].radian);
-              var ptY = center.y + r * Math.sin(swingpoints[i].radian);
+              let ptX = center.x + r * Math.cos(swingpoints[i].radian);
+              let ptY = center.y + r * Math.sin(swingpoints[i].radian);
               swingpoints[i] = {
                 x: ptX,
                 y: ptY,
@@ -117,30 +112,34 @@ const SiriCavas = (props: SiriCanvasProps) => {
               };
             }
             const fill = gradients[k];
+            const drawCurve = (
+              pts: SwingPoint[],
+              fillStyle: CanvasGradient
+            ) => {
+              ctx.fillStyle = fillStyle;
+              ctx.beginPath();
+              ctx.moveTo(
+                (pts[points - 1].x + pts[0].x) / 2,
+                (pts[points - 1].y + pts[0].y) / 2
+              );
+              for (let i = 0; i < pts.length; i++) {
+                const idx = (i + 1) % points;
+                ctx.quadraticCurveTo(
+                  pts[i].x,
+                  pts[i].y,
+                  (pts[i].x + pts[idx].x) / 2,
+                  (pts[i].y + pts[idx].y) / 2
+                );
+              }
+              ctx.closePath();
+              ctx.fill();
+            };
             drawCurve(swingpoints, fill);
           }
           tick++;
           requestAnimationFrame(swingCircle);
         };
         requestAnimationFrame(swingCircle);
-        const drawCurve = (pts: SwingPoint[], fillStyle: CanvasGradient) => {
-          ctx.fillStyle = fillStyle;
-          ctx.beginPath();
-          ctx.moveTo(
-            (pts[cycle(-1, points)].x + pts[0].x) / 2,
-            (pts[cycle(-1, points)].y + pts[0].y) / 2
-          );
-          for (var i = 0; i < pts.length; i++) {
-            ctx.quadraticCurveTo(
-              pts[i].x,
-              pts[i].y,
-              (pts[i].x + pts[cycle(i + 1, points)].x) / 2,
-              (pts[i].y + pts[cycle(i + 1, points)].y) / 2
-            );
-          }
-          ctx.closePath();
-          ctx.fill();
-        };
       }
     }
   });
