@@ -3,6 +3,9 @@
 This is my Graduate Capstone Project for Wuhan University.  
 This application is developed in Chrome and some features require Chrome to work correctly.
 There is a project setup with Next.js at [macos-in-next](https://github.com/ZYChimne/macos-in-next).  
+![Boot](/images/image25.png)
+![Desktop](/images/image28.png)
+![Launchpad](/images/image39.png)
 
 ## Performance Improvements
 
@@ -19,7 +22,7 @@ There is a project setup with Next.js at [macos-in-next](https://github.com/ZYCh
 
 ## Performance
 
-![Lighthouse (with Vercel Online)](/Lighthouse.png)
+![Lighthouse (with Vercel Online)](/images/Lighthouse.png)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
