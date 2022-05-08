@@ -3,6 +3,9 @@
 This is my Graduate Capstone Project for Wuhan University.  
 This application is developed in Chrome and some features require Chrome to work correctly.
 There is a project setup with Next.js at [macos-in-next](https://github.com/ZYChimne/macos-in-next).  
+
+## Screenshots
+
 ![Boot](/images/image25.png)
 ![Desktop](/images/image28.png)
 ![Launchpad](/images/image39.png)
