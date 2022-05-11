@@ -59,28 +59,28 @@ const Photos = ({
     const initialWidth = event.currentTarget.clientWidth;
     const initialHeight = event.currentTarget.clientHeight;
     const finalHeight =
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!
+      event.currentTarget.parentElement!.parentElement!.parentElement!
         .clientHeight;
     const finalWidth =
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!
+      event.currentTarget.parentElement!.parentElement!.parentElement!
         .clientWidth;
     const initialLeft =
       event.currentTarget.getBoundingClientRect().left -
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+      event.currentTarget.parentElement!.parentElement!.parentElement!.parentElement!.parentElement!.getBoundingClientRect()
         .left;
     const initialTop =
       event.currentTarget.getBoundingClientRect().top -
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+      event.currentTarget.parentElement!.parentElement!.parentElement!.parentElement!.parentElement!.getBoundingClientRect()
         .top;
     const finalLeft =
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+      event.currentTarget.parentElement!.parentElement!.parentElement!.getBoundingClientRect()
         .left -
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+      event.currentTarget.parentElement!.parentElement!.parentElement!.parentElement!.parentElement!.getBoundingClientRect()
         .left;
     const finalTop =
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+      event.currentTarget.parentElement!.parentElement!.parentElement!.getBoundingClientRect()
         .top -
-      event.currentTarget.parentElement!!.parentElement!!.parentElement!!.parentElement!!.parentElement!!.getBoundingClientRect()
+      event.currentTarget.parentElement!.parentElement!.parentElement!.parentElement!.parentElement!.getBoundingClientRect()
         .top;
     setId(id);
     setImgLeft(initialLeft);
