@@ -11,23 +11,18 @@ There is a project setup with Next.js at [macos-in-next](https://github.com/ZYCh
 ![Launchpad](/images/image39.png)
 ![Overview](/images/Overview.png)
 
-## Performance Improvements
-
-* Change event callbacks [React Events](https://reactjs.org/docs/handling-events.html).
-* Migrate Data to Temporal.
-
 ## Features
+
 * Follow Airbnb JavaScript guide
 * Built components from sratch
 * State management with React.js only
 * CSS and Canvas Animations
 * Typescript Best Practice
-* Lighthouse score > 90 (Need to set `Lock = true`)
-
+* Lighthouse score >= 95
+* 
 ## Performance
 
 ![Lighthouse (with Vercel Online)](/images/Lighthouse.png)
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 [macOS color reference](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color/).
