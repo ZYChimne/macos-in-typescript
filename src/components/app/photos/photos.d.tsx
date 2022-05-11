@@ -5,21 +5,14 @@ export type PhotoType = {
   folder: string;
 };
 export type ImageState = {
-  initialWidth: number;
-  initialHeight: number;
-  finalWidth: number;
-  finalHeight: number;
-  initialLeft: number;
-  initialTop: number;
-  finalLeft: number;
-  finalTop: number;
+  width: number;
+  height: number;
+  left: number;
+  top: number;
 };
 export type PhotosContentProps = {
   id: number;
-  imgLeft: number;
-  imgTop: number;
-  imgWidth: number;
-  imgHeight: number;
+  imgState: ImageState;
   imgFit: boolean;
   zoomOnClick: (event: React.MouseEvent, id: number) => void;
   switchOnWheel: (event: React.WheelEvent) => void;
