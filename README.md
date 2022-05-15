@@ -19,7 +19,7 @@ There is a project setup with Next.js at [macos-in-next](https://github.com/ZYCh
 * CSS and Canvas Animations
 * Typescript Best Practice
 * Lighthouse score >= 95
-* 
+
 ## Performance
 
 ![Lighthouse (with Vercel Online)](/images/Lighthouse.png)
